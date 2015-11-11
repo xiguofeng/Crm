@@ -16,6 +16,10 @@
     <!-- customer -->
     <string name="my_customer">我的客户</string>
     <string name="filter">筛选</string>
+    <string name="level">等级</string>
+    <string name="type">类型</string>
+    <string name="is_deal">是否成交</string>
+    <string name="status">状态</string>
 
     <!-- loading -->
     <string name="loading">加载&#8230;</string>
@@ -26,7 +30,7 @@
     <!-- common -->
     <string name="prompt">提示</string>
     <string name="confirm">确定</string>
-    <string name="cancal">取消</string>
+    <string name="cancel">取消</string>
     <string name="num_digits">0123456789</string>
     <string name="submit">提交</string>
     <string name="save">保存</string>
