@@ -1,16 +1,103 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.ogg.crm.ui.activity.MainActivity" >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red_title_bg"
+        android:orientation="horizontal"
+        android:padding="8dip">
+
+        <ImageView
+            android:id="@+id/main_back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:src="@drawable/back_selector"/>
+
+        <TextView
+            android:id="@+id/main_filter_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/person"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text_size"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/main_page"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"/>
+    </RelativeLayout>
+
     <TextView
+        android:id="@+id/main_appointment_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity" />
+        android:layout_marginTop="20dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:padding="5dp"
+        android:text="@string/person"
+        android:textColor="@color/black"
+        android:textSize="@dimen/large_text_size"/>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="15dp"
+        android:padding="8dip">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/main_page"
+            android:textColor="@color/black"
+            android:textSize="@dimen/medium_text_size" />
+
+        <TextView
+            android:id="@+id/main_appointment_more_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/person"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/h_line" >
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/main_appointment_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:dividerHeight="0.5dip"
+        android:background="@null"
+        android:fastScrollEnabled="false"
+        android:focusable="true"
+        android:scrollbars="none" />
+
+
+</LinearLayout>

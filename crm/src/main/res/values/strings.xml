@@ -37,6 +37,8 @@
     <string name="del">删除</string>
     <string name="confirm_submit">确认提交</string>
     <string name="activity">活动</string>
+    <string name="person">个人</string>
+    <string name="main_page">首页</string>
     
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
