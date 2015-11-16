@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/gray_bg"
+              android:orientation="vertical">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:background="@color/gray_bg"
+                  android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red_title_bg"
+            android:orientation="horizontal"
+            android:padding="5dip">
+
+            <ImageView
+                android:id="@+id/appointment_list_back_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/back_selector"/>
+
+            <TextView
+                android:id="@+id/appointment_list_filter_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:text="@string/filter"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/my_appointment"
+                android:textColor="@color/white"
+                android:textSize="@dimen/middle_text_size"/>
+        </RelativeLayout>
+
+        <com.ogg.crm.ui.view.listview.XListView
+            android:id="@+id/appointment_list_goods_xlv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:cacheColorHint="#00000000"
+            android:divider="@null"
+            android:dividerHeight="1dip"
+            android:fastScrollEnabled="false"
+            android:focusable="true"
+            android:scrollbars="none"/>
+    </LinearLayout>
+
+</LinearLayout>

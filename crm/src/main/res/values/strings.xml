@@ -11,6 +11,7 @@
     <string name="setting">设置</string>
     <string name="my">我的</string>
     <string name="menu_share">分享</string>
+    <string name="more">更多</string>
     <string name="goods_comment">商品评论</string>
     
     <!-- customer -->
@@ -38,6 +39,7 @@
     <string name="confirm_submit">确认提交</string>
     <string name="activity">活动</string>
     <string name="person">个人</string>
+    <string name="my_appointment">我的提醒</string>
     <string name="main_page">首页</string>
     
     <!-- account -->

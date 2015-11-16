@@ -58,16 +58,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="15dp"
-        android:padding="8dip">
+        android:layout_margin="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/main_page"
+            android:text="@string/my_appointment"
             android:textColor="@color/black"
-            android:textSize="@dimen/medium_text_size" />
+            android:padding="5dp"
+            android:textSize="@dimen/middle_text_size" />
 
         <TextView
             android:id="@+id/main_appointment_more_tv"
@@ -76,7 +76,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/person"
+            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
     </RelativeLayout>
@@ -92,6 +92,8 @@
         android:id="@+id/main_appointment_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_gravity="center_horizontal"
         android:dividerHeight="0.5dip"
         android:background="@null"
