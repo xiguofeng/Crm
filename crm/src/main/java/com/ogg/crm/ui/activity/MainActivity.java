@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
@@ -79,7 +79,7 @@ public class MainActivity extends Activity implements
         });
 
         mDateTv = (TextView) findViewById(R.id.main_appointment_date_tv);
-        mAppointmentMoreTv = (TextView) findViewById(R.id.main_appointment_date_tv);
+        mAppointmentMoreTv = (TextView) findViewById(R.id.main_appointment_more_tv);
         mAppointmentMoreTv.setOnClickListener(this);
 
     }
@@ -110,7 +110,7 @@ public class MainActivity extends Activity implements
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.main_appointment_date_tv: {
+            case R.id.main_appointment_more_tv: {
                 Intent intent =new Intent(MainActivity.this,AppointmentActivity.class);
                 startActivity(intent);
             }
