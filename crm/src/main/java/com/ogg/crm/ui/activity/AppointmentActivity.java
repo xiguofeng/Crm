@@ -2,6 +2,7 @@ package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -101,14 +102,13 @@ public class AppointmentActivity extends Activity implements OnClickListener,
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position > 0) {
-                    // Intent intent = new Intent(GoodsListActivity.this,
-                    // GoodsDetailActivity.class);
-                    // intent.setAction(GoodsDetailActivity.ORIGIN_FROM_CATE_ACTION);
-                    // Bundle bundle = new Bundle();
-                    // bundle.putSerializable(GoodsDetailActivity.GOODS_ID_KEY,
-                    // mGoodsList.get(position - 1).getId());
-                    // intent.putExtras(bundle);
-                    // startActivity(intent);
+                    Intent intent = new Intent(AppointmentActivity.this,
+                            AppointmentDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(AppointmentDetailActivity.APPOINTMENTKEY,
+                            mAppointmentList.get(position - 1).getId());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
 
             }

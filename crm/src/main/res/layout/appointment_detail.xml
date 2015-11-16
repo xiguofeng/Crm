@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/gray_bg"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red_title_bg"
+        android:orientation="horizontal"
+        android:padding="5dip">
+
+        <ImageView
+            android:id="@+id/appointment_list_back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/back_selector"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/appointment_detail"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="50dip"
+        android:layout_marginRight="20dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/business_type"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+
+        <TextView
+            android:id="@+id/appointment_detail_business_type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/more"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/content_description"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+
+        <TextView
+            android:id="@+id/appointment_detail_content_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/more"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/appointment_time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+
+        <TextView
+            android:id="@+id/appointment_detail_appointment_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/more"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/customer_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+
+        <TextView
+            android:id="@+id/appointment_detail_customer_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/more"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="5dp"
+            android:text="@string/customer_phone"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+
+        <TextView
+            android:id="@+id/appointment_detail_customer_phone_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/more"
+            android:textColor="@color/black"
+            android:textSize="@dimen/middle_text_size"/>
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/appointment_detail_complete_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dip"
+        android:layout_marginRight="100dip"
+        android:layout_marginTop="30dip"
+        android:background="@drawable/corners_bg_red_all"
+        android:gravity="center"
+        android:paddingBottom="6dip"
+        android:paddingTop="6dip"
+        android:text="@string/appointment_already_complete"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text_size" />
+
+</LinearLayout>

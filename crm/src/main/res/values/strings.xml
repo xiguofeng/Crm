@@ -39,9 +39,18 @@
     <string name="confirm_submit">确认提交</string>
     <string name="activity">活动</string>
     <string name="person">个人</string>
-    <string name="my_appointment">我的提醒</string>
     <string name="main_page">首页</string>
-    
+
+    <!-- appointment -->
+    <string name="my_appointment">我的提醒</string>
+    <string name="appointment_detail">提醒详情</string>
+    <string name="appointment_already_complete">已完成</string>
+    <string name="business_type">业务类型</string>
+    <string name="content_description">内容描述</string>
+    <string name="appointment_time">提醒时间</string>
+    <string name="customer_name">客户名称</string>
+    <string name="customer_phone">客户联系方式</string>
+
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
     <string name="login">登录</string>
