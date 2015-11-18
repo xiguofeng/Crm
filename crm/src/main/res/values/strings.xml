@@ -51,6 +51,11 @@
     <string name="customer_name">客户名称</string>
     <string name="customer_phone">客户联系方式</string>
 
+    <!-- sms -->
+    <string name="sms_platform">短信平台</string>
+    <string name="sms_template">短信模板</string>
+    <string name="sms_send">短信发送</string>
+
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
     <string name="login">登录</string>
