@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/customer_platform"
+                android:text="@string/my_customer"
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text_size"/>
         </RelativeLayout>

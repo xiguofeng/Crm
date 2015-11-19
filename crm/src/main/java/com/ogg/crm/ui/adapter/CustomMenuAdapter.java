@@ -83,8 +83,8 @@ public class CustomMenuAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.mNameTv.setText(mDatas.get(position).getId());
-
+		holder.mNameTv.setText(mDatas.get(position).getName());
+        holder.mImageIv.setBackgroundResource(R.drawable.tab_person_pressed);
 		return convertView;
 	}
 

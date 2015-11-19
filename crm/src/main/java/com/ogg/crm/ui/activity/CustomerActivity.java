@@ -2,9 +2,11 @@ package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import com.ogg.crm.R;
@@ -51,6 +53,13 @@ public class CustomerActivity extends Activity implements OnClickListener {
         mBackIv.setOnClickListener(this);
 
         mCategoryGv = (CustomGridView) findViewById(R.id.customer_gv);
+        mCategoryGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent =new Intent(CustomerActivity.this,CustomerListActivity.class);
+                startActivity(intent);
+            }
+        });
         mCustomMenuAdapter = new CustomMenuAdapter(this, mMenuList);
         mCategoryGv.setAdapter(mCustomMenuAdapter);
 
