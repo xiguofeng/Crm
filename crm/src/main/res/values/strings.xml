@@ -62,6 +62,7 @@
     <string name="company_name">公司:</string>
     <string name="sms_content">短信内容:</string>
     <string name="template_select">模板选择</string>
+    <string name="sms_see">查看短信</string>
 
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
