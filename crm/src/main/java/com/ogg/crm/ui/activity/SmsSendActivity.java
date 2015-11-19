@@ -32,7 +32,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.appointment_detail);
+        setContentView(R.layout.sms_send);
         mContext = SmsSendActivity.this;
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
