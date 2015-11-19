@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class CustomerActivity extends Activity implements OnClickListener,
+public class CustomerListActivity extends Activity implements OnClickListener,
         ListItemClickHelp, XListView.IXListViewListener {
 
     private Context mContext;
@@ -69,7 +69,7 @@ public class CustomerActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_list);
-        mContext = CustomerActivity.this;
+        mContext = CustomerListActivity.this;
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
                         .getCurrentActivityName(mContext))) {
