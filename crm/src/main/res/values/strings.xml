@@ -56,7 +56,12 @@
     <string name="sms_platform">短信平台</string>
     <string name="sms_template">短信模板</string>
     <string name="sms_send">短信发送</string>
-
+    <string name="send">发送</string>
+    <string name="user_name">姓名:</string>
+    <string name="user_phone">手机:</string>
+    <string name="company_name">公司:</string>
+    <string name="sms_content">短信内容:</string>
+    <string name="template_select">模板选择</string>
 
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>

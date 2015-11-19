@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,11 +21,11 @@ public class SmsSendActivity extends Activity implements OnClickListener {
 
     private ImageView mBackIv;
 
-    private TextView mBusinessTypeTv;
-    private TextView mContentDescriptionTv;
-    private TextView mAppointmentTimeTv;
-    private TextView mCustomerNameTv;
-    private TextView mCustomerPhoneTv;
+    private TextView mUserNameTv;
+    private TextView mUserPhoneTv;
+    private TextView mCompanyNameTv;
+    private TextView mTemplateSelectTv;
+    private EditText mContentEt;
 
 
     private CustomProgressDialog mProgressDialog;
@@ -47,14 +48,14 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     }
 
     private void initView() {
-        mBackIv = (ImageView) findViewById(R.id.appointment_list_back_iv);
+        mBackIv = (ImageView) findViewById(R.id.sms_send_back_iv);
         mBackIv.setOnClickListener(this);
 
-        mBusinessTypeTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mContentDescriptionTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mAppointmentTimeTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mCustomerNameTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mCustomerPhoneTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
+        mUserNameTv = (TextView) findViewById(R.id.sms_send_user_name_tv);
+        mUserPhoneTv = (TextView) findViewById(R.id.sms_send_user_phone_tv);
+        mCompanyNameTv = (TextView) findViewById(R.id.sms_send_company_name_tv);
+        mTemplateSelectTv = (TextView) findViewById(R.id.sms_send_select_template_tv);
+        mContentEt = (EditText) findViewById(R.id.sms_send_content_et);
     }
 
     private void initData() {
@@ -65,8 +66,8 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.appointment_list_filter_tv: {
-
+            case R.id.sms_send_back_iv: {
+                finish();
                 break;
             }
 

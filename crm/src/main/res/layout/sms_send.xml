@@ -14,7 +14,7 @@
         android:padding="5dip">
 
         <ImageView
-            android:id="@+id/appointment_list_back_iv"
+            android:id="@+id/sms_send_back_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -26,12 +26,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/appointment_detail"
+            android:text="@string/sms_send"
             android:textColor="@color/white"
             android:textSize="@dimen/medium_text_size"/>
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dip"
@@ -44,27 +44,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:padding="5dp"
-            android:text="@string/business_type"
+            android:text="@string/user_name"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
 
         <TextView
-            android:id="@+id/appointment_detail_business_type_tv"
+            android:id="@+id/sms_send_user_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
         android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
         android:layout_marginRight="20dip"
         android:orientation="horizontal">
 
@@ -73,27 +71,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:padding="5dp"
-            android:text="@string/content_description"
+            android:text="@string/user_phone"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
 
         <TextView
-            android:id="@+id/appointment_detail_content_description_tv"
+            android:id="@+id/sms_send_user_phone_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
         android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
         android:layout_marginRight="20dip"
         android:orientation="horizontal">
 
@@ -102,83 +98,79 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:padding="5dp"
-            android:text="@string/appointment_time"
+            android:text="@string/company_name"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
 
         <TextView
-            android:id="@+id/appointment_detail_appointment_time_tv"
+            android:id="@+id/sms_send_company_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
         android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
         android:layout_marginRight="20dip"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:padding="5dp"
-            android:text="@string/customer_name"
+            android:text="@string/sms_content"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
 
-        <TextView
-            android:id="@+id/appointment_detail_customer_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
+        <EditText
+            android:id="@+id/sms_send_content_et"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/corners_bg_gray"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
         android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
         android:layout_marginRight="20dip"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/sms_send_select_tag_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:padding="5dp"
-            android:text="@string/customer_phone"
+            android:text="@string/template_select"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
 
         <TextView
-            android:id="@+id/appointment_detail_customer_phone_tv"
+            android:id="@+id/sms_send_select_template_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
-    </RelativeLayout>
+    </LinearLayout>
 
 
     <Button
-        android:id="@+id/appointment_detail_complete_btn"
+        android:id="@+id/sms_send_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dip"
@@ -188,7 +180,7 @@
         android:gravity="center"
         android:paddingBottom="6dip"
         android:paddingTop="6dip"
-        android:text="@string/appointment_already_complete"
+        android:text="@string/send"
         android:textColor="@color/white"
         android:textSize="@dimen/medium_text_size" />
 
