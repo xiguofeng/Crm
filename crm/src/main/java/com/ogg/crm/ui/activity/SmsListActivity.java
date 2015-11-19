@@ -2,21 +2,18 @@ package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.ogg.crm.R;
-import com.ogg.crm.entity.Customer;
-import com.ogg.crm.ui.adapter.CustomerAdapter;
+import com.ogg.crm.entity.Sms;
+import com.ogg.crm.ui.adapter.SmsAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
@@ -32,28 +29,9 @@ public class SmsListActivity extends Activity implements OnClickListener,
 
     private Context mContext;
 
-    private LinearLayout mCompositeLl;
-    private TextView mCompositeTv;
-    private ImageView mCompositeIv;
-
-    private LinearLayout mPriceLl;
-    private TextView mPriceTv;
-    private ImageView mPriceIv;
-
-    private LinearLayout mSalesLl;
-    private TextView mSalesTv;
-    private ImageView mSalesIv;
-
-    private XListView mGoodsLv;
-    private CustomerAdapter mCustomerAdapter;
-    private ArrayList<Customer> mCustomerList = new ArrayList<Customer>();
-
-    private DrawerLayout mDrawerLayout;
-    private TextView mFilterTv;
-    private boolean isFilterOpen = false;
-
-    private TextView mFilterConfrimTv;
-    private TextView mFilterCancelTv;
+    private XListView mSmsLv;
+    private SmsAdapter mSmsAdapter;
+    private ArrayList<Sms> mSmsList = new ArrayList<Sms>();
 
 
     private ImageView mBackIv;
@@ -68,7 +46,7 @@ public class SmsListActivity extends Activity implements OnClickListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customer_list);
+        setContentView(R.layout.sms_list);
         mContext = SmsListActivity.this;
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
@@ -83,12 +61,10 @@ public class SmsListActivity extends Activity implements OnClickListener,
     }
 
     private void initView() {
-        mBackIv = (ImageView) findViewById(R.id.customer_list_back_iv);
+        mBackIv = (ImageView) findViewById(R.id.sms_list_back_iv);
         mBackIv.setOnClickListener(this);
 
-        initFilterView();
         initListView();
-        initDrawerLayout();
     }
 
     private void initData() {
@@ -96,50 +72,19 @@ public class SmsListActivity extends Activity implements OnClickListener,
         mProgressDialog.show();
     }
 
-    private void initFilterView() {
-        mCompositeLl = (LinearLayout) findViewById(R.id.customer_list_composite_ll);
-        mCompositeTv = (TextView) findViewById(R.id.customer_list_composite_tv);
-        mCompositeIv = (ImageView) findViewById(R.id.customer_list_composite_iv);
-
-        mPriceLl = (LinearLayout) findViewById(R.id.customer_list_price_ll);
-        mPriceTv = (TextView) findViewById(R.id.customer_list_price_tv);
-        mPriceIv = (ImageView) findViewById(R.id.customer_list_price_iv);
-
-        mSalesLl = (LinearLayout) findViewById(R.id.customer_list_sales_ll);
-        mSalesTv = (TextView) findViewById(R.id.customer_list_sales_tv);
-        mSalesIv = (ImageView) findViewById(R.id.customer_list_sales_iv);
-
-        mCompositeLl.setOnClickListener(this);
-        mPriceLl.setOnClickListener(this);
-        mSalesLl.setOnClickListener(this);
-    }
-
-    private void setFilterViewDefalut() {
-        mCompositeTv.setTextColor(getResources().getColor(
-                R.color.gray_character));
-        mPriceTv.setTextColor(getResources().getColor(R.color.gray_character));
-        mSalesTv.setTextColor(getResources().getColor(R.color.gray_character));
-
-        mCompositeIv.setImageDrawable(getResources().getDrawable(
-                R.drawable.arrow_down_top));
-        mPriceIv.setImageDrawable(getResources().getDrawable(
-                R.drawable.arrow_down_top));
-        mSalesIv.setImageDrawable(getResources().getDrawable(
-                R.drawable.arrow_down_top));
-    }
 
     private void initListView() {
-        mGoodsLv = (XListView) findViewById(R.id.customer_list_goods_xlv);
-        mGoodsLv.setPullRefreshEnable(false);
-        mGoodsLv.setPullLoadEnable(true);
-        mGoodsLv.setAutoLoadEnable(true);
-        mGoodsLv.setXListViewListener(this);
-        mGoodsLv.setRefreshTime(getTime());
+        mSmsLv = (XListView) findViewById(R.id.sms_list_goods_xlv);
+        mSmsLv.setPullRefreshEnable(false);
+        mSmsLv.setPullLoadEnable(true);
+        mSmsLv.setAutoLoadEnable(true);
+        mSmsLv.setXListViewListener(this);
+        mSmsLv.setRefreshTime(getTime());
 
-        mCustomerAdapter = new CustomerAdapter(mContext, mCustomerList, this);
-        mGoodsLv.setAdapter(mCustomerAdapter);
+        mSmsAdapter = new SmsAdapter(mContext, mSmsList, this);
+        mSmsLv.setAdapter(mSmsAdapter);
 
-        mGoodsLv.setOnScrollListener(new AbsListView.OnScrollListener() {
+        mSmsLv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 // Log.i(TAG, "滚动状态变化");
@@ -151,43 +96,38 @@ public class SmsListActivity extends Activity implements OnClickListener,
                 // Log.i(TAG, "正在滚动");
             }
         });
-        mGoodsLv.setOnItemClickListener(new OnItemClickListener() {
+        mSmsLv.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position > 0) {
-                    // Intent intent = new Intent(GoodsListActivity.this,
-                    // GoodsDetailActivity.class);
-                    // intent.setAction(GoodsDetailActivity.ORIGIN_FROM_CATE_ACTION);
-                    // Bundle bundle = new Bundle();
-                    // bundle.putSerializable(GoodsDetailActivity.GOODS_ID_KEY,
-                    // mGoodsList.get(position - 1).getId());
-                    // intent.putExtras(bundle);
-                    // startActivity(intent);
+                    Intent intent = new Intent(SmsListActivity.this,
+                            SmsSendActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(SmsSendActivity.SMS_KEY,
+                            mSmsList.get(position - 1).getId());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
 
             }
         });
 
-    }
+        for (int i = 0; i < 10; i++) {
+            Sms Sms = new Sms();
+            Sms.setId("id" + i);
+            Sms.setName("name" + i);
+            mSmsList.add(Sms);
+        }
+        mSmsAdapter.notifyDataSetChanged();
 
-
-    private void initDrawerLayout() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.customer_dl);
-        mFilterTv = (TextView) findViewById(R.id.customer_list_filter_tv);
-        mFilterTv.setOnClickListener(this);
-
-        mFilterConfrimTv = (TextView) findViewById(R.id.customer_list_filter_confirm_tv);
-        mFilterConfrimTv.setOnClickListener(this);
-        mFilterCancelTv = (TextView) findViewById(R.id.customer_list_filter_cancel_tv);
-        mFilterCancelTv.setOnClickListener(this);
     }
 
     private void onLoadComplete() {
-        mGoodsLv.stopRefresh();
-        mGoodsLv.stopLoadMore();
-        mGoodsLv.setRefreshTime(getTime());
+        mSmsLv.stopRefresh();
+        mSmsLv.stopLoadMore();
+        mSmsLv.setRefreshTime(getTime());
     }
 
     private String getTime() {
@@ -213,23 +153,11 @@ public class SmsListActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.customer_list_filter_tv: {
-                if (!isFilterOpen) {
-                    mDrawerLayout.openDrawer(Gravity.RIGHT);
-                } else {
-                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                }
-                isFilterOpen = !isFilterOpen;
+            case R.id.sms_list_back_iv: {
+                finish();
                 break;
             }
-            case R.id.customer_list_filter_confirm_tv: {
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                break;
-            }
-            case R.id.customer_list_filter_cancel_tv: {
-                mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                break;
-            }
+
             default: {
                 break;
             }
