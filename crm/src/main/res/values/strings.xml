@@ -16,6 +16,7 @@
     
     <!-- customer -->
     <string name="my_customer">我的客户</string>
+    <string name="public_customer">公海客户</string>
     <string name="filter">筛选</string>
     <string name="level">等级</string>
     <string name="type">类型</string>
@@ -55,6 +56,7 @@
     <string name="sms_platform">短信平台</string>
     <string name="sms_template">短信模板</string>
     <string name="sms_send">短信发送</string>
+
 
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
