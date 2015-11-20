@@ -16,13 +16,13 @@ import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
-import com.ogg.crm.entity.User;
 import com.ogg.crm.network.logic.AppointmentLogic;
 import com.ogg.crm.ui.adapter.AppointmentAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
+import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,9 +113,8 @@ public class AppointmentActivity extends Activity implements OnClickListener,
     private void initData() {
         mProgressDialog = new CustomProgressDialog(mContext);
         mProgressDialog.show();
-        User user = new User();
-        user.setUserId("1");
-        AppointmentLogic.getList(mContext, mHandler, user);
+
+        AppointmentLogic.getList(mContext, mHandler, UserInfoManager.userInfo);
     }
 
 

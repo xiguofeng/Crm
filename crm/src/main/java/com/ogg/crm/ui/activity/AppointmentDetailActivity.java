@@ -3,13 +3,17 @@ package com.ogg.crm.ui.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
+import com.ogg.crm.network.logic.AppointmentLogic;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.ActivitiyInfoManager;
 
@@ -27,10 +31,40 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
     private TextView mCustomerNameTv;
     private TextView mCustomerPhoneTv;
 
+    private Button mChangeStateBtn;
 
     private CustomProgressDialog mProgressDialog;
 
     private Appointment mAppointment;
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case AppointmentLogic.STATE_SET_SUC: {
+                    break;
+                }
+                case AppointmentLogic.STATE_SET_FAIL: {
+                    break;
+                }
+                case AppointmentLogic.STATE_SET_EXCEPTION: {
+                    break;
+                }
+
+                default:
+                    break;
+            }
+
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,27 +84,43 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
     }
 
     private void initView() {
-        mBackIv = (ImageView) findViewById(R.id.appointment_list_back_iv);
+        mBackIv = (ImageView) findViewById(R.id.appointment_detail_back_iv);
         mBackIv.setOnClickListener(this);
 
-        mBusinessTypeTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mContentDescriptionTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mAppointmentTimeTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mCustomerNameTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
-        mCustomerPhoneTv = (TextView) findViewById(R.id.appointment_detail_complete_btn);
+        mChangeStateBtn= (Button) findViewById(R.id.appointment_detail_complete_btn);
+        mChangeStateBtn.setOnClickListener(this);
+
+        mBusinessTypeTv = (TextView) findViewById(R.id.appointment_detail_business_type_tv);
+        mContentDescriptionTv = (TextView) findViewById(R.id.appointment_detail_content_description_tv);
+        mAppointmentTimeTv = (TextView) findViewById(R.id.appointment_detail_appointment_time_tv);
+        mCustomerNameTv = (TextView) findViewById(R.id.appointment_detail_customer_name_tv);
+        mCustomerPhoneTv = (TextView) findViewById(R.id.appointment_detail_customer_phone_tv);
     }
 
     private void initData() {
         mProgressDialog = new CustomProgressDialog(mContext);
         //mProgressDialog.show();
-        mAppointment = (Appointment)getIntent().getSerializableExtra(APPOINTMENTKEY);
+        mAppointment = (Appointment) getIntent().getSerializableExtra(APPOINTMENTKEY);
+        if (null != mAppointment) {
+            fillUpData();
+        }
+    }
+
+    private void fillUpData() {
+        mBusinessTypeTv.setText(mAppointment.getBussinessDes());
+        mContentDescriptionTv.setText(mAppointment.getShortDesc());
+        mAppointmentTimeTv.setText(mAppointment.getReserveTime());
+        mCustomerNameTv.setText(mAppointment.getCustomerName());
+        mCustomerPhoneTv.setText(mAppointment.getCustomerTel());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.appointment_list_filter_tv: {
-
+            case R.id.appointment_detail_complete_btn: {
+                if (null != mAppointment) {
+                    AppointmentLogic.setState(mContext,mHandler,mAppointment.getRemindId());
+                }
                 break;
             }
 

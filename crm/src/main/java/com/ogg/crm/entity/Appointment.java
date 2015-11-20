@@ -6,6 +6,51 @@ public class Appointment implements Serializable {
 
 	private static final long serialVersionUID = 8912365559481657349L;
 
+    /**
+     * 客户名
+     */
+	private String customerName;
+
+    /**
+     * 创建时间
+     */
+	private String createTime;
+
+    /**
+     * 状态 0 1
+     */
+	private String status;
+
+    /**
+     * 电话号码
+     */
+	private String customerTel;
+
+    /**
+     * 所属人
+     */
+    private String customerManagerId;
+
+    /**
+     * 提醒时间
+     */
+    private String reserveTime;
+
+    /**
+     * 主键：提醒ID
+     */
+    private String remindId;
+
+    /**
+     * 内容
+     */
+    private String shortDesc;
+
+    /**
+     * 业务类型
+     */
+    private String bussinessDes;
+
     public String getCustomerName() {
         return customerName;
     }
@@ -62,39 +107,19 @@ public class Appointment implements Serializable {
         this.remindId = remindId;
     }
 
-    /**
-     * 客户名
-     */
-	private String customerName;
+    public String getShortDesc() {
+        return shortDesc;
+    }
 
-    /**
-     * 创建时间
-     */
-	private String createTime;
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
+    }
 
-    /**
-     * 状态 0 1
-     */
-	private String status;
+    public String getBussinessDes() {
+        return bussinessDes;
+    }
 
-    /**
-     * 电话号码
-     */
-	private String customerTel;
-
-    /**
-     * 所属人
-     */
-    private String customerManagerId;
-
-    /**
-     * 提醒时间
-     */
-    private String reserveTime;
-
-    /**
-     * 主键：提醒ID
-     */
-    private String remindId;
-
+    public void setBussinessDes(String bussinessDes) {
+        this.bussinessDes = bussinessDes;
+    }
 }

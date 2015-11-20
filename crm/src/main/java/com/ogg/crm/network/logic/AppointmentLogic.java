@@ -3,6 +3,7 @@ package com.ogg.crm.network.logic;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -35,6 +36,12 @@ public class AppointmentLogic {
 
     public static final int LIST_GET_EXCEPTION = LIST_GET_FAIL + 1;
 
+    public static final int STATE_SET_SUC = LIST_GET_EXCEPTION + 1;
+
+    public static final int STATE_SET_FAIL = STATE_SET_SUC + 1;
+
+    public static final int STATE_SET_EXCEPTION = STATE_SET_FAIL + 1;
+
     public static void getList(final Context context, final Handler handler,
                                final User user) {
 
@@ -44,6 +51,7 @@ public class AppointmentLogic {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("xxx_appointlist",":"+response);
                 parseListData(response, handler);
             }
         }, new Response.ErrorListener() {
@@ -58,7 +66,7 @@ public class AppointmentLogic {
                 Map<String, String> map = new HashMap<String, String>();
                 try {
                     map.put("userId",
-                            URLEncoder.encode(user.getUserId(), "UTF-8"));
+                            URLEncoder.encode("46", "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
@@ -95,6 +103,57 @@ public class AppointmentLogic {
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(LIST_GET_EXCEPTION);
+        }
+    }
+
+    public static void setState(final Context context, final Handler handler,
+                                final String id) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.appointment.setState;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_setState",":"+response);
+                parseSetStateData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("remindIds",
+                            URLEncoder.encode(id, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseSetStateData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+                handler.sendEmptyMessage(STATE_SET_SUC);
+            } else {
+                handler.sendEmptyMessage(STATE_SET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(STATE_SET_EXCEPTION);
         }
     }
 

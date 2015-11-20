@@ -20,9 +20,15 @@ public class RequestUrl {
     public interface appointment {
 
         /**
-         * 登陆
+         * 获取列表
          */
         public String list = "/reserveMobile/findReserveList.do";
+
+
+        /**
+         * 设置完成
+         */
+        public String setState = "/reserveMobile/updateStatus.do";
 
     }
 

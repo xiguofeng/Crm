@@ -130,6 +130,7 @@ public class MainActivity extends Activity implements
     private void initData() {
 
         if(UserInfoManager.getLoginIn(mContext)){
+            UserInfoManager.setUserInfo(mContext);
             mProgressDialog.show();
             AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.userInfo);
         }
