@@ -13,12 +13,12 @@ public class MsgResult {
 	/**
 	 * 请求成功标识
 	 */
-	public static final String RESULT_SUCCESS = "0";
+	public static final String RESULT_SUCCESS = "1";
 
 	/**
 	 * 请求失败标识
 	 */
-	public static final String RESULT_FAIL = "-1";
+	public static final String RESULT_FAIL = "0";
 
 	/**
 	 * msg

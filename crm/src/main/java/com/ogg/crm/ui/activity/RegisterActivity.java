@@ -152,7 +152,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 			case UserLogic.USER_INFO_GET_SUC: {
 				if (null != msg.obj) {
 					mUser = (User) msg.obj;
-					mUser.setPassword(mPassWord);
+					mUser.setLogonPass(mPassWord);
 
 					// UserInfoManager.setRememberPwd(mContext, true);
 					// UserInfoManager.saveUserInfo(RegisterActivity.this,
@@ -329,8 +329,6 @@ public class RegisterActivity extends BaseActivity implements OnClickListener,
 		mProgressDialog.show();
 
 		User user = new User();
-		user.setPhone(mPhone);
-		user.setPassword(mConfirmPwd);
 		//UserLogic.register(mContext, mHandler, user, mAuthCode);
 
 	}

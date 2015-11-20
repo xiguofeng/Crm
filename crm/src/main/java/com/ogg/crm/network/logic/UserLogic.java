@@ -13,6 +13,7 @@ import com.ogg.crm.BaseApplication;
 import com.ogg.crm.entity.User;
 import com.ogg.crm.network.config.MsgResult;
 import com.ogg.crm.network.config.RequestUrl;
+import com.ogg.crm.utils.JsonUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,14 +72,13 @@ public class UserLogic {
             @Override
             public void onResponse(String response) {
                 Log.e("xxx_1234", "" + response.toString());
-                //parseLoginData(response, handler);
+                parseLoginData(response, handler);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
             }
-        })
-        {
+        }) {
 
             @Override
             protected Map<String, String> getParams() {
@@ -105,17 +105,14 @@ public class UserLogic {
         try {
             // Log.e("xxx_login_suc", response.toString());
             JSONObject response = new JSONObject(responseStr);
-            String sucResult = response.getString(MsgResult.RESULT_TAG).trim();
+            String sucResult = response.getString("state").trim();
             if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
                 JSONObject jsonObject = response
-                        .getJSONObject(MsgResult.RESULT_DATA_TAG);
-
-                String session = jsonObject.getString("session");
-                // String session = response.getString("Set-Cookie");
-                // session = StringUtils.getCookieValue(session);
+                        .getJSONObject("model");
+                User user = (User) JsonUtils.fromJsonToJava(jsonObject, User.class);
                 Message message = new Message();
                 message.what = LOGIN_SUC;
-                message.obj = session;
+                message.obj = user;
                 handler.sendMessage(message);
             } else {
                 handler.sendEmptyMessage(LOGIN_FAIL);

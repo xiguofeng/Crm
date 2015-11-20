@@ -25,17 +25,11 @@ public class UserInfoManager {
 
     public static final String USER_ROLE_KEY = "roleType";
 
-	public static final String USER_SEX_KEY = "sex";
-
 	public static final String USER_PHONE_KEY = "phone";
 
 	public static final String USER_ADDRESS_KEY = "address";
 
 	public static final String USER_INVOICE_KEY = "invoice";
-
-	public static final String USER_SIGNATURE_KEY = "signature";
-
-	public static final String USER_LAST_LOGINIP_KEY = "last_login_ip";
 
 	public static final String USER_REMEMBER_PSW = "is_remember_pwd";
 

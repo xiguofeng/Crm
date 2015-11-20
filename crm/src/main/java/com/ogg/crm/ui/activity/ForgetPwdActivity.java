@@ -314,8 +314,6 @@ public class ForgetPwdActivity extends BaseActivity implements OnClickListener {
 		mProgressDialog.show();
 
 		User user = new User();
-		user.setPhone(mPhone);
-		user.setPassword(mConfirmPwd);
 		//UserLogic.forgetPwd(mContext, mHandler, user, mAuthCode);
 
 	}

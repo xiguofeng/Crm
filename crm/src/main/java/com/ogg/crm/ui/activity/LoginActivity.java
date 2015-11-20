@@ -33,275 +33,253 @@ import com.ogg.crm.utils.UserInfoManager;
  * 登录界面
  */
 public class LoginActivity extends Activity implements OnClickListener,
-		TextWatcher {
-	public static final String ORIGIN_FROM_NULL = "com.null";
+        TextWatcher {
+    public static final String ORIGIN_FROM_NULL = "com.null";
 
-	public static final String ORIGIN_FROM_REG_KEY = "com.reg";
+    public static final String ORIGIN_FROM_REG_KEY = "com.reg";
 
-	public static final String ORIGIN_FROM_CART_KEY = "com.cart";
+    public static final String ORIGIN_FROM_CART_KEY = "com.cart";
 
-	public static final String ORIGIN_FROM_GOODS_DETAIL_KEY = "com.goods.detail";
+    public static final String ORIGIN_FROM_GOODS_DETAIL_KEY = "com.goods.detail";
 
-	public static final String ORIGIN_FROM_ORDER_KEY = "com.order";
+    public static final String ORIGIN_FROM_ORDER_KEY = "com.order";
 
-	public static final String ORIGIN_FROM_USER_KEY = "com.user";
+    public static final String ORIGIN_FROM_USER_KEY = "com.user";
 
-	private Context mContext;
+    private Context mContext;
 
-	private ImageView mBackIv;
-	private ImageView mSeePwdIv;
+    private ImageView mBackIv;
+    private ImageView mSeePwdIv;
 
-	private EditText mAccountEt;
-	private AutoClearEditText mPassWordEt;
-	private CheckBox mRemberpswCb;
-	// private LinearLayout layoutProcess;
-	private Button mLoginBtn;
+    private EditText mAccountEt;
+    private AutoClearEditText mPassWordEt;
+    private CheckBox mRemberpswCb;
+    // private LinearLayout layoutProcess;
+    private Button mLoginBtn;
 
-	private LinearLayout mRegisterLl;
-	private LinearLayout mForgetPwdLl;
+    private LinearLayout mRegisterLl;
+    private LinearLayout mForgetPwdLl;
 
-	private boolean isShowPwd = false;
+    private boolean isShowPwd = false;
 
-	private String mAccount;
-	private String mPassWord;
+    private String mAccount;
+    private String mPassWord;
 
-	private User mUser = new User();
+    private User mUser = new User();
 
-	private CustomProgressDialog mProgressDialog;
+    private CustomProgressDialog mProgressDialog;
 
-	private String mNowAction = ORIGIN_FROM_NULL;
+    private String mNowAction = ORIGIN_FROM_NULL;
 
-	// 登陆装填提示handler更新主线程，提示登陆状态情况
-	Handler mHandler = new Handler() {
+    // 登陆装填提示handler更新主线程，提示登陆状态情况
+    Handler mHandler = new Handler() {
 
-		@Override
-		public void handleMessage(Message msg) {
-			int what = msg.what;
-			switch (what) {
-			case UserLogic.LOGIN_SUC: {
-				if (null != msg.obj) {
-					String session = (String) msg.obj;
-					UserInfoManager.setSession(mContext, session);
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case UserLogic.LOGIN_SUC: {
+                    if (null != msg.obj) {
+                        mUser = (User) msg.obj;
+                        mUser.setLogonPass(mPassWord);
+                        UserInfoManager.setRememberPwd(mContext, true);
+                        UserInfoManager.saveUserInfo(LoginActivity.this, mUser);
+                        UserInfoManager.setUserInfo(LoginActivity.this);
+                        UserInfoManager.setLoginIn(LoginActivity.this, true);
 
-					//UserLogic.getInfo(mContext, mHandler);
-				}
+                        handle();
+                    }
 
-				break;
-			}
-			case UserLogic.LOGIN_FAIL: {
-				Toast.makeText(mContext, R.string.login_fail,
-						Toast.LENGTH_SHORT).show();
-				break;
-			}
-			case UserLogic.LOGIN_EXCEPTION: {
-				break;
-			}
-			case UserLogic.USER_INFO_GET_SUC: {
-				if (null != msg.obj) {
-					mUser = (User) msg.obj;
-					mUser.setPassword(mPassWord);
+                    break;
+                }
+                case UserLogic.LOGIN_FAIL: {
+                    Toast.makeText(mContext, R.string.login_fail,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case UserLogic.LOGIN_EXCEPTION: {
+                    break;
+                }
+                case UserLogic.NET_ERROR: {
+                    break;
+                }
 
-					UserInfoManager.setRememberPwd(mContext, true);
-					UserInfoManager.saveUserInfo(LoginActivity.this, mUser);
-					UserInfoManager.setUserInfo(LoginActivity.this);
-					UserInfoManager.setLoginIn(LoginActivity.this, true);
+                default:
+                    break;
+            }
 
-					handle();
-				}
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
 
-				break;
+        }
 
-			}
-			case UserLogic.USER_INFO_GET_FAIL: {
-				break;
-			}
-			case UserLogic.USER_INFO_GET_EXCEPTION: {
-				break;
-			}
-			case UserLogic.NET_ERROR: {
-				break;
-			}
+    };
 
-			default:
-				break;
-			}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.login);
+        mContext = LoginActivity.this;
+        initView();
+        initData();
 
-			if (null != mProgressDialog && mProgressDialog.isShowing()) {
-				mProgressDialog.dismiss();
-			}
+    }
 
-		}
+    protected void initView() {
 
-	};
+        mRegisterLl = (LinearLayout) findViewById(R.id.login_reg_ll);
+        mForgetPwdLl = (LinearLayout) findViewById(R.id.login_forget_pwd_ll);
+        mRegisterLl.setOnClickListener(this);
+        mForgetPwdLl.setOnClickListener(this);
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login);
-		mContext = LoginActivity.this;
-		initView();
-		initData();
+        mAccountEt = (EditText) findViewById(R.id.login_username);
+        mPassWordEt = (AutoClearEditText) findViewById(R.id.login_password);
+        mAccountEt.addTextChangedListener(this);
+        mPassWordEt.addTextChangedListener(this);
 
-	}
+        mLoginBtn = (Button) findViewById(R.id.login_btn);
+        mLoginBtn.setOnClickListener(this);
+        mLoginBtn.setClickable(false);
 
-	protected void initView() {
+        mSeePwdIv = (ImageView) findViewById(R.id.login_see_pwd_iv);
+        mSeePwdIv.setOnClickListener(this);
 
-		mRegisterLl = (LinearLayout) findViewById(R.id.login_reg_ll);
-		mForgetPwdLl = (LinearLayout) findViewById(R.id.login_forget_pwd_ll);
-		mRegisterLl.setOnClickListener(this);
-		mForgetPwdLl.setOnClickListener(this);
+    }
 
-		mAccountEt = (EditText) findViewById(R.id.login_username);
-		mPassWordEt = (AutoClearEditText) findViewById(R.id.login_password);
-		mAccountEt.addTextChangedListener(this);
-		mPassWordEt.addTextChangedListener(this);
+    private void initData() {
+        //mNowAction = getIntent().getAction();
 
-		mLoginBtn = (Button) findViewById(R.id.login_btn);
-		mLoginBtn.setOnClickListener(this);
-		mLoginBtn.setClickable(false);
+        if (UserInfoManager.getRememberPwd(mContext)) {
+            UserInfoManager.setUserInfo(mContext);
 
-		mSeePwdIv = (ImageView) findViewById(R.id.login_see_pwd_iv);
-		mSeePwdIv.setOnClickListener(this);
+            mAccountEt.setText(UserInfoManager.userInfo.getLogonName());
+            mPassWordEt.setText(UserInfoManager.userInfo.getLogonPass());
+        }
 
-	}
+    }
 
-	private void initData() {
-		mNowAction = getIntent().getAction();
+    private void login() {
+        // 获取用户的登录信息，连接服务器，获取登录状态
+        mAccount = mAccountEt.getText().toString().trim();
+        mPassWord = mPassWordEt.getText().toString().trim();
 
-		if (UserInfoManager.getRememberPwd(mContext)) {
-			UserInfoManager.setUserInfo(mContext);
+        if ("".equals(mAccount) || "".equals(mPassWord)) {
+            Toast.makeText(LoginActivity.this,
+                    mContext.getString(R.string.login_emptyname_or_emptypwd),
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            mProgressDialog = new CustomProgressDialog(mContext);
+            mProgressDialog.show();
 
-			mAccountEt.setText(UserInfoManager.userInfo.getUsername());
-			mPassWordEt.setText(UserInfoManager.userInfo.getPassword());
-		}
+            User user = new User();
+            user.setLogonName(mAccount);
+            user.setLogonPass(mPassWord);
+            UserLogic.login(mContext, mHandler, user);
+        }
+    }
 
-	}
+    private void handle() {
+        if (mNowAction.equals(ORIGIN_FROM_NULL)) {
+            Toast.makeText(mContext, "登陆成功!", Toast.LENGTH_SHORT).show();
 
-	private void login() {
-		// 获取用户的登录信息，连接服务器，获取登录状态
-		mAccount = mAccountEt.getText().toString().trim();
-		mPassWord = mPassWordEt.getText().toString().trim();
+        } else if (mNowAction.equals(ORIGIN_FROM_REG_KEY)) {
 
-		if ("".equals(mAccount) || "".equals(mPassWord)) {
-			Toast.makeText(LoginActivity.this,
-					mContext.getString(R.string.login_emptyname_or_emptypwd),
-					Toast.LENGTH_SHORT).show();
-		} else {
-			mProgressDialog = new CustomProgressDialog(mContext);
-			mProgressDialog.show();
+        } else if (mNowAction.equals(ORIGIN_FROM_GOODS_DETAIL_KEY)) {
+            LoginActivity.this.finish();
+            overridePendingTransition(R.anim.push_right_in,
+                    R.anim.push_right_out);
+        } else if (mNowAction.equals(ORIGIN_FROM_CART_KEY)) {
+            LoginActivity.this.finish();
+            overridePendingTransition(R.anim.push_right_in,
+                    R.anim.push_right_out);
+        } else if (mNowAction.equals(ORIGIN_FROM_ORDER_KEY)) {
 
-			User user = new User();
-			user.setUsername(mAccount);
-			user.setPassword(mPassWord);
-			UserLogic.login(mContext, mHandler, user);
-		}
-	}
+        } else if (mNowAction.equals(ORIGIN_FROM_USER_KEY)) {
+            LoginActivity.this.finish();
+            overridePendingTransition(R.anim.push_right_in,
+                    R.anim.push_right_out);
+        }
+    }
 
-	private void handle() {
-		if (mNowAction.equals(ORIGIN_FROM_NULL)) {
-			// Intent intent = new Intent(LoginActivity.this,
-			// HomeActivity.class);
-			// startActivity(intent);
-			// LoginActivity.this.finish();
-			// overridePendingTransition(R.anim.push_left_in,
-			// R.anim.push_left_out);
-		} else if (mNowAction.equals(ORIGIN_FROM_REG_KEY)) {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,
+                                  int after) {
 
-		} else if (mNowAction.equals(ORIGIN_FROM_GOODS_DETAIL_KEY)) {
-			LoginActivity.this.finish();
-			overridePendingTransition(R.anim.push_right_in,
-					R.anim.push_right_out);
-		} else if (mNowAction.equals(ORIGIN_FROM_CART_KEY)) {
-			LoginActivity.this.finish();
-			overridePendingTransition(R.anim.push_right_in,
-					R.anim.push_right_out);
-		} else if (mNowAction.equals(ORIGIN_FROM_ORDER_KEY)) {
+    }
 
-		} else if (mNowAction.equals(ORIGIN_FROM_USER_KEY)) {
-			LoginActivity.this.finish();
-			overridePendingTransition(R.anim.push_right_in,
-					R.anim.push_right_out);
-		}
-	}
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count,
-			int after) {
+    }
 
-	}
+    @SuppressLint("NewApi")
+    @Override
+    public void afterTextChanged(Editable s) {
+        mAccount = mAccountEt.getText().toString().trim();
+        mPassWord = mPassWordEt.getText().toString().trim();
 
-	@Override
-	public void onTextChanged(CharSequence s, int start, int before, int count) {
+        if (!TextUtils.isEmpty(mAccount) && !TextUtils.isEmpty(mPassWord)) {
+            mLoginBtn.setClickable(true);
+            mLoginBtn.setBackgroundResource(R.drawable.corners_bg_red_all);
+        } else {
+            mLoginBtn.setClickable(false);
+            mLoginBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
+        }
 
-	}
+    }
 
-	@SuppressLint("NewApi")
-	@Override
-	public void afterTextChanged(Editable s) {
-		mAccount = mAccountEt.getText().toString().trim();
-		mPassWord = mPassWordEt.getText().toString().trim();
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.login_btn: {
+                login();
+                break;
+            }
 
-		if (!TextUtils.isEmpty(mAccount) && !TextUtils.isEmpty(mPassWord)) {
-			mLoginBtn.setClickable(true);
-			mLoginBtn.setBackgroundResource(R.drawable.corners_bg_red_all);
-		} else {
-			mLoginBtn.setClickable(false);
-			mLoginBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
-		}
+            case R.id.login_reg_ll: {
+                Intent intent = new Intent(LoginActivity.this,
+                        RegisterActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                break;
+            }
+            case R.id.login_forget_pwd_ll: {
+                Intent intent = new Intent(LoginActivity.this,
+                        ForgetPwdActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                break;
+            }
+            case R.id.login_see_pwd_iv: {
+                if (!isShowPwd) {
+                    mPassWordEt
+                            .setTransformationMethod(HideReturnsTransformationMethod
+                                    .getInstance());
+                    isShowPwd = !isShowPwd;
+                } else {
+                    mPassWordEt
+                            .setTransformationMethod(PasswordTransformationMethod
+                                    .getInstance());
+                    isShowPwd = !isShowPwd;
+                }
+                break;
+            }
 
-	}
+            default:
+                break;
+        }
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.login_btn: {
-			login();
-			break;
-		}
+    }
 
-		case R.id.login_reg_ll: {
-			Intent intent = new Intent(LoginActivity.this,
-					RegisterActivity.class);
-			startActivity(intent);
-			overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-			break;
-		}
-		case R.id.login_forget_pwd_ll: {
-			Intent intent = new Intent(LoginActivity.this,
-					ForgetPwdActivity.class);
-			startActivity(intent);
-			overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-			break;
-		}
-		case R.id.login_see_pwd_iv: {
-			if (!isShowPwd) {
-				mPassWordEt
-						.setTransformationMethod(HideReturnsTransformationMethod
-								.getInstance());
-				isShowPwd = !isShowPwd;
-			} else {
-				mPassWordEt
-						.setTransformationMethod(PasswordTransformationMethod
-								.getInstance());
-				isShowPwd = !isShowPwd;
-			}
-			break;
-		}
-
-		default:
-			break;
-		}
-
-	}
-
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK
-				&& event.getAction() == KeyEvent.ACTION_DOWN) {
-			LoginActivity.this.finish();
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            LoginActivity.this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
