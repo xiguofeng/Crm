@@ -37,21 +37,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-      android:layout_marginLeft="15dp"
-      android:layout_marginTop="30dp"
-        android:text="@string/business_type"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/sms_title"
         android:textColor="@color/black"
-        android:textSize="@dimen/medium_text_size"/>
+        android:textSize="@dimen/large_text_size"/>
 
     <TextView
         android:id="@+id/sms_detail_content_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="15dp"
-        android:text="@string/more"
+        android:layout_marginTop="20dp"
+        android:text="@string/sms_content"
         android:textColor="@color/black"
         android:textSize="@dimen/middle_text_size"/>
 </LinearLayout>
