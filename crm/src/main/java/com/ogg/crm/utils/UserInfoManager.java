@@ -23,6 +23,8 @@ public class UserInfoManager {
 
 	public static final String USER_PWD_KEY = "password";
 
+    public static final String USER_ROLE_KEY = "roleType";
+
 	public static final String USER_SEX_KEY = "sex";
 
 	public static final String USER_PHONE_KEY = "phone";
@@ -62,28 +64,23 @@ public class UserInfoManager {
 		SharedPreferences userInfoPreferences = context.getSharedPreferences(
 				USER_INFO_PREFERNCE_KEY, Context.MODE_PRIVATE);
 
-		UserInfoManager.userInfo.setId(userInfoPreferences.getString(
+		UserInfoManager.userInfo.setUserId(userInfoPreferences.getString(
 				USER_ID_KEY, ""));
-		UserInfoManager.userInfo.setUsername(userInfoPreferences.getString(
-				USER_NAME_KEY, ""));
+        UserInfoManager.userInfo.setRoleName(userInfoPreferences.getString(
+                USER_NAME_KEY, ""));
+        UserInfoManager.userInfo.setRoleType(userInfoPreferences.getString(
+                USER_ROLE_KEY, ""));
 
-		UserInfoManager.userInfo.setAccount(userInfoPreferences.getString(
-				USER_ACCOUNT_KEY, ""));
-		UserInfoManager.userInfo.setPassword(userInfoPreferences.getString(
+		UserInfoManager.userInfo.setLogonName(userInfoPreferences.getString(
+                USER_ACCOUNT_KEY, ""));
+		UserInfoManager.userInfo.setLogonPass(userInfoPreferences.getString(
 				USER_PWD_KEY, ""));
-
-		UserInfoManager.userInfo.setSex(userInfoPreferences.getString(
-				USER_SEX_KEY, ""));
-		UserInfoManager.userInfo.setSignature(userInfoPreferences.getString(
-				USER_SIGNATURE_KEY, ""));
 	}
 
 	/**
 	 * 保存用户登录返回信息到配置文件
 	 * 
 	 * @param context
-	 * @param userName
-	 * @param userPass
 	 * @param user
 	 *            登录成功后，服务器返回的用户信息
 	 */
@@ -93,16 +90,15 @@ public class UserInfoManager {
 					USER_INFO_PREFERNCE_KEY, Context.MODE_PRIVATE).edit();
 
 			userInfoSp.putString(USER_ID_KEY,
-					null == user.getId() ? "" : user.getId());
-			userInfoSp.putString(USER_NAME_KEY, user.getUsername());
+					null == user.getUserId()? "" : user.getUserId());
+			userInfoSp.putString(USER_NAME_KEY, user.getRoleName());
+            userInfoSp.putString(USER_ROLE_KEY, null == user.getRoleType() ? ""
+                    : user.getRoleType());
 
-			userInfoSp.putString(USER_ACCOUNT_KEY, user.getAccount());
-			userInfoSp.putString(USER_PWD_KEY, user.getPassword());
+			userInfoSp.putString(USER_ACCOUNT_KEY, user.getLogonName());
+			userInfoSp.putString(USER_PWD_KEY, user.getLogonPass());
 
-			userInfoSp.putString(USER_SEX_KEY, null == user.getSex() ? ""
-					: user.getSex());
-			userInfoSp.putString(USER_SIGNATURE_KEY,
-					null == user.getSignature() ? "" : user.getSignature());
+
 
 			userInfoSp.commit();
 		}
@@ -115,25 +111,21 @@ public class UserInfoManager {
 
 		userInfoSp.putString(USER_ID_KEY, "");
 		userInfoSp.putString(USER_NAME_KEY, "");
+        userInfoSp.putString(USER_ROLE_KEY, "");
 
 		userInfoSp.putString(USER_ACCOUNT_KEY, "");
 		userInfoSp.putString(USER_PWD_KEY, "");
-
-		userInfoSp.putString(USER_SEX_KEY, "");
-		userInfoSp.putString(USER_SIGNATURE_KEY, "");
 
 		userInfoSp.putBoolean(USER_LOGIN_IN_IS_AUTO, false);
 		userInfoSp.putBoolean(USER_REMEMBER_PSW, false);
 		userInfoSp.commit();
 
-		UserInfoManager.userInfo.setId("");
+		UserInfoManager.userInfo.setUserId("");
 
-		UserInfoManager.userInfo.setUsername("");
-		UserInfoManager.userInfo.setAccount("");
-		UserInfoManager.userInfo.setPassword("");
-		UserInfoManager.userInfo.setSex("");
-		UserInfoManager.userInfo.setSignature("");
-		UserInfoManager.userInfo.setTimestamp("");
+		UserInfoManager.userInfo.setLogonName("");
+		UserInfoManager.userInfo.setLogonPass("");
+		UserInfoManager.userInfo.setRoleName("");
+		UserInfoManager.userInfo.setRoleType("");
 	}
 
 	/**
@@ -157,7 +149,6 @@ public class UserInfoManager {
 	 * 从配置文件获取是否记住密码
 	 * 
 	 * @param context
-	 * @param USER_REMEMBER_PWD
 	 *            是否记住密码
 	 */
 	public static boolean getRememberPwd(Context context) {
@@ -210,7 +201,6 @@ public class UserInfoManager {
 	 * 从配置文件获取登录状态
 	 * 
 	 * @param context
-	 * @param isLoginIn
 	 *            是否登录
 	 */
 	public static boolean getLoginIn(Context context) {
@@ -272,7 +262,6 @@ public class UserInfoManager {
 	 * 从配置文件获取是有手势密码
 	 * 
 	 * @param context
-	 * @param USER_GESTURUE_PSW_IS_HAS
 	 *            是否有手势密码
 	 */
 	public static boolean getIsHasGesturuePwd(Context context) {
@@ -285,9 +274,7 @@ public class UserInfoManager {
 
 	/**
 	 * 从配置文件获取是有手势密码
-	 * 
-	 * @param context
-	 * @param USER_GESTURUE_PSW_IS_HAS
+
 	 *            是否有手势密码
 	 */
 	public static String getGesturuePwd(Context context) {

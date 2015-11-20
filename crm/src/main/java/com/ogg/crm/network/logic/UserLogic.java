@@ -2,6 +2,7 @@ package com.ogg.crm.network.logic;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -10,7 +11,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.ogg.crm.BaseApplication;
 import com.ogg.crm.entity.User;
+import com.ogg.crm.network.config.MsgResult;
 import com.ogg.crm.network.config.RequestUrl;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -66,12 +71,14 @@ public class UserLogic {
             @Override
             public void onResponse(String response) {
                 Log.e("xxx_1234", "" + response.toString());
+                //parseLoginData(response, handler);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
             }
-        }) {
+        })
+        {
 
             @Override
             protected Map<String, String> getParams() {
@@ -92,7 +99,30 @@ public class UserLogic {
 
         BaseApplication.getInstanceRequestQueue().add(stringRequest);
         BaseApplication.getInstanceRequestQueue().start();
+    }
 
+    private static void parseLoginData(String responseStr, Handler handler) {
+        try {
+            // Log.e("xxx_login_suc", response.toString());
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString(MsgResult.RESULT_TAG).trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+                JSONObject jsonObject = response
+                        .getJSONObject(MsgResult.RESULT_DATA_TAG);
+
+                String session = jsonObject.getString("session");
+                // String session = response.getString("Set-Cookie");
+                // session = StringUtils.getCookieValue(session);
+                Message message = new Message();
+                message.what = LOGIN_SUC;
+                message.obj = session;
+                handler.sendMessage(message);
+            } else {
+                handler.sendEmptyMessage(LOGIN_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(LOGIN_EXCEPTION);
+        }
     }
 
 }
