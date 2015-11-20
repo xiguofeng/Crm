@@ -89,7 +89,7 @@ public class AppointmentAdapter extends BaseAdapter {
 
 		holder.mNameTv.setText(mDatas.get(position).getCustomerName());
 		holder.mPhoneTv.setText(mDatas.get(position).getCustomerTel());
-		holder.mAppointmentDetail.setText(mDatas.get(position).getRemindId());
+		holder.mAppointmentDetail.setText(mDatas.get(position).getShortDesc());
 
 		return convertView;
 	}
