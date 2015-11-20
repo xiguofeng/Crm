@@ -6,54 +6,95 @@ public class Appointment implements Serializable {
 
 	private static final long serialVersionUID = 8912365559481657349L;
 
-	private String id;
+    public String getCustomerName() {
+        return customerName;
+    }
 
-	private String name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
-	private String subimageurl;
+    public String getCreateTime() {
+        return createTime;
+    }
 
-	private int localImage;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
-	private String parentImageurl;
+    public String getStatus() {
+        return status;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getCustomerTel() {
+        return customerTel;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setCustomerTel(String customerTel) {
+        this.customerTel = customerTel;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getCustomerManagerId() {
+        return customerManagerId;
+    }
 
-	public String getSubimageurl() {
-		return subimageurl;
-	}
+    public void setCustomerManagerId(String customerManagerId) {
+        this.customerManagerId = customerManagerId;
+    }
 
-	public void setSubimageurl(String subimageurl) {
-		this.subimageurl = subimageurl;
-	}
+    public String getReserveTime() {
+        return reserveTime;
+    }
 
-	public int getLocalImage() {
-		return localImage;
-	}
+    public void setReserveTime(String reserveTime) {
+        this.reserveTime = reserveTime;
+    }
 
-	public void setLocalImage(int localImage) {
-		this.localImage = localImage;
-	}
+    public String getRemindId() {
+        return remindId;
+    }
 
-	public String getParentImageurl() {
-		return parentImageurl;
-	}
+    public void setRemindId(String remindId) {
+        this.remindId = remindId;
+    }
 
-	public void setParentImageurl(String parentImageurl) {
-		this.parentImageurl = parentImageurl;
-	}
+    /**
+     * 客户名
+     */
+	private String customerName;
+
+    /**
+     * 创建时间
+     */
+	private String createTime;
+
+    /**
+     * 状态 0 1
+     */
+	private String status;
+
+    /**
+     * 电话号码
+     */
+	private String customerTel;
+
+    /**
+     * 所属人
+     */
+    private String customerManagerId;
+
+    /**
+     * 提醒时间
+     */
+    private String reserveTime;
+
+    /**
+     * 主键：提醒ID
+     */
+    private String remindId;
 
 }

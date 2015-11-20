@@ -18,16 +18,15 @@ import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
 import com.ogg.crm.entity.User;
 import com.ogg.crm.network.logic.AppointmentLogic;
-import com.ogg.crm.network.logic.UserLogic;
 import com.ogg.crm.ui.adapter.AppointmentAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
-import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
@@ -56,22 +55,21 @@ public class AppointmentActivity extends Activity implements OnClickListener,
         public void handleMessage(Message msg) {
             int what = msg.what;
             switch (what) {
-                case UserLogic.LOGIN_SUC: {
+                case AppointmentLogic.LIST_GET_SUC: {
                     if (null != msg.obj) {
-                        String session = (String) msg.obj;
-                        UserInfoManager.setSession(mContext, session);
-
-                        //UserLogic.getInfo(mContext, mHandler);
+                        mAppointmentList.clear();
+                        mAppointmentList.addAll((Collection<? extends Appointment>) msg.obj);
+                        mAppointmentAdapter.notifyDataSetChanged();
                     }
 
                     break;
                 }
-                case UserLogic.LOGIN_FAIL: {
-                    Toast.makeText(mContext, R.string.login_fail,
+                case AppointmentLogic.LIST_GET_FAIL: {
+                    Toast.makeText(mContext, "获取数据失败!",
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
-                case UserLogic.LOGIN_EXCEPTION: {
+                case AppointmentLogic.LIST_GET_EXCEPTION: {
                     break;
                 }
 
@@ -117,7 +115,7 @@ public class AppointmentActivity extends Activity implements OnClickListener,
         mProgressDialog.show();
         User user = new User();
         user.setUserId("1");
-        AppointmentLogic.getList(mContext,mHandler,user);
+        AppointmentLogic.getList(mContext, mHandler, user);
     }
 
 
@@ -154,7 +152,7 @@ public class AppointmentActivity extends Activity implements OnClickListener,
                             AppointmentDetailActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(AppointmentDetailActivity.APPOINTMENTKEY,
-                            mAppointmentList.get(position - 1).getId());
+                            mAppointmentList.get(position - 1));
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }
@@ -162,12 +160,6 @@ public class AppointmentActivity extends Activity implements OnClickListener,
             }
         });
 
-        for (int i = 0; i < 10; i++) {
-            Appointment appointment = new Appointment();
-            appointment.setId("id" + i);
-            appointment.setName("name" + i);
-            mAppointmentList.add(appointment);
-        }
         mAppointmentAdapter.notifyDataSetChanged();
 
     }

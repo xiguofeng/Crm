@@ -87,9 +87,9 @@ public class AppointmentAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		holder.mNameTv.setText(mDatas.get(position).getName());
-		holder.mPhoneTv.setText(mDatas.get(position).getId());
-		holder.mAppointmentDetail.setText(mDatas.get(position).getId());
+		holder.mNameTv.setText(mDatas.get(position).getCustomerName());
+		holder.mPhoneTv.setText(mDatas.get(position).getCustomerTel());
+		holder.mAppointmentDetail.setText(mDatas.get(position).getRemindId());
 
 		return convertView;
 	}

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogg.crm.R;
+import com.ogg.crm.entity.Appointment;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.ActivitiyInfoManager;
 
@@ -28,6 +29,8 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
 
 
     private CustomProgressDialog mProgressDialog;
+
+    private Appointment mAppointment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
 
     private void initData() {
         mProgressDialog = new CustomProgressDialog(mContext);
-        mProgressDialog.show();
+        //mProgressDialog.show();
+        mAppointment = (Appointment)getIntent().getSerializableExtra(APPOINTMENTKEY);
     }
 
     @Override

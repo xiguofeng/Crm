@@ -12,15 +12,20 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
+import com.ogg.crm.network.logic.AppointmentLogic;
 import com.ogg.crm.ui.adapter.AppointmentAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
+import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.TimeUtils;
+import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 
@@ -36,10 +41,48 @@ public class MainActivity extends Activity implements
     private TextView mDateTv;
     private TextView mAppointmentMoreTv;
 
+    private CustomProgressDialog mProgressDialog;
+
     Handler mHandler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
+        }
+
+    };
+
+    Handler mAppointmentHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case AppointmentLogic.LIST_GET_SUC: {
+                    if (null != msg.obj) {
+                        mAppointmentList.clear();
+                        mAppointmentList.addAll((Collection<? extends Appointment>) msg.obj);
+                        mAppointmentAdapter.notifyDataSetChanged();
+                    }
+
+                    break;
+                }
+                case AppointmentLogic.LIST_GET_FAIL: {
+                    Toast.makeText(mContext, "获取数据失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case AppointmentLogic.LIST_GET_EXCEPTION: {
+                    break;
+                }
+
+                default:
+                    break;
+            }
+
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
         }
 
     };
@@ -49,9 +92,9 @@ public class MainActivity extends Activity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = MainActivity.this;
+        mProgressDialog = new CustomProgressDialog(mContext);
         initView();
         initData();
-        //UserLogic.login(mContext, mHandler);
     }
 
     private void initView() {
@@ -85,20 +128,17 @@ public class MainActivity extends Activity implements
     }
 
     private void initData() {
-        for (int i = 0; i < 3; i++) {
-            Appointment appointment = new Appointment();
-            appointment.setId("id" + i);
-            appointment.setName("name" + i);
-            mAppointmentList.add(appointment);
+
+        if(UserInfoManager.getLoginIn(mContext)){
+            mProgressDialog.show();
+            AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.userInfo);
         }
-        mAppointmentAdapter.notifyDataSetChanged();
 
 
         Date date = new Date();
         SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
         String frontS=TimeUtils.TimeStamp2Date(String.valueOf(date.getTime()),"yyyy-MM-dd");
         String afterS = dateFm.format(date);
-
         mDateTv.setText(frontS+" "+afterS);
     }
 
