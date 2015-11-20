@@ -17,6 +17,15 @@ public class RequestUrl {
 
 	}
 
+    public interface appointment {
+
+        /**
+         * 登陆
+         */
+        public String list = "/reserveMobile/findReserveList.do";
+
+    }
+
 
     public interface search {
         /**

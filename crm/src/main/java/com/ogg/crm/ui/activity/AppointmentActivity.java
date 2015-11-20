@@ -4,20 +4,27 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
+import com.ogg.crm.entity.User;
+import com.ogg.crm.network.logic.AppointmentLogic;
+import com.ogg.crm.network.logic.UserLogic;
 import com.ogg.crm.ui.adapter.AppointmentAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
+import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +49,44 @@ public class AppointmentActivity extends Activity implements OnClickListener,
     private int mCurrentPageNum = 1;
 
     private CustomProgressDialog mProgressDialog;
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case UserLogic.LOGIN_SUC: {
+                    if (null != msg.obj) {
+                        String session = (String) msg.obj;
+                        UserInfoManager.setSession(mContext, session);
+
+                        //UserLogic.getInfo(mContext, mHandler);
+                    }
+
+                    break;
+                }
+                case UserLogic.LOGIN_FAIL: {
+                    Toast.makeText(mContext, R.string.login_fail,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case UserLogic.LOGIN_EXCEPTION: {
+                    break;
+                }
+
+                default:
+                    break;
+            }
+
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +115,9 @@ public class AppointmentActivity extends Activity implements OnClickListener,
     private void initData() {
         mProgressDialog = new CustomProgressDialog(mContext);
         mProgressDialog.show();
+        User user = new User();
+        user.setId("1");
+        AppointmentLogic.getList(mContext,mHandler,user);
     }
 
 
