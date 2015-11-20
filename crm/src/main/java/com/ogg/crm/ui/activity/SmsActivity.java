@@ -56,7 +56,12 @@ public class SmsActivity extends Activity implements OnClickListener {
         mCategoryGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent =new Intent(SmsActivity.this,SmsListActivity.class);
+                Intent intent;
+                if (0 == position) {
+                    intent = new Intent(SmsActivity.this, SmsListActivity.class);
+                } else {
+                    intent = new Intent(SmsActivity.this, SmsSendActivity.class);
+                }
                 startActivity(intent);
             }
         });

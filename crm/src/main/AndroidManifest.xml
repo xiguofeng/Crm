@@ -45,6 +45,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.activity.SmsDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.activity.SmsSendActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"

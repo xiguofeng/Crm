@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,12 +20,8 @@ public class SmsDetailActivity extends Activity implements OnClickListener {
 
     private ImageView mBackIv;
 
-    private TextView mUserNameTv;
-    private TextView mUserPhoneTv;
-    private TextView mCompanyNameTv;
-    private TextView mTemplateSelectTv;
-    private EditText mContentEt;
-
+    private TextView mSmsTitleTv;
+    private TextView mSmsContentTv;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -48,25 +43,22 @@ public class SmsDetailActivity extends Activity implements OnClickListener {
     }
 
     private void initView() {
-        mBackIv = (ImageView) findViewById(R.id.sms_send_back_iv);
+        mBackIv = (ImageView) findViewById(R.id.sms_detail_back_iv);
         mBackIv.setOnClickListener(this);
 
-        mUserNameTv = (TextView) findViewById(R.id.sms_send_user_name_tv);
-        mUserPhoneTv = (TextView) findViewById(R.id.sms_send_user_phone_tv);
-        mCompanyNameTv = (TextView) findViewById(R.id.sms_send_company_name_tv);
-        mTemplateSelectTv = (TextView) findViewById(R.id.sms_send_select_template_tv);
-        mContentEt = (EditText) findViewById(R.id.sms_send_content_et);
+        mSmsTitleTv = (TextView) findViewById(R.id.sms_detail_title_tv);
+        mSmsContentTv = (TextView) findViewById(R.id.sms_detail_content_tv);
     }
 
     private void initData() {
         mProgressDialog = new CustomProgressDialog(mContext);
-        mProgressDialog.show();
+        //mProgressDialog.show();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sms_send_back_iv: {
+            case R.id.sms_detail_back_iv: {
                 finish();
                 break;
             }

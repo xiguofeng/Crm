@@ -103,9 +103,9 @@ public class SmsListActivity extends Activity implements OnClickListener,
                                     int position, long id) {
                 if (position > 0) {
                     Intent intent = new Intent(SmsListActivity.this,
-                            SmsSendActivity.class);
+                            SmsDetailActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(SmsSendActivity.SMS_KEY,
+                    bundle.putSerializable(SmsDetailActivity.SMS_KEY,
                             mSmsList.get(position - 1).getId());
                     intent.putExtras(bundle);
                     startActivity(intent);
