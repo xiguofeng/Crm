@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="8dip"
-            android:text="@string/add_customer"
+            android:text="@string/settlement_basic_info"
             android:textColor="@color/white"
             android:textSize="@dimen/large_text_size"/>
     </RelativeLayout>
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/customer_basic_info"
+        android:text="@string/settlement_basic_info"
         android:layout_marginTop="10dip"
         android:textSize="@dimen/middle_text_size"
         android:textColor="@color/black_character_title"
@@ -56,11 +56,10 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_username_et"
+                android:id="@+id/customer_add_pre_buy_product_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/user_name_hint"
                 android:imeActionLabel="下一步"
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
@@ -74,9 +73,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_username_et"
+                android:layout_alignBaseline="@id/customer_add_pre_buy_product_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_name"
+                android:text="@string/pre_buy_product"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -97,7 +96,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_job_position_et"
+                android:id="@+id/customer_add_producing_area_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -115,9 +114,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_job_position_et"
+                android:layout_alignBaseline="@id/customer_add_producing_area_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_job_position"
+                android:text="@string/producing_area"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -138,7 +137,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_mphone_et"
+                android:id="@+id/customer_add_standard_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -156,9 +155,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_mphone_et"
+                android:layout_alignBaseline="@id/customer_add_standard_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_mphone"
+                android:text="@string/standard"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -178,7 +177,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_user_telephone_et"
+                android:id="@+id/customer_add_number_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -196,9 +195,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_user_telephone_et"
+                android:layout_alignBaseline="@id/customer_add_number_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_telephone"
+                android:text="@string/number"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -219,7 +218,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_user_qq_et"
+                android:id="@+id/customer_add_settlement_type_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -237,9 +236,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_user_qq_et"
+                android:layout_alignBaseline="@id/customer_add_settlement_type_et"
                 android:layout_centerVertical="true"
-                android:text="@string/qq"
+                android:text="@string/settlement_type"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -259,7 +258,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_user_email_et"
+                android:id="@+id/customer_add_customer_account_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -277,9 +276,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_user_email_et"
+                android:layout_alignBaseline="@id/customer_add_customer_account_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_email"
+                android:text="@string/customer_account"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -299,7 +298,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_type_et"
+                android:id="@+id/customer_add_is_has_log_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -317,13 +316,92 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_type_et"
+                android:layout_alignBaseline="@id/customer_add_is_has_log_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_type"
+                android:text="@string/is_has_log"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
         </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_last_settlement_time_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_last_settlement_time_et"
+                android:layout_centerVertical="true"
+                android:text="@string/last_settlement_time"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_remark_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_remark_et"
+                android:layout_centerVertical="true"
+                android:text="@string/remark"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+
     </LinearLayout>
     <Button
         android:id="@+id/customer_add_btn"

@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/customer_basic_info"
+        android:text="@string/company_basic_info"
         android:layout_marginTop="10dip"
         android:textSize="@dimen/middle_text_size"
         android:textColor="@color/black_character_title"
@@ -56,11 +56,10 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_username_et"
+                android:id="@+id/customer_add_company_name_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="@string/user_name_hint"
                 android:imeActionLabel="下一步"
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
@@ -74,9 +73,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_username_et"
+                android:layout_alignBaseline="@id/customer_add_company_name_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_name"
+                android:text="@string/company_name_tag"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -97,7 +96,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_job_position_et"
+                android:id="@+id/customer_add_company_address_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -115,9 +114,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_job_position_et"
+                android:layout_alignBaseline="@id/customer_add_company_address_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_job_position"
+                android:text="@string/company_address"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -138,7 +137,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_mphone_et"
+                android:id="@+id/customer_add_company_typ_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -156,9 +155,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_mphone_et"
+                android:layout_alignBaseline="@id/customer_add_company_typ_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_mphone"
+                android:text="@string/company_type"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -178,7 +177,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_user_telephone_et"
+                android:id="@+id/customer_add_main_product_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -196,9 +195,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_user_telephone_et"
+                android:layout_alignBaseline="@id/customer_add_main_product_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_telephone"
+                android:text="@string/main_product"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -219,7 +218,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_user_qq_et"
+                android:id="@+id/customer_add_customer_area_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -237,9 +236,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_user_qq_et"
+                android:layout_alignBaseline="@id/customer_add_customer_area_et"
                 android:layout_centerVertical="true"
-                android:text="@string/qq"
+                android:text="@string/customer_area"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -259,7 +258,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_user_email_et"
+                android:id="@+id/customer_add_company_net_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -277,9 +276,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_user_email_et"
+                android:layout_alignBaseline="@id/customer_add_company_net_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_email"
+                android:text="@string/company_net"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
@@ -299,7 +298,7 @@
             android:paddingTop="5dip">
 
             <EditText
-                android:id="@+id/customer_add_type_et"
+                android:id="@+id/customer_add_inbound_channel_et"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -317,9 +316,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_type_et"
+                android:layout_alignBaseline="@id/customer_add_inbound_channel_et"
                 android:layout_centerVertical="true"
-                android:text="@string/customer_type"
+                android:text="@string/inbound_channel"
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
