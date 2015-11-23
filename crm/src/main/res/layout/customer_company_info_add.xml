@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/customer_add_multiStateView"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/red_title_bg">
+
+        <ImageView
+            android:id="@+id/customer_add_back_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:padding="8dip"
+            android:src="@drawable/back_selector"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="8dip"
+            android:text="@string/add_customer"
+            android:textColor="@color/white"
+            android:textSize="@dimen/large_text_size"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/customer_basic_info"
+        android:layout_marginTop="10dip"
+        android:textSize="@dimen/middle_text_size"
+        android:textColor="@color/black_character_title"
+        android:layout_marginLeft="15dip" />
+
+    <LinearLayout
+        android:id="@+id/customer_add_input_one_ll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/corners_bg_gray"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_username_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/user_name_hint"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_username_et"
+                android:layout_centerVertical="true"
+                android:text="@string/customer_name"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_job_position_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_job_position_et"
+                android:layout_centerVertical="true"
+                android:text="@string/customer_job_position"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_mphone_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_mphone_et"
+                android:layout_centerVertical="true"
+                android:text="@string/customer_mphone"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_user_telephone_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_user_telephone_et"
+                android:layout_centerVertical="true"
+                android:text="@string/customer_telephone"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_user_qq_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_user_qq_et"
+                android:layout_centerVertical="true"
+                android:text="@string/qq"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_user_email_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_user_email_et"
+                android:layout_centerVertical="true"
+                android:text="@string/customer_email"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dip"
+            android:paddingTop="5dip">
+
+            <EditText
+                android:id="@+id/customer_add_type_et"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:imeActionLabel="下一步"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:maxLength="50"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="80dip"
+                android:paddingRight="50dip"
+                android:paddingTop="6.0dip"
+                android:singleLine="true"
+                android:textColor="@color/blue_text"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_type_et"
+                android:layout_centerVertical="true"
+                android:text="@string/customer_type"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/black_character_title"
+                android:layout_marginLeft="15dip" />
+        </RelativeLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/customer_add_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/corners_bg_gray_all"
+        android:gravity="center"
+        android:paddingBottom="8dip"
+        android:paddingTop="8dip"
+        android:text="下一步"
+        android:textColor="@color/white"
+        android:textSize="@dimen/large_text_size"/>
+
+
+</LinearLayout>

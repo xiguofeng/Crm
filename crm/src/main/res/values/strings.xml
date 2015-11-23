@@ -22,6 +22,30 @@
     <string name="type">类型</string>
     <string name="is_deal">是否成交</string>
     <string name="status">状态</string>
+    <string name="customer_basic_info">客户基本信息</string>
+    <string name="add_customer">添加客户</string>
+    <string name="customer_mphone">客户手机</string>
+    <string name="customer_telephone">客户电话</string>
+    <string name="customer_job_position">公司职位</string>
+    <string name="qq">QQ</string>
+    <string name="customer_email">客户邮箱</string>
+    <string name="customer_type">客户类型</string>
+    <string name="company_address">公司地址</string>
+    <string name="company_type">公司类型</string>
+    <string name="main_product">主营产品</string>
+    <string name="customer_level">客户等级</string>
+    <string name="customer_area">省份地市</string>
+    <string name="company_net">公司网站</string>
+    <string name="inbound_channel">进货渠道</string>、
+    <string name="pre_buy_product">预采购品种</string>
+    <string name="producing_area">产地</string>
+    <string name="standard">规格</string>
+    <string name="number">数量</string>
+    <string name="settlement_type">结算方式</string>
+    <string name="customer_account">客户账号</string>
+    <string name="is_has_log">是否有交易记录</string>
+    <string name="last_settlement_time">最新交易时间</string>
+    <string name="remark">备注</string>
 
     <!-- loading -->
     <string name="loading">加载&#8230;</string>
@@ -49,7 +73,7 @@
     <string name="business_type">业务类型</string>
     <string name="content_description">内容描述</string>
     <string name="appointment_time">提醒时间</string>
-    <string name="customer_name">客户名称</string>
+    <string name="customer_name">客户姓名</string>
     <string name="customer_phone">客户联系方式</string>
 
     <!-- sms -->
@@ -153,8 +177,7 @@
     <string name="bmcard_pwd">旺卡密码</string>
     <string name="bmcard_hint">请输入旺卡密码</string>
     <string name="remaining_money">余额</string>
-    <string name="remaining_money_can_use">可用余额</string>
-    <string name="remark">备注</string>
+    <string name="remaining_money_can_use">可用余额</string>>
     <string name="remark_hint">请输入订单备注</string>
     <string name="please_pay">请支付</string>
     <string name="please_select_way">请选择支付方式</string>
