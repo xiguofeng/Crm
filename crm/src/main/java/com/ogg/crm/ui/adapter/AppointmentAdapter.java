@@ -19,104 +19,113 @@ import java.util.HashMap;
 
 public class AppointmentAdapter extends BaseAdapter {
 
-	private Context mContext;
+    private Context mContext;
 
-	private ArrayList<Appointment> mDatas;
+    private ArrayList<Appointment> mDatas;
 
-	private ListItemClickHelp mCallback;
+    private ListItemClickHelp mCallback;
 
-	private LayoutInflater mInflater;
+    private LayoutInflater mInflater;
 
-	// 用来控制CheckBox的选中状况
-	private static HashMap<Integer, Boolean> mIsSelected = new HashMap<Integer, Boolean>();
+    // 用来控制CheckBox的选中状况
+    private static HashMap<Integer, Boolean> mIsSelected = new HashMap<Integer, Boolean>();
 
-	public AppointmentAdapter(Context context, ArrayList<Appointment> datas,
+    public AppointmentAdapter(Context context, ArrayList<Appointment> datas,
                               ListItemClickHelp callback) {
-		this.mContext = context;
-		this.mDatas = datas;
-		this.mCallback = callback;
-		mInflater = LayoutInflater.from(mContext);
-	}
+        this.mContext = context;
+        this.mDatas = datas;
+        this.mCallback = callback;
+        mInflater = LayoutInflater.from(mContext);
+    }
 
-	public void initCheck() {
-		for (int i = 0; i < mDatas.size(); i++) {
-			getmIsSelected().put(i, false);
-		}
-	}
+    public void initCheck() {
+        for (int i = 0; i < mDatas.size(); i++) {
+            getmIsSelected().put(i, false);
+        }
+    }
 
-	public void initChecked() {
-		for (int i = 0; i < mDatas.size(); i++) {
-			getmIsSelected().put(i, true);
-		}
-	}
+    public void initChecked() {
+        for (int i = 0; i < mDatas.size(); i++) {
+            getmIsSelected().put(i, true);
+        }
+    }
 
-	@Override
-	public int getCount() {
-		if (mDatas != null) {
-			return mDatas.size();
-		}
-		return 0;
-	}
+    @Override
+    public int getCount() {
+        if (mDatas != null) {
+            return mDatas.size();
+        }
+        return 0;
+    }
 
-	@Override
-	public Object getItem(int position) {
-		return position;
-	}
+    @Override
+    public Object getItem(int position) {
+        return position;
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = null;
-		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.list_appointment_item, null);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder = null;
+        if (convertView == null) {
+            convertView = mInflater.inflate(R.layout.list_appointment_item, null);
 
-			holder = new ViewHolder();
-			holder.mNameTv = (TextView) convertView
-					.findViewById(R.id.list_appointment_user_name_tv);
-			holder.mPhoneTv = (TextView) convertView
-					.findViewById(R.id.list_appointment_phone_tv);
-			holder.mAppointmentDetail = (TextView) convertView
-					.findViewById(R.id.list_appointment_detail_tv);
+            holder = new ViewHolder();
+            holder.mNameTv = (TextView) convertView
+                    .findViewById(R.id.list_appointment_user_name_tv);
+            holder.mPhoneTv = (TextView) convertView
+                    .findViewById(R.id.list_appointment_phone_tv);
+            holder.mAppointmentDetail = (TextView) convertView
+                    .findViewById(R.id.list_appointment_detail_tv);
 
-			convertView.setTag(holder);
-		} else {
-			holder = (ViewHolder) convertView.getTag();
-		}
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-		holder.mNameTv.setText(mDatas.get(position).getCustomerName());
-		holder.mPhoneTv.setText(mDatas.get(position).getCustomerTel());
-		holder.mAppointmentDetail.setText(mDatas.get(position).getShortDesc());
+        holder.mNameTv.setTextColor(mContext.getResources().getColor(R.color.black_character_title));
+        holder.mPhoneTv.setTextColor(mContext.getResources().getColor(R.color.black_character_title));
+        holder.mAppointmentDetail.setTextColor(mContext.getResources().getColor(R.color.black_character_title));
+        if ("1".equals(mDatas.get(position).getStatus())) {
+            holder.mNameTv.setTextColor(mContext.getResources().getColor(R.color.gray_character));
+            holder.mPhoneTv.setTextColor(mContext.getResources().getColor(R.color.gray_character));
+            holder.mAppointmentDetail.setTextColor(mContext.getResources().getColor(R.color.gray_character));
+        }
 
-		return convertView;
-	}
+        holder.mNameTv.setText(mDatas.get(position).getCustomerName());
+        holder.mPhoneTv.setText(mDatas.get(position).getCustomerTel());
+        holder.mAppointmentDetail.setText(mDatas.get(position).getShortDesc());
 
-	static class ViewHolder {
+        return convertView;
+    }
 
-		public TextView mNameTv;
+    static class ViewHolder {
 
-		public TextView mPhoneTv;
+        public TextView mNameTv;
 
-		public TextView mAppointmentDetail;
+        public TextView mPhoneTv;
 
-		public ImageView mUpdateIv;
+        public TextView mAppointmentDetail;
 
-		public LinearLayout mEditLl;
+        public ImageView mUpdateIv;
 
-		public LinearLayout mDelLl;
+        public LinearLayout mEditLl;
 
-		public CheckBox mDefaultCb;
-	}
+        public LinearLayout mDelLl;
 
-	public static HashMap<Integer, Boolean> getmIsSelected() {
-		return mIsSelected;
-	}
+        public CheckBox mDefaultCb;
+    }
 
-	public static void setmIsSelected(HashMap<Integer, Boolean> mIsSelected) {
-		AppointmentAdapter.mIsSelected = mIsSelected;
-	}
+    public static HashMap<Integer, Boolean> getmIsSelected() {
+        return mIsSelected;
+    }
+
+    public static void setmIsSelected(HashMap<Integer, Boolean> mIsSelected) {
+        AppointmentAdapter.mIsSelected = mIsSelected;
+    }
 
 }

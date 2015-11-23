@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -107,17 +108,13 @@ public class MainActivity extends Activity implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (position > 0) {
-                    // Intent intent = new Intent(GoodsListActivity.this,
-                    // GoodsDetailActivity.class);
-                    // intent.setAction(GoodsDetailActivity.ORIGIN_FROM_CATE_ACTION);
-                    // Bundle bundle = new Bundle();
-                    // bundle.putSerializable(GoodsDetailActivity.GOODS_ID_KEY,
-                    // mGoodsList.get(position - 1).getId());
-                    // intent.putExtras(bundle);
-                    // startActivity(intent);
-                }
-
+                    Intent intent = new Intent(MainActivity.this,
+                            AppointmentDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(AppointmentDetailActivity.APPOINTMENTKEY,
+                            mAppointmentList.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
             }
         });
 
@@ -152,12 +149,47 @@ public class MainActivity extends Activity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_appointment_more_tv: {
-                Intent intent =new Intent(MainActivity.this,AppointmentActivity.class);
+                Intent intent =new Intent(MainActivity.this,AppointmentListActivity.class);
                 startActivity(intent);
             }
             default:
                 break;
         }
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+//            new AlertDialog(MainActivity.this)
+//                    .builder()
+//                    .setTitle(getString(R.string.prompt))
+//                    .setMsg(getString(R.string.exit_str))
+//                    .setPositiveButton(getString(R.string.confirm),
+//                            new OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    finish();
+//                                }
+//                            })
+//                    .setNegativeButton(getString(R.string.cancel),
+//                            new OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//
+//                                }
+//                            }).show();
+
+            // if ((System.currentTimeMillis() - exitTime) > 2000) {
+            // Toast.makeText(getApplicationContext(), R.string.exit,
+            // Toast.LENGTH_SHORT).show();
+            // exitTime = System.currentTimeMillis();
+            // } else {
+            // finish();
+            // }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

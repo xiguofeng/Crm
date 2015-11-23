@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
@@ -44,6 +45,8 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
             int what = msg.what;
             switch (what) {
                 case AppointmentLogic.STATE_SET_SUC: {
+                    Toast.makeText(mContext,"已完成!",Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 }
                 case AppointmentLogic.STATE_SET_FAIL: {

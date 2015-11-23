@@ -66,7 +66,7 @@ public class AppointmentLogic {
                 Map<String, String> map = new HashMap<String, String>();
                 try {
                     map.put("userId",
-                            URLEncoder.encode("46", "UTF-8"));
+                            URLEncoder.encode(user.getUserId(), "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

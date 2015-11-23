@@ -57,7 +57,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.ogg.crm.ui.activity.AppointmentActivity"
+            android:name=".ui.activity.AppointmentListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" >

@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
-public class AppointmentActivity extends Activity implements OnClickListener,
+public class AppointmentListActivity extends Activity implements OnClickListener,
         ListItemClickHelp, XListView.IXListViewListener {
 
     private Context mContext;
@@ -76,7 +76,7 @@ public class AppointmentActivity extends Activity implements OnClickListener,
                 default:
                     break;
             }
-
+            onLoadComplete();
             if (null != mProgressDialog && mProgressDialog.isShowing()) {
                 mProgressDialog.dismiss();
             }
@@ -90,7 +90,7 @@ public class AppointmentActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.appointment_list);
-        mContext = AppointmentActivity.this;
+        mContext = AppointmentListActivity.this;
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
                         .getCurrentActivityName(mContext))) {
@@ -147,7 +147,7 @@ public class AppointmentActivity extends Activity implements OnClickListener,
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position > 0) {
-                    Intent intent = new Intent(AppointmentActivity.this,
+                    Intent intent = new Intent(AppointmentListActivity.this,
                             AppointmentDetailActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(AppointmentDetailActivity.APPOINTMENTKEY,
@@ -192,8 +192,8 @@ public class AppointmentActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.appointment_list_filter_tv: {
-
+            case R.id.appointment_list_back_iv: {
+                finish();
                 break;
             }
 
