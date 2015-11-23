@@ -48,6 +48,25 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private EditText mEmailEt;
     private EditText mTypeEt;
 
+    private EditText mPreBuyProductEt;
+    private EditText mProducingAreaEt;
+    private EditText mStandardEt;
+    private EditText mNumberEt;
+    private EditText mSettlementTypeEt;
+    private EditText mCustomerAccountEt;
+    private EditText mIsHasLogEt;
+    private EditText mLastSettlementTimeEt;
+    private EditText mRemarkEt;
+
+    private EditText mCompanyNameEt;
+    private EditText mCompanyAddressEt;
+    private EditText mCompanyTypeEt;
+    private EditText mMainProductEt;
+    private EditText mCustomerAreaEt;
+    private EditText mCompanyNetEt;
+    private EditText mInboundChannelEt;
+
+
     private Button mNextBtn;
 
     private String mNowAction = ORIGIN_FROM_NULL;
