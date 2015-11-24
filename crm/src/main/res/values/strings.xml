@@ -36,7 +36,7 @@
     <string name="company_type">公司类型</string>
     <string name="main_product">主营产品</string>
     <string name="customer_level">客户等级</string>
-    <string name="customer_area">省份地市</string>
+    <string name="province_city">省份地市</string>
     <string name="company_net">公司网站</string>
     <string name="inbound_channel">进货渠道</string>
     <string name="settlement_basic_info">交易基本信息</string>

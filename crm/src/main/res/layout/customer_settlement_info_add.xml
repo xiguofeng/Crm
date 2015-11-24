@@ -331,37 +331,49 @@
             android:background="@drawable/h_line">
         </LinearLayout>
         <RelativeLayout
+            android:id="@+id/customer_add_last_settlement_time_rl"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dip"
-            android:paddingTop="5dip">
-
-            <EditText
-                android:id="@+id/customer_add_last_settlement_time_et"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:imeActionLabel="下一步"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:maxLength="50"
-                android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
-                android:paddingRight="50dip"
-                android:paddingTop="6.0dip"
-                android:singleLine="true"
-                android:textColor="@color/blue_text"
-                android:textSize="@dimen/middle_text_size"/>
+            android:paddingTop="5dip" >
 
             <TextView
+                android:id="@+id/customer_add_last_settlement_time_tag_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_last_settlement_time_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
+                android:paddingRight="10dip"
+                android:layout_alignParentLeft="true"
                 android:text="@string/last_settlement_time"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size" />
+
+            <TextView
+                android:id="@+id/customer_add_last_settlement_time_tv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/customer_add_last_settlement_time_tag_tv"
+                android:layout_centerVertical="true"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:paddingBottom="6.0dip"
+                android:paddingLeft="100dip"
+                android:paddingTop="6.0dip"
+                android:textColor="@color/black_character_title"
+                android:textSize="@dimen/middle_text_size" >
+            </TextView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dip"
+                android:padding="5dip"
+                android:src="@drawable/arrow" />
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

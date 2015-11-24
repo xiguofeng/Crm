@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ogg.crm.R;
@@ -47,14 +48,17 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private EditText mQQEt;
     private EditText mEmailEt;
     private RelativeLayout mTypeRl;
+    private TextView mTypeTv;
 
     private EditText mCompanyNameEt;
     private EditText mCompanyAddressEt;
-    private EditText mCompanyTypeEt;
     private EditText mMainProductEt;
-    private EditText mCustomerAreaEt;
     private EditText mCompanyNetEt;
     private EditText mInboundChannelEt;
+    private RelativeLayout mProviceCityRl;
+    private TextView mProviceCityTv;
+    private RelativeLayout mCompanyTypeRl;
+    private TextView mCompanyTypeTv;
 
     private EditText mPreBuyProductEt;
     private EditText mProducingAreaEt;
@@ -63,8 +67,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private EditText mSettlementTypeEt;
     private EditText mCustomerAccountEt;
     private EditText mIsHasLogEt;
-    private EditText mLastSettlementTimeEt;
     private EditText mRemarkEt;
+    private RelativeLayout mLastSettlementTimeRl;
+    private TextView mLastSettlementTimeTv;
 
     private Button mNextBtn;
 
@@ -76,6 +81,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private String[] mCategorys = {"CUSTOMER_TYPE_B", "COMPANY_TYPE_B", "FOLLOW_STATUS", "CUS_LEVEL", "TRADE_FLG"};
     private HashMap<String, ArrayList<CustomerInfoCategory>> mCategoryInfoMap = new HashMap<>();
+
+    private String mProviceCode;
+    private String mCityCode;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -149,6 +157,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mQQEt = (EditText) findViewById(R.id.customer_info_add_user_qq_et);
         mEmailEt = (EditText) findViewById(R.id.customer_info_add_user_email_et);
         mTypeRl = (RelativeLayout) findViewById(R.id.customer_info_add_type_rl);
+        mTypeTv = (TextView) findViewById(R.id.customer_info_add_type_tv);
 
         mNameEt.addTextChangedListener(this);
         mJobPostionEt.addTextChangedListener(this);
@@ -174,19 +183,22 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mCompanyNameEt = (EditText) findViewById(R.id.customer_add_company_name_et);
         mCompanyAddressEt = (EditText) findViewById(R.id.customer_add_company_address_et);
-        mCompanyTypeEt = (EditText) findViewById(R.id.customer_add_company_type_et);
         mMainProductEt = (EditText) findViewById(R.id.customer_add_main_product_et);
-        mCustomerAreaEt = (EditText) findViewById(R.id.customer_add_customer_area_et);
         mCompanyNetEt = (EditText) findViewById(R.id.customer_add_company_net_et);
         mInboundChannelEt = (EditText) findViewById(R.id.customer_add_inbound_channel_et);
+        mCompanyTypeRl = (RelativeLayout) findViewById(R.id.customer_add_company_type_rl);
+        mCompanyTypeTv = (TextView) findViewById(R.id.customer_add_company_type_tv);
+        mProviceCityRl = (RelativeLayout) findViewById(R.id.customer_add_company_area_rl);
+        mProviceCityTv = (TextView) findViewById(R.id.customer_add_company_area_tv);
 
         mCompanyNameEt.addTextChangedListener(this);
         mCompanyAddressEt.addTextChangedListener(this);
-        mCompanyTypeEt.addTextChangedListener(this);
         mMainProductEt.addTextChangedListener(this);
-        mCustomerAreaEt.addTextChangedListener(this);
         mCompanyNetEt.addTextChangedListener(this);
         mInboundChannelEt.addTextChangedListener(this);
+
+        mCompanyTypeRl.setOnClickListener(this);
+        mProviceCityRl.setOnClickListener(this);
 
         mNextBtn = (Button) findViewById(R.id.customer_company_info_add_next_btn);
         mNextBtn.setOnClickListener(this);
@@ -208,8 +220,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mSettlementTypeEt = (EditText) findViewById(R.id.customer_add_settlement_type_et);
         mCustomerAccountEt = (EditText) findViewById(R.id.customer_add_customer_account_et);
         mIsHasLogEt = (EditText) findViewById(R.id.customer_add_is_has_log_et);
-        mLastSettlementTimeEt = (EditText) findViewById(R.id.customer_add_last_settlement_time_et);
         mRemarkEt = (EditText) findViewById(R.id.customer_add_remark_et);
+        mLastSettlementTimeRl = (RelativeLayout) findViewById(R.id.customer_add_last_settlement_time_rl);
+        mLastSettlementTimeTv = (TextView) findViewById(R.id.customer_add_last_settlement_time_tv);
 
         mPreBuyProductEt.addTextChangedListener(this);
         mProducingAreaEt.addTextChangedListener(this);
@@ -218,8 +231,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mSettlementTypeEt.addTextChangedListener(this);
         mCustomerAccountEt.addTextChangedListener(this);
         mIsHasLogEt.addTextChangedListener(this);
-        mLastSettlementTimeEt.addTextChangedListener(this);
         mRemarkEt.addTextChangedListener(this);
+        mLastSettlementTimeRl.setOnClickListener(this);
 
         mNextBtn = (Button) findViewById(R.id.customer_settlement_info_add_next_btn);
         mNextBtn.setOnClickListener(this);
@@ -262,6 +275,27 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 500: {
+                    mTypeTv.setText(data.getStringExtra("area"));
+                    mProviceCode = data.getStringExtra("proviceCode");
+                    mCityCode = data.getStringExtra("cityCode");
+                    break;
+                }
+                case 501: {
+                    mLastSettlementTimeTv.setText(data.getStringExtra("date"));
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.customer_info_add_back_iv: {
@@ -286,12 +320,20 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_info_add_type_rl: {
- //            AddressLogic.getAddressData(mContext,mCategoryHandler);
+                break;
+            }
+            case R.id.customer_add_company_area_rl: {
+                //            AddressLogic.getAddressData(mContext,mCategoryHandler);
                 Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
                 startActivityForResult(intent, 500);
                 break;
             }
-
+            case R.id.customer_add_last_settlement_time_rl: {
+                //            AddressLogic.getAddressData(mContext,mCategoryHandler);
+                Intent intent = new Intent(CustomerAddActivity.this, DateSelectActivity.class);
+                startActivityForResult(intent, 501);
+                break;
+            }
 
 
             default:
