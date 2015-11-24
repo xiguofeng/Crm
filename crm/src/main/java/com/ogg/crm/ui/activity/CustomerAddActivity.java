@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,26 +16,22 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
+import com.ogg.crm.entity.CustomerInfoCategory;
+import com.ogg.crm.network.logic.CustomerLogic;
+import com.ogg.crm.ui.view.CustomProgressDialog;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * 登录界面
  */
 public class CustomerAddActivity extends Activity implements OnClickListener,
         TextWatcher {
-    public static final String ORIGIN_FROM_NULL = "com.null";
-
-    public static final String ORIGIN_FROM_REG_KEY = "com.reg";
-
-    public static final String ORIGIN_FROM_CART_KEY = "com.cart";
-
-    public static final String ORIGIN_FROM_GOODS_DETAIL_KEY = "com.goods.detail";
-
-    public static final String ORIGIN_FROM_ORDER_KEY = "com.order";
-
-    public static final String ORIGIN_FROM_USER_KEY = "com.user";
-
     private Context mContext;
 
     private ImageView mBackIv;
@@ -74,7 +72,49 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private int mNowPage = 0;
 
-    private String mNowAction = ORIGIN_FROM_NULL;
+    private String[] mCategorys = {"CUSTOMER_TYPE_B", "COMPANY_TYPE_B", "FOLLOW_STATUS", "CUS_LEVEL", "TRADE_FLG"};
+    private HashMap<String, ArrayList<CustomerInfoCategory>> mCategoryInfoMap = new HashMap<>();
+
+    private CustomProgressDialog mProgressDialog;
+
+    Handler mCategoryHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case CustomerLogic.CONF_INFO_GET_SUC: {
+                    if (null != msg.obj) {
+                        ArrayList<CustomerInfoCategory> ciCateList = new ArrayList<>();
+                        ciCateList.addAll((Collection<? extends CustomerInfoCategory>) msg.obj);
+                        if (null != msg.getData()) {
+                            String categoryKey = msg.getData().getString("category");
+                            mCategoryInfoMap.put(categoryKey, ciCateList);
+                        }
+                    }
+                    break;
+                }
+                case CustomerLogic.CONF_INFO_GET_FAIL: {
+                    Toast.makeText(mContext, "获取数据失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.CONF_INFO_GET_EXCEPTION: {
+                    break;
+                }
+                case CustomerLogic.NET_ERROR: {
+                    break;
+                }
+                default:
+                    break;
+            }
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
 
 
     @Override
@@ -82,19 +122,17 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         super.onCreate(savedInstanceState);
         mContext = CustomerAddActivity.this;
         initView();
-
+        initData();
     }
 
     protected void initView() {
         LayoutInflater inflater = LayoutInflater.from(this);
-        //以上两行功能一样
         mLayout1 = inflater.inflate(R.layout.customer_info_add, null);
         mLayout2 = inflater.inflate(R.layout.customer_company_info_add, null);
         mLayout3 = inflater.inflate(R.layout.customer_settlement_info_add, null);
 
         setView1();
     }
-
 
     private void setView1() {
         setContentView(mLayout1);
@@ -188,6 +226,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         isView2Load = true;
     }
 
+    private void initData() {
+        for (int i = 0; i < mCategorys.length; i++) {
+            CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
+        }
+    }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count,

@@ -33,6 +33,16 @@ public class RequestUrl {
     }
 
 
+    public interface customer {
+
+        /**
+         * 获取列表
+         */
+        public String getConfInfo = "/customerbMobile/queryConfByCategoryJson.do";
+
+
+    }
+
     public interface search {
         /**
          * 搜索
