@@ -56,8 +56,13 @@ public class CustomerActivity extends Activity implements OnClickListener {
         mCategoryGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent =new Intent(CustomerActivity.this,CustomerListActivity.class);
-                startActivity(intent);
+                if (0 == position) {
+                    Intent intent = new Intent(CustomerActivity.this, CustomerAddActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(CustomerActivity.this, CustomerListActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         mCustomMenuAdapter = new CustomMenuAdapter(this, mMenuList);
