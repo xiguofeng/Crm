@@ -111,6 +111,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.activity.AddressEditSelectActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.activity.BaseAreaWheelActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"

@@ -1,12 +1,12 @@
 package com.ogg.crm.ui.view.wheel.widget.adapters;
 
-
 import android.content.Context;
 
 import com.ogg.crm.ui.view.wheel.widget.WheelAdapter;
 
+
 /**
- * Adapter class for old wheel adapter (deprecated WheelAdapter class).
+ * ShoppingCartAdapter class for old wheel adapter (deprecated WheelAdapter class).
  * 
  * @deprecated Will be removed soon
  */

@@ -286,7 +286,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_info_add_type_rl: {
-                Intent intent = new Intent(CustomerAddActivity.this, AreaSelectActivity.class);
+ //            AddressLogic.getAddressData(mContext,mCategoryHandler);
+                Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
                 startActivityForResult(intent, 500);
                 break;
             }

@@ -43,6 +43,16 @@ public class RequestUrl {
 
     }
 
+    public interface address {
+
+        /**
+         * 获取地址数据
+         */
+        public String getData = "/customerbMobile/queryRegions.do";
+
+
+    }
+
     public interface search {
         /**
          * 搜索

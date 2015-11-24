@@ -23,7 +23,6 @@ import java.util.List;
 /**
  * Numeric wheel view.
  * 
- * @author Yuri Kanivets
  */
 public class WheelView extends View {
 
@@ -201,7 +200,7 @@ public class WheelView extends View {
 		return viewAdapter;
 	}
 
-	// Adapter listener
+	// ShoppingCartAdapter listener
 	private DataSetObserver dataObserver = new DataSetObserver() {
 		@Override
 		public void onChanged() {
@@ -754,6 +753,7 @@ public class WheelView extends View {
 
 	/**
 	 * Scroll the wheel
+	 * @param time scrolling duration
 	 */
 	public void scroll(int itemsToScroll, int time) {
 		int distance = itemsToScroll * getItemHeight() - scrollingOffset;

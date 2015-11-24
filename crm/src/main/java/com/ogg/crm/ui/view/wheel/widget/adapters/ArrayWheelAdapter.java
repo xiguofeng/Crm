@@ -2,6 +2,9 @@ package com.ogg.crm.ui.view.wheel.widget.adapters;
 
 import android.content.Context;
 
+import com.ogg.crm.entity.AddressData;
+
+
 /**
  * The simple Array wheel adapter
  * 
@@ -34,6 +37,10 @@ public class ArrayWheelAdapter<T> extends AbstractWheelTextAdapter {
 			T item = items[index];
 			if (item instanceof CharSequence) {
 				return (CharSequence) item;
+			}
+			if (item instanceof AddressData) {
+				AddressData addressData = (AddressData) item;
+				return addressData.getRegionName();
 			}
 			return item.toString();
 		}
