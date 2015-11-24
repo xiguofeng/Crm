@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -60,11 +61,13 @@ public class DateSelectActivity extends Activity implements OnClickListener,
         WindowManager m = getWindowManager();
         Display d = m.getDefaultDisplay(); // 为获取屏幕宽、高
         LayoutParams p = getWindow().getAttributes(); // 获取对话框当前的参数值
-        p.width = (int) (d.getWidth() * 0.9); // 宽度设置为屏幕的0.9
+        p.height = (int) (d.getHeight() * 0.3); // 高度设置为屏幕的0.5
+        p.width = (int) (d.getWidth()); // 宽度设置为屏幕的宽度
         // p.alpha = 1.0f; // 设置本身透明度
         p.dimAmount = 0.6f;
-        getWindow().addFlags(LayoutParams.FLAG_DIM_BEHIND);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setAttributes(p);
+        getWindow().setGravity(Gravity.BOTTOM); // 设置靠底部
 
         mViewYear = (WheelView) findViewById(R.id.id_year);
         mViewMonth = (WheelView) findViewById(R.id.id_month);

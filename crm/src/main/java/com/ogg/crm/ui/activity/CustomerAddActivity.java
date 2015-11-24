@@ -279,7 +279,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 500: {
-                    mTypeTv.setText(data.getStringExtra("area"));
+                    mProviceCityTv.setText(data.getStringExtra("area"));
                     mProviceCode = data.getStringExtra("proviceCode");
                     mCityCode = data.getStringExtra("cityCode");
                     break;

@@ -358,7 +358,6 @@
                 android:maxLength="16"
                 android:maxLines="1"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="100dip"
                 android:paddingTop="6.0dip"
                 android:textColor="@color/black_character_title"
                 android:textSize="@dimen/middle_text_size" >
