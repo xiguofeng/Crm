@@ -105,6 +105,31 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.activity.AreaSelectActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.activity.BaseAreaWheelActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.activity.DateSelectActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/dialogTheme">
+        </activity>
+        <activity
+            android:name=".ui.activity.CommonSelectActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name="com.ogg.crm.ui.activity.SearchActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"

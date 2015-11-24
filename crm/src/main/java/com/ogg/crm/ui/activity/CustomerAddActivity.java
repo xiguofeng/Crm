@@ -3,6 +3,7 @@ package com.ogg.crm.ui.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.ogg.crm.R;
@@ -44,7 +46,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private EditText mTelPhoneEt;
     private EditText mQQEt;
     private EditText mEmailEt;
-    private EditText mTypeEt;
+    private RelativeLayout mTypeRl;
 
     private EditText mCompanyNameEt;
     private EditText mCompanyAddressEt;
@@ -146,7 +148,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mTelPhoneEt = (EditText) findViewById(R.id.customer_info_add_telephone_et);
         mQQEt = (EditText) findViewById(R.id.customer_info_add_user_qq_et);
         mEmailEt = (EditText) findViewById(R.id.customer_info_add_user_email_et);
-        mTypeEt = (EditText) findViewById(R.id.customer_info_add_type_et);
+        mTypeRl = (RelativeLayout) findViewById(R.id.customer_info_add_type_rl);
 
         mNameEt.addTextChangedListener(this);
         mJobPostionEt.addTextChangedListener(this);
@@ -154,7 +156,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mTelPhoneEt.addTextChangedListener(this);
         mQQEt.addTextChangedListener(this);
         mEmailEt.addTextChangedListener(this);
-        mTypeEt.addTextChangedListener(this);
+        mTypeRl.setOnClickListener(this);
 
 
         mNextBtn = (Button) findViewById(R.id.customer_info_add_next_btn);
@@ -283,6 +285,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
                 break;
             }
+            case R.id.customer_info_add_type_rl: {
+                Intent intent = new Intent(CustomerAddActivity.this, AreaSelectActivity.class);
+                startActivityForResult(intent, 500);
+                break;
+            }
+
+
 
             default:
                 break;

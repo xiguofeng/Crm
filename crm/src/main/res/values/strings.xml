@@ -92,6 +92,10 @@
     <string name="sms_see">查看短信</string>
     <string name="sms_title">短信名称</string>
 
+    <!---->
+    <string name="area_select">选择地区</string>
+    <string name="date_select">选择日期</string>
+
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
     <string name="login">登录</string>
