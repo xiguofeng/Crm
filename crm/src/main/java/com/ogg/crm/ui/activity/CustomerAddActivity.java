@@ -49,6 +49,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private EditText mEmailEt;
     private RelativeLayout mTypeRl;
     private TextView mTypeTv;
+    private RelativeLayout mLevelRl;
+    private TextView mLevelTv;
 
     private EditText mCompanyNameEt;
     private EditText mCompanyAddressEt;
@@ -84,6 +86,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private String mProviceCode;
     private String mCityCode;
+    private String mTypeText;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -159,6 +162,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mEmailEt = (EditText) findViewById(R.id.customer_info_add_user_email_et);
         mTypeRl = (RelativeLayout) findViewById(R.id.customer_info_add_type_rl);
         mTypeTv = (TextView) findViewById(R.id.customer_info_add_type_tv);
+        mLevelRl = (RelativeLayout) findViewById(R.id.customer_info_add_level_rl);
+        mLevelTv = (TextView) findViewById(R.id.customer_info_add_level_tv);
 
         mNameEt.addTextChangedListener(this);
         mJobPostionEt.addTextChangedListener(this);
@@ -167,6 +172,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mQQEt.addTextChangedListener(this);
         mEmailEt.addTextChangedListener(this);
         mTypeRl.setOnClickListener(this);
+        mLevelRl.setOnClickListener(this);
 
 
         mNextBtn = (Button) findViewById(R.id.customer_info_add_next_btn);
@@ -290,6 +296,31 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     mLastSettlementTimeTv.setText(data.getStringExtra("date"));
                     break;
                 }
+                case 502: {
+                    mTypeTv.setText(data.getStringExtra("text"));
+                    mTypeText = data.getStringExtra("value");
+                    if("-1".equals(mTypeText)){
+                        mTypeTv.setText("其它");
+                    }
+                    break;
+                }
+                case 503: {
+                    mLevelTv.setText(data.getStringExtra("text"));
+                    mTypeText = data.getStringExtra("value");
+                    if("-1".equals(mTypeText)){
+                        mLevelTv.setText("其它");
+                    }
+                    break;
+                }
+
+                case 504: {
+                    mCompanyTypeTv.setText(data.getStringExtra("text"));
+                    mTypeText = data.getStringExtra("value");
+                    if("-1".equals(mTypeText)){
+                        mCompanyTypeTv.setText("其它");
+                    }
+                    break;
+                }
                 default:
                     break;
             }
@@ -321,12 +352,6 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
                 break;
             }
-            case R.id.customer_info_add_type_rl: {
-                Intent intent = new Intent(CustomerAddActivity.this, CommonSelectActivity.class);
-                intent.putExtra("category", "CUSTOMER_TYPE_B");
-                startActivityForResult(intent, 502);
-                break;
-            }
             case R.id.customer_add_company_area_rl: {
                 //            AddressLogic.getAddressData(mContext,mCategoryHandler);
                 Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
@@ -339,7 +364,24 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 startActivityForResult(intent, 501);
                 break;
             }
-
+            case R.id.customer_info_add_type_rl: {
+                Intent intent = new Intent(CustomerAddActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "CUSTOMER_TYPE_B");
+                startActivityForResult(intent, 502);
+                break;
+            }
+            case R.id.customer_info_add_level_rl: {
+                Intent intent = new Intent(CustomerAddActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "CUS_LEVEL");
+                startActivityForResult(intent, 503);
+                break;
+            }
+            case R.id.customer_add_company_type_rl: {
+                Intent intent = new Intent(CustomerAddActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "COMPANY_TYPE_B");
+                startActivityForResult(intent, 504);
+                break;
+            }
 
             default:
                 break;

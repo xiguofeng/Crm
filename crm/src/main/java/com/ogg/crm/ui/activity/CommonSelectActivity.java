@@ -1,6 +1,7 @@
 package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Display;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.CustomerInfoCategory;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 
 
 public class CommonSelectActivity extends Activity implements OnClickListener {
+
+    private TextView mTitleTv;
 
     private CoustomListView mLv;
     private CustomerInfoCategoryAdapter mCustomerInfoCategoryAdapter;
@@ -42,9 +47,21 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
         getWindow().addFlags(LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setAttributes(p);
 
+        mTitleTv =(TextView) findViewById(R.id.common_select_title_tv);
+
         mLv = (CoustomListView) findViewById(R.id.common_select_lv);
         mCustomerInfoCategoryAdapter = new CustomerInfoCategoryAdapter(CommonSelectActivity.this, mCustomerInfoCategories);
         mLv.setAdapter(mCustomerInfoCategoryAdapter);
+        mLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.putExtra("value", mCustomerInfoCategories.get(position).getDefaultValue());
+                intent.putExtra("text", mCustomerInfoCategories.get(position).getDefaultText());
+                setResult(RESULT_OK, intent);
+                CommonSelectActivity.this.finish();
+            }
+        });
     }
 
     private void initData() {
@@ -53,6 +70,17 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
             mCustomerInfoCategories.clear();
             mCustomerInfoCategories.addAll(CustomerAddActivity.sCategoryInfoMap.get(category));
             mCustomerInfoCategoryAdapter.notifyDataSetChanged();
+
+            if("CUSTOMER_TYPE_B".equals(category)){
+                mTitleTv.setText("选择客户类型");
+            }else if("COMPANY_TYPE_B".equals(category)){
+                mTitleTv.setText("选择公司类型");
+            }else if("FOLLOW_STATUS".equals(category)){
+            }else if("CUS_LEVEL".equals(category)){
+                mTitleTv.setText("选择客户等级");
+            }else if("TRADE_FLG".equals(category)){
+
+            }
         }
 
     }

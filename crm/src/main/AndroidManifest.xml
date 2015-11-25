@@ -114,7 +114,8 @@
             android:name=".ui.activity.AddressEditSelectActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/dialogTheme">
         </activity>
         <activity
             android:name=".ui.activity.BaseAreaWheelActivity"
@@ -133,7 +134,8 @@
             android:name=".ui.activity.CommonSelectActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:theme="@style/dialogTheme">
         </activity>
         <activity
             android:name="com.ogg.crm.ui.activity.SearchActivity"
