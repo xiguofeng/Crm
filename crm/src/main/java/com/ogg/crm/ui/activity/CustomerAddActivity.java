@@ -80,7 +80,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private int mNowPage = 0;
 
     private String[] mCategorys = {"CUSTOMER_TYPE_B", "COMPANY_TYPE_B", "FOLLOW_STATUS", "CUS_LEVEL", "TRADE_FLG"};
-    private HashMap<String, ArrayList<CustomerInfoCategory>> mCategoryInfoMap = new HashMap<>();
+    public static HashMap<String, ArrayList<CustomerInfoCategory>> sCategoryInfoMap = new HashMap<>();
 
     private String mProviceCode;
     private String mCityCode;
@@ -99,7 +99,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                         ciCateList.addAll((Collection<? extends CustomerInfoCategory>) msg.obj);
                         if (null != msg.getData()) {
                             String categoryKey = msg.getData().getString("category");
-                            mCategoryInfoMap.put(categoryKey, ciCateList);
+                            sCategoryInfoMap.put(categoryKey, ciCateList);
                         }
                     }
                     break;
@@ -131,6 +131,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = CustomerAddActivity.this;
+        mProgressDialog = new CustomProgressDialog(mContext);
         initView();
         initData();
     }
@@ -242,6 +243,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     }
 
     private void initData() {
+        mProgressDialog.show();
         for (int i = 0; i < mCategorys.length; i++) {
             CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
         }
@@ -320,6 +322,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_info_add_type_rl: {
+                Intent intent = new Intent(CustomerAddActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "CUSTOMER_TYPE_B");
+                startActivityForResult(intent, 502);
                 break;
             }
             case R.id.customer_add_company_area_rl: {

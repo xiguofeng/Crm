@@ -36,7 +36,79 @@ public class CustomerLogic {
 
     public static final int CONF_INFO_GET_EXCEPTION = CONF_INFO_GET_FAIL + 1;
 
+    public static final int LIST_GET_SUC = CONF_INFO_GET_EXCEPTION + 1;
+
+    public static final int LIST_GET_FAIL = LIST_GET_SUC + 1;
+
+    public static final int LIST_GET_EXCEPTION = LIST_GET_FAIL + 1;
+
     public static void getConfInfo(final Context context, final Handler handler,
+                                   final String category) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.getConfInfo;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_getConfInfo", ":" + response);
+                parseConfInfoData(response, handler,category);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("category",
+                            URLEncoder.encode(category, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseConfInfoData(String responseStr, Handler handler, String category) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+
+                JSONArray jsonArray = response.getJSONArray("model");
+                ArrayList<CustomerInfoCategory> categoryList = new ArrayList<CustomerInfoCategory>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    CustomerInfoCategory cICate = (CustomerInfoCategory) JsonUtils.fromJsonToJava(jsonObject, CustomerInfoCategory.class);
+                    categoryList.add(cICate);
+                }
+
+                Message message = new Message();
+                message.what = CONF_INFO_GET_SUC;
+                message.obj = categoryList;
+                Bundle bundle = new Bundle();
+                bundle.putString("category",category);
+                message.setData(bundle);
+                handler.sendMessage(message);
+            } else {
+                handler.sendEmptyMessage(CONF_INFO_GET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(CONF_INFO_GET_EXCEPTION);
+        }
+    }
+
+    public static void list(final Context context, final Handler handler,
                                    final String category) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.getConfInfo;

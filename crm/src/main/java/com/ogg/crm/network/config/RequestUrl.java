@@ -36,10 +36,15 @@ public class RequestUrl {
     public interface customer {
 
         /**
-         * 获取列表
+         * 获取配置信息
          */
         public String getConfInfo = "/customerbMobile/queryConfByCategoryJson.do";
 
+
+        /**
+         * 获取客户信息
+         */
+        public String list = "/customerbMobile/findMyCustomerPage.do";
 
     }
 
