@@ -26,6 +26,7 @@ import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
+import com.ogg.crm.utils.JsonUtils;
 import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
@@ -138,6 +139,13 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         mProgressDialog.show();
         CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", "", "", "");
+
+        Customer customer = new Customer();
+        customer.setUserId(UserInfoManager.userInfo.getUserId());
+        customer.setName("大菠萝");
+        customer.setStatus("2");
+        CustomerLogic.save(mContext, mHandler, UserInfoManager.userInfo.getUserId(), JsonUtils.Object2Json(customer));
+
     }
 
     private void initFilterView() {

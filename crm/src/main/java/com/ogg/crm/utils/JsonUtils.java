@@ -1,6 +1,9 @@
 package com.ogg.crm.utils;
 
 import android.text.TextUtils;
+import android.util.Log;
+
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -159,5 +162,13 @@ public class JsonUtils {
             return data;
         }
     }
+
+    public static String Object2Json(Object obj) {
+        Gson gson = new Gson();
+        String str = gson.toJson(obj);
+        Log.e("xxx_json", str);
+        return str;
+    }
+
 
 }

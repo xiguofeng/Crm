@@ -40,11 +40,20 @@ public class RequestUrl {
          */
         public String getConfInfo = "/customerbMobile/queryConfByCategoryJson.do";
 
-
         /**
-         * 获取客户信息
+         * 获取客户信息列表
          */
         public String list = "/customerbMobile/findMyCustomerPage.do";
+
+        /**
+         * 保存客户信息
+         */
+        public String save = "/customerbMobile/saveCustomerb.do";
+
+        /**
+         * 获取公海客户
+         */
+        public String publicList = "/customerbMobile/findPublicPage.do";
 
     }
 

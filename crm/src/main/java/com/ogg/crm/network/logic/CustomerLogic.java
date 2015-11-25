@@ -227,4 +227,45 @@ public class CustomerLogic {
     }
 
 
+    public static void save(final Context context, final Handler handler,
+                            final String userId, final String customer) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.save;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_save_customer", ":" + response);
+                parseListData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("userId",
+                            URLEncoder.encode(userId, "UTF-8"));
+                    map.put("customer",
+                            URLEncoder.encode(customer, "UTF-8"));
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+
 }
