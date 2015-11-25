@@ -51,7 +51,7 @@ public class AppointmentLogic {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("xxx_appointlist",":"+response);
+                Log.e("xxx_appointlist", ":" + response);
                 parseListData(response, handler);
             }
         }, new Response.ErrorListener() {
@@ -115,7 +115,7 @@ public class AppointmentLogic {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("xxx_setState",":"+response);
+                Log.e("xxx_setState", ":" + response);
                 parseSetStateData(response, handler);
             }
         }, new Response.ErrorListener() {

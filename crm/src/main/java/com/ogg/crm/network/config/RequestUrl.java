@@ -5,17 +5,17 @@ package com.ogg.crm.network.config;
  */
 public class RequestUrl {
 
-	public static final String HOST_URL = "http://218.2.105.13:20001/CRM1.0";
+    public static final String HOST_URL = "http://218.2.105.13:20001/CRM1.0";
 
 
-	public interface account {
+    public interface account {
 
-		/**
-		 * 登陆
-		 */
-		public String login = "/b2bUser/loginUser.do";
+        /**
+         * 登陆
+         */
+        public String login = "/b2bUser/loginUser.do";
 
-	}
+    }
 
     public interface appointment {
 

@@ -10,7 +10,7 @@ public class Menu implements Serializable {
 
     private String title;
 
-	private int localImage;
+    private int localImage;
 
     public String getId() {
         return id;
@@ -43,7 +43,6 @@ public class Menu implements Serializable {
     public void setLocalImage(int localImage) {
         this.localImage = localImage;
     }
-
 
 
 }

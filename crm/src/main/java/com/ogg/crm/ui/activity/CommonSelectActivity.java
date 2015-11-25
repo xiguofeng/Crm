@@ -47,7 +47,7 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
         getWindow().addFlags(LayoutParams.FLAG_DIM_BEHIND);
         getWindow().setAttributes(p);
 
-        mTitleTv =(TextView) findViewById(R.id.common_select_title_tv);
+        mTitleTv = (TextView) findViewById(R.id.common_select_title_tv);
 
         mLv = (CoustomListView) findViewById(R.id.common_select_lv);
         mCustomerInfoCategoryAdapter = new CustomerInfoCategoryAdapter(CommonSelectActivity.this, mCustomerInfoCategories);
@@ -71,14 +71,14 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
             mCustomerInfoCategories.addAll(CustomerAddActivity.sCategoryInfoMap.get(category));
             mCustomerInfoCategoryAdapter.notifyDataSetChanged();
 
-            if("CUSTOMER_TYPE_B".equals(category)){
+            if ("CUSTOMER_TYPE_B".equals(category)) {
                 mTitleTv.setText("选择客户类型");
-            }else if("COMPANY_TYPE_B".equals(category)){
+            } else if ("COMPANY_TYPE_B".equals(category)) {
                 mTitleTv.setText("选择公司类型");
-            }else if("FOLLOW_STATUS".equals(category)){
-            }else if("CUS_LEVEL".equals(category)){
+            } else if ("FOLLOW_STATUS".equals(category)) {
+            } else if ("CUS_LEVEL".equals(category)) {
                 mTitleTv.setText("选择客户等级");
-            }else if("TRADE_FLG".equals(category)){
+            } else if ("TRADE_FLG".equals(category)) {
 
             }
         }

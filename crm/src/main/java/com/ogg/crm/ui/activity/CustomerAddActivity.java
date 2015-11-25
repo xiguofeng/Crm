@@ -299,7 +299,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 case 502: {
                     mTypeTv.setText(data.getStringExtra("text"));
                     mTypeText = data.getStringExtra("value");
-                    if("-1".equals(mTypeText)){
+                    if ("-1".equals(mTypeText)) {
                         mTypeTv.setText("其它");
                     }
                     break;
@@ -307,7 +307,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 case 503: {
                     mLevelTv.setText(data.getStringExtra("text"));
                     mTypeText = data.getStringExtra("value");
-                    if("-1".equals(mTypeText)){
+                    if ("-1".equals(mTypeText)) {
                         mLevelTv.setText("其它");
                     }
                     break;
@@ -316,7 +316,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 case 504: {
                     mCompanyTypeTv.setText(data.getStringExtra("text"));
                     mTypeText = data.getStringExtra("value");
-                    if("-1".equals(mTypeText)){
+                    if ("-1".equals(mTypeText)) {
                         mCompanyTypeTv.setText("其它");
                     }
                     break;

@@ -3,6 +3,8 @@ package com.ogg.crm.ui.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
@@ -11,19 +13,24 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
+import com.ogg.crm.network.config.MsgRequest;
+import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
+import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
@@ -32,17 +39,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private Context mContext;
 
-    private LinearLayout mCompositeLl;
-    private TextView mCompositeTv;
-    private ImageView mCompositeIv;
+    private RelativeLayout mLevelRl;
+    private TextView mLevelTv;
 
-    private LinearLayout mPriceLl;
-    private TextView mPriceTv;
-    private ImageView mPriceIv;
+    private RelativeLayout mTypeRl;
+    private TextView mTypeTv;
 
-    private LinearLayout mSalesLl;
-    private TextView mSalesTv;
-    private ImageView mSalesIv;
+    private RelativeLayout mStateRl;
+    private TextView mStateTv;
 
     private XListView mGoodsLv;
     private CustomerAdapter mCustomerAdapter;
@@ -61,15 +65,54 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private String mNowSortType;
 
     private int mCurrentPage = 1;
-    private int mCurrentPageNum = 1;
 
     private CustomProgressDialog mProgressDialog;
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case CustomerLogic.LIST_GET_SUC: {
+                    if (null != msg.obj) {
+                        mCurrentPage++;
+                        mCustomerList.clear();
+                        mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
+                        mCustomerAdapter.notifyDataSetChanged();
+                        onLoadComplete();
+                    }
+                    break;
+                }
+                case CustomerLogic.LIST_GET_FAIL: {
+                    Toast.makeText(mContext, "获取数据失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.LIST_GET_EXCEPTION: {
+                    break;
+                }
+                case CustomerLogic.NET_ERROR: {
+                    break;
+                }
+                default:
+                    break;
+            }
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_list);
         mContext = CustomerListActivity.this;
+        mProgressDialog = new CustomProgressDialog(mContext);
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
                         .getCurrentActivityName(mContext))) {
@@ -92,40 +135,31 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     }
 
     private void initData() {
-        mProgressDialog = new CustomProgressDialog(mContext);
         mProgressDialog.show();
+        CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", "", "", "");
     }
 
     private void initFilterView() {
-        mCompositeLl = (LinearLayout) findViewById(R.id.customer_list_composite_ll);
-        mCompositeTv = (TextView) findViewById(R.id.customer_list_composite_tv);
-        mCompositeIv = (ImageView) findViewById(R.id.customer_list_composite_iv);
+        mLevelRl = (RelativeLayout) findViewById(R.id.customer_list_filter_level_rl);
+        mLevelTv = (TextView) findViewById(R.id.customer_list_filter_level_tv);
 
-        mPriceLl = (LinearLayout) findViewById(R.id.customer_list_price_ll);
-        mPriceTv = (TextView) findViewById(R.id.customer_list_price_tv);
-        mPriceIv = (ImageView) findViewById(R.id.customer_list_price_iv);
+        mTypeRl = (RelativeLayout) findViewById(R.id.customer_list_filter_type_rl);
+        mTypeTv = (TextView) findViewById(R.id.customer_list_filter_type_tv);
 
-        mSalesLl = (LinearLayout) findViewById(R.id.customer_list_sales_ll);
-        mSalesTv = (TextView) findViewById(R.id.customer_list_sales_tv);
-        mSalesIv = (ImageView) findViewById(R.id.customer_list_sales_iv);
+        mStateRl = (RelativeLayout) findViewById(R.id.customer_list_filter_status_rl);
+        mStateTv = (TextView) findViewById(R.id.customer_list_filter_status_tv);
 
-        mCompositeLl.setOnClickListener(this);
-        mPriceLl.setOnClickListener(this);
-        mSalesLl.setOnClickListener(this);
+        mLevelRl.setOnClickListener(this);
+        mTypeRl.setOnClickListener(this);
+        mStateRl.setOnClickListener(this);
     }
 
     private void setFilterViewDefalut() {
-        mCompositeTv.setTextColor(getResources().getColor(
+        mLevelTv.setTextColor(getResources().getColor(
                 R.color.gray_character));
-        mPriceTv.setTextColor(getResources().getColor(R.color.gray_character));
-        mSalesTv.setTextColor(getResources().getColor(R.color.gray_character));
-
-        mCompositeIv.setImageDrawable(getResources().getDrawable(
-                R.drawable.arrow_down_top));
-        mPriceIv.setImageDrawable(getResources().getDrawable(
-                R.drawable.arrow_down_top));
-        mSalesIv.setImageDrawable(getResources().getDrawable(
-                R.drawable.arrow_down_top));
+        mTypeTv.setTextColor(getResources().getColor(R.color.gray_character));
+        mStateTv.setTextColor(getResources().getColor(R.color.gray_character));
     }
 
     private void initListView() {
@@ -213,13 +247,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.customer_list_back_iv: {
+                finish();
+                break;
+            }
+
             case R.id.customer_list_filter_tv: {
-                if (!isFilterOpen) {
-                    mDrawerLayout.openDrawer(Gravity.RIGHT);
-                } else {
-                    mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                }
                 isFilterOpen = !isFilterOpen;
+                mDrawerLayout.openDrawer(Gravity.RIGHT);
                 break;
             }
             case R.id.customer_list_filter_confirm_tv: {
@@ -230,6 +265,16 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
                 break;
             }
+            case R.id.customer_list_filter_level_rl: {
+                break;
+            }
+            case R.id.customer_list_filter_type_rl: {
+                break;
+            }
+            case R.id.customer_list_filter_status_rl: {
+                break;
+            }
+
             default: {
                 break;
             }

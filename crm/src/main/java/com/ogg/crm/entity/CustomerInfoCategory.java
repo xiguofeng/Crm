@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CustomerInfoCategory implements Serializable {
 
-	private static final long serialVersionUID = 8912365559481657349L;
+    private static final long serialVersionUID = 8912365559481657349L;
 
     private String defaultText;
 

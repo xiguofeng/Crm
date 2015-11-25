@@ -45,7 +45,7 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
             int what = msg.what;
             switch (what) {
                 case AppointmentLogic.STATE_SET_SUC: {
-                    Toast.makeText(mContext,"已完成!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "已完成!", Toast.LENGTH_SHORT).show();
                     finish();
                     break;
                 }
@@ -90,7 +90,7 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
         mBackIv = (ImageView) findViewById(R.id.appointment_detail_back_iv);
         mBackIv.setOnClickListener(this);
 
-        mChangeStateBtn= (Button) findViewById(R.id.appointment_detail_complete_btn);
+        mChangeStateBtn = (Button) findViewById(R.id.appointment_detail_complete_btn);
         mChangeStateBtn.setOnClickListener(this);
 
         mBusinessTypeTv = (TextView) findViewById(R.id.appointment_detail_business_type_tv);
@@ -122,7 +122,7 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
         switch (v.getId()) {
             case R.id.appointment_detail_complete_btn: {
                 if (null != mAppointment) {
-                    AppointmentLogic.setState(mContext,mHandler,mAppointment.getRemindId());
+                    AppointmentLogic.setState(mContext, mHandler, mAppointment.getRemindId());
                 }
                 break;
             }

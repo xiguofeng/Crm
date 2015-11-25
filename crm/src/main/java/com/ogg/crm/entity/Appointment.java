@@ -4,27 +4,27 @@ import java.io.Serializable;
 
 public class Appointment implements Serializable {
 
-	private static final long serialVersionUID = 8912365559481657349L;
+    private static final long serialVersionUID = 8912365559481657349L;
 
     /**
      * 客户名
      */
-	private String customerName;
+    private String customerName;
 
     /**
      * 创建时间
      */
-	private String createTime;
+    private String createTime;
 
     /**
      * 状态 0 1
      */
-	private String status;
+    private String status;
 
     /**
      * 电话号码
      */
-	private String customerTel;
+    private String customerTel;
 
     /**
      * 所属人

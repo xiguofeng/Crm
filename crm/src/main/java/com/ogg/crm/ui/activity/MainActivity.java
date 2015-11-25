@@ -31,7 +31,7 @@ import java.util.Date;
 
 
 public class MainActivity extends Activity implements
-        ListItemClickHelp,OnClickListener {
+        ListItemClickHelp, OnClickListener {
 
     private Context mContext;
 
@@ -108,13 +108,13 @@ public class MainActivity extends Activity implements
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                    Intent intent = new Intent(MainActivity.this,
-                            AppointmentDetailActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(AppointmentDetailActivity.APPOINTMENTKEY,
-                            mAppointmentList.get(position));
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                Intent intent = new Intent(MainActivity.this,
+                        AppointmentDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(AppointmentDetailActivity.APPOINTMENTKEY,
+                        mAppointmentList.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -126,7 +126,7 @@ public class MainActivity extends Activity implements
 
     private void initData() {
 
-        if(UserInfoManager.getLoginIn(mContext)){
+        if (UserInfoManager.getLoginIn(mContext)) {
             UserInfoManager.setUserInfo(mContext);
             mProgressDialog.show();
             AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.userInfo);
@@ -135,9 +135,9 @@ public class MainActivity extends Activity implements
 
         Date date = new Date();
         SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
-        String frontS=TimeUtils.TimeStamp2Date(String.valueOf(date.getTime()),"yyyy-MM-dd");
+        String frontS = TimeUtils.TimeStamp2Date(String.valueOf(date.getTime()), "yyyy-MM-dd");
         String afterS = dateFm.format(date);
-        mDateTv.setText(frontS+" "+afterS);
+        mDateTv.setText(frontS + " " + afterS);
     }
 
     @Override
@@ -149,7 +149,7 @@ public class MainActivity extends Activity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_appointment_more_tv: {
-                Intent intent =new Intent(MainActivity.this,AppointmentListActivity.class);
+                Intent intent = new Intent(MainActivity.this, AppointmentListActivity.class);
                 startActivity(intent);
             }
             default:

@@ -59,7 +59,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/list_customer_detail_tv"
+                android:id="@+id/list_customer_company_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"

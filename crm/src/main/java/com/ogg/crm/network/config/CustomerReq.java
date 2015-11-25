@@ -5,15 +5,15 @@ package com.ogg.crm.network.config;
  */
 public class CustomerReq {
 
-	/**
-	 * 客户类型
-	 */
-	public static final String CUSTOMER_TYPE_B = "CUSTOMER_TYPE_B";
-	
-	/**
-	 * 公司类型
-	 */
-	public static final String COMPANY_TYPE_B = "COMPANY_TYPE_B";
+    /**
+     * 客户类型
+     */
+    public static final String CUSTOMER_TYPE_B = "CUSTOMER_TYPE_B";
+
+    /**
+     * 公司类型
+     */
+    public static final String COMPANY_TYPE_B = "COMPANY_TYPE_B";
 
     /**
      * 跟进状态
@@ -30,7 +30,6 @@ public class CustomerReq {
      * 是否有交易记录
      */
     public static final String TRADE_FLG = "TRADE_FLG";
-
 
 
 }

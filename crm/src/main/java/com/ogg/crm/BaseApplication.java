@@ -9,42 +9,42 @@ import com.android.volley.toolbox.Volley;
 
 public class BaseApplication extends Application {
 
-	private static Context context;
+    private static Context context;
 
-	private static RequestQueue sQueue;
+    private static RequestQueue sQueue;
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-	}
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		context = getApplicationContext();
-		sQueue = Volley.newRequestQueue(getApplicationContext());
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        context = getApplicationContext();
+        sQueue = Volley.newRequestQueue(getApplicationContext());
 
-	}
+    }
 
-	@Override
-	public void onLowMemory() {
-		super.onLowMemory();
-	}
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+    }
 
-	@Override
-	public void onTerminate() {
-		super.onTerminate();
-	}
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 
-	public static RequestQueue getInstanceRequestQueue() {
-		if (null == sQueue) {
-			sQueue = Volley.newRequestQueue(getContext());
-		}
-		return sQueue;
-	}
+    public static RequestQueue getInstanceRequestQueue() {
+        if (null == sQueue) {
+            sQueue = Volley.newRequestQueue(getContext());
+        }
+        return sQueue;
+    }
 
-	public static Context getContext() {
-		return context;
-	}
+    public static Context getContext() {
+        return context;
+    }
 
 }

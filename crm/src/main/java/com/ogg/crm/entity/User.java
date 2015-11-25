@@ -52,32 +52,31 @@ public class User {
 
     private String userId;
 
-	/**
-	 * 用户名
-	 */
-	private String logonName;
+    /**
+     * 用户名
+     */
+    private String logonName;
 
     /**
      * 真实姓名
      */
-	private String roleName;
+    private String roleName;
 
-	/**
-	 * 登录密码
-	 */
-	private String logonPass;
+    /**
+     * 登录密码
+     */
+    private String logonPass;
 
     /**
      * 全称
      */
-	private String fullName;
+    private String fullName;
 
 
     /**
-     *角色
+     * 角色
      */
     private String roleType;
-
 
 
 }
