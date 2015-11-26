@@ -43,6 +43,12 @@ public class CustomerLogic {
 
     public static final int LIST_GET_EXCEPTION = LIST_GET_FAIL + 1;
 
+    public static final int FILTER_LIST_GET_SUC = LIST_GET_EXCEPTION + 1;
+
+    public static final int FILTER_LIST_GET_FAIL = FILTER_LIST_GET_SUC + 1;
+
+    public static final int FILTER_LIST_GET_EXCEPTION = FILTER_LIST_GET_FAIL + 1;
+
     public static void getConfInfo(final Context context, final Handler handler,
                                    final String category) {
 
@@ -187,7 +193,7 @@ public class CustomerLogic {
             @Override
             public void onResponse(String response) {
                 Log.e("xxx_custom_filter_list", ":" + response);
-                parseListData(response, handler);
+                parseFilterListData(response, handler);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -224,6 +230,32 @@ public class CustomerLogic {
 
         BaseApplication.getInstanceRequestQueue().add(stringRequest);
         BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseFilterListData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+
+                JSONArray jsonArray = response.getJSONArray("rows");
+                ArrayList<Customer> customers = new ArrayList<Customer>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Customer customer = (Customer) JsonUtils.fromJsonToJava(jsonObject, Customer.class);
+                    customers.add(customer);
+                }
+
+                Message message = new Message();
+                message.what = FILTER_LIST_GET_SUC;
+                message.obj = customers;
+                handler.sendMessage(message);
+            } else {
+                handler.sendEmptyMessage(FILTER_LIST_GET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(FILTER_LIST_GET_EXCEPTION);
+        }
     }
 
 

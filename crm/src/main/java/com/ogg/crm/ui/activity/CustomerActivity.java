@@ -57,7 +57,7 @@ public class CustomerActivity extends Activity implements OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (0 == position) {
-                    Intent intent = new Intent(CustomerActivity.this, CustomerAddActivity.class);
+                    Intent intent = new Intent(CustomerActivity.this, CustomerListActivity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(CustomerActivity.this, CustomerListActivity.class);

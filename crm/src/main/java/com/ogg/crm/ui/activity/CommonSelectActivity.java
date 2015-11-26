@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.CustomerInfoCategory;
+import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.adapter.CustomerInfoCategoryAdapter;
 import com.ogg.crm.ui.view.listview.CoustomListView;
 
@@ -68,7 +69,11 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
         String category = getIntent().getStringExtra("category");
         if (!TextUtils.isEmpty(category)) {
             mCustomerInfoCategories.clear();
-            mCustomerInfoCategories.addAll(CustomerAddActivity.sCategoryInfoMap.get(category));
+            if (!CustomerAddActivity.sCategoryInfoMap.isEmpty()) {
+                mCustomerInfoCategories.addAll(CustomerAddActivity.sCategoryInfoMap.get(category));
+            }else{
+                mCustomerInfoCategories.addAll(ConfigInfoService.sCustomerCategoryInfoMap.get(category));
+            }
             mCustomerInfoCategoryAdapter.notifyDataSetChanged();
 
             if ("CUSTOMER_TYPE_B".equals(category)) {
@@ -76,10 +81,11 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
             } else if ("COMPANY_TYPE_B".equals(category)) {
                 mTitleTv.setText("选择公司类型");
             } else if ("FOLLOW_STATUS".equals(category)) {
+                mTitleTv.setText("状态");
             } else if ("CUS_LEVEL".equals(category)) {
                 mTitleTv.setText("选择客户等级");
             } else if ("TRADE_FLG".equals(category)) {
-
+                mTitleTv.setText("是否交易");
             }
         }
 

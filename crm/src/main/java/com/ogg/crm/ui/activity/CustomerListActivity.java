@@ -2,6 +2,7 @@ package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,15 +41,18 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private Context mContext;
 
     private RelativeLayout mLevelRl;
-    private TextView mLevelTv;
+    private TextView mFilterLevelTv;
 
     private RelativeLayout mTypeRl;
-    private TextView mTypeTv;
+    private TextView mFilterTypeTv;
+
+    private RelativeLayout mTradeRl;
+    private TextView mFilterTradeTv;
 
     private RelativeLayout mStateRl;
-    private TextView mStateTv;
+    private TextView mFilterStateTv;
 
-    private XListView mGoodsLv;
+    private XListView mCustomerLv;
     private CustomerAdapter mCustomerAdapter;
     private ArrayList<Customer> mCustomerList = new ArrayList<Customer>();
 
@@ -59,10 +63,15 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private TextView mFilterConfrimTv;
     private TextView mFilterCancelTv;
 
-
     private ImageView mBackIv;
+    private ImageView mAddCustomerIv;
 
     private String mNowSortType;
+
+    private String mFilterType;
+    private String mFilterState;
+    private String mFilterTrade;
+    private String mFilterLevel;
 
     private int mCurrentPage = 1;
 
@@ -76,8 +85,10 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             switch (what) {
                 case CustomerLogic.LIST_GET_SUC: {
                     if (null != msg.obj) {
+                        if (1 == mCurrentPage) {
+                            mCustomerList.clear();
+                        }
                         mCurrentPage++;
-                        mCustomerList.clear();
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
@@ -90,6 +101,26 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     break;
                 }
                 case CustomerLogic.LIST_GET_EXCEPTION: {
+                    break;
+                }
+                case CustomerLogic.FILTER_LIST_GET_SUC: {
+                    if (null != msg.obj) {
+                        if (1 == mCurrentPage) {
+                            mCustomerList.clear();
+                        }
+                        mCurrentPage++;
+                        mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
+                        mCustomerAdapter.notifyDataSetChanged();
+                        onLoadComplete();
+                    }
+                    break;
+                }
+                case CustomerLogic.FILTER_LIST_GET_FAIL: {
+                    Toast.makeText(mContext, "获取数据失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.FILTER_LIST_GET_EXCEPTION: {
                     break;
                 }
                 case CustomerLogic.NET_ERROR: {
@@ -129,6 +160,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         mBackIv = (ImageView) findViewById(R.id.customer_list_back_iv);
         mBackIv.setOnClickListener(this);
 
+        mAddCustomerIv = (ImageView) findViewById(R.id.customer_list_add_iv);
+        mAddCustomerIv.setOnClickListener(this);
+
         initFilterView();
         initListView();
         initDrawerLayout();
@@ -137,7 +171,6 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private void initData() {
         mProgressDialog.show();
         CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
-//        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", "", "", "");
 //
 //        Customer customer = new Customer();
 //        customer.setUserId(UserInfoManager.userInfo.getUserId());
@@ -149,38 +182,43 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private void initFilterView() {
         mLevelRl = (RelativeLayout) findViewById(R.id.customer_list_filter_level_rl);
-        mLevelTv = (TextView) findViewById(R.id.customer_list_filter_level_tv);
+        mFilterLevelTv = (TextView) findViewById(R.id.customer_list_filter_level_tv);
 
         mTypeRl = (RelativeLayout) findViewById(R.id.customer_list_filter_type_rl);
-        mTypeTv = (TextView) findViewById(R.id.customer_list_filter_type_tv);
+        mFilterTypeTv = (TextView) findViewById(R.id.customer_list_filter_type_tv);
 
         mStateRl = (RelativeLayout) findViewById(R.id.customer_list_filter_status_rl);
-        mStateTv = (TextView) findViewById(R.id.customer_list_filter_status_tv);
+        mFilterStateTv = (TextView) findViewById(R.id.customer_list_filter_status_tv);
+
+        mTradeRl = (RelativeLayout) findViewById(R.id.customer_list_filter_is_deal_rl);
+        mFilterTradeTv = (TextView) findViewById(R.id.customer_list_filter_is_deal_tv);
+
 
         mLevelRl.setOnClickListener(this);
         mTypeRl.setOnClickListener(this);
+        mTradeRl.setOnClickListener(this);
         mStateRl.setOnClickListener(this);
     }
 
     private void setFilterViewDefalut() {
-        mLevelTv.setTextColor(getResources().getColor(
+        mFilterLevelTv.setTextColor(getResources().getColor(
                 R.color.gray_character));
-        mTypeTv.setTextColor(getResources().getColor(R.color.gray_character));
-        mStateTv.setTextColor(getResources().getColor(R.color.gray_character));
+        mFilterTypeTv.setTextColor(getResources().getColor(R.color.gray_character));
+        mFilterStateTv.setTextColor(getResources().getColor(R.color.gray_character));
     }
 
     private void initListView() {
-        mGoodsLv = (XListView) findViewById(R.id.customer_list_goods_xlv);
-        mGoodsLv.setPullRefreshEnable(false);
-        mGoodsLv.setPullLoadEnable(true);
-        mGoodsLv.setAutoLoadEnable(true);
-        mGoodsLv.setXListViewListener(this);
-        mGoodsLv.setRefreshTime(getTime());
+        mCustomerLv = (XListView) findViewById(R.id.customer_list_goods_xlv);
+        mCustomerLv.setPullRefreshEnable(false);
+        mCustomerLv.setPullLoadEnable(true);
+        mCustomerLv.setAutoLoadEnable(true);
+        mCustomerLv.setXListViewListener(this);
+        mCustomerLv.setRefreshTime(getTime());
 
         mCustomerAdapter = new CustomerAdapter(mContext, mCustomerList, this);
-        mGoodsLv.setAdapter(mCustomerAdapter);
+        mCustomerLv.setAdapter(mCustomerAdapter);
 
-        mGoodsLv.setOnScrollListener(new AbsListView.OnScrollListener() {
+        mCustomerLv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 // Log.i(TAG, "滚动状态变化");
@@ -192,7 +230,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 // Log.i(TAG, "正在滚动");
             }
         });
-        mGoodsLv.setOnItemClickListener(new OnItemClickListener() {
+        mCustomerLv.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -226,9 +264,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     }
 
     private void onLoadComplete() {
-        mGoodsLv.stopRefresh();
-        mGoodsLv.stopLoadMore();
-        mGoodsLv.setRefreshTime(getTime());
+        mCustomerLv.stopRefresh();
+        mCustomerLv.stopLoadMore();
+        mCustomerLv.setRefreshTime(getTime());
     }
 
     private String getTime() {
@@ -251,14 +289,63 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 201: {
+                    mFilterLevelTv.setText(data.getStringExtra("text"));
+                    mFilterLevel = data.getStringExtra("value");
+                    if ("-1".equals(mFilterLevel)) {
+                        mFilterTypeTv.setText("其它");
+                    }
+                    break;
+                }
+                case 202: {
+                    mFilterTypeTv.setText(data.getStringExtra("text"));
+                    mFilterType = data.getStringExtra("value");
+                    if ("-1".equals(mFilterType)) {
+                        mFilterTypeTv.setText("其它");
+                    }
+                    break;
+                }
+                case 203: {
+                    mFilterTradeTv.setText(data.getStringExtra("text"));
+                    mFilterTrade = data.getStringExtra("value");
+                    if ("-1".equals(mFilterTrade)) {
+                        mFilterTypeTv.setText("其它");
+                    }
+                    break;
+                }
+                case 204: {
+                    mFilterStateTv.setText(data.getStringExtra("text"));
+                    mFilterState = data.getStringExtra("value");
+                    if ("-1".equals(mFilterState)) {
+                        mFilterTypeTv.setText("其它");
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.customer_list_add_iv: {
+                Intent intent = new Intent(CustomerListActivity.this, CustomerAddActivity.class);
+                startActivity(intent);
+                break;
+            }
             case R.id.customer_list_back_iv: {
                 finish();
                 break;
             }
-
             case R.id.customer_list_filter_tv: {
                 isFilterOpen = !isFilterOpen;
                 mDrawerLayout.openDrawer(Gravity.RIGHT);
@@ -266,6 +353,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             }
             case R.id.customer_list_filter_confirm_tv: {
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
+                mProgressDialog.show();
+                CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+                        String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mFilterLevel, mFilterType, mFilterTrade, mFilterState);
                 break;
             }
             case R.id.customer_list_filter_cancel_tv: {
@@ -273,12 +363,27 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_list_filter_level_rl: {
+                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "CUS_LEVEL");
+                startActivityForResult(intent, 201);
                 break;
             }
             case R.id.customer_list_filter_type_rl: {
+                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "CUSTOMER_TYPE_B");
+                startActivityForResult(intent, 202);
+                break;
+            }
+            case R.id.customer_list_filter_is_deal_rl: {
+                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "TRADE_FLG");
+                startActivityForResult(intent, 203);
                 break;
             }
             case R.id.customer_list_filter_status_rl: {
+                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                intent.putExtra("category", "FOLLOW_STATUS");
+                startActivityForResult(intent, 204);
                 break;
             }
 
