@@ -244,7 +244,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     @Override
     public void onLoadMore() {
-
+        CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
     }
 
     @Override

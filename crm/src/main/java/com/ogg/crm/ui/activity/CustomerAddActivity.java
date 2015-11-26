@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.ogg.crm.R;
 import com.ogg.crm.entity.CustomerInfoCategory;
 import com.ogg.crm.network.logic.CustomerLogic;
+import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 
 import java.util.ArrayList;
@@ -249,9 +250,14 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     }
 
     private void initData() {
-        mProgressDialog.show();
-        for (int i = 0; i < mCategorys.length; i++) {
-            CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
+        if (!ConfigInfoService.sCustomerCategoryInfoMap.isEmpty()) {
+            sCategoryInfoMap.clear();
+            sCategoryInfoMap.putAll(ConfigInfoService.sCustomerCategoryInfoMap);
+        } else {
+            mProgressDialog.show();
+            for (int i = 0; i < mCategorys.length; i++) {
+                CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
+            }
         }
     }
 

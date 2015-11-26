@@ -143,6 +143,12 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" >
         </activity>
+
+        <service android:name="com.ogg.crm.service.ConfigInfoService" >
+            <intent-filter>
+                <action android:name="com.ogg.crm.service.ConfigInfoService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
