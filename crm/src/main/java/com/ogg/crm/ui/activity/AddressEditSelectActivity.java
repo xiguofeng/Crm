@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.ogg.crm.R;
 import com.ogg.crm.entity.AddressData;
 import com.ogg.crm.network.logic.AddressLogic;
+import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.wheel.widget.OnWheelChangedListener;
 import com.ogg.crm.ui.view.wheel.widget.WheelView;
@@ -147,8 +149,13 @@ public class AddressEditSelectActivity extends Activity implements
 //        if (!TextUtils.isEmpty(addressData)) {
 //            parserData(addressData);
 //        }
-        mProgressDialog.show();
-        AddressLogic.getAddressData(mContext, mHandler);
+        if (!TextUtils.isEmpty(ConfigInfoService.sAddressData)) {
+            mAddressData= ConfigInfoService.sAddressData;
+            parserData(mAddressData);
+        }else{
+            mProgressDialog.show();
+            AddressLogic.getAddressData(mContext, mHandler);
+        }
     }
 
     private void parserData(String data) {

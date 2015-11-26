@@ -103,6 +103,8 @@ public class ConfigInfoService extends Service {
         for (int i = 0; i < mCategorys.length; i++) {
             CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
         }
+
+        sAddressData = "";
         AddressLogic.getAddressData(mContext, mAddressHandler);
 
         flags = START_STICKY;
