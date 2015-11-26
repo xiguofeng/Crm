@@ -31,8 +31,8 @@
 	
 	<!-- tab -->
     <dimen name="tab_child_width">8dip</dimen>
-    <dimen name="tab_child_height">48dip</dimen>
+    <dimen name="tab_child_height">54dip</dimen>
     <dimen name="tab_height">65.32999dip</dimen>
-    <dimen name="tab_inner_height">52dip</dimen>
+    <dimen name="tab_inner_height">60dip</dimen>
 
 </resources>
