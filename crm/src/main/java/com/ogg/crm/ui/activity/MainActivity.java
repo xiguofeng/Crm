@@ -98,6 +98,16 @@ public class MainActivity extends Activity implements
         initData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (UserInfoManager.getLoginIn(mContext)) {
+            UserInfoManager.setUserInfo(mContext);
+            mProgressDialog.show();
+            AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.userInfo);
+        }
+    }
+
     private void initView() {
         mAppointmentLv = (ListView) findViewById(R.id.main_appointment_lv);
         mAppointmentAdapter = new AppointmentAdapter(mContext, mAppointmentList, this);
@@ -125,14 +135,6 @@ public class MainActivity extends Activity implements
     }
 
     private void initData() {
-
-        if (UserInfoManager.getLoginIn(mContext)) {
-            UserInfoManager.setUserInfo(mContext);
-            mProgressDialog.show();
-            AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.userInfo);
-        }
-
-
         Date date = new Date();
         SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
         String frontS = TimeUtils.TimeStamp2Date(String.valueOf(date.getTime()), "yyyy-MM-dd");

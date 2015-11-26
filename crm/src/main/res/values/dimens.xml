@@ -7,7 +7,7 @@
     <dimen name="middle_text_size">16sp</dimen>
     <dimen name="medium_text_size">18sp</dimen>
     <dimen name="large_text_size">20sp</dimen>
-    <dimen name="big_text_size">26sp</dimen>
+    <dimen name="big_text_size">32sp</dimen>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -35,4 +35,6 @@
     <dimen name="tab_height">65.32999dip</dimen>
     <dimen name="tab_inner_height">60dip</dimen>
 
+    <!-- title-->
+    <dimen name="main_title_height">60dip</dimen>
 </resources>

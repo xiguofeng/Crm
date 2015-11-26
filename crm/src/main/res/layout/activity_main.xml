@@ -1,16 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.ogg.crm.ui.activity.MainActivity" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.ogg.crm.ui.activity.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/main_title_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/main_title_height"
+        android:layout_alignParentTop="true"
         android:background="@color/blue_bg"
-        android:orientation="horizontal"
-        android:padding="8dip">
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/main_back_iv"
@@ -19,19 +19,19 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:scaleType="centerCrop"
-            android:visibility="gone"
-            android:src="@drawable/back_selector"/>
+            android:src="@drawable/back_selector"
+            android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/main_filter_tv"
+        <ImageView
+            android:id="@+id/main_user_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
             android:padding="5dp"
-            android:text="@string/person"
-            android:textColor="@color/white"
-            android:textSize="@dimen/middle_text_size"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/main_user_normal"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,64 +42,108 @@
             android:textSize="@dimen/medium_text_size"/>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/main_appointment_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:layout_gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:padding="5dp"
-        android:text="@string/person"
-        android:textColor="@color/black"
-        android:textSize="@dimen/large_text_size"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="@string/my_appointment"
-            android:textColor="@color/black"
-            android:padding="5dp"
-            android:textSize="@dimen/middle_text_size" />
-
-        <TextView
-            android:id="@+id/main_appointment_more_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="5dp"
-            android:text="@string/more"
-            android:textColor="@color/black"
-            android:textSize="@dimen/middle_text_size"/>
-    </RelativeLayout>
     <LinearLayout
+        android:id="@+id/main_content_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:background="@drawable/h_line" >
+        android:layout_below="@+id/main_title_rl"
+        android:orientation="vertical">
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bannner"/>
+
+            <TextView
+                android:id="@+id/main_appointment_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/large_text_size"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="@color/blue_bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:padding="5dp"
+                android:text="@string/my_appointment"
+                android:textColor="@color/white"
+                android:textSize="@dimen/middle_text_size"/>
+
+            <ImageView
+                android:id="@+id/main_appointment_more_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_white"/>
+
+            <TextView
+                android:id="@+id/main_appointment_more_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/main_appointment_more_iv"
+                android:layout_centerVertical="true"
+                android:padding="5dp"
+                android:text="@string/more"
+                android:textColor="@color/white"
+                android:textSize="@dimen/middle_text_size"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/h_line">
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/main_appointment_lv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:dividerHeight="0.5dip"
+            android:fastScrollEnabled="false"
+            android:focusable="true"
+            android:scrollbars="none"/>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/main_appointment_lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_gravity="center_horizontal"
-        android:dividerHeight="0.5dip"
-        android:background="@null"
-        android:fastScrollEnabled="false"
-        android:focusable="true"
-        android:scrollbars="none" />
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ellipse"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/big_text_size"/>
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

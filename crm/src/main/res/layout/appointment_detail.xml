@@ -3,7 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/gray_bg"
+              android:background="@color/white"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/blue_bg"
         android:orientation="horizontal"
-        android:padding="5dip">
+        android:padding="10dip">
 
         <ImageView
             android:id="@+id/appointment_detail_back_iv"
@@ -55,7 +55,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
     </RelativeLayout>
@@ -84,7 +83,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
     </RelativeLayout>
@@ -113,7 +111,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
     </RelativeLayout>
@@ -142,7 +139,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
     </RelativeLayout>
@@ -171,7 +167,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:padding="5dp"
-            android:text="@string/more"
             android:textColor="@color/black"
             android:textSize="@dimen/middle_text_size"/>
     </RelativeLayout>
@@ -181,10 +176,10 @@
         android:id="@+id/appointment_detail_complete_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dip"
-        android:layout_marginRight="100dip"
+        android:layout_marginLeft="50dip"
+        android:layout_marginRight="50dip"
         android:layout_marginTop="30dip"
-        android:background="@drawable/corners_bg_red_all"
+        android:background="@drawable/corners_bg_blue_all"
         android:gravity="center"
         android:paddingBottom="6dip"
         android:paddingTop="6dip"

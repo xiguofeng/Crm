@@ -99,8 +99,12 @@ public class AppointmentListActivity extends Activity implements OnClickListener
                             this);
         }
         initView();
-        initData();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 
     private void initView() {
@@ -113,8 +117,11 @@ public class AppointmentListActivity extends Activity implements OnClickListener
     private void initData() {
         mProgressDialog = new CustomProgressDialog(mContext);
         mProgressDialog.show();
-
-        AppointmentLogic.getList(mContext, mHandler, UserInfoManager.userInfo);
+        if (UserInfoManager.getLoginIn(mContext)) {
+            UserInfoManager.setUserInfo(mContext);
+            mProgressDialog.show();
+            AppointmentLogic.getList(mContext, mHandler, UserInfoManager.userInfo);
+        }
     }
 
 
