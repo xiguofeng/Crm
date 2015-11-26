@@ -299,7 +299,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mFilterLevelTv.setText(data.getStringExtra("text"));
                     mFilterLevel = data.getStringExtra("value");
                     if ("-1".equals(mFilterLevel)) {
-                        mFilterTypeTv.setText("其它");
+                        mFilterLevelTv.setText("其它");
                     }
                     break;
                 }
@@ -315,7 +315,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mFilterTradeTv.setText(data.getStringExtra("text"));
                     mFilterTrade = data.getStringExtra("value");
                     if ("-1".equals(mFilterTrade)) {
-                        mFilterTypeTv.setText("其它");
+                        mFilterTradeTv.setText("其它");
                     }
                     break;
                 }
@@ -323,7 +323,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mFilterStateTv.setText(data.getStringExtra("text"));
                     mFilterState = data.getStringExtra("value");
                     if ("-1".equals(mFilterState)) {
-                        mFilterTypeTv.setText("其它");
+                        mFilterStateTv.setText("其它");
                     }
                     break;
                 }
