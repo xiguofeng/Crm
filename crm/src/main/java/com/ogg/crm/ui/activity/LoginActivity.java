@@ -17,9 +17,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.ogg.crm.R;
@@ -51,7 +51,11 @@ public class LoginActivity extends Activity implements OnClickListener,
     private ImageView mBackIv;
     private ImageView mSeePwdIv;
 
-    private EditText mAccountEt;
+
+    private RelativeLayout mAccountRl;
+    private RelativeLayout mPassWordRl;
+
+    private AutoClearEditText mAccountEt;
     private AutoClearEditText mPassWordEt;
     private CheckBox mRemberpswCb;
     // private LinearLayout layoutProcess;
@@ -133,7 +137,10 @@ public class LoginActivity extends Activity implements OnClickListener,
         mRegisterLl.setOnClickListener(this);
         mForgetPwdLl.setOnClickListener(this);
 
-        mAccountEt = (EditText) findViewById(R.id.login_username);
+        mAccountRl = (RelativeLayout) findViewById(R.id.login_username_rl);
+        mPassWordRl = (RelativeLayout) findViewById(R.id.login_password_rl);
+
+        mAccountEt = (AutoClearEditText) findViewById(R.id.login_username);
         mPassWordEt = (AutoClearEditText) findViewById(R.id.login_password);
         mAccountEt.addTextChangedListener(this);
         mPassWordEt.addTextChangedListener(this);
@@ -144,6 +151,38 @@ public class LoginActivity extends Activity implements OnClickListener,
 
         mSeePwdIv = (ImageView) findViewById(R.id.login_see_pwd_iv);
         mSeePwdIv.setOnClickListener(this);
+
+        mAccountEt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    clearBackground();
+                    mAccountRl.setBackgroundResource(R.drawable.corners_bg_blue);
+                    mPassWordEt.setClearIconVisible(false);
+                    mAccountEt.setClearIconVisible(mAccountEt.getText().length() > 0);
+                    // 此处为得到焦点时的处理内容
+                } else {
+                    // 此处为失去焦点时的处理内容
+                }
+            }
+        });
+
+        mPassWordEt
+                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (hasFocus) {
+                            clearBackground();
+                            mPassWordRl
+                                    .setBackgroundResource(R.drawable.corners_bg_blue);
+                            mAccountEt.setClearIconVisible(false);
+                            mPassWordEt.setClearIconVisible(mPassWordEt.getText().length() > 0);
+                            // 此处为得到焦点时的处理内容
+                        } else {
+                            // 此处为失去焦点时的处理内容
+                        }
+                    }
+                });
 
     }
 
@@ -157,6 +196,12 @@ public class LoginActivity extends Activity implements OnClickListener,
             mPassWordEt.setText(UserInfoManager.userInfo.getLogonPass());
         }
 
+    }
+
+
+    private void clearBackground() {
+        mAccountRl.setBackgroundResource(R.drawable.corners_bg_gray);
+        mPassWordRl.setBackgroundResource(R.drawable.corners_bg_gray);
     }
 
     private void login() {
@@ -221,7 +266,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 
         if (!TextUtils.isEmpty(mAccount) && !TextUtils.isEmpty(mPassWord)) {
             mLoginBtn.setClickable(true);
-            mLoginBtn.setBackgroundResource(R.drawable.corners_bg_red_all);
+            mLoginBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
         } else {
             mLoginBtn.setClickable(false);
             mLoginBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
