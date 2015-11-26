@@ -76,8 +76,10 @@ public class CustomerActivity extends Activity implements OnClickListener {
             menu.setLocalImage(R.drawable.ic_launcher);
             if (i == 0) {
                 menu.setName(getResources().getString(R.string.my_customer));
+                menu.setLocalImage(R.drawable.my_customer);
             } else {
                 menu.setName(getResources().getString(R.string.public_customer));
+                menu.setLocalImage(R.drawable.public_customer);
             }
             mMenuList.add(menu);
         }

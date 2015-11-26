@@ -84,7 +84,7 @@ public class CustomMenuAdapter extends BaseAdapter {
         }
 
         holder.mNameTv.setText(mDatas.get(position).getName());
-        holder.mImageIv.setBackgroundResource(R.drawable.tab_person_pressed);
+        holder.mImageIv.setBackgroundResource(mDatas.get(position).getLocalImage());
         return convertView;
     }
 
