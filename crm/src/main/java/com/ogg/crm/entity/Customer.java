@@ -16,6 +16,9 @@ public class Customer implements Serializable {
 
     private String city;
 
+    /**
+     * 数量
+     */
     private String amount;
 
     private String surplusDay;
@@ -46,6 +49,9 @@ public class Customer implements Serializable {
 
     private String companyName;
 
+    /**
+     * 公司网址
+     */
     private String url;
 
     private String followStatus;
@@ -54,6 +60,9 @@ public class Customer implements Serializable {
 
     private String email;
 
+    /**
+     * 进货渠道
+     */
     private String stockWay;
 
     private String mobile;
@@ -71,8 +80,6 @@ public class Customer implements Serializable {
     private String mainProduct;
 
     private String accountNum;
-
-    private String kind;
 
     private String isExpire;
 
@@ -94,8 +101,6 @@ public class Customer implements Serializable {
 
     private String totalFollowStatus;
 
-    private String norms;
-
     private String primaryValue;
 
     private String expireDay;
@@ -106,9 +111,22 @@ public class Customer implements Serializable {
 
     private String companyType;
 
+    /**
+     * 结算方式
+     */
     private String account;
 
     private String fullName;
+
+    /**
+     * 预采购品种
+     */
+    private String kind;
+
+    /**
+     * 规格
+     */
+    private String norms;
 
     public String getReason() {
         return reason;
@@ -374,14 +392,6 @@ public class Customer implements Serializable {
         this.accountNum = accountNum;
     }
 
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
-
     public String getIsExpire() {
         return isExpire;
     }
@@ -462,14 +472,6 @@ public class Customer implements Serializable {
         this.totalFollowStatus = totalFollowStatus;
     }
 
-    public String getNorms() {
-        return norms;
-    }
-
-    public void setNorms(String norms) {
-        this.norms = norms;
-    }
-
     public String getPrimaryValue() {
         return primaryValue;
     }
@@ -524,5 +526,21 @@ public class Customer implements Serializable {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getNorms() {
+        return norms;
+    }
+
+    public void setNorms(String norms) {
+        this.norms = norms;
     }
 }

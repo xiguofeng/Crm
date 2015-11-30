@@ -49,6 +49,12 @@ public class CustomerLogic {
 
     public static final int FILTER_LIST_GET_EXCEPTION = FILTER_LIST_GET_FAIL + 1;
 
+    public static final int PUBLIC_LIST_GET_SUC = FILTER_LIST_GET_EXCEPTION + 1;
+
+    public static final int PUBLIC_LIST_GET_FAIL = PUBLIC_LIST_GET_SUC + 1;
+
+    public static final int PUBLIC_LIST_GET_EXCEPTION = PUBLIC_LIST_GET_FAIL + 1;
+
     public static void getConfInfo(final Context context, final Handler handler,
                                    final String category) {
 
@@ -297,6 +303,74 @@ public class CustomerLogic {
 
         BaseApplication.getInstanceRequestQueue().add(stringRequest);
         BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    public static void publicList(final Context context, final Handler handler,
+                                  final String userId, final String page, final String rows) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.publicList;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_public_custom_list", ":" + response);
+                parsePublicListData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("userId",
+                            URLEncoder.encode(userId, "UTF-8"));
+                    map.put("page",
+                            URLEncoder.encode(page, "UTF-8"));
+                    map.put("rows",
+                            URLEncoder.encode(rows, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+
+    private static void parsePublicListData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+
+                JSONArray jsonArray = response.getJSONArray("rows");
+                ArrayList<Customer> customers = new ArrayList<Customer>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Customer customer = (Customer) JsonUtils.fromJsonToJava(jsonObject, Customer.class);
+                    customers.add(customer);
+                }
+
+                Message message = new Message();
+                message.what = PUBLIC_LIST_GET_SUC;
+                message.obj = customers;
+                handler.sendMessage(message);
+            } else {
+                handler.sendEmptyMessage(PUBLIC_LIST_GET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(PUBLIC_LIST_GET_EXCEPTION);
+        }
     }
 
 

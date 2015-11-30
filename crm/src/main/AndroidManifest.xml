@@ -105,6 +105,18 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".ui.activity.CustomerPublicListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.activity.CustomerDetailActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ui.activity.CustomerAddActivity"
             android:configChanges="orientation|keyboardHidden"
             android:launchMode="singleTop"

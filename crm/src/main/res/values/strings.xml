@@ -22,6 +22,7 @@
     <string name="type">类型</string>
     <string name="is_deal">是否成交</string>
     <string name="status">状态</string>
+    <string name="customer_info">客户信息</string>
     <string name="customer_basic_info">客户基本信息</string>
     <string name="add_customer">添加客户</string>
     <string name="customer_mphone">客户手机</string>
@@ -49,6 +50,8 @@
     <string name="is_has_log">是否有交易记录</string>
     <string name="last_settlement_time">最新交易时间</string>
     <string name="remark">备注</string>
+    <string name="follow_state">跟进状态</string>
+    <string name="follow_record">跟进记录</string>
 
     <!-- loading -->
     <string name="loading">加载&#8230;</string>

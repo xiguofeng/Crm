@@ -36,7 +36,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
-public class CustomerListActivity extends Activity implements OnClickListener,
+public class CustomerPublicListActivity extends Activity implements OnClickListener,
         ListItemClickHelp, XListView.IXListViewListener {
 
     private Context mContext;
@@ -84,7 +84,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         public void handleMessage(Message msg) {
             int what = msg.what;
             switch (what) {
-                case CustomerLogic.LIST_GET_SUC: {
+                case CustomerLogic.PUBLIC_LIST_GET_SUC: {
                     if (null != msg.obj) {
                         if (1 == mCurrentPage) {
                             mCustomerList.clear();
@@ -96,12 +96,12 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     }
                     break;
                 }
-                case CustomerLogic.LIST_GET_FAIL: {
+                case CustomerLogic.PUBLIC_LIST_GET_FAIL: {
                     Toast.makeText(mContext, "获取数据失败!",
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
-                case CustomerLogic.LIST_GET_EXCEPTION: {
+                case CustomerLogic.PUBLIC_LIST_GET_EXCEPTION: {
                     break;
                 }
                 case CustomerLogic.FILTER_LIST_GET_SUC: {
@@ -133,6 +133,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             if (null != mProgressDialog && mProgressDialog.isShowing()) {
                 mProgressDialog.dismiss();
             }
+            onLoadComplete();
 
         }
 
@@ -143,7 +144,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_list);
-        mContext = CustomerListActivity.this;
+        mContext = CustomerPublicListActivity.this;
         mProgressDialog = new CustomProgressDialog(mContext);
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
@@ -171,7 +172,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private void initData() {
         mProgressDialog.show();
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
 //
 //        Customer customer = new Customer();
 //        customer.setUserId(UserInfoManager.userInfo.getUserId());
@@ -237,14 +238,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position > 0) {
-                    Intent intent = new Intent(CustomerListActivity.this,
-                    CustomerDetailActivity.class);
-                    intent.setAction(CustomerDetailActivity.MY_ACTION);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
-                            mCustomerList.get(position - 1));
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    // Intent intent = new Intent(GoodsListActivity.this,
+                    // GoodsDetailActivity.class);
+                    // intent.setAction(GoodsDetailActivity.ORIGIN_FROM_CATE_ACTION);
+                    // Bundle bundle = new Bundle();
+                    // bundle.putSerializable(GoodsDetailActivity.GOODS_ID_KEY,
+                    // mGoodsList.get(position - 1).getId());
+                    // intent.putExtras(bundle);
+                    // startActivity(intent);
                 }
 
             }
@@ -339,7 +340,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.customer_list_add_iv: {
-                Intent intent = new Intent(CustomerListActivity.this, CustomerAddActivity.class);
+                Intent intent = new Intent(CustomerPublicListActivity.this, CustomerAddActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -364,25 +365,25 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_list_filter_level_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerPublicListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "CUS_LEVEL");
                 startActivityForResult(intent, 201);
                 break;
             }
             case R.id.customer_list_filter_type_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerPublicListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "CUSTOMER_TYPE_B");
                 startActivityForResult(intent, 202);
                 break;
             }
             case R.id.customer_list_filter_is_deal_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerPublicListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "TRADE_FLG");
                 startActivityForResult(intent, 203);
                 break;
             }
             case R.id.customer_list_filter_status_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerPublicListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "FOLLOW_STATUS");
                 startActivityForResult(intent, 204);
                 break;

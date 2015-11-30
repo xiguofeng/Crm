@@ -60,7 +60,7 @@ public class CustomerActivity extends Activity implements OnClickListener {
                     Intent intent = new Intent(CustomerActivity.this, CustomerListActivity.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(CustomerActivity.this, CustomerListActivity.class);
+                    Intent intent = new Intent(CustomerActivity.this, CustomerPublicListActivity.class);
                     startActivity(intent);
                 }
             }
