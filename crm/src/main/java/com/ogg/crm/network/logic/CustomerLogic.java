@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -190,7 +191,7 @@ public class CustomerLogic {
 
 
     public static void filterList(final Context context, final Handler handler,
-                                  final String userId, final String page, final String rows, final String cusLevel, final String customerType, final String tradeFlg, final String followStatus) {
+                                  final String userId, final String page, final String rows, final String name, final String cusLevel, final String customerType, final String tradeFlg, final String followStatus) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.list;
 
@@ -198,7 +199,6 @@ public class CustomerLogic {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("xxx_custom_filter_list", ":" + response);
                 parseFilterListData(response, handler);
             }
         }, new Response.ErrorListener() {
@@ -218,14 +218,21 @@ public class CustomerLogic {
                             URLEncoder.encode(page, "UTF-8"));
                     map.put("rows",
                             URLEncoder.encode(rows, "UTF-8"));
-                    map.put("cusLevel",
-                            URLEncoder.encode(cusLevel, "UTF-8"));
-                    map.put("customerType",
-                            URLEncoder.encode(customerType, "UTF-8"));
-                    map.put("tradeFlg",
-                            URLEncoder.encode(tradeFlg, "UTF-8"));
-                    map.put("followStatus",
-                            URLEncoder.encode(followStatus, "UTF-8"));
+                    if (!TextUtils.isEmpty(name)) {
+                        map.put("name", URLEncoder.encode(name, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(cusLevel)) {
+                        map.put("cusLevel", URLEncoder.encode(cusLevel, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(customerType)) {
+                        map.put("customerType", URLEncoder.encode(customerType, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(tradeFlg)) {
+                        map.put("tradeFlg", URLEncoder.encode(tradeFlg, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(followStatus)) {
+                        map.put("followStatus", URLEncoder.encode(followStatus, "UTF-8"));
+                    }
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

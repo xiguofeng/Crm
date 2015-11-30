@@ -238,7 +238,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                                     int position, long id) {
                 if (position > 0) {
                     Intent intent = new Intent(CustomerListActivity.this,
-                    CustomerDetailActivity.class);
+                            CustomerDetailActivity.class);
                     intent.setAction(CustomerDetailActivity.MY_ACTION);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
@@ -273,6 +273,15 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA)
                 .format(new Date());
+    }
+
+
+    private void search(String keyword) {
+        mProgressDialog.show();
+        mCurrentPage = 1;
+        keyword = "客户姓名";
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override
@@ -354,9 +363,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             }
             case R.id.customer_list_filter_confirm_tv: {
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                mProgressDialog.show();
-                CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
-                        String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                search("");
                 break;
             }
             case R.id.customer_list_filter_cancel_tv: {

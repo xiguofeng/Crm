@@ -276,6 +276,12 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                 .format(new Date());
     }
 
+    private void search(String keyword) {
+        mProgressDialog.show();
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+    }
+
     @Override
     public void onRefresh() {
 
@@ -283,7 +289,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
     }
 
     @Override
@@ -355,9 +361,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
             }
             case R.id.customer_list_filter_confirm_tv: {
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                mProgressDialog.show();
-                CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
-                        String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                search("");
                 break;
             }
             case R.id.customer_list_filter_cancel_tv: {
