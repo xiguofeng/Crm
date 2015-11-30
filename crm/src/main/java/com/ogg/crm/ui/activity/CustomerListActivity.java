@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
+import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
@@ -52,6 +54,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private RelativeLayout mStateRl;
     private TextView mFilterStateTv;
+
+    private TextView mSearchTv;
+    private AutoClearEditText mSearchKeyEt;
 
     private XListView mCustomerLv;
     private CustomerAdapter mCustomerAdapter;
@@ -163,6 +168,11 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
         mAddCustomerIv = (ImageView) findViewById(R.id.customer_list_add_iv);
         mAddCustomerIv.setOnClickListener(this);
+
+        mSearchTv = (TextView) findViewById(R.id.customer_list_search_tv);
+        mSearchTv.setOnClickListener(this);
+
+        mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
 
         initFilterView();
         initListView();
@@ -279,9 +289,15 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
-        keyword = "客户姓名";
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+    }
+
+    private void filter() {
+        mProgressDialog.show();
+        mCurrentPage = 1;
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override
@@ -363,7 +379,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             }
             case R.id.customer_list_filter_confirm_tv: {
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
-                search("");
+                filter();
                 break;
             }
             case R.id.customer_list_filter_cancel_tv: {
@@ -392,6 +408,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "FOLLOW_STATUS");
                 startActivityForResult(intent, 204);
+                break;
+            }
+            case R.id.customer_list_search_tv: {
+                if (!TextUtils.isEmpty(mSearchKeyEt.getText().toString())) {
+                    search(mSearchKeyEt.getText().toString());
+                }else{
+                    Toast.makeText(mContext,"请输入用户名!",Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
 
