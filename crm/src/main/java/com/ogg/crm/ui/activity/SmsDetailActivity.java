@@ -65,8 +65,8 @@ public class SmsDetailActivity extends Activity implements OnClickListener {
 
         mSms = (Sms) getIntent().getSerializableExtra(SMS_KEY);
         if(null!=mSms){
-            mSmsTitleTv.setText(mSms.getId());
-            mSmsContentTv.setText(mSms.getId());
+            mSmsTitleTv.setText(mSms.getTemplateTitle());
+            mSmsContentTv.setText(mSms.getTemplateContent());
         }
     }
 

@@ -47,8 +47,8 @@
                 android:textSize="@dimen/medium_text_size"/>
         </RelativeLayout>
 
-        <com.ogg.crm.ui.view.listview.XListView
-            android:id="@+id/sms_list_goods_xlv"
+        <ListView
+            android:id="@+id/sms_list_goods_lv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"

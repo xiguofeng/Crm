@@ -6,54 +6,63 @@ public class Sms implements Serializable {
 
     private static final long serialVersionUID = 8912365559481657349L;
 
-    private String id;
+    private String templateTitle;
 
-    private String name;
+    private String createTime;
 
-    private String subimageurl;
+    private String updateTime;
 
-    private int localImage;
+    private String businessCode;
 
-    private String parentImageurl;
+    private String msgTemplateId;
 
-    public String getId() {
-        return id;
+    private String templateContent;
+
+    public String getTemplateTitle() {
+        return templateTitle;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTemplateTitle(String templateTitle) {
+        this.templateTitle = templateTitle;
     }
 
-    public String getName() {
-        return name;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public String getSubimageurl() {
-        return subimageurl;
+    public String getUpdateTime() {
+        return updateTime;
     }
 
-    public void setSubimageurl(String subimageurl) {
-        this.subimageurl = subimageurl;
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
-    public int getLocalImage() {
-        return localImage;
+    public String getBusinessCode() {
+        return businessCode;
     }
 
-    public void setLocalImage(int localImage) {
-        this.localImage = localImage;
+    public void setBusinessCode(String businessCode) {
+        this.businessCode = businessCode;
     }
 
-    public String getParentImageurl() {
-        return parentImageurl;
+    public String getMsgTemplateId() {
+        return msgTemplateId;
     }
 
-    public void setParentImageurl(String parentImageurl) {
-        this.parentImageurl = parentImageurl;
+    public void setMsgTemplateId(String msgTemplateId) {
+        this.msgTemplateId = msgTemplateId;
     }
 
+    public String getTemplateContent() {
+        return templateContent;
+    }
+
+    public void setTemplateContent(String templateContent) {
+        this.templateContent = templateContent;
+    }
 }

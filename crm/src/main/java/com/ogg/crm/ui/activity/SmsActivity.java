@@ -59,6 +59,7 @@ public class SmsActivity extends Activity implements OnClickListener {
                 Intent intent;
                 if (0 == position) {
                     intent = new Intent(SmsActivity.this, SmsListActivity.class);
+                    intent.setAction(SmsListActivity.ORIGIN_FROM_MAIN_KEY);
                 } else {
                     intent = new Intent(SmsActivity.this, SmsSendActivity.class);
                 }

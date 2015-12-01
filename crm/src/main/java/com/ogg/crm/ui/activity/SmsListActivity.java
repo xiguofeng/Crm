@@ -4,35 +4,43 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Sms;
+import com.ogg.crm.network.logic.SmsLogic;
 import com.ogg.crm.ui.adapter.SmsAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
-import com.ogg.crm.ui.view.listview.XListView;
 import com.ogg.crm.utils.ActivitiyInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
 public class SmsListActivity extends Activity implements OnClickListener,
-        ListItemClickHelp, XListView.IXListViewListener {
+        ListItemClickHelp {
+
+    public static final String ORIGIN_FROM_MAIN_KEY = "com.main";
+
+    public static final String ORIGIN_FROM_SELECT_KEY = "com.select";
 
     private Context mContext;
 
-    private XListView mSmsLv;
+    private ListView mSmsLv;
     private SmsAdapter mSmsAdapter;
     private ArrayList<Sms> mSmsList = new ArrayList<Sms>();
-
 
     private ImageView mBackIv;
 
@@ -41,7 +49,47 @@ public class SmsListActivity extends Activity implements OnClickListener,
     private int mCurrentPage = 1;
     private int mCurrentPageNum = 1;
 
+    private String mNowAction = ORIGIN_FROM_MAIN_KEY;
+
     private CustomProgressDialog mProgressDialog;
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case SmsLogic.LIST_GET_SUC: {
+                    if (null != msg.obj) {
+                        mSmsList.addAll((Collection<? extends Sms>) msg.obj);
+                        mSmsAdapter.notifyDataSetChanged();
+                    }
+
+                    break;
+                }
+                case SmsLogic.LIST_GET_FAIL: {
+                    Toast.makeText(mContext, R.string.login_fail,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case SmsLogic.LIST_GET_EXCEPTION: {
+                    break;
+                }
+                case SmsLogic.NET_ERROR: {
+                    break;
+                }
+
+                default:
+                    break;
+            }
+
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,18 +116,17 @@ public class SmsListActivity extends Activity implements OnClickListener,
     }
 
     private void initData() {
+        mNowAction = getIntent().getAction();
+
         mProgressDialog = new CustomProgressDialog(mContext);
         mProgressDialog.show();
+
+        SmsLogic.list(mContext, mHandler);
     }
 
 
     private void initListView() {
-        mSmsLv = (XListView) findViewById(R.id.sms_list_goods_xlv);
-        mSmsLv.setPullRefreshEnable(false);
-        mSmsLv.setPullLoadEnable(true);
-        mSmsLv.setAutoLoadEnable(true);
-        mSmsLv.setXListViewListener(this);
-        mSmsLv.setRefreshTime(getTime());
+        mSmsLv = (ListView) findViewById(R.id.sms_list_goods_lv);
 
         mSmsAdapter = new SmsAdapter(mContext, mSmsList, this);
         mSmsLv.setAdapter(mSmsAdapter);
@@ -101,48 +148,21 @@ public class SmsListActivity extends Activity implements OnClickListener,
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                if (position > 0) {
-                    Intent intent = new Intent(SmsListActivity.this,
-                            SmsDetailActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(SmsDetailActivity.SMS_KEY,
-                            mSmsList.get(position - 1));
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
 
+                Intent intent = new Intent(SmsListActivity.this,
+                        SmsDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(SmsDetailActivity.SMS_KEY,
+                        mSmsList.get(position));
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
-
-        for (int i = 0; i < 10; i++) {
-            Sms Sms = new Sms();
-            Sms.setId("id" + i);
-            Sms.setName("name" + i);
-            mSmsList.add(Sms);
-        }
-        mSmsAdapter.notifyDataSetChanged();
-
-    }
-
-    private void onLoadComplete() {
-        mSmsLv.stopRefresh();
-        mSmsLv.stopLoadMore();
-        mSmsLv.setRefreshTime(getTime());
     }
 
     private String getTime() {
         return new SimpleDateFormat("MM-dd HH:mm", Locale.CHINA)
                 .format(new Date());
-    }
-
-    @Override
-    public void onRefresh() {
-
-    }
-
-    @Override
-    public void onLoadMore() {
-
     }
 
     @Override

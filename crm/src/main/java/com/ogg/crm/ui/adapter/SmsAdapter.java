@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ogg.crm.R;
@@ -87,9 +85,8 @@ public class SmsAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.mNameTv.setText(mDatas.get(position).getName());
-        holder.mPhoneTv.setText(mDatas.get(position).getId());
-        holder.mSmsDetail.setText(mDatas.get(position).getId());
+        holder.mNameTv.setText(mDatas.get(position).getTemplateTitle());
+        holder.mSmsDetail.setText(mDatas.get(position).getTemplateContent());
 
         return convertView;
     }
@@ -101,12 +98,6 @@ public class SmsAdapter extends BaseAdapter {
         public TextView mPhoneTv;
 
         public TextView mSmsDetail;
-
-        public ImageView mUpdateIv;
-
-        public LinearLayout mEditLl;
-
-        public LinearLayout mDelLl;
 
         public CheckBox mDefaultCb;
     }

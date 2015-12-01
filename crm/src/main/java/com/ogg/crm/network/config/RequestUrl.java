@@ -76,5 +76,19 @@ public class RequestUrl {
 
     }
 
+    public interface sms {
+
+        /**
+         * 短信模板列表
+         */
+        public String list = "/mobileSender/queryMsgTemplates.do";
+
+        /**
+         * 发送短信
+         */
+        public String send = "/mobileSender/sendMessage.do";
+
+    }
+
 
 }
