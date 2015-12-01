@@ -4,15 +4,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
 import com.ogg.crm.entity.Sms;
+import com.ogg.crm.network.logic.SmsLogic;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.ActivitiyInfoManager;
 
@@ -33,16 +39,55 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     private TextView mCustomerSelectTv;
     private EditText mContentEt;
 
+    private Button mSendBtn;
+
     private Sms mSms;
     private Customer mCustomer;
 
     private CustomProgressDialog mProgressDialog;
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case SmsLogic.SEND_SUC: {
+                    if (null != msg.obj) {
+                    }
+
+                    break;
+                }
+                case SmsLogic.SEND_FAIL: {
+                    Toast.makeText(mContext, R.string.login_fail,
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case SmsLogic.SEND_EXCEPTION: {
+                    break;
+                }
+                case SmsLogic.NET_ERROR: {
+                    break;
+                }
+
+                default:
+                    break;
+            }
+
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sms_send);
         mContext = SmsSendActivity.this;
+        mProgressDialog = new CustomProgressDialog(mContext);
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
                         .getCurrentActivityName(mContext))) {
@@ -68,6 +113,9 @@ public class SmsSendActivity extends Activity implements OnClickListener {
 
         mTemplateSelectTv.setOnClickListener(this);
         mCustomerSelectTv.setOnClickListener(this);
+
+        mSendBtn = (Button) findViewById(R.id.sms_send_btn);
+        mSendBtn.setOnClickListener(this);
     }
 
     private void initData() {
@@ -76,6 +124,15 @@ public class SmsSendActivity extends Activity implements OnClickListener {
             mSms = sms;
             mTemplateSelectTv.setText(mSms.getTemplateTitle());
             mContentEt.setText(mSms.getTemplateContent());
+        }
+    }
+
+    private void send() {
+        mProgressDialog.show();
+        if (!TextUtils.isEmpty(mUserPhoneTv.getText().toString()) && !TextUtils.isEmpty(mContentEt.getText().toString())) {
+            SmsLogic.send(mContext, mHandler, mUserPhoneTv.getText().toString(), mContentEt.getText().toString());
+        } else {
+            Toast.makeText(mContext, "请填写发送内容!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -129,6 +186,10 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                 Intent intent = new Intent(SmsSendActivity.this, CustomerSelectListActivity.class);
                 intent.setAction(SmsListActivity.ORIGIN_FROM_SELECT_KEY);
                 startActivityForResult(intent, 601);
+                break;
+            }
+            case R.id.sms_send_btn: {
+                send();
                 break;
             }
             default: {

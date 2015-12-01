@@ -213,7 +213,7 @@
         android:layout_marginLeft="100dip"
         android:layout_marginRight="100dip"
         android:layout_marginTop="30dip"
-        android:background="@drawable/corners_bg_red_all"
+        android:background="@drawable/corners_bg_blue_all"
         android:gravity="center"
         android:paddingBottom="6dip"
         android:paddingTop="6dip"

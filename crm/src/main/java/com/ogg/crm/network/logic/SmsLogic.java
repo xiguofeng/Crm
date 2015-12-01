@@ -106,7 +106,7 @@ public class SmsLogic {
 
 
     public static void send(final Context context, final Handler handler,
-                            final String userId, final String customer) {
+                            final String mobiles, final String messageContent) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.sms.send;
 
@@ -128,10 +128,10 @@ public class SmsLogic {
                 // 在这里设置需要post的参数
                 Map<String, String> map = new HashMap<String, String>();
                 try {
-                    map.put("userId",
-                            URLEncoder.encode(userId, "UTF-8"));
-                    map.put("customer",
-                            URLEncoder.encode(customer, "UTF-8"));
+                    map.put("mobiles",
+                            URLEncoder.encode("17712888306", "UTF-8"));
+                    map.put("messageContent",
+                            URLEncoder.encode(messageContent, "UTF-8"));
 
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
