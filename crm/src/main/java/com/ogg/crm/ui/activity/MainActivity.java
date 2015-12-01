@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,11 @@ public class MainActivity extends Activity implements
     private TextView mDateTv;
     private TextView mAppointmentMoreTv;
 
+    private ImageView mUserIv;
+
     private CustomProgressDialog mProgressDialog;
+
+    private long exitTime = 0;
 
     Handler mHandler = new Handler() {
 
@@ -132,6 +137,9 @@ public class MainActivity extends Activity implements
         mAppointmentMoreTv = (TextView) findViewById(R.id.main_appointment_more_tv);
         mAppointmentMoreTv.setOnClickListener(this);
 
+        mUserIv = (ImageView) findViewById(R.id.main_user_iv);
+        mUserIv.setOnClickListener(this);
+
     }
 
     private void initData() {
@@ -153,6 +161,17 @@ public class MainActivity extends Activity implements
             case R.id.main_appointment_more_tv: {
                 Intent intent = new Intent(MainActivity.this, AppointmentListActivity.class);
                 startActivity(intent);
+                break;
+            }
+            case R.id.main_user_iv: {
+                if (UserInfoManager.getLoginIn(mContext)) {
+                    Intent intent = new Intent(MainActivity.this, UserActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+                break;
             }
             default:
                 break;
@@ -163,33 +182,13 @@ public class MainActivity extends Activity implements
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
-
-//            new AlertDialog(MainActivity.this)
-//                    .builder()
-//                    .setTitle(getString(R.string.prompt))
-//                    .setMsg(getString(R.string.exit_str))
-//                    .setPositiveButton(getString(R.string.confirm),
-//                            new OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    finish();
-//                                }
-//                            })
-//                    .setNegativeButton(getString(R.string.cancel),
-//                            new OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//
-//                                }
-//                            }).show();
-
-            // if ((System.currentTimeMillis() - exitTime) > 2000) {
-            // Toast.makeText(getApplicationContext(), R.string.exit,
-            // Toast.LENGTH_SHORT).show();
-            // exitTime = System.currentTimeMillis();
-            // } else {
-            // finish();
-            // }
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), R.string.exit,
+                        Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+            }
             return true;
         }
         return super.onKeyDown(keyCode, event);

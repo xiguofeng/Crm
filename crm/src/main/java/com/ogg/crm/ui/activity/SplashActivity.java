@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.ogg.crm.R;
 import com.ogg.crm.service.ConfigInfoService;
+import com.ogg.crm.utils.UserInfoManager;
 
 public class SplashActivity extends BaseActivity {
 
@@ -73,11 +74,20 @@ public class SplashActivity extends BaseActivity {
                         ConfigInfoService.class);
                 getApplicationContext().startService(intentService);
 
-                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                startActivity(intent);
-                SplashActivity.this.finish();
-                overridePendingTransition(R.anim.push_down_in,
-                        R.anim.push_down_out);
+                if(UserInfoManager.getLoginIn(SplashActivity.this)){
+                    UserInfoManager.setUserInfo(SplashActivity.this);
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
+                    overridePendingTransition(R.anim.push_down_in,
+                            R.anim.push_down_out);
+                }else{
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
+                    overridePendingTransition(R.anim.push_down_in,
+                            R.anim.push_down_out);
+                }
             }
         });
         mSplashItemIv.setAnimation(translate);

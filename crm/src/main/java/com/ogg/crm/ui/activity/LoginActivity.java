@@ -227,7 +227,9 @@ public class LoginActivity extends Activity implements OnClickListener,
     private void handle() {
         if (mNowAction.equals(ORIGIN_FROM_NULL)) {
             Toast.makeText(mContext, "登陆成功!", Toast.LENGTH_SHORT).show();
-            HomeActivity.setTab(HomeActivity.TAB_MAIN);
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            LoginActivity.this.finish();
         } else if (mNowAction.equals(ORIGIN_FROM_REG_KEY)) {
 
         } else if (mNowAction.equals(ORIGIN_FROM_GOODS_DETAIL_KEY)) {
