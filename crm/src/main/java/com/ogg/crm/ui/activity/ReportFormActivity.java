@@ -18,14 +18,14 @@ import com.ogg.crm.utils.ActivitiyInfoManager;
 
 import java.util.ArrayList;
 
-public class SmsActivity extends Activity implements OnClickListener {
+public class ReportFormActivity extends Activity implements OnClickListener {
 
     private Context mContext;
 
     private ImageView mBackIv;
 
     private CustomGridView mCategoryGv;
-    private CustomMenuAdapter mCustomMenuAdapter;
+    private CustomMenuAdapter mMenuAdapter;
     private ArrayList<Menu> mMenuList = new ArrayList<Menu>();
 
 
@@ -34,8 +34,8 @@ public class SmsActivity extends Activity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sms);
-        mContext = SmsActivity.this;
+        setContentView(R.layout.report_form);
+        mContext = ReportFormActivity.this;
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
                         .getCurrentActivityName(mContext))) {
@@ -49,24 +49,24 @@ public class SmsActivity extends Activity implements OnClickListener {
     }
 
     private void initView() {
-        mBackIv = (ImageView) findViewById(R.id.sms_back_iv);
+        mBackIv = (ImageView) findViewById(R.id.report_form_back_iv);
         mBackIv.setOnClickListener(this);
 
-        mCategoryGv = (CustomGridView) findViewById(R.id.sms_gv);
+        mCategoryGv = (CustomGridView) findViewById(R.id.report_form_gv);
         mCategoryGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
                 if (0 == position) {
-                    intent = new Intent(SmsActivity.this, SmsListActivity.class);
+                    intent = new Intent(ReportFormActivity.this, ReportFormDetailActivity.class);
                 } else {
-                    intent = new Intent(SmsActivity.this, SmsSendActivity.class);
+                    intent = new Intent(ReportFormActivity.this, ReportFormDetailActivity.class);
                 }
                 startActivity(intent);
             }
         });
-        mCustomMenuAdapter = new CustomMenuAdapter(this, mMenuList);
-        mCategoryGv.setAdapter(mCustomMenuAdapter);
+        mMenuAdapter = new CustomMenuAdapter(this, mMenuList);
+        mCategoryGv.setAdapter(mMenuAdapter);
 
     }
 
@@ -82,7 +82,7 @@ public class SmsActivity extends Activity implements OnClickListener {
             }
             mMenuList.add(menu);
         }
-        mCustomMenuAdapter.notifyDataSetChanged();
+        mMenuAdapter.notifyDataSetChanged();
     }
 
     @Override

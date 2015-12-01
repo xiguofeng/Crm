@@ -18,7 +18,7 @@ import com.ogg.crm.utils.ActivitiyInfoManager;
 
 import java.util.ArrayList;
 
-public class SmsActivity extends Activity implements OnClickListener {
+public class ReportFormDetailActivity extends Activity implements OnClickListener {
 
     private Context mContext;
 
@@ -35,7 +35,7 @@ public class SmsActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sms);
-        mContext = SmsActivity.this;
+        mContext = ReportFormDetailActivity.this;
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
                         .getCurrentActivityName(mContext))) {
@@ -58,9 +58,9 @@ public class SmsActivity extends Activity implements OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
                 if (0 == position) {
-                    intent = new Intent(SmsActivity.this, SmsListActivity.class);
+                    intent = new Intent(ReportFormDetailActivity.this, SmsListActivity.class);
                 } else {
-                    intent = new Intent(SmsActivity.this, SmsSendActivity.class);
+                    intent = new Intent(ReportFormDetailActivity.this, SmsSendActivity.class);
                 }
                 startActivity(intent);
             }
@@ -73,12 +73,11 @@ public class SmsActivity extends Activity implements OnClickListener {
     private void initData() {
         for (int i = 0; i < 2; i++) {
             Menu menu = new Menu();
+            menu.setLocalImage(R.drawable.ic_launcher);
             if (i == 0) {
-                menu.setLocalImage(R.drawable.customer_report_form);
-                menu.setName(getResources().getString(R.string.customer_report_form));
+                menu.setName(getResources().getString(R.string.sms_template));
             } else {
-                menu.setLocalImage(R.drawable.follow_report_form);
-                menu.setName(getResources().getString(R.string.follow_report_form));
+                menu.setName(getResources().getString(R.string.sms_send));
             }
             mMenuList.add(menu);
         }
