@@ -25,7 +25,7 @@ public class SmsActivity extends Activity implements OnClickListener {
     private ImageView mBackIv;
 
     private CustomGridView mCategoryGv;
-    private CustomMenuAdapter mCustomMenuAdapter;
+    private CustomMenuAdapter mMenuAdapter;
     private ArrayList<Menu> mMenuList = new ArrayList<Menu>();
 
 
@@ -65,8 +65,8 @@ public class SmsActivity extends Activity implements OnClickListener {
                 startActivity(intent);
             }
         });
-        mCustomMenuAdapter = new CustomMenuAdapter(this, mMenuList);
-        mCategoryGv.setAdapter(mCustomMenuAdapter);
+        mMenuAdapter = new CustomMenuAdapter(this, mMenuList);
+        mCategoryGv.setAdapter(mMenuAdapter);
 
     }
 
@@ -74,15 +74,15 @@ public class SmsActivity extends Activity implements OnClickListener {
         for (int i = 0; i < 2; i++) {
             Menu menu = new Menu();
             if (i == 0) {
-                menu.setLocalImage(R.drawable.customer_report_form);
-                menu.setName(getResources().getString(R.string.customer_report_form));
+                menu.setLocalImage(R.drawable.sms_templ);
+                menu.setName(getResources().getString(R.string.sms_template));
             } else {
-                menu.setLocalImage(R.drawable.follow_report_form);
-                menu.setName(getResources().getString(R.string.follow_report_form));
+                menu.setLocalImage(R.drawable.sms_send);
+                menu.setName(getResources().getString(R.string.sms_send));
             }
             mMenuList.add(menu);
         }
-        mCustomMenuAdapter.notifyDataSetChanged();
+        mMenuAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -24,6 +24,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:scaleType="centerCrop"
+                android:visibility="invisible"
                 android:src="@drawable/back_selector"/>
 
             <TextView
@@ -39,11 +40,12 @@
             android:id="@+id/sms_gv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:cacheColorHint="#00000000"
-            android:horizontalSpacing="10dp"
+            android:background="@null"
+            android:listSelector="@null"
+            android:horizontalSpacing="1dp"
             android:numColumns="2"
-            android:verticalSpacing="10dp" >
+            android:verticalSpacing="1dp" >
         </com.ogg.crm.ui.view.gridview.CustomGridView>
     </LinearLayout>
 

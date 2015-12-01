@@ -43,9 +43,9 @@
             android:cacheColorHint="#00000000"
             android:background="@null"
             android:listSelector="@null"
-            android:horizontalSpacing="2dp"
+            android:horizontalSpacing="1dp"
             android:numColumns="2"
-            android:verticalSpacing="2dp" >
+            android:verticalSpacing="1dp" >
         </com.ogg.crm.ui.view.gridview.CustomGridView>
     </LinearLayout>
 
