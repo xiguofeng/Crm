@@ -57,10 +57,11 @@
             android:background="@drawable/corners_bg_blue_all"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:text="@string/customer_select"
             android:padding="5dp"
             android:textColor="@color/white"
-            android:textSize="@dimen/middle_text_size"/>
+            android:textSize="@dimen/small_text_size"/>
     </LinearLayout>
 
     <LinearLayout
@@ -164,7 +165,7 @@
         <EditText
             android:id="@+id/sms_send_content_et"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="80dp"
             android:background="@drawable/corners_bg_gray"
             android:padding="5dp"
             android:textColor="@color/black"

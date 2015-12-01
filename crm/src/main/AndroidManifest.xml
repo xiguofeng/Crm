@@ -179,6 +179,13 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".ui.activity.CustomerSelectListActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+        </activity>
+
 
         <service android:name="com.ogg.crm.service.ConfigInfoService" >
             <intent-filter>

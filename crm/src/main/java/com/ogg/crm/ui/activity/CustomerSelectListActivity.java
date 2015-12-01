@@ -39,7 +39,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
-public class CustomerListActivity extends Activity implements OnClickListener,
+public class CustomerSelectListActivity extends Activity implements OnClickListener,
         ListItemClickHelp, XListView.IXListViewListener {
 
     private Context mContext;
@@ -151,7 +151,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customer_list);
-        mContext = CustomerListActivity.this;
+        mContext = CustomerSelectListActivity.this;
         mProgressDialog = new CustomProgressDialog(mContext);
         if (!ActivitiyInfoManager.activitityMap
                 .containsKey(ActivitiyInfoManager
@@ -171,6 +171,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
         mAddCustomerIv = (ImageView) findViewById(R.id.customer_list_add_iv);
         mAddCustomerIv.setOnClickListener(this);
+        mAddCustomerIv.setVisibility(View.INVISIBLE);
 
         mSearchTv = (TextView) findViewById(R.id.customer_list_search_tv);
         mSearchTv.setOnClickListener(this);
@@ -184,9 +185,6 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private void initData() {
         mProgressDialog.show();
-        if(TextUtils.isEmpty(UserInfoManager.userInfo.getUserId())){
-            UserInfoManager.setUserInfo(mContext);
-        }
         CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
 //
 //        Customer customer = new Customer();
@@ -209,6 +207,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
         mTradeRl = (RelativeLayout) findViewById(R.id.customer_list_filter_is_deal_rl);
         mFilterTradeTv = (TextView) findViewById(R.id.customer_list_filter_is_deal_tv);
+
 
         mLevelRl.setOnClickListener(this);
         mTypeRl.setOnClickListener(this);
@@ -255,14 +254,13 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position > 0) {
-                    Intent intent = new Intent(CustomerListActivity.this,
-                            CustomerDetailActivity.class);
-                    intent.setAction(CustomerDetailActivity.MY_ACTION);
+                    Intent intent = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
+                    bundle.putSerializable(SmsSendActivity.CUSTOMER_KEY,
                             mCustomerList.get(position - 1));
                     intent.putExtras(bundle);
-                    startActivity(intent);
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
 
             }
@@ -372,7 +370,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.customer_list_add_iv: {
-                Intent intent = new Intent(CustomerListActivity.this, CustomerAddActivity.class);
+                Intent intent = new Intent(CustomerSelectListActivity.this, CustomerAddActivity.class);
                 startActivity(intent);
                 break;
             }
@@ -395,25 +393,25 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_list_filter_level_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerSelectListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "CUS_LEVEL");
                 startActivityForResult(intent, 201);
                 break;
             }
             case R.id.customer_list_filter_type_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerSelectListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "CUSTOMER_TYPE_B");
                 startActivityForResult(intent, 202);
                 break;
             }
             case R.id.customer_list_filter_is_deal_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerSelectListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "TRADE_FLG");
                 startActivityForResult(intent, 203);
                 break;
             }
             case R.id.customer_list_filter_status_rl: {
-                Intent intent = new Intent(CustomerListActivity.this, CommonSelectActivity.class);
+                Intent intent = new Intent(CustomerSelectListActivity.this, CommonSelectActivity.class);
                 intent.putExtra("category", "FOLLOW_STATUS");
                 startActivityForResult(intent, 204);
                 break;
@@ -421,11 +419,12 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             case R.id.customer_list_search_tv: {
                 if (!TextUtils.isEmpty(mSearchKeyEt.getText().toString())) {
                     search(mSearchKeyEt.getText().toString());
-                }else{
-                    Toast.makeText(mContext,"请输入用户名!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "请输入用户名!", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
+
             case R.id.customer_list_filter_clear_btn: {
                 mFilterType = "";
                 mFilterState = "";
@@ -437,6 +436,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 mFilterTradeTv.setText("");
                 mFilterStateTv.setText("");
             }
+
             default: {
                 break;
             }

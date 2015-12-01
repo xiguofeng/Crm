@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogg.crm.R;
+import com.ogg.crm.entity.Customer;
 import com.ogg.crm.entity.Sms;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.ActivitiyInfoManager;
@@ -18,6 +19,8 @@ import com.ogg.crm.utils.ActivitiyInfoManager;
 public class SmsSendActivity extends Activity implements OnClickListener {
 
     public static final String SMS_KEY = "sms_key";
+
+    public static final String CUSTOMER_KEY = "customer_key";
 
     private Context mContext;
 
@@ -31,6 +34,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     private EditText mContentEt;
 
     private Sms mSms;
+    private Customer mCustomer;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -71,6 +75,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
         if (null != sms) {
             mSms = sms;
             mTemplateSelectTv.setText(mSms.getTemplateTitle());
+            mContentEt.setText(mSms.getTemplateContent());
         }
     }
 
@@ -83,6 +88,17 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                     if (null != sms) {
                         mSms = sms;
                         mTemplateSelectTv.setText(mSms.getTemplateTitle());
+                        mContentEt.setText(mSms.getTemplateContent());
+                    }
+                    break;
+                }
+                case 601: {
+                    Customer customer = (Customer) data.getSerializableExtra(CUSTOMER_KEY);
+                    if (null != customer) {
+                        mCustomer = customer;
+                        mUserNameTv.setText(mCustomer.getName());
+                        mUserPhoneTv.setText(mCustomer.getMobile());
+                        mCompanyNameTv.setText(mCustomer.getCompanyName());
                     }
                     break;
                 }
@@ -109,6 +125,12 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                 break;
             }
 
+            case R.id.sms_send_select_customer_tv: {
+                Intent intent = new Intent(SmsSendActivity.this, CustomerSelectListActivity.class);
+                intent.setAction(SmsListActivity.ORIGIN_FROM_SELECT_KEY);
+                startActivityForResult(intent, 601);
+                break;
+            }
             default: {
                 break;
             }
