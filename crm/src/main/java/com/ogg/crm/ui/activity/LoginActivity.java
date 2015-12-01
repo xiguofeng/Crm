@@ -34,15 +34,9 @@ import com.ogg.crm.utils.UserInfoManager;
  */
 public class LoginActivity extends Activity implements OnClickListener,
         TextWatcher {
-    public static final String ORIGIN_FROM_NULL = "com.null";
+    public static final String ORIGIN_FROM_SPL_KEY = "com.spl";
 
     public static final String ORIGIN_FROM_REG_KEY = "com.reg";
-
-    public static final String ORIGIN_FROM_CART_KEY = "com.cart";
-
-    public static final String ORIGIN_FROM_GOODS_DETAIL_KEY = "com.goods.detail";
-
-    public static final String ORIGIN_FROM_ORDER_KEY = "com.order";
 
     public static final String ORIGIN_FROM_USER_KEY = "com.user";
 
@@ -73,7 +67,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 
     private CustomProgressDialog mProgressDialog;
 
-    private String mNowAction = ORIGIN_FROM_NULL;
+    private String mNowAction = ORIGIN_FROM_SPL_KEY;
 
     // 登陆装填提示handler更新主线程，提示登陆状态情况
     Handler mHandler = new Handler() {
@@ -187,7 +181,7 @@ public class LoginActivity extends Activity implements OnClickListener,
     }
 
     private void initData() {
-        //mNowAction = getIntent().getAction();
+        mNowAction = getIntent().getAction();
 
         if (UserInfoManager.getRememberPwd(mContext)) {
             UserInfoManager.setUserInfo(mContext);
@@ -225,22 +219,12 @@ public class LoginActivity extends Activity implements OnClickListener,
     }
 
     private void handle() {
-        if (mNowAction.equals(ORIGIN_FROM_NULL)) {
+        if (mNowAction.equals(ORIGIN_FROM_SPL_KEY)) {
             Toast.makeText(mContext, "登陆成功!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             LoginActivity.this.finish();
         } else if (mNowAction.equals(ORIGIN_FROM_REG_KEY)) {
-
-        } else if (mNowAction.equals(ORIGIN_FROM_GOODS_DETAIL_KEY)) {
-            LoginActivity.this.finish();
-            overridePendingTransition(R.anim.push_right_in,
-                    R.anim.push_right_out);
-        } else if (mNowAction.equals(ORIGIN_FROM_CART_KEY)) {
-            LoginActivity.this.finish();
-            overridePendingTransition(R.anim.push_right_in,
-                    R.anim.push_right_out);
-        } else if (mNowAction.equals(ORIGIN_FROM_ORDER_KEY)) {
 
         } else if (mNowAction.equals(ORIGIN_FROM_USER_KEY)) {
             LoginActivity.this.finish();

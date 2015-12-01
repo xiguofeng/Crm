@@ -74,15 +74,16 @@ public class SplashActivity extends BaseActivity {
                         ConfigInfoService.class);
                 getApplicationContext().startService(intentService);
 
-                if(UserInfoManager.getLoginIn(SplashActivity.this)){
+                if (UserInfoManager.getLoginIn(SplashActivity.this)) {
                     UserInfoManager.setUserInfo(SplashActivity.this);
                     Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                     startActivity(intent);
                     SplashActivity.this.finish();
                     overridePendingTransition(R.anim.push_down_in,
                             R.anim.push_down_out);
-                }else{
+                } else {
                     Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    intent.setAction(LoginActivity.ORIGIN_FROM_SPL_KEY);
                     startActivity(intent);
                     SplashActivity.this.finish();
                     overridePendingTransition(R.anim.push_down_in,

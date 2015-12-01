@@ -2,7 +2,11 @@ package com.ogg.crm.ui.activity;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -30,7 +34,7 @@ public class UserActivity extends Activity implements OnClickListener {
     private LinearLayout mReportFormLl;
     private LinearLayout mSmsLl;
 
-    private Button mExitBtn;
+    private Button mSwitchBtn;
 
 
     @Override
@@ -63,8 +67,8 @@ public class UserActivity extends Activity implements OnClickListener {
         mUserNameTv = (TextView) findViewById(R.id.user_name_tv);
         mUserJobTv = (TextView) findViewById(R.id.user_job_tv);
 
-        mExitBtn = (Button) findViewById(R.id.user_exit_btn);
-        mExitBtn.setOnClickListener(this);
+        mSwitchBtn = (Button) findViewById(R.id.user_switch_btn);
+        mSwitchBtn.setOnClickListener(this);
     }
 
 
@@ -77,6 +81,37 @@ public class UserActivity extends Activity implements OnClickListener {
         }
     }
 
+    private void showDialog() {
+        //先new出一个监听器，设置好监听
+        DialogInterface.OnClickListener dialogOnclicListener = new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case Dialog.BUTTON_POSITIVE:
+                        UserInfoManager.clearUserInfo(mContext);
+                        UserInfoManager.setLoginIn(mContext, false);
+                        Intent intent = new Intent(UserActivity.this, LoginActivity.class);
+                        intent.setAction(LoginActivity.ORIGIN_FROM_USER_KEY);
+                        startActivity(intent);
+                        UserActivity.this.finish();
+                        overridePendingTransition(R.anim.push_down_in,
+                                R.anim.push_down_out);
+                        break;
+                    case Dialog.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+        //dialog参数设置
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);  //先得到构造器
+        builder.setTitle("提示"); //设置标题
+        builder.setMessage("是否确认切换账户?"); //设置内容
+        //builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
+        builder.setPositiveButton("确认", dialogOnclicListener);
+        builder.setNegativeButton("取消", dialogOnclicListener);
+        builder.create().show();
+    }
 
     @Override
     public void onClick(View v) {
@@ -101,10 +136,8 @@ public class UserActivity extends Activity implements OnClickListener {
                 break;
             }
 
-            case R.id.user_exit_btn: {
-                UserInfoManager.clearUserInfo(mContext);
-                UserInfoManager.setLoginIn(mContext, false);
-                finish();
+            case R.id.user_switch_btn: {
+                showDialog();
                 break;
             }
 
