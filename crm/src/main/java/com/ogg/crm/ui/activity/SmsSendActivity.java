@@ -61,13 +61,16 @@ public class SmsSendActivity extends Activity implements OnClickListener {
         mTemplateSelectTv = (TextView) findViewById(R.id.sms_send_select_template_tv);
         mCustomerSelectTv = (TextView) findViewById(R.id.sms_send_select_customer_tv);
         mContentEt = (EditText) findViewById(R.id.sms_send_content_et);
+
+        mTemplateSelectTv.setOnClickListener(this);
+        mCustomerSelectTv.setOnClickListener(this);
     }
 
     private void initData() {
         Sms sms = (Sms) getIntent().getSerializableExtra(SMS_KEY);
         if (null != sms) {
             mSms = sms;
-            mTemplateSelectTv.setText(mSms.getBusinessCode());
+            mTemplateSelectTv.setText(mSms.getTemplateTitle());
         }
     }
 
@@ -75,8 +78,12 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case 500: {
-                    // mProviceCityTv.setText(data.getStringExtra("area"));
+                case 600: {
+                    Sms sms = (Sms) data.getSerializableExtra(SMS_KEY);
+                    if (null != sms) {
+                        mSms = sms;
+                        mTemplateSelectTv.setText(mSms.getTemplateTitle());
+                    }
                     break;
                 }
                 default:
@@ -95,10 +102,10 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                 break;
             }
 
-            case R.id.customer_add_company_area_rl: {
+            case R.id.sms_send_select_template_tv: {
                 Intent intent = new Intent(SmsSendActivity.this, SmsListActivity.class);
-                intent.setAction(SmsListActivity.ORIGIN_FROM_MAIN_KEY);
-                startActivityForResult(intent, 500);
+                intent.setAction(SmsListActivity.ORIGIN_FROM_SELECT_KEY);
+                startActivityForResult(intent, 600);
                 break;
             }
 

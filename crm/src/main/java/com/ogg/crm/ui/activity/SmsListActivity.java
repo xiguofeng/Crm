@@ -148,14 +148,23 @@ public class SmsListActivity extends Activity implements OnClickListener,
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                Intent intent = new Intent(SmsListActivity.this,
-                        SmsDetailActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(SmsDetailActivity.SMS_KEY,
-                        mSmsList.get(position));
-                intent.putExtras(bundle);
-                startActivity(intent);
+                if (ORIGIN_FROM_SELECT_KEY.equals(mNowAction)) {
+                    Intent intent = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(SmsDetailActivity.SMS_KEY,
+                            mSmsList.get(position));
+                    intent.putExtras(bundle);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SmsListActivity.this,
+                            SmsDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(SmsDetailActivity.SMS_KEY,
+                            mSmsList.get(position));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
