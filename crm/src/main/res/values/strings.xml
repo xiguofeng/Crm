@@ -103,6 +103,7 @@
     <string name="template_select">模板选择</string>
     <string name="sms_see">查看短信</string>
     <string name="sms_title">短信名称</string>
+    <string name="sms_use">使用模板</string>
 
     <!---->
     <string name="area_select">选择地区</string>

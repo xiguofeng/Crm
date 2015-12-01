@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="@color/blue_bg"
         android:orientation="horizontal"
-        android:padding="5dip">
+        android:padding="10dip">
 
         <ImageView
             android:id="@+id/sms_detail_back_iv"
@@ -27,6 +27,17 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/sms_see"
+            android:textColor="@color/white"
+            android:textSize="@dimen/medium_text_size"/>
+
+        <TextView
+            android:id="@+id/sms_detail_use_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="5dp"
+            android:text="@string/sms_use"
             android:textColor="@color/white"
             android:textSize="@dimen/medium_text_size"/>
     </RelativeLayout>

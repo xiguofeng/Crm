@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ogg.crm.R;
+import com.ogg.crm.entity.Sms;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.ActivitiyInfoManager;
 
@@ -27,6 +28,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     private TextView mTemplateSelectTv;
     private EditText mContentEt;
 
+    private Sms mSms;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -59,8 +61,10 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     }
 
     private void initData() {
-        mProgressDialog = new CustomProgressDialog(mContext);
-        mProgressDialog.show();
+        Sms sms = (Sms) getIntent().getSerializableExtra(SMS_KEY);
+        if (null != sms) {
+            mSms = sms;
+        }
     }
 
     @Override
