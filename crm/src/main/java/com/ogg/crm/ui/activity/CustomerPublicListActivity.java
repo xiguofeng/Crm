@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -73,6 +74,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private AutoClearEditText mSearchKeyEt;
 
     private String mNowSortType;
+
+    private Button mClearBtn;
 
     private String mFilterType;
     private String mFilterState;
@@ -210,6 +213,9 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mTypeRl.setOnClickListener(this);
         mTradeRl.setOnClickListener(this);
         mStateRl.setOnClickListener(this);
+
+        mClearBtn = (Button) findViewById(R.id.customer_list_filter_clear_btn);
+        mClearBtn.setOnClickListener(this);
     }
 
     private void setFilterViewDefalut() {
@@ -299,6 +305,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
+
     @Override
     public void onRefresh() {
 
@@ -412,12 +419,22 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
             case R.id.customer_list_search_tv: {
                 if (!TextUtils.isEmpty(mSearchKeyEt.getText().toString())) {
                     search(mSearchKeyEt.getText().toString());
-                }else{
-                    Toast.makeText(mContext,"请输入用户名!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "请输入用户名!", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
+            case R.id.customer_list_filter_clear_btn: {
+                mFilterType = "";
+                mFilterState = "";
+                mFilterTrade = "";
+                mFilterLevel = "";
 
+                mFilterLevelTv.setText("");
+                mFilterTypeTv.setText("");
+                mFilterTradeTv.setText("");
+                mFilterStateTv.setText("");
+            }
             default: {
                 break;
             }
