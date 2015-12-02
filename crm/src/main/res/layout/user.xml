@@ -30,16 +30,15 @@
             android:textColor="@color/white"
             android:textSize="@dimen/large_text_size" />
 
-        <TextView
-            android:id="@+id/user_setting_tv"
+        <ImageView
+            android:id="@+id/user_setting_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@null"
             android:padding="10dip"
-            android:text="@string/setting"
-            android:textColor="@color/white"
-            android:textSize="@dimen/large_text_size" />
+            android:src="@drawable/setting" />
     </RelativeLayout>
 
     <ScrollView
