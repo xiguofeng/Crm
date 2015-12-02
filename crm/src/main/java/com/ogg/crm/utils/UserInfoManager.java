@@ -200,6 +200,19 @@ public class UserInfoManager {
     }
 
     /**
+     * 从配置文件获取登录状态
+     *
+     * @param context 是否登录
+     */
+    public static String getUserId(Context context) {
+        SharedPreferences userInfo = context.getSharedPreferences(
+                USER_INFO_PREFERNCE_KEY, Context.MODE_PRIVATE);
+
+        return userInfo.getString(USER_ID_KEY, "");
+
+    }
+
+    /**
      * 保存手势密码
      *
      * @param context

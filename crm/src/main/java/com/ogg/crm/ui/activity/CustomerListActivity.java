@@ -184,16 +184,16 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private void initData() {
         mProgressDialog.show();
-        if(TextUtils.isEmpty(UserInfoManager.userInfo.getUserId())){
+        if (TextUtils.isEmpty(UserInfoManager.getUserId(mContext))) {
             UserInfoManager.setUserInfo(mContext);
         }
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
 //
 //        Customer customer = new Customer();
-//        customer.setUserId(UserInfoManager.userInfo.getUserId());
+//        customer.setUserId(UserInfoManager.getUserId(mContext));
 //        customer.setName("大菠萝");
 //        customer.setStatus("2");
-//        CustomerLogic.save(mContext, mHandler, UserInfoManager.userInfo.getUserId(), JsonUtils.Object2Json(customer));
+//        CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(customer));
 
     }
 
@@ -297,14 +297,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void filter() {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
@@ -315,7 +315,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
     }
 
     @Override
@@ -421,8 +421,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             case R.id.customer_list_search_tv: {
                 if (!TextUtils.isEmpty(mSearchKeyEt.getText().toString())) {
                     search(mSearchKeyEt.getText().toString());
-                }else{
-                    Toast.makeText(mContext,"请输入用户名!",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "请输入用户名!", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }

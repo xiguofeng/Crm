@@ -118,9 +118,8 @@ public class AppointmentListActivity extends Activity implements OnClickListener
         mProgressDialog = new CustomProgressDialog(mContext);
         mProgressDialog.show();
         if (UserInfoManager.getLoginIn(mContext)) {
-            UserInfoManager.setUserInfo(mContext);
             mProgressDialog.show();
-            AppointmentLogic.getList(mContext, mHandler, UserInfoManager.userInfo);
+            AppointmentLogic.getList(mContext, mHandler, UserInfoManager.getUserId(mContext));
         }
     }
 

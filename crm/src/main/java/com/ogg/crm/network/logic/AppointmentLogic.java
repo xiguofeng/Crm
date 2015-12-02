@@ -11,7 +11,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.ogg.crm.BaseApplication;
 import com.ogg.crm.entity.Appointment;
-import com.ogg.crm.entity.User;
 import com.ogg.crm.network.config.MsgResult;
 import com.ogg.crm.network.config.RequestUrl;
 import com.ogg.crm.utils.JsonUtils;
@@ -43,7 +42,7 @@ public class AppointmentLogic {
     public static final int STATE_SET_EXCEPTION = STATE_SET_FAIL + 1;
 
     public static void getList(final Context context, final Handler handler,
-                               final User user) {
+                               final String userId) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.appointment.list;
 
@@ -66,7 +65,7 @@ public class AppointmentLogic {
                 Map<String, String> map = new HashMap<String, String>();
                 try {
                     map.put("userId",
-                            URLEncoder.encode(user.getUserId(), "UTF-8"));
+                            URLEncoder.encode(userId, "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

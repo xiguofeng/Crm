@@ -107,9 +107,8 @@ public class MainActivity extends Activity implements
     protected void onResume() {
         super.onResume();
         if (UserInfoManager.getLoginIn(mContext)) {
-            UserInfoManager.setUserInfo(mContext);
             mProgressDialog.show();
-            AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.userInfo);
+            AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
         }
     }
 

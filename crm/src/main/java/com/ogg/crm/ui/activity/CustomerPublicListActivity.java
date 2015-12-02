@@ -189,13 +189,13 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     private void initData() {
         mProgressDialog.show();
-        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
 //
 //        Customer customer = new Customer();
-//        customer.setUserId(UserInfoManager.userInfo.getUserId());
+//        customer.setUserId(UserInfoManager.getUserId(mContext));
 //        customer.setName("大菠萝");
 //        customer.setStatus("2");
-//        CustomerLogic.save(mContext, mHandler, UserInfoManager.userInfo.getUserId(), JsonUtils.Object2Json(customer));
+//        CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(customer));
 
     }
 
@@ -298,14 +298,14 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void filter() {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.userInfo.getUserId(),
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
@@ -316,7 +316,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.userInfo.getUserId(), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
     }
 
     @Override
