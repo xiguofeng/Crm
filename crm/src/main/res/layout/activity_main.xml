@@ -31,6 +31,7 @@
             android:layout_marginRight="10dip"
             android:padding="5dp"
             android:scaleType="centerCrop"
+            android:visibility="invisible"
             android:src="@drawable/main_user_normal"/>
 
         <TextView
