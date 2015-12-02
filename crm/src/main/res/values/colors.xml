@@ -61,9 +61,20 @@
     <color name="actionsheet_blue">#037BFF</color>
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
-    
-    
+
     <!-- select -->
     <color name="province_line_border">#C7C7C7</color>
+
+
+    <!-- char -->
+    <color name="gray_chart_line">#B7B6B6</color>
+    <color name="gray_bar_chart_bg">#F1EFEF</color>
+    <color name="yellow_chart">#FFB83D</color>
+    <color name="red_chart">#F0513C</color>
+    <color name="orange_chart">#F06E3C</color>
+    <color name="blue_chart">#5BC6F2</color>
+    <color name="blue_deep_chart">#3BAFDA</color>
+    <color name="green_chart">#BFD42D</color>
+    <color name="pink_chart">#F35B9B</color>
 
 </resources>

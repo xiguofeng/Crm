@@ -37,4 +37,10 @@
 
     <!-- title-->
     <dimen name="main_title_height">60dip</dimen>
+
+    <!-- chart -->
+    <dimen name="chart_content_text_size">14dip</dimen>
+    <dimen name="chart_title_text_size">18dip</dimen>
+    <dimen name="top_place_height">40dip</dimen>
+    <dimen name="bottom_place_height">70dip</dimen>
 </resources>

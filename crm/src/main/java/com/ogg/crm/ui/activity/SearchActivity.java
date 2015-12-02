@@ -1,9 +1,7 @@
 package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -75,18 +73,17 @@ public class SearchActivity extends Activity implements OnClickListener,
                         mCustomerAdapter.notifyDataSetChanged();
                         mSearchHistroyLv.setVisibility(View.GONE);
                         mGoodsLv.setVisibility(View.VISIBLE);
-                        mSearchTagTv.setText(getString(R.string.find_goods));
                     } else {
-                        Toast.makeText(mContext, "没有查询到相关商品", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "没有查询到相关客户", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }
                 case SearchLogic.NORAML_GET_FAIL: {
-                    Toast.makeText(mContext, "没有查询到相关商品", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "没有查询到相关客户", Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case SearchLogic.NORAML_GET_EXCEPTION: {
-                    Toast.makeText(mContext, "没有查询到相关商品", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "没有查询到相关客户", Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case SearchLogic.NET_ERROR: {
@@ -224,30 +221,6 @@ public class SearchActivity extends Activity implements OnClickListener,
 
     }
 
-    protected void alertInfo() {
-        showAlertDialog("查找信息", " 没有找到相关商品,继续查找！", "继续", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-            }
-        }, "取消", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-    }
-
-    protected void showAlertDialog(String title, String message, String positiveText,
-                                   DialogInterface.OnClickListener onPositiveClickListener, String negativeText,
-                                   DialogInterface.OnClickListener onNegativeClickListener) {
-        new AlertDialog.Builder(this).setTitle(title).setMessage(message)
-                .setPositiveButton(positiveText, onPositiveClickListener)
-                .setNegativeButton(negativeText, onNegativeClickListener).show();
-    }
 
     @Override
     public void onClick(View item, View widget, int position, int which) {

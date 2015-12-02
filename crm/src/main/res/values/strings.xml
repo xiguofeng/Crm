@@ -119,8 +119,6 @@
     <!-- account -->
     <string name="login_emptyname_or_emptypwd">用户名或密码为空，请重新输入</string>
     <string name="login">登录</string>
-    <string name="login_anonymous">匿名登录</string>
-    <string name="login_fast">快速登录</string>
     <string name="register">注册</string>
     <string name="forget_pwd">忘记密码</string>
     <string name="phone">手机</string>
@@ -141,40 +139,6 @@
     <string name="verification_code">验证码</string>
     <string name="get_verification_code">获取验证码</string>
     <string name="verification_code_hint">请输入正确的验证码</string>
-    <string name="my_account">我的账户</string>
-    <string name="weibo_login">微博登陆</string>
-    <string name="qq_login">QQ登陆</string>
-    <string name="wechat_login">微信登陆</string>
-    <string name="add_address">新建地址</string>
-    <string name="delivery_address">收货地址</string>
-    <string name="real_name_auth">实名认证</string>
-    <string name="my_integral">我的积分</string>
-    <string name="account_remaining_money">账户余额</string>
-    <string name="can_use_remaining_money">可用余额</string>
-    <string name="bmcard_money">旺卡金额</string>
-    <string name="recharge_to_bmcard_remaining_money">充值到旺卡余额</string>
-    <string name="my_collection">我的收藏</string>
-
-    <!-- order -->
-    <string name="confirm_order">确认订单</string>
-    <string name="real_order_amount_money">实付款</string>
-
-    <!-- user info -->
-    <string name="collection">收藏</string>
-    <string name="collection_goods">收藏的商品</string>
-    <string name="attention_brand">关注的品牌</string>
-    <string name="browsing_history">浏览记录</string>
-    <string name="my_property">我的资产</string>
-    <string name="view_all_property">查看全部资产</string>
-    <string name="modify_head_portrait">修改头像</string>
-    <string name="add_photo">添加照片</string>
-    <string name="cart">购物车</string>
-    <string name="real_name">真实姓名:</string>
-    <string name="id_card">身份证号:</string>
-    <string name="real_name_hint">请输入真实姓名</string>
-    <string name="id_card_hint">请输入身份证号</string>
-    <string name="real_name_id_card_hint">请输入真实姓名和身份证号</string>
-    <string name="must_star">*</string>
 
     <!-- 头像 -->
     <string name="set_head">上传图片</string>
@@ -196,37 +160,27 @@
     <string name="search_hint"> 请输入用户名</string>
     <string name="search_thing">请输入查询关键词</string>
     <string name="search_history">历史搜索</string>
-    <string name="find_goods">为您找到以下商品</string>
-    <string name="composite">综合 </string>
-    <string name="price">价格 </string>
-    <string name="sales">销量 </string>
+
     
     <!-- address -->
     <string name="address_hint">请填写地址信息</string>
     <string name="address_add">新增地址</string>
     <string name="address_add_suc">新增地址成功</string>
-    <string name="address_update_suc">修改地址成功</string>
-    <string name="consignee">收货人</string>
-    <string name="contact_way">联系方式</string>
+
     <string name="area">所在地区</string>
     <string name="address_detail">详细地址</string>
-    <string name="address_manage">地址管理</string>
-    <string name="consignee_hint">请输入收货人姓名</string>
-    <string name="contact_way_hint">请输入收货人手机号</string>
     <string name="consignee_edit">编辑收货人</string>
     <string name="area_hint">请点击选择省市区</string>
     <string name="address_detail_hint">请输入详细地址</string>
-    <string name="delivery_way">配送方式</string>
-    <string name="delivery_stand">标准快递</string>
-    <string name="default_address">默认地址</string>
-    <string name="is_del_address_title">是否确认删除该地址？</string>
-    
-    <!-- invoice -->
-    <string name="invoice">发票信息</string>
-    <string name="invoice_not">无需发票</string>
-    <string name="invoice_person">个人</string>
-    <string name="invoice_company">公司</string>
-    <string name="invoice_hint">请输入发票抬头</string>
+
+
+    <string name="adult_ticket">成人票</string>
+    <string name="children_ticket">儿童票</string>
+    <string name="buy_ticket">团购票</string>
+    <string name="discount_ticket">折扣票</string>
+    <string name="guest_ticket">嘉宾票</string>
+    <string name="card">一卡通</string>
+    <string name="zhang">张</string>
     
 
 </resources>
