@@ -31,8 +31,8 @@
             android:layout_marginRight="10dip"
             android:padding="5dp"
             android:scaleType="centerCrop"
-            android:visibility="invisible"
-            android:src="@drawable/main_user_normal"/>
+            android:src="@drawable/main_user_normal"
+            android:visibility="invisible"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,9 +73,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:background="@color/blue_bg"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,9 +90,9 @@
                 android:id="@+id/main_appointment_more_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
                 android:scaleType="centerCrop"
                 android:src="@drawable/arrow_white"/>
 
@@ -100,8 +100,8 @@
                 android:id="@+id/main_appointment_more_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/main_appointment_more_iv"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/main_appointment_more_iv"
                 android:padding="5dp"
                 android:text="@string/more"
                 android:textColor="@color/white"
@@ -115,6 +115,14 @@
             android:background="@drawable/h_line">
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/main_no_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dip"
+            android:text="@string/no_appointment"
+            android:visibility="gone"/>
         <ListView
             android:id="@+id/main_appointment_lv"
             android:layout_width="match_parent"

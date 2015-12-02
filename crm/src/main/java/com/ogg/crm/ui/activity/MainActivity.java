@@ -42,6 +42,7 @@ public class MainActivity extends Activity implements
 
     private TextView mDateTv;
     private TextView mAppointmentMoreTv;
+    private TextView mNoAppointmentTv;
 
     private ImageView mUserIv;
 
@@ -68,6 +69,10 @@ public class MainActivity extends Activity implements
                         mAppointmentList.clear();
                         mAppointmentList.addAll((Collection<? extends Appointment>) msg.obj);
                         mAppointmentAdapter.notifyDataSetChanged();
+
+                        if(0==mAppointmentList.size()){
+                            mNoAppointmentTv.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     break;
@@ -135,6 +140,9 @@ public class MainActivity extends Activity implements
         mDateTv = (TextView) findViewById(R.id.main_appointment_date_tv);
         mAppointmentMoreTv = (TextView) findViewById(R.id.main_appointment_more_tv);
         mAppointmentMoreTv.setOnClickListener(this);
+
+
+        mNoAppointmentTv= (TextView) findViewById(R.id.main_no_tv);
 
         mUserIv = (ImageView) findViewById(R.id.main_user_iv);
         mUserIv.setOnClickListener(this);

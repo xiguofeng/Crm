@@ -12,6 +12,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ogg.crm.R;
@@ -47,6 +48,8 @@ public class AppointmentListActivity extends Activity implements OnClickListener
     private int mCurrentPage = 1;
     private int mCurrentPageNum = 1;
 
+    private TextView mNoAppointmentTv;
+
     private CustomProgressDialog mProgressDialog;
 
     Handler mHandler = new Handler() {
@@ -60,6 +63,10 @@ public class AppointmentListActivity extends Activity implements OnClickListener
                         mAppointmentList.clear();
                         mAppointmentList.addAll((Collection<? extends Appointment>) msg.obj);
                         mAppointmentAdapter.notifyDataSetChanged();
+
+                        if(0==mAppointmentList.size()){
+                            mNoAppointmentTv.setVisibility(View.VISIBLE);
+                        }
                     }
 
                     break;
@@ -110,6 +117,8 @@ public class AppointmentListActivity extends Activity implements OnClickListener
     private void initView() {
         mBackIv = (ImageView) findViewById(R.id.appointment_list_back_iv);
         mBackIv.setOnClickListener(this);
+
+        mNoAppointmentTv= (TextView) findViewById(R.id.appointment_list_no_tv);
 
         initListView();
     }

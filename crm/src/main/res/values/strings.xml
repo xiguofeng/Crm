@@ -16,9 +16,10 @@
     <string name="login_exit">退出账户</string>
     <string name="login_switch">切换账户</string>
     <string name="person_center">个人中心</string>
+    <string name="no_appointment">当天暂无提醒!</string>
 
     <string name="about">关于我们</string>
-    <string name="app_breif">绿金在线（Android版本）是绿金在线中文站专门为Android手机用户量身打造的移动商务应用，集注册、登陆、行情浏览、个性定制、商务发布浏览等商务功能于一体，为用户提供随时随地做生意、广交商友的平台！</string>
+    <string name="app_breif">CRM（Android版本）是专门为Android手机用户量身打造的移动客户管理应用!</string>
     <string name="version_num">版本：V1.0</string>
     <string name="website">网址：http://www.gg-zone.com</string>
     <string name="ogg_company_phone">电话：40086 09901</string>

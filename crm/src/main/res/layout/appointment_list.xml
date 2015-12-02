@@ -47,6 +47,15 @@
                 android:textSize="@dimen/medium_text_size"/>
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/appointment_list_no_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dip"
+            android:text="@string/no_appointment"
+            android:visibility="gone"/>
+
         <com.ogg.crm.ui.view.listview.XListView
             android:id="@+id/appointment_list_goods_xlv"
             android:layout_width="match_parent"
