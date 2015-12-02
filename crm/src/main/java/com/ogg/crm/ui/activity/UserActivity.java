@@ -27,6 +27,8 @@ public class UserActivity extends Activity implements OnClickListener {
     private TextView mUserNameTv;
     private TextView mUserJobTv;
 
+    private TextView mSettingTv;
+
     private ImageView headImage;
     private ImageView mBackIv;
 
@@ -66,6 +68,9 @@ public class UserActivity extends Activity implements OnClickListener {
 
         mUserNameTv = (TextView) findViewById(R.id.user_name_tv);
         mUserJobTv = (TextView) findViewById(R.id.user_job_tv);
+
+        mSettingTv = (TextView) findViewById(R.id.user_setting_tv);
+        mSettingTv.setOnClickListener(this);
 
         mSwitchBtn = (Button) findViewById(R.id.user_switch_btn);
         mSwitchBtn.setOnClickListener(this);
@@ -138,6 +143,12 @@ public class UserActivity extends Activity implements OnClickListener {
 
             case R.id.user_switch_btn: {
                 showDialog();
+                break;
+            }
+
+            case R.id.user_setting_tv: {
+                Intent intent = new Intent(UserActivity.this, SettingActivity.class);
+                startActivity(intent);
                 break;
             }
 
