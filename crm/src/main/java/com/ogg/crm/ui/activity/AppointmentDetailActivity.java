@@ -110,11 +110,11 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
     }
 
     private void fillUpData() {
-        mBusinessTypeTv.setText(mAppointment.getBussinessDes());
-        mContentDescriptionTv.setText(mAppointment.getShortDesc());
-        mAppointmentTimeTv.setText(mAppointment.getReserveTime());
-        mCustomerNameTv.setText(mAppointment.getCustomerName());
-        mCustomerPhoneTv.setText(mAppointment.getCustomerTel());
+        mBusinessTypeTv.setText(!"null".equals(mAppointment.getBussinessDes()) ? mAppointment.getBussinessDes() : "");
+        mContentDescriptionTv.setText(!"null".equals(mAppointment.getShortDesc()) ? mAppointment.getShortDesc() : "");
+        mAppointmentTimeTv.setText(!"null".equals(mAppointment.getReserveTime()) ? mAppointment.getReserveTime() : "");
+        mCustomerNameTv.setText(!"null".equals(mAppointment.getCustomerName()) ? mAppointment.getCustomerName() : "");
+        mCustomerPhoneTv.setText(!"null".equals(mAppointment.getCustomerTel()) ? mAppointment.getCustomerTel() : "");
     }
 
     @Override

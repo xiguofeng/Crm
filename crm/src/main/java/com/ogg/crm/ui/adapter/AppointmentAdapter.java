@@ -96,9 +96,9 @@ public class AppointmentAdapter extends BaseAdapter {
             holder.mAppointmentDetail.setTextColor(mContext.getResources().getColor(R.color.gray_character));
         }
 
-        holder.mNameTv.setText(mDatas.get(position).getCustomerName());
-        holder.mPhoneTv.setText(mDatas.get(position).getCustomerTel());
-        holder.mAppointmentDetail.setText(mDatas.get(position).getShortDesc());
+        holder.mNameTv.setText(!"null".equals(mDatas.get(position).getCustomerName()) ? mDatas.get(position).getCustomerName() : "");
+        holder.mPhoneTv.setText(!"null".equals(mDatas.get(position).getCustomerTel()) ? mDatas.get(position).getCustomerTel() : "");
+        holder.mAppointmentDetail.setText(!"null".equals(mDatas.get(position).getShortDesc()) ? mDatas.get(position).getShortDesc() : "");
 
         return convertView;
     }

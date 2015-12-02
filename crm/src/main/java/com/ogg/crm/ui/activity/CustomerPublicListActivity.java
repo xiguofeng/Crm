@@ -258,14 +258,14 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position > 0) {
-                    // Intent intent = new Intent(GoodsListActivity.this,
-                    // GoodsDetailActivity.class);
-                    // intent.setAction(GoodsDetailActivity.ORIGIN_FROM_CATE_ACTION);
-                    // Bundle bundle = new Bundle();
-                    // bundle.putSerializable(GoodsDetailActivity.GOODS_ID_KEY,
-                    // mGoodsList.get(position - 1).getId());
-                    // intent.putExtras(bundle);
-                    // startActivity(intent);
+                    Intent intent = new Intent(CustomerPublicListActivity.this,
+                            CustomerDetailActivity.class);
+                    intent.setAction(CustomerDetailActivity.PUBLIC_ACTION);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
+                            mCustomerList.get(position - 1));
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }
 
             }

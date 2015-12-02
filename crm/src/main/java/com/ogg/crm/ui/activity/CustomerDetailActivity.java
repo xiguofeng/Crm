@@ -155,32 +155,32 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
     }
 
     private void fillUpData() {
-        mNameTv.setText(mCustomer.getName());
-        mMobilePhoneTv.setText(mCustomer.getMobile());
-        mTelPhoneTv.setText(mCustomer.getTel());
-        mQQTv.setText(mCustomer.getQq());
-        mEmailTv.setText(mCustomer.getEmail());
-        mTypeTv.setText(mCustomer.getCustomerType());
-        mLevelTv.setText(mCustomer.getCusLevel());
+        mNameTv.setText(!"null".equals(mCustomer.getName()) ? mCustomer.getName() : "");
+        mMobilePhoneTv.setText(!"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile() : "");
+        mTelPhoneTv.setText(!"null".equals(mCustomer.getTel()) ? mCustomer.getTel() : "");
+        mQQTv.setText(!"null".equals(mCustomer.getQq()) ? mCustomer.getQq() : "");
+        mEmailTv.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail() : "");
+        mTypeTv.setText(!"null".equals(mCustomer.getCustomerType()) ? mCustomer.getCustomerType() : "");
+        mLevelTv.setText(!"null".equals(mCustomer.getCusLevel()) ? mCustomer.getCusLevel() : "");
 
-        mCompanyNameTv.setText(mCustomer.getCompanyName());
-        mCompanyAddressTv.setText(mCustomer.getAddress());
-        mMainProductTv.setText(mCustomer.getMainProduct());
-        mCompanyNetTv.setText(mCustomer.getUrl());
-        mInboundChannelTv.setText(mCustomer.getStockWay());
+        mCompanyNameTv.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName() : "");
+        mCompanyAddressTv.setText(!"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress() : "");
+        mMainProductTv.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct() : "");
+        mCompanyNetTv.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl() : "");
+        mInboundChannelTv.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay() : "");
         mProviceCityTv.setText(mCustomer.getProvince() + mCustomer.getCity());
-        mCompanyTypeTv.setText(mCustomer.getCompanyType());
+        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyType()) ? mCustomer.getCompanyType() : "");
 
-        mPreBuyProductTv.setText(mCustomer.getKind());
-        mProducingAreaTv.setText(mCustomer.getPlace());
-        mStandardTv.setText(mCustomer.getNorms());
-        mNumberTv.setText(mCustomer.getAmount());
-        mSettlementTypeTv.setText(mCustomer.getAccount());
-        mCustomerAccountTv.setText(mCustomer.getAccountNum());
-        mIsHasLogTv.setText(mCustomer.getIsExpire());
-        mLastSettlementTimeTv.setText(mCustomer.getLastestTradeTime());
-        mFollowStateTv.setText(mCustomer.getFollowStatus());
-        mFollowRecordTv.setText(mCustomer.getTotalFollowStatus());
+        mPreBuyProductTv.setText(!"null".equals(mCustomer.getKind()) ? mCustomer.getKind() : "");
+        mProducingAreaTv.setText(!"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace() : "");
+        mStandardTv.setText(!"null".equals(mCustomer.getNorms()) ? mCustomer.getNorms() : "");
+        mNumberTv.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount() : "");
+        mSettlementTypeTv.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount() : "");
+        mCustomerAccountTv.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum() : "");
+        mIsHasLogTv.setText(!"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire() : "");
+        mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getLastestTradeTime()) ? mCustomer.getLastestTradeTime() : "");
+        mFollowStateTv.setText(!"null".equals(mCustomer.getFollowStatus()) ? mCustomer.getFollowStatus() : "");
+        mFollowRecordTv.setText(!"null".equals(mCustomer.getTotalFollowStatus()) ? mCustomer.getTotalFollowStatus() : "");
     }
 
     @Override

@@ -87,9 +87,9 @@ public class CustomerAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.mNameTv.setText(mDatas.get(position).getName());
-        holder.mPhoneTv.setText(mDatas.get(position).getMobile());
-        holder.mCompanyTv.setText(mDatas.get(position).getCompanyName());
+        holder.mNameTv.setText(!"null".equals(mDatas.get(position).getName()) ? mDatas.get(position).getName() : "");
+        holder.mPhoneTv.setText(!"null".equals(mDatas.get(position).getMobile()) ? mDatas.get(position).getMobile() : "");
+        holder.mCompanyTv.setText(!"null".equals(mDatas.get(position).getCompanyName()) ? mDatas.get(position).getCompanyName() : "");
 
         return convertView;
     }
