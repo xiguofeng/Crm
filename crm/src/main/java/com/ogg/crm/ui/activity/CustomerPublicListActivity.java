@@ -83,6 +83,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private String mFilterTrade;
     private String mFilterLevel;
 
+    private String mKeyWord;
+
     private int mCurrentPage = 1;
 
     private CustomProgressDialog mProgressDialog;
@@ -189,7 +191,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     private void initData() {
         mProgressDialog.show();
-        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
 //
 //        Customer customer = new Customer();
 //        customer.setUserId(UserInfoManager.getUserId(mContext));
@@ -298,14 +301,14 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void filter() {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
@@ -316,7 +319,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override

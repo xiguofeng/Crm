@@ -313,7 +313,7 @@ public class CustomerLogic {
     }
 
     public static void publicList(final Context context, final Handler handler,
-                                  final String userId, final String page, final String rows) {
+                                  final String userId, final String page, final String rows, final String name, final String cusLevel, final String customerType, final String tradeFlg, final String followStatus) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.publicList;
 
@@ -341,6 +341,21 @@ public class CustomerLogic {
                             URLEncoder.encode(page, "UTF-8"));
                     map.put("rows",
                             URLEncoder.encode(rows, "UTF-8"));
+                    if (!TextUtils.isEmpty(name)) {
+                        map.put("name", URLEncoder.encode(name, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(cusLevel)) {
+                        map.put("cusLevel", URLEncoder.encode(cusLevel, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(customerType)) {
+                        map.put("customerType", URLEncoder.encode(customerType, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(tradeFlg)) {
+                        map.put("tradeFlg", URLEncoder.encode(tradeFlg, "UTF-8"));
+                    }
+                    if (!TextUtils.isEmpty(followStatus)) {
+                        map.put("followStatus", URLEncoder.encode(followStatus, "UTF-8"));
+                    }
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
