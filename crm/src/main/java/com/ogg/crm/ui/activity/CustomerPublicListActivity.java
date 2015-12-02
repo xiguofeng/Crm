@@ -71,6 +71,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private ImageView mAddCustomerIv;
 
     private TextView mSearchTv;
+    private TextView mTitleTv;
     private AutoClearEditText mSearchKeyEt;
 
     private String mNowSortType;
@@ -178,6 +179,9 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
         mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
 
+        mTitleTv = (TextView) findViewById(R.id.customer_list_title_name_tv);
+        mTitleTv.setText(getResources().getString(R.string.public_customer));
+
         initFilterView();
         initListView();
         initDrawerLayout();
@@ -266,7 +270,6 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
             }
         });
-
     }
 
 

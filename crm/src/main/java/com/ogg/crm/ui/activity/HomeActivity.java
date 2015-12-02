@@ -18,17 +18,17 @@ public class HomeActivity extends TabActivity implements OnClickListener {
 
     public static final String TAB_MAIN = "MAIN";
     public static final String TAB_CUS = "CUS";
-    public static final String TAB_FORM = "FORM";
+    public static final String TAB_USER = "USER";
     public static final String TAB_SMS = "SMS";
 
     private static TabHost mTabHost;
 
-    private FrameLayout mMainFl, mCategoryFl, mCartFl, mPersonFl;
+    private FrameLayout mMainFl, mCustomerFl, mSmsFl, mUserFl;
 
     private static ImageView mMainIv;
-    private static ImageView mCategoryIv;
-    private static ImageView mCartIv;
-    private static ImageView mPersonIv;
+    private static ImageView mCustomerIv;
+    private static ImageView mSmsIv;
+    private static ImageView mUserIv;
     private TextView tab_home_text_click, tab_home_text, tab_bang_text,
             tab_bang_text_click;
 
@@ -59,32 +59,32 @@ public class HomeActivity extends TabActivity implements OnClickListener {
 
         Intent i_home = new Intent(this, MainActivity.class);
         Intent i_customer = new Intent(this, CustomerActivity.class);
-        Intent i_reportform = new Intent(this, ReportFormActivity.class);
         Intent i_sms = new Intent(this, SmsActivity.class);
+        Intent i_user = new Intent(this, UserActivity.class);
 
         mTabHost.addTab(mTabHost.newTabSpec(TAB_MAIN).setIndicator(TAB_MAIN)
                 .setContent(i_home));
-        mTabHost.addTab(mTabHost.newTabSpec(TAB_FORM).setIndicator(TAB_FORM)
-                .setContent(i_reportform));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_CUS)
                 .setIndicator(TAB_CUS).setContent(i_customer));
         mTabHost.addTab(mTabHost.newTabSpec(TAB_SMS)
                 .setIndicator(TAB_SMS).setContent(i_sms));
+        mTabHost.addTab(mTabHost.newTabSpec(TAB_USER).setIndicator(TAB_USER)
+                .setContent(i_user));
 
         mMainFl = (FrameLayout) findViewById(R.id.home_main_fl);
-        mCategoryFl = (FrameLayout) findViewById(R.id.home_category_fl);
-        mCartFl = (FrameLayout) findViewById(R.id.home_cart_fl);
-        mPersonFl = (FrameLayout) findViewById(R.id.home_person_fl);
+        mCustomerFl = (FrameLayout) findViewById(R.id.home_customer_fl);
+        mSmsFl = (FrameLayout) findViewById(R.id.home_sms_fl);
+        mUserFl = (FrameLayout) findViewById(R.id.home_user_fl);
 
         mMainFl.setOnClickListener(this);
-        mCategoryFl.setOnClickListener(this);
-        mCartFl.setOnClickListener(this);
-        mPersonFl.setOnClickListener(this);
+        mCustomerFl.setOnClickListener(this);
+        mSmsFl.setOnClickListener(this);
+        mUserFl.setOnClickListener(this);
 
         mMainIv = (ImageView) findViewById(R.id.home_main_iv);
-        mCategoryIv = (ImageView) findViewById(R.id.home_category_iv);
-        mCartIv = (ImageView) findViewById(R.id.home_cart_iv);
-        mPersonIv = (ImageView) findViewById(R.id.home_person_iv);
+        mCustomerIv = (ImageView) findViewById(R.id.home_customer_iv);
+        mSmsIv = (ImageView) findViewById(R.id.home_sms_iv);
+        mUserIv = (ImageView) findViewById(R.id.home_user_iv);
 
     }
 
@@ -96,9 +96,9 @@ public class HomeActivity extends TabActivity implements OnClickListener {
 
     private static void reset() {
         mMainIv.setImageResource(R.drawable.tab_main_normal);
-        mCategoryIv.setImageResource(R.drawable.tab_category_normal);
-        mCartIv.setImageResource(R.drawable.tab_cart_normal);
-        mPersonIv.setImageResource(R.drawable.tab_person_normal);
+        mCustomerIv.setImageResource(R.drawable.tab_customer_normal);
+        mSmsIv.setImageResource(R.drawable.tab_sms_normal);
+        mUserIv.setImageResource(R.drawable.tab_user_normal);
     }
 
     public static void showMainByOnkey() {
@@ -113,18 +113,18 @@ public class HomeActivity extends TabActivity implements OnClickListener {
             mTabHost.setCurrentTabByTag(TAB_MAIN);
             reset();
             mMainIv.setImageResource(R.drawable.tab_main_pressed);
-        } else if (TAB_FORM.equals(tab)) {
-            mTabHost.setCurrentTabByTag(TAB_FORM);
-            reset();
-            mCartIv.setImageResource(R.drawable.tab_cart_pressed);
         } else if (TAB_CUS.equals(tab)) {
             mTabHost.setCurrentTabByTag(TAB_CUS);
             reset();
-            mCategoryIv.setImageResource(R.drawable.tab_category_pressed);
+            mCustomerIv.setImageResource(R.drawable.tab_customer_pressed);
         } else if (TAB_SMS.equals(tab)) {
             mTabHost.setCurrentTabByTag(TAB_SMS);
             reset();
-            mPersonIv.setImageResource(R.drawable.tab_person_pressed);
+            mUserIv.setImageResource(R.drawable.tab_sms_pressed);
+        } else if (TAB_USER.equals(tab)) {
+            mTabHost.setCurrentTabByTag(TAB_USER);
+            reset();
+            mSmsIv.setImageResource(R.drawable.tab_user_pressed);
         }
     }
 
@@ -137,22 +137,22 @@ public class HomeActivity extends TabActivity implements OnClickListener {
                 mMainIv.setImageResource(R.drawable.tab_main_pressed);
                 break;
             }
-            case R.id.home_category_fl: {
+            case R.id.home_customer_fl: {
                 mTabHost.setCurrentTabByTag(TAB_CUS);
                 reset();
-                mCategoryIv.setImageResource(R.drawable.tab_category_pressed);
+                mCustomerIv.setImageResource(R.drawable.tab_customer_pressed);
                 break;
             }
-            case R.id.home_cart_fl: {
-                mTabHost.setCurrentTabByTag(TAB_FORM);
-                reset();
-                mCartIv.setImageResource(R.drawable.tab_cart_pressed);
-                break;
-            }
-            case R.id.home_person_fl: {
+            case R.id.home_sms_fl: {
                 mTabHost.setCurrentTabByTag(TAB_SMS);
                 reset();
-                mPersonIv.setImageResource(R.drawable.tab_person_pressed);
+                mSmsIv.setImageResource(R.drawable.tab_sms_pressed);
+                break;
+            }
+            case R.id.home_user_fl: {
+                mTabHost.setCurrentTabByTag(TAB_USER);
+                reset();
+                mUserIv.setImageResource(R.drawable.tab_user_pressed);
                 break;
             }
 
