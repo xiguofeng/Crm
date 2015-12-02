@@ -75,6 +75,10 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private TextView mLastSettlementTimeTv;
 
     private Button mNextBtn;
+    private Button mCompanyPreBtn;
+    private Button mCompanyNextBtn;
+    private Button mSettlementPreBtn;
+    private Button mCompleteBtn;
 
     private boolean isView1Load = false;
     private boolean isView2Load = false;
@@ -208,9 +212,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mCompanyTypeRl.setOnClickListener(this);
         mProviceCityRl.setOnClickListener(this);
 
-        mNextBtn = (Button) findViewById(R.id.customer_company_info_add_next_btn);
-        mNextBtn.setOnClickListener(this);
-        //mNextBtn.setClickable(false);
+        mCompanyNextBtn = (Button) findViewById(R.id.customer_company_info_add_next_btn);
+        mCompanyNextBtn.setOnClickListener(this);
+
+        mCompanyPreBtn = (Button) findViewById(R.id.customer_company_info_add_previous_btn);
+        mCompanyPreBtn.setOnClickListener(this);
 
         isView3Load = true;
     }
@@ -242,8 +248,10 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mRemarkEt.addTextChangedListener(this);
         mLastSettlementTimeRl.setOnClickListener(this);
 
-        mNextBtn = (Button) findViewById(R.id.customer_settlement_info_add_next_btn);
-        mNextBtn.setOnClickListener(this);
+        mSettlementPreBtn = (Button) findViewById(R.id.customer_settlement_info_add_previous_btn);
+        mSettlementPreBtn.setOnClickListener(this);
+        mCompleteBtn = (Button) findViewById(R.id.customer_settlement_info_add_complete_btn);
+        mCompleteBtn.setOnClickListener(this);
         //mNextBtn.setClickable(false);
 
         isView2Load = true;
@@ -258,6 +266,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             for (int i = 0; i < mCategorys.length; i++) {
                 CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
             }
+            Intent intentService = new Intent(getApplicationContext(),
+                    ConfigInfoService.class);
+            getApplicationContext().startService(intentService);
         }
     }
 
@@ -347,14 +358,22 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             }
-
+            case R.id.customer_company_info_add_previous_btn: {
+                setView1();
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                break;
+            }
             case R.id.customer_company_info_add_next_btn: {
                 setView3();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             }
-
-            case R.id.customer_settlement_info_add_next_btn: {
+            case R.id.customer_settlement_info_add_previous_btn: {
+                setView2();
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                break;
+            }
+            case R.id.customer_settlement_info_add_complete_btn: {
 
                 break;
             }

@@ -17,6 +17,9 @@
     <string name="login_switch">切换账户</string>
     <string name="person_center">个人中心</string>
     <string name="no_appointment">当天暂无提醒!</string>
+    <string name="previous">上一步</string>
+    <string name="next">下一步</string>
+    <string name="complete">完成</string>
 
     <string name="about">关于我们</string>
     <string name="app_breif">CRM（Android版本）是专门为Android手机用户量身打造的移动客户管理应用!</string>

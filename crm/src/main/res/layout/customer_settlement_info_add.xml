@@ -414,20 +414,44 @@
         </RelativeLayout>
 
     </LinearLayout>
-    <Button
-        android:id="@+id/customer_settlement_info_add_next_btn"
-        android:layout_width="fill_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="20dip"
-        android:background="@drawable/corners_bg_gray_all"
-        android:gravity="center"
-        android:paddingBottom="8dip"
-        android:paddingTop="8dip"
-        android:text="下一步"
-        android:textColor="@color/white"
-        android:textSize="@dimen/large_text_size"/>
+        android:layout_marginRight="10dip">
+
+        <Button
+            android:id="@+id/customer_settlement_info_add_previous_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/corners_bg_blue_all"
+            android:gravity="center"
+            android:paddingBottom="8dip"
+            android:paddingTop="8dip"
+            android:text="@string/previous"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text_size"/>
+        <Button
+            android:id="@+id/customer_settlement_info_add_complete_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/corners_bg_gray_all"
+            android:gravity="center"
+            android:paddingBottom="8dip"
+            android:paddingTop="8dip"
+            android:text="@string/complete"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text_size"/>
+    </LinearLayout>
 
 
 </LinearLayout>

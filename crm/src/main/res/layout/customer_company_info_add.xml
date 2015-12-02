@@ -35,11 +35,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/company_basic_info"
+        android:layout_marginLeft="15dip"
         android:layout_marginTop="10dip"
-        android:textSize="@dimen/middle_text_size"
+        android:text="@string/company_basic_info"
         android:textColor="@color/black_character_title"
-        android:layout_marginLeft="15dip" />
+        android:textSize="@dimen/middle_text_size"/>
 
     <LinearLayout
         android:id="@+id/customer_add_input_one_ll"
@@ -75,10 +75,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_company_name_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/company_name_tag"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -116,10 +116,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_company_address_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/company_address"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -135,33 +135,33 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dip"
-            android:paddingTop="5dip" >
+            android:paddingTop="5dip">
 
             <TextView
                 android:id="@+id/customer_add_company_tag_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dip"
                 android:paddingRight="10dip"
-                android:layout_alignParentLeft="true"
                 android:text="@string/company_type"
                 android:textColor="@color/black_character_title"
-                android:textSize="@dimen/middle_text_size" />
+                android:textSize="@dimen/middle_text_size"/>
 
             <TextView
                 android:id="@+id/customer_add_company_type_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/customer_add_company_tag_tv"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/customer_add_company_tag_tv"
                 android:maxLength="16"
                 android:maxLines="1"
                 android:paddingBottom="6.0dip"
                 android:paddingLeft="100dip"
                 android:paddingTop="6.0dip"
                 android:textColor="@color/black_character_title"
-                android:textSize="@dimen/middle_text_size" >
+                android:textSize="@dimen/middle_text_size">
             </TextView>
 
             <ImageView
@@ -171,7 +171,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:padding="5dip"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -208,10 +208,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_main_product_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/main_product"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -227,32 +227,32 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dip"
-            android:paddingTop="5dip" >
+            android:paddingTop="5dip">
 
             <TextView
                 android:id="@+id/customer_add_company_area_tag_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dip"
                 android:paddingRight="10dip"
-                android:layout_alignParentLeft="true"
                 android:text="@string/province_city"
                 android:textColor="@color/black_character_title"
-                android:textSize="@dimen/middle_text_size" />
+                android:textSize="@dimen/middle_text_size"/>
 
             <TextView
                 android:id="@+id/customer_add_company_area_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/customer_add_company_area_tag_tv"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/customer_add_company_area_tag_tv"
                 android:maxLength="16"
                 android:maxLines="1"
                 android:paddingBottom="6.0dip"
                 android:paddingTop="6.0dip"
                 android:textColor="@color/black_character_title"
-                android:textSize="@dimen/middle_text_size" >
+                android:textSize="@dimen/middle_text_size">
             </TextView>
 
             <ImageView
@@ -262,7 +262,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:padding="5dip"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -299,10 +299,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_company_net_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/company_net"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -339,26 +339,49 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_inbound_channel_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/inbound_channel"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/customer_company_info_add_next_btn"
-        android:layout_width="fill_parent"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip"
-        android:layout_marginTop="20dip"
-        android:background="@drawable/corners_bg_gray_all"
-        android:gravity="center"
-        android:paddingBottom="8dip"
-        android:paddingTop="8dip"
-        android:text="下一步"
-        android:textColor="@color/white"
-        android:textSize="@dimen/large_text_size"/>
+        android:layout_marginRight="10dip">
 
+        <Button
+            android:id="@+id/customer_company_info_add_previous_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/corners_bg_blue_all"
+            android:gravity="center"
+            android:paddingBottom="8dip"
+            android:paddingTop="8dip"
+            android:text="@string/previous"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text_size"/>
+        <Button
+            android:id="@+id/customer_company_info_add_next_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="1"
+            android:layout_marginTop="20dip"
+            android:background="@drawable/corners_bg_gray_all"
+            android:gravity="center"
+            android:paddingBottom="8dip"
+            android:paddingTop="8dip"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            android:textSize="@dimen/middle_text_size"/>
+    </LinearLayout>
 
 </LinearLayout>
