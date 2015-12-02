@@ -26,6 +26,7 @@
 
     <!-- customer -->
     <string name="my_customer">我的客户</string>
+    <string name="customer_manager">客户管理</string>
     <string name="public_customer">公海客户</string>
     <string name="filter">筛选</string>
     <string name="level">等级</string>

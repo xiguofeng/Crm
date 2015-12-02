@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="@string/my_customer"
+                        android:text="@string/customer_manager"
                         android:textColor="@color/black_character"
                         android:textSize="@dimen/middle_text_size" />
                 </LinearLayout>
@@ -206,7 +206,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="@string/sms_see"
+                        android:text="@string/sms_platform"
                         android:textColor="@color/black_character"
                         android:textSize="@dimen/middle_text_size" />
                 </LinearLayout>
