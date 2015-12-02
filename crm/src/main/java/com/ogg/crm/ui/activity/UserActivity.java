@@ -122,7 +122,7 @@ public class UserActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.user_my_customer_ll: {
-
+                HomeActivity.setTab(HomeActivity.TAB_MAIN);
                 break;
             }
 
@@ -132,7 +132,7 @@ public class UserActivity extends Activity implements OnClickListener {
             }
 
             case R.id.user_my_sms_ll: {
-
+                HomeActivity.setTab(HomeActivity.TAB_SMS);
                 break;
             }
 
@@ -160,8 +160,10 @@ public class UserActivity extends Activity implements OnClickListener {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            finish();
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            HomeActivity.showMainByOnkey();
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
