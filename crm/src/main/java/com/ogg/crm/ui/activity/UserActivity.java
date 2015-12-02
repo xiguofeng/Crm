@@ -122,7 +122,7 @@ public class UserActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.user_my_customer_ll: {
-                HomeActivity.setTab(HomeActivity.TAB_MAIN);
+                HomeActivity.setTab(HomeActivity.TAB_CUS);
                 break;
             }
 

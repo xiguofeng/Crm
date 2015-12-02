@@ -120,11 +120,11 @@ public class HomeActivity extends TabActivity implements OnClickListener {
         } else if (TAB_SMS.equals(tab)) {
             mTabHost.setCurrentTabByTag(TAB_SMS);
             reset();
-            mUserIv.setImageResource(R.drawable.tab_sms_pressed);
+            mSmsIv.setImageResource(R.drawable.tab_sms_pressed);
         } else if (TAB_USER.equals(tab)) {
             mTabHost.setCurrentTabByTag(TAB_USER);
             reset();
-            mSmsIv.setImageResource(R.drawable.tab_user_pressed);
+            mUserIv.setImageResource(R.drawable.tab_user_pressed);
         }
     }
 
