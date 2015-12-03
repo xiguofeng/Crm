@@ -24,7 +24,7 @@ import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.SearchLogic;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
 import com.ogg.crm.ui.adapter.MySimpleAdapter;
-import com.ogg.crm.ui.utils.ListItemClickHelp;
+import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
@@ -36,7 +36,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class SearchActivity extends Activity implements OnClickListener,
-        ListItemClickHelp, XListView.IXListViewListener {
+        ListItemCheckClickHelp, XListView.IXListViewListener {
 
     private AutoClearEditText mSearchGoodsEt;
 
@@ -223,7 +223,7 @@ public class SearchActivity extends Activity implements OnClickListener,
 
 
     @Override
-    public void onClick(View item, View widget, int position, int which) {
+    public void onClick(View item, View widget, int position, int which,boolean isCheck) {
 
     }
 

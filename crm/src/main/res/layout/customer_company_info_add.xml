@@ -79,6 +79,17 @@
                 android:text="@string/company_name_tag"
                 android:textColor="@color/black_character_title"
                 android:textSize="@dimen/middle_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_add_company_name_et"
+                android:layout_centerVertical="true"
+                android:text="@string/hint_must_star"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/red"
+                android:layout_marginRight="15dip" />
         </RelativeLayout>
 
         <LinearLayout
@@ -256,6 +267,7 @@
             </TextView>
 
             <ImageView
+                android:id="@+id/customer_add_company_area_arrow_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -263,6 +275,16 @@
                 android:layout_marginRight="10dip"
                 android:padding="5dip"
                 android:src="@drawable/arrow"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/customer_add_company_area_arrow_iv"
+                android:layout_centerVertical="true"
+                android:text="@string/hint_must_star"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/red"
+                android:layout_marginRight="5dip" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"

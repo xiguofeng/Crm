@@ -20,6 +20,8 @@
     <string name="previous">上一步</string>
     <string name="next">下一步</string>
     <string name="complete">完成</string>
+    <string name="hint_must_star">*</string>
+    <string name="distribution">分&#160;&#160;&#160;&#160;配</string>
 
     <string name="about">关于我们</string>
     <string name="app_breif">CRM（Android版本）是专门为Android手机用户量身打造的移动客户管理应用!</string>
@@ -80,7 +82,7 @@
     <string name="cancel">取消</string>
     <string name="num_digits">0123456789</string>
     <string name="submit">提交</string>
-    <string name="save">保存</string>
+    <string name="save">保&#160;&#160;存</string>
     <string name="del">删除</string>
     <string name="confirm_submit">确认提交</string>
     <string name="activity">活动</string>

@@ -444,11 +444,11 @@
             android:layout_marginRight="10dip"
             android:layout_weight="1"
             android:layout_marginTop="20dip"
-            android:background="@drawable/corners_bg_gray_all"
+            android:background="@drawable/corners_bg_blue_all"
             android:gravity="center"
             android:paddingBottom="8dip"
             android:paddingTop="8dip"
-            android:text="@string/complete"
+            android:text="@string/save"
             android:textColor="@color/white"
             android:textSize="@dimen/middle_text_size"/>
     </LinearLayout>

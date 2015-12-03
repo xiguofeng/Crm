@@ -26,7 +26,7 @@ import com.ogg.crm.entity.Customer;
 import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
-import com.ogg.crm.ui.utils.ListItemClickHelp;
+import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
@@ -40,7 +40,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class CustomerSelectListActivity extends Activity implements OnClickListener,
-        ListItemClickHelp, XListView.IXListViewListener {
+        ListItemCheckClickHelp, XListView.IXListViewListener {
 
     private Context mContext;
 
@@ -317,7 +317,7 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     }
 
     @Override
-    public void onClick(View item, View widget, int position, int which) {
+    public void onClick(View item, View widget, int position, int which,boolean isCheck) {
 
     }
 

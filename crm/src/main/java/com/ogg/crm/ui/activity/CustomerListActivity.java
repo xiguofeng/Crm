@@ -26,7 +26,7 @@ import com.ogg.crm.entity.Customer;
 import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
-import com.ogg.crm.ui.utils.ListItemClickHelp;
+import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
@@ -37,10 +37,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class CustomerListActivity extends Activity implements OnClickListener,
-        ListItemClickHelp, XListView.IXListViewListener {
+        ListItemCheckClickHelp, XListView.IXListViewListener {
 
     private Context mContext;
 
@@ -73,6 +75,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private ImageView mBackIv;
     private ImageView mAddCustomerIv;
 
+    private Button mDistributionBtn;
+
     private Button mClearBtn;
 
     private String mNowSortType;
@@ -83,6 +87,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private String mFilterLevel;
 
     private int mCurrentPage = 1;
+
+    private HashMap<String, Boolean> mSelect = new HashMap<String, Boolean>();
 
     private CustomProgressDialog mProgressDialog;
 
@@ -176,6 +182,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         mSearchTv.setOnClickListener(this);
 
         mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
+
+        mDistributionBtn=(Button) findViewById(R.id.customer_list_distribution_btn);
+        mDistributionBtn.setOnClickListener(this);
 
         initFilterView();
         initListView();
@@ -318,11 +327,6 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
     }
 
-    @Override
-    public void onClick(View item, View widget, int position, int which) {
-
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -367,6 +371,29 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    public void onClick(View item, View widget, int position, int which,boolean isCheck) {
+        mSelect.put(mCustomerList.get(position).getCustomerId(), isCheck);
+        if (isCheck) {
+            mDistributionBtn.setBackgroundColor(getResources().getColor(
+                    R.color.blue_bg));
+        }
+        boolean isHasAllSelect = true;
+        boolean isHasSelect = false;
+        for (Map.Entry<String, Boolean> entry : mSelect.entrySet()) {
+            if (!entry.getValue()) {
+                isHasAllSelect = false;
+            }
+            if (entry.getValue()) {
+                isHasSelect = true;
+            }
+        }
+
+        if (!isHasSelect) {
+            mDistributionBtn.setBackgroundColor(getResources().getColor(
+                    R.color.gray_bg));
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -436,6 +463,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 mFilterTypeTv.setText("");
                 mFilterTradeTv.setText("");
                 mFilterStateTv.setText("");
+            }
+            case R.id.customer_list_distribution_btn: {
+
             }
             default: {
                 break;

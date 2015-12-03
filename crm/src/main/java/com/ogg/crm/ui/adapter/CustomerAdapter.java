@@ -6,13 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
-import com.ogg.crm.ui.utils.ListItemClickHelp;
+import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ public class CustomerAdapter extends BaseAdapter {
 
     private ArrayList<Customer> mDatas;
 
-    private ListItemClickHelp mCallback;
+    private ListItemCheckClickHelp mCallback;
 
     private LayoutInflater mInflater;
 
@@ -31,7 +31,7 @@ public class CustomerAdapter extends BaseAdapter {
     private static HashMap<Integer, Boolean> mIsSelected = new HashMap<Integer, Boolean>();
 
     public CustomerAdapter(Context context, ArrayList<Customer> datas,
-                           ListItemClickHelp callback) {
+                           ListItemCheckClickHelp callback) {
         this.mContext = context;
         this.mDatas = datas;
         this.mCallback = callback;
@@ -81,6 +81,8 @@ public class CustomerAdapter extends BaseAdapter {
                     .findViewById(R.id.list_customer_phone_tv);
             holder.mCompanyTv = (TextView) convertView
                     .findViewById(R.id.list_customer_company_tv);
+            holder.mCheckBox = (CheckBox) convertView
+                    .findViewById(R.id.list_customer_select_cb);
 
             convertView.setTag(holder);
         } else {
@@ -91,6 +93,18 @@ public class CustomerAdapter extends BaseAdapter {
         holder.mPhoneTv.setText(!"null".equals(mDatas.get(position).getMobile()) ? mDatas.get(position).getMobile() : "");
         holder.mCompanyTv.setText(!"null".equals(mDatas.get(position).getCompanyName()) ? mDatas.get(position).getCompanyName() : "");
 
+        final int tempPosition = position;
+        final View view = convertView;
+        final int whichCb = holder.mCheckBox.getId();
+        holder.mCheckBox
+                .setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked) {
+                        mCallback.onClick(view, buttonView, tempPosition, whichCb,isChecked);
+                    }
+                });
         return convertView;
     }
 
@@ -102,13 +116,7 @@ public class CustomerAdapter extends BaseAdapter {
 
         public TextView mCompanyTv;
 
-        public ImageView mUpdateIv;
-
-        public LinearLayout mEditLl;
-
-        public LinearLayout mDelLl;
-
-        public CheckBox mDefaultCb;
+        public CheckBox mCheckBox;
     }
 
     public static HashMap<Integer, Boolean> getmIsSelected() {

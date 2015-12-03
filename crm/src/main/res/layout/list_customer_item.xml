@@ -14,21 +14,25 @@
         android:paddingBottom="5dip"
         android:paddingTop="5dip" >
 
-        <ImageView
-            android:id="@+id/list_customer_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <CheckBox
+            android:id="@+id/list_customer_select_cb"
+            android:layout_width="40dip"
+            android:layout_height="40dip"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip" />
+            android:layout_marginLeft="25dip"
+            android:background="@null"
+            android:button="@drawable/check_selector"
+            android:focusable="false"
+            android:gravity="center" />
 
         <LinearLayout
             android:id="@+id/left_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dip"
-            android:layout_toRightOf="@+id/list_customer_iv"
+            android:layout_toRightOf="@+id/list_customer_select_cb"
             android:orientation="vertical" >
 
             <RelativeLayout

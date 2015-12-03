@@ -79,6 +79,17 @@
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_info_add_name_et"
+                android:layout_centerVertical="true"
+                android:text="@string/hint_must_star"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/red"
+                android:layout_marginRight="15dip" />
         </RelativeLayout>
 
         <LinearLayout
@@ -145,7 +156,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -161,6 +172,17 @@
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_info_add_mphone_et"
+                android:layout_centerVertical="true"
+                android:text="@string/hint_must_star"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/red"
+                android:layout_marginRight="15dip" />
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -185,7 +207,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -201,6 +223,17 @@
                 android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
                 android:layout_marginLeft="15dip" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/customer_info_add_telephone_et"
+                android:layout_centerVertical="true"
+                android:text="@string/hint_must_star"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/middle_text_size"
+                android:textColor="@color/red"
+                android:layout_marginRight="15dip" />
         </RelativeLayout>
 
         <LinearLayout
@@ -226,7 +259,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
