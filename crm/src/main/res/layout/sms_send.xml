@@ -165,7 +165,7 @@
         <EditText
             android:id="@+id/sms_send_content_et"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="120dp"
             android:background="@drawable/corners_bg_gray"
             android:padding="5dp"
             android:textColor="@color/black"

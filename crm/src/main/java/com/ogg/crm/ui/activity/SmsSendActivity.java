@@ -155,8 +155,8 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                         mCustomer = customer;
                         mCustomerSelectTv.setText(mCustomer.getName());
                         mUserNameTv.setText(mCustomer.getName());
-                        mUserPhoneTv.setText(mCustomer.getMobile());
-                        mCompanyNameTv.setText(mCustomer.getCompanyName());
+                        mUserPhoneTv.setText(!"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile() : "");
+                        mCompanyNameTv.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName() : "");
                     }
                     break;
                 }
