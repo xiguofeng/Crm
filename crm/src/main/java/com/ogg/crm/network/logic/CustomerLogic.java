@@ -69,11 +69,11 @@ public class CustomerLogic {
 
     public static final int DIS_CUS_SET_EXCEPTION = DIS_CUS_SET_FAIL + 1;
 
-    public static final int FORM_PUBLIC_GET_SUC = DIS_CUS_SET_EXCEPTION + 1;
+    public static final int FROM_PUBLIC_GET_SUC = DIS_CUS_SET_EXCEPTION + 1;
 
-    public static final int FORM_PUBLIC_GET_FAIL = FORM_PUBLIC_GET_SUC + 1;
+    public static final int FROM_PUBLIC_GET_FAIL = FROM_PUBLIC_GET_SUC + 1;
 
-    public static final int FORM_PUBLIC_GET_EXCEPTION = FORM_PUBLIC_GET_FAIL + 1;
+    public static final int FROM_PUBLIC_GET_EXCEPTION = FROM_PUBLIC_GET_FAIL + 1;
 
     public static void getConfInfo(final Context context, final Handler handler,
                                    final String category) {
@@ -531,13 +531,13 @@ public class CustomerLogic {
 
     public static void getCusFromPublic(final Context context, final Handler handler, final String userId, final String customerId) {
 
-        String url = RequestUrl.HOST_URL + RequestUrl.customer.distributionCustomer;
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.getCustomer;
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.e("xxx_getCusFromPublic", ":" + response);
-                //parseDisUserListData(response, handler);
+                parseGetCusFromPublicData(response, handler);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -572,24 +572,12 @@ public class CustomerLogic {
             JSONObject response = new JSONObject(responseStr);
             String sucResult = response.getString("state").trim();
             if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
-
-                JSONArray jsonArray = response.getJSONArray("rows");
-                ArrayList<Customer> customers = new ArrayList<Customer>();
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Customer customer = (Customer) JsonUtils.fromJsonToJava(jsonObject, Customer.class);
-                    customers.add(customer);
-                }
-
-                Message message = new Message();
-                message.what = DIS_CUS_SET_SUC;
-                message.obj = customers;
-                handler.sendMessage(message);
+                handler.sendEmptyMessage(FROM_PUBLIC_GET_SUC);
             } else {
-                handler.sendEmptyMessage(DIS_CUS_SET_FAIL);
+                handler.sendEmptyMessage(FROM_PUBLIC_GET_FAIL);
             }
         } catch (JSONException e) {
-            handler.sendEmptyMessage(DIS_CUS_SET_EXCEPTION);
+            handler.sendEmptyMessage(FROM_PUBLIC_GET_EXCEPTION);
         }
     }
 }

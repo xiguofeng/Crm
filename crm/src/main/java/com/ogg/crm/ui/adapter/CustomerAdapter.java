@@ -40,7 +40,9 @@ public class CustomerAdapter extends BaseAdapter {
 
     public void initCheck() {
         for (int i = 0; i < mDatas.size(); i++) {
-            getmIsSelected().put(i, false);
+            if (null == getmIsSelected().get(i)) {
+                getmIsSelected().put(i, false);
+            }
         }
     }
 
@@ -102,10 +104,13 @@ public class CustomerAdapter extends BaseAdapter {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView,
                                                  boolean isChecked) {
-                        mCallback.onClick(view, buttonView, tempPosition, whichCb,isChecked);
+                        getmIsSelected().put(tempPosition, isChecked);
+                        mCallback.onClick(view, buttonView, tempPosition, whichCb, isChecked);
                     }
                 });
-        holder.mCheckBox.setChecked(getmIsSelected().get(position));
+        if (getmIsSelected().size() > position) {
+            holder.mCheckBox.setChecked(getmIsSelected().get(position));
+        }
 
         return convertView;
     }

@@ -145,6 +145,24 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                 case CustomerLogic.FILTER_LIST_GET_EXCEPTION: {
                     break;
                 }
+                case CustomerLogic.FROM_PUBLIC_GET_SUC: {
+                    Toast.makeText(mContext, "获取公海客户成功!",
+                            Toast.LENGTH_SHORT).show();
+                    mProgressDialog.show();
+                    mIsHasSelect = false;
+                    mCurrentPage = 1;
+                    CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", "", "", "", "");
+                    break;
+                }
+                case CustomerLogic.FROM_PUBLIC_GET_FAIL: {
+                    Toast.makeText(mContext, "获取公海客户失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.FROM_PUBLIC_GET_EXCEPTION: {
+                    break;
+                }
                 case CustomerLogic.NET_ERROR: {
                     break;
                 }
