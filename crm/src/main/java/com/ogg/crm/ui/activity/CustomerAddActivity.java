@@ -348,7 +348,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.customer_info_add_back_iv: {
+            case R.id.customer_info_add_back_iv:
+            case R.id.customer_add_company_back_iv:
+            case R.id.customer_add_settlement_back_iv: {
                 finish();
                 break;
             }
