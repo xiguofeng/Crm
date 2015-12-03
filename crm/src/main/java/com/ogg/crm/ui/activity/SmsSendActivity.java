@@ -153,6 +153,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                     Customer customer = (Customer) data.getSerializableExtra(CUSTOMER_KEY);
                     if (null != customer) {
                         mCustomer = customer;
+                        mCustomerSelectTv.setText(mCustomer.getName());
                         mUserNameTv.setText(mCustomer.getName());
                         mUserPhoneTv.setText(mCustomer.getMobile());
                         mCompanyNameTv.setText(mCustomer.getCompanyName());

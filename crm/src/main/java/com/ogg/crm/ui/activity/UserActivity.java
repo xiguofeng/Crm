@@ -99,7 +99,6 @@ public class UserActivity extends Activity implements OnClickListener {
                         Intent intent = new Intent(UserActivity.this, LoginActivity.class);
                         intent.setAction(LoginActivity.ORIGIN_FROM_USER_KEY);
                         startActivity(intent);
-                        UserActivity.this.finish();
                         overridePendingTransition(R.anim.push_down_in,
                                 R.anim.push_down_out);
                         break;

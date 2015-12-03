@@ -291,7 +291,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(tel)) {
             mNextBtn.setClickable(true);
-            mNextBtn.setBackgroundResource(R.drawable.corners_bg_red_all);
+            mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
         } else {
             mNextBtn.setClickable(false);
             mNextBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);

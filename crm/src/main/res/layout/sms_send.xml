@@ -3,7 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/gray_bg"
+              android:background="@color/white"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -28,7 +28,7 @@
             android:layout_centerInParent="true"
             android:text="@string/sms_send"
             android:textColor="@color/white"
-            android:textSize="@dimen/medium_text_size"/>
+            android:textSize="@dimen/large_text_size"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -210,9 +210,9 @@
         android:id="@+id/sms_send_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dip"
-        android:layout_marginRight="100dip"
-        android:layout_marginTop="30dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="80dip"
         android:background="@drawable/corners_bg_blue_all"
         android:gravity="center"
         android:paddingBottom="6dip"

@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="1dip"
-        android:background="@color/orange_stroke"
+        android:background="@color/white"
         android:orientation="vertical" >
     </LinearLayout>
 
