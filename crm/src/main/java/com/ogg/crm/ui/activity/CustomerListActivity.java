@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
+import com.ogg.crm.entity.User;
 import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
@@ -86,7 +88,10 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private String mFilterTrade;
     private String mFilterLevel;
 
+    public static ArrayList<User> sUserList = new ArrayList<User>();
+
     private int mCurrentPage = 1;
+    private boolean mIsHasSelect = false;
 
     private HashMap<String, Boolean> mSelect = new HashMap<String, Boolean>();
 
@@ -105,6 +110,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                         }
                         mCurrentPage++;
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
+                        mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
                     }
@@ -125,6 +131,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                         }
                         mCurrentPage++;
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
+                        mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
                     }
@@ -152,6 +159,59 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     };
 
+    Handler mDisHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case CustomerLogic.DIS_USER_LIST_GET_SUC: {
+                    if (null != msg.obj) {
+                        sUserList.clear();
+                        sUserList.addAll((Collection<? extends User>) msg.obj);
+                        Intent intent = new Intent(CustomerListActivity.this, UserSelectActivity.class);
+                        startActivityForResult(intent, 205);
+                    }
+                    break;
+                }
+                case CustomerLogic.DIS_USER_LIST_GET_FAIL: {
+                    Toast.makeText(mContext, "获取数据失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.DIS_USER_LIST_GET_EXCEPTION: {
+                    break;
+                }
+                case CustomerLogic.DIS_CUS_SET_SUC: {
+                    Toast.makeText(mContext, "指派成功!",
+                            Toast.LENGTH_SHORT).show();
+                    mProgressDialog.show();
+                    mIsHasSelect = false;
+                    mCurrentPage = 1;
+                    CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+                    break;
+                }
+                case CustomerLogic.DIS_CUS_SET_FAIL: {
+                    Toast.makeText(mContext, "指派失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.DIS_CUS_SET_EXCEPTION: {
+                    break;
+                }
+                case CustomerLogic.NET_ERROR: {
+                    break;
+                }
+                default:
+                    break;
+            }
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,7 +243,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
         mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
 
-        mDistributionBtn=(Button) findViewById(R.id.customer_list_distribution_btn);
+        mDistributionBtn = (Button) findViewById(R.id.customer_list_distribution_btn);
         mDistributionBtn.setOnClickListener(this);
 
         initFilterView();
@@ -245,7 +305,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
         mCustomerAdapter = new CustomerAdapter(mContext, mCustomerList, this);
         mCustomerLv.setAdapter(mCustomerAdapter);
-
+        mCustomerAdapter.initCheck();
         mCustomerLv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -317,6 +377,20 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
+    private String getCustomerIds() {
+        String customerIds = "";
+        for (Map.Entry<String, Boolean> entry : mSelect.entrySet()) {
+            if (entry.getValue()) {
+                if (TextUtils.isEmpty(customerIds)) {
+                    customerIds = entry.getKey();
+                } else {
+                    customerIds = customerIds + "," + entry.getKey();
+                }
+            }
+        }
+        return customerIds;
+    }
+
     @Override
     public void onRefresh() {
 
@@ -364,6 +438,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     }
                     break;
                 }
+                case 205: {
+                    String disUserName = data.getStringExtra("name");
+                    String disUserId = data.getStringExtra("id");
+                    String customersIds = getCustomerIds();
+                    Log.e("xxx_customersIds", "ids:" + customersIds);
+                    CustomerLogic.disCusSet(mContext, mDisHandler, UserInfoManager.getUserId(mContext), disUserId, customersIds);
+                    break;
+                }
                 default:
                     break;
             }
@@ -372,7 +454,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     }
 
     @Override
-    public void onClick(View item, View widget, int position, int which,boolean isCheck) {
+    public void onClick(View item, View widget, int position, int which, boolean isCheck) {
         mSelect.put(mCustomerList.get(position).getCustomerId(), isCheck);
         if (isCheck) {
             mDistributionBtn.setBackgroundColor(getResources().getColor(
@@ -386,12 +468,13 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             }
             if (entry.getValue()) {
                 isHasSelect = true;
+                mIsHasSelect = true;
             }
         }
 
         if (!isHasSelect) {
-            mDistributionBtn.setBackgroundColor(getResources().getColor(
-                    R.color.gray_bg));
+//            mDistributionBtn.setBackgroundColor(getResources().getColor(
+//                    R.color.gray_bg));
         }
     }
 
@@ -465,7 +548,24 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 mFilterStateTv.setText("");
             }
             case R.id.customer_list_distribution_btn: {
+                if (mIsHasSelect) {
+                    mProgressDialog.show();
+                    CustomerLogic.getDisUserList(mContext, mDisHandler);
+                } else {
+                    Toast.makeText(mContext, "请选择客户!",
+                            Toast.LENGTH_SHORT).show();
+                }
 
+//                final CharSequence[] items = {"Red", "Green", "Blue"};
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setTitle("Pick a color");
+//                builder.setItems(items, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int item) {
+//                        Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                AlertDialog alert = builder.create();
+//                alert.show();
             }
             default: {
                 break;

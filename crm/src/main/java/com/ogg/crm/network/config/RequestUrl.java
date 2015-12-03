@@ -55,6 +55,20 @@ public class RequestUrl {
          */
         public String publicList = "/customerbMobile/findPublicPage.do";
 
+        /**
+         * 获取分配用户
+         */
+        public String getDisUserList = "/customerbMobile/queryUserByCode.do";
+
+        /**
+         * 分配客户给用户
+         */
+        public String distributionCustomer = "/customerbMobile/fenpeiCustomer.do";
+
+        /**
+         * 从公海客户中获取客户
+         */
+        public String getCustomer = "/customerbMobile/getCustomer.do";
     }
 
     public interface address {

@@ -105,6 +105,8 @@ public class CustomerAdapter extends BaseAdapter {
                         mCallback.onClick(view, buttonView, tempPosition, whichCb,isChecked);
                     }
                 });
+        holder.mCheckBox.setChecked(getmIsSelected().get(position));
+
         return convertView;
     }
 

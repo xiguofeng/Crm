@@ -14,6 +14,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.ogg.crm.BaseApplication;
 import com.ogg.crm.entity.Customer;
 import com.ogg.crm.entity.CustomerInfoCategory;
+import com.ogg.crm.entity.User;
 import com.ogg.crm.network.config.MsgResult;
 import com.ogg.crm.network.config.RequestUrl;
 import com.ogg.crm.utils.JsonUtils;
@@ -55,6 +56,24 @@ public class CustomerLogic {
     public static final int PUBLIC_LIST_GET_FAIL = PUBLIC_LIST_GET_SUC + 1;
 
     public static final int PUBLIC_LIST_GET_EXCEPTION = PUBLIC_LIST_GET_FAIL + 1;
+
+    public static final int DIS_USER_LIST_GET_SUC = PUBLIC_LIST_GET_EXCEPTION + 1;
+
+    public static final int DIS_USER_LIST_GET_FAIL = DIS_USER_LIST_GET_SUC + 1;
+
+    public static final int DIS_USER_LIST_GET_EXCEPTION = DIS_USER_LIST_GET_FAIL + 1;
+
+    public static final int DIS_CUS_SET_SUC = DIS_USER_LIST_GET_EXCEPTION + 1;
+
+    public static final int DIS_CUS_SET_FAIL = DIS_CUS_SET_SUC + 1;
+
+    public static final int DIS_CUS_SET_EXCEPTION = DIS_CUS_SET_FAIL + 1;
+
+    public static final int FORM_PUBLIC_GET_SUC = DIS_CUS_SET_EXCEPTION + 1;
+
+    public static final int FORM_PUBLIC_GET_FAIL = FORM_PUBLIC_GET_SUC + 1;
+
+    public static final int FORM_PUBLIC_GET_EXCEPTION = FORM_PUBLIC_GET_FAIL + 1;
 
     public static void getConfInfo(final Context context, final Handler handler,
                                    final String category) {
@@ -396,4 +415,181 @@ public class CustomerLogic {
     }
 
 
+    public static void getDisUserList(final Context context, final Handler handler) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.getDisUserList;
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_getDisUserList", ":" + response);
+                parseDisUserListData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("bussinessCode",
+                            URLEncoder.encode("B", "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseDisUserListData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+
+                JSONArray jsonArray = response.getJSONArray("model");
+                ArrayList<User> users = new ArrayList<User>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    User user = (User) JsonUtils.fromJsonToJava(jsonObject, User.class);
+                    users.add(user);
+                }
+
+                Message message = new Message();
+                message.what = DIS_USER_LIST_GET_SUC;
+                message.obj = users;
+                handler.sendMessage(message);
+            } else {
+                handler.sendEmptyMessage(DIS_USER_LIST_GET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(DIS_USER_LIST_GET_EXCEPTION);
+        }
+    }
+
+    public static void disCusSet(final Context context, final Handler handler, final String userId, final String serviceUserId, final String customerId) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.distributionCustomer;
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_DisCusSet", ":" + response);
+                parseDisCusSetData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("userId",
+                            URLEncoder.encode(userId, "UTF-8"));
+                    map.put("serviceUserId",
+                            URLEncoder.encode(serviceUserId, "UTF-8"));
+                    map.put("customerId",
+                            URLEncoder.encode(customerId, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseDisCusSetData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+                handler.sendEmptyMessage(DIS_CUS_SET_SUC);
+            } else {
+                handler.sendEmptyMessage(DIS_CUS_SET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(DIS_CUS_SET_EXCEPTION);
+        }
+    }
+
+    public static void getCusFromPublic(final Context context, final Handler handler, final String userId, final String customerId) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.distributionCustomer;
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_getCusFromPublic", ":" + response);
+                //parseDisUserListData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("userId",
+                            URLEncoder.encode(userId, "UTF-8"));
+                    map.put("customerId",
+                            URLEncoder.encode(customerId, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+
+    private static void parseGetCusFromPublicData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+
+                JSONArray jsonArray = response.getJSONArray("rows");
+                ArrayList<Customer> customers = new ArrayList<Customer>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Customer customer = (Customer) JsonUtils.fromJsonToJava(jsonObject, Customer.class);
+                    customers.add(customer);
+                }
+
+                Message message = new Message();
+                message.what = DIS_CUS_SET_SUC;
+                message.obj = customers;
+                handler.sendMessage(message);
+            } else {
+                handler.sendEmptyMessage(DIS_CUS_SET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(DIS_CUS_SET_EXCEPTION);
+        }
+    }
 }

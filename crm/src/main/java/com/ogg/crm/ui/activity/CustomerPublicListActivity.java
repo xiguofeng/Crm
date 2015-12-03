@@ -70,7 +70,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private TextView mFilterCancelTv;
 
     private ImageView mBackIv;
-    private ImageView mAddCustomerIv;
+    private ImageView mGetCustomerIv;
 
     private TextView mSearchTv;
     private TextView mTitleTv;
@@ -91,6 +91,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     private int mCurrentPage = 1;
 
+    private boolean mIsHasSelect = false;
+
     private HashMap<String, Boolean> mSelect = new HashMap<String, Boolean>();
 
     private CustomProgressDialog mProgressDialog;
@@ -108,6 +110,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                         }
                         mCurrentPage++;
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
+                        mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
                     }
@@ -128,6 +131,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                         }
                         mCurrentPage++;
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
+                        mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
                     }
@@ -179,8 +183,9 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mBackIv = (ImageView) findViewById(R.id.customer_list_back_iv);
         mBackIv.setOnClickListener(this);
 
-        mAddCustomerIv = (ImageView) findViewById(R.id.customer_list_add_iv);
-        mAddCustomerIv.setOnClickListener(this);
+        mGetCustomerIv = (ImageView) findViewById(R.id.customer_list_add_iv);
+        mGetCustomerIv.setImageDrawable(getResources().getDrawable(R.drawable.obtain));
+        mGetCustomerIv.setOnClickListener(this);
 
         mSearchTv = (TextView) findViewById(R.id.customer_list_search_tv);
         mSearchTv.setOnClickListener(this);
@@ -190,8 +195,9 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mTitleTv = (TextView) findViewById(R.id.customer_list_title_name_tv);
         mTitleTv.setText(getResources().getString(R.string.public_customer));
 
-        mDistributionBtn=(Button) findViewById(R.id.customer_list_distribution_btn);
+        mDistributionBtn = (Button) findViewById(R.id.customer_list_distribution_btn);
         mDistributionBtn.setOnClickListener(this);
+        mDistributionBtn.setVisibility(View.GONE);
 
         initFilterView();
         initListView();
@@ -321,6 +327,20 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
+    private String getCustomerIds() {
+        String customerIds = "";
+        for (Map.Entry<String, Boolean> entry : mSelect.entrySet()) {
+            if (entry.getValue()) {
+                if (TextUtils.isEmpty(customerIds)) {
+                    customerIds = entry.getKey();
+                } else {
+                    customerIds = customerIds + "," + entry.getKey();
+                }
+            }
+        }
+        return customerIds;
+    }
+
     @Override
     public void onRefresh() {
 
@@ -376,7 +396,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     }
 
     @Override
-    public void onClick(View item, View widget, int position, int which,boolean isCheck) {
+    public void onClick(View item, View widget, int position, int which, boolean isCheck) {
         mSelect.put(mCustomerList.get(position).getCustomerId(), isCheck);
         if (isCheck) {
             mDistributionBtn.setBackgroundColor(getResources().getColor(
@@ -390,12 +410,13 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
             }
             if (entry.getValue()) {
                 isHasSelect = true;
+                mIsHasSelect = true;
             }
         }
 
         if (!isHasSelect) {
-            mDistributionBtn.setBackgroundColor(getResources().getColor(
-                    R.color.gray_search_bg));
+//            mDistributionBtn.setBackgroundColor(getResources().getColor(
+//                    R.color.gray_bg));
         }
     }
 
@@ -403,8 +424,13 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.customer_list_add_iv: {
-                Intent intent = new Intent(CustomerPublicListActivity.this, CustomerAddActivity.class);
-                startActivity(intent);
+                if (mIsHasSelect) {
+                    mProgressDialog.show();
+                    CustomerLogic.getCusFromPublic(mContext, mHandler, UserInfoManager.getUserId(mContext), getCustomerIds());
+                } else {
+                    Toast.makeText(mContext, "请选择客户!",
+                            Toast.LENGTH_SHORT).show();
+                }
                 break;
             }
             case R.id.customer_list_back_iv: {
