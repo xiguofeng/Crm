@@ -302,6 +302,8 @@ public class CustomerLogic {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.save;
 
+        Log.e("xxx_save_customer", "customer:" + customer);
+
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override

@@ -348,7 +348,6 @@
                 android:id="@+id/customer_info_add_type_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/customer_info_add_type_tag_tv"
                 android:layout_centerVertical="true"
                 android:maxLength="16"
                 android:maxLines="1"

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -82,7 +83,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private Button mCompanyPreBtn;
     private Button mCompanyNextBtn;
     private Button mSettlementPreBtn;
-    private Button mCompleteBtn;
+    private Button mSaveBtn;
 
     private boolean isView1Load = false;
     private boolean isView2Load = false;
@@ -98,7 +99,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private String mLevel;
     private String mType;
     private String mCompanyType;
-    private String mIsHasLog;
+    private String mIsHasLog = "0";
 
     private Customer mCustomer;
 
@@ -223,8 +224,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mNextBtn = (Button) findViewById(R.id.customer_info_add_next_btn);
         mNextBtn.setOnClickListener(this);
-        //mNextBtn.setClickable(false);
-
+        if (!isView1Load) {
+            mNextBtn.setClickable(false);
+        }
         isView1Load = true;
     }
 
@@ -249,6 +251,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mMainProductEt.addTextChangedListener(this);
         mCompanyNetEt.addTextChangedListener(this);
         mInboundChannelEt.addTextChangedListener(this);
+        mProviceCityTv.addTextChangedListener(this);
 
         mCompanyTypeRl.setOnClickListener(this);
         mProviceCityRl.setOnClickListener(this);
@@ -256,10 +259,14 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mCompanyNextBtn = (Button) findViewById(R.id.customer_company_info_add_next_btn);
         mCompanyNextBtn.setOnClickListener(this);
 
+        if (!isView2Load) {
+            mCompanyNextBtn.setClickable(false);
+        }
+
         mCompanyPreBtn = (Button) findViewById(R.id.customer_company_info_add_previous_btn);
         mCompanyPreBtn.setOnClickListener(this);
 
-        isView3Load = true;
+        isView2Load = true;
     }
 
     private void setView3() {
@@ -274,29 +281,39 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mNumberEt = (EditText) findViewById(R.id.customer_add_number_et);
         mSettlementTypeEt = (EditText) findViewById(R.id.customer_add_settlement_type_et);
         mCustomerAccountEt = (EditText) findViewById(R.id.customer_add_customer_account_et);
-        //mIsHasLogEt = (EditText) findViewById(R.id.customer_add_is_has_log_et);
         mRemarkEt = (EditText) findViewById(R.id.customer_add_remark_et);
         mLastSettlementTimeRl = (RelativeLayout) findViewById(R.id.customer_add_last_settlement_time_rl);
         mLastSettlementTimeTv = (TextView) findViewById(R.id.customer_add_last_settlement_time_tv);
         mIsHasLogCb = (CheckBox) findViewById(R.id.customer_add_number_cb);
 
+
+        mIsHasLogCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if (isChecked) {
+                    mIsHasLog = "1";
+                } else {
+                    mIsHasLog = "0";
+                }
+            }
+        });
         mPreBuyProductEt.addTextChangedListener(this);
         mProducingAreaEt.addTextChangedListener(this);
         mStandardEt.addTextChangedListener(this);
         mNumberEt.addTextChangedListener(this);
         mSettlementTypeEt.addTextChangedListener(this);
         mCustomerAccountEt.addTextChangedListener(this);
-        //mIsHasLogEt.addTextChangedListener(this);
         mRemarkEt.addTextChangedListener(this);
         mLastSettlementTimeRl.setOnClickListener(this);
 
         mSettlementPreBtn = (Button) findViewById(R.id.customer_settlement_info_add_previous_btn);
         mSettlementPreBtn.setOnClickListener(this);
-        mCompleteBtn = (Button) findViewById(R.id.customer_settlement_info_add_save_btn);
-        mCompleteBtn.setOnClickListener(this);
-        //mNextBtn.setClickable(false);
+        mSaveBtn = (Button) findViewById(R.id.customer_settlement_info_add_save_btn);
+        mSaveBtn.setOnClickListener(this);
 
-        isView2Load = true;
+        isView3Load = true;
     }
 
     private void initData() {
@@ -316,7 +333,33 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mCustomer = new Customer();
         mCustomer.setUserId(UserInfoManager.getUserId(mContext));
+        mCustomer.setServiceUserId(UserInfoManager.getUserId(mContext));
+    }
 
+    private void checkInput() {
+        String name = mNameEt.getText().toString().trim();
+        String tel = mTelPhoneEt.getText().toString().trim();
+        String mobile = mMobilePhoneEt.getText().toString().trim();
+
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(tel) && !TextUtils.isEmpty(mobile)) {
+            mNextBtn.setClickable(true);
+            mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
+        } else {
+            mNextBtn.setClickable(false);
+            mNextBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
+        }
+
+        if (null != mCompanyNameEt && null != mProviceCityTv) {
+            String companyName = mCompanyNameEt.getText().toString().trim();
+            String proviceCity = mProviceCityTv.getText().toString().trim();
+            if (!TextUtils.isEmpty(companyName) && !TextUtils.isEmpty(proviceCity)) {
+                mCompanyNextBtn.setClickable(true);
+                mCompanyNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
+            } else {
+                mCompanyNextBtn.setClickable(false);
+                mCompanyNextBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
+            }
+        }
     }
 
     @Override
@@ -333,17 +376,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     @SuppressLint("NewApi")
     @Override
     public void afterTextChanged(Editable s) {
-        String name = mNameEt.getText().toString().trim();
-        String tel = mTelPhoneEt.getText().toString().trim();
-
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(tel)) {
-            mNextBtn.setClickable(true);
-            mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
-        } else {
-            mNextBtn.setClickable(false);
-            mNextBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
-        }
-
+        checkInput();
     }
 
     @Override
@@ -404,7 +437,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
             case R.id.customer_info_add_next_btn: {
                 mCustomer.setName(mNameEt.getText().toString());
-//        mCustomer.set(mJobPostionEt.getText().toString());
+                mCustomer.setPosition(mJobPostionEt.getText().toString());
                 mCustomer.setMobile(mMobilePhoneEt.getText().toString());
                 mCustomer.setTel(mTelPhoneEt.getText().toString());
                 mCustomer.setQq(mQQEt.getText().toString());
@@ -451,6 +484,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setCreateTime(mLastSettlementTimeTv.getText().toString());
                 mCustomer.setTradeFlg(mIsHasLog);
 
+                mProgressDialog.show();
                 CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(mCustomer));
                 break;
             }

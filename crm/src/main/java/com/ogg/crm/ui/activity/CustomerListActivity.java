@@ -107,6 +107,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     if (null != msg.obj) {
                         if (1 == mCurrentPage) {
                             mCustomerList.clear();
+                            mCustomerAdapter.getmIsSelected().clear();
                         }
                         mCurrentPage++;
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
@@ -128,6 +129,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     if (null != msg.obj) {
                         if (1 == mCurrentPage) {
                             mCustomerList.clear();
+                            mCustomerAdapter.getmIsSelected().clear();
                         }
                         mCurrentPage++;
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
@@ -383,7 +385,6 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 }
             }
         }
-        Log.e("xxx_dis_CustomerIds",":"+customerIds);
         return customerIds;
     }
 

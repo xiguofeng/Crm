@@ -6,6 +6,36 @@ public class Customer implements Serializable {
 
     private static final long serialVersionUID = 8912365559481657349L;
 
+    /**
+     * 职位
+     */
+    private String position;
+
+    /**
+     * 省份
+     */
+    private String provinceName;
+
+    /**
+     * 城市
+     */
+    private String cityName;
+
+    /**
+     * 客户类型
+     */
+    private String customerTypeDesc;
+
+    /**
+     * 公司类型
+     */
+    private String companyTypeDesc;
+
+    /**
+     * 客户等级
+     */
+    private String cusLevelDesc;
+
     private String reason;
 
     private String remark;
@@ -67,8 +97,6 @@ public class Customer implements Serializable {
 
     private String mobile;
 
-    private String position;
-
     private String expireTime;
 
     private String createTime;
@@ -127,214 +155,6 @@ public class Customer implements Serializable {
      * 规格
      */
     private String norms;
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public String getLastestTradeTime() {
-        return lastestTradeTime;
-    }
-
-    public void setLastestTradeTime(String lastestTradeTime) {
-        this.lastestTradeTime = lastestTradeTime;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
-    public String getSurplusDay() {
-        return surplusDay;
-    }
-
-    public void setSurplusDay(String surplusDay) {
-        this.surplusDay = surplusDay;
-    }
-
-    public String getPage() {
-        return page;
-    }
-
-    public void setPage(String page) {
-        this.page = page;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getCusManagerUserId() {
-        return cusManagerUserId;
-    }
-
-    public void setCusManagerUserId(String cusManagerUserId) {
-        this.cusManagerUserId = cusManagerUserId;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getUserIds() {
-        return userIds;
-    }
-
-    public void setUserIds(String userIds) {
-        this.userIds = userIds;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getDefaultValue() {
-        return defaultValue;
-    }
-
-    public void setDefaultValue(String defaultValue) {
-        this.defaultValue = defaultValue;
-    }
-
-    public String getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
-    }
-
-    public String getTradeFlg() {
-        return tradeFlg;
-    }
-
-    public void setTradeFlg(String tradeFlg) {
-        this.tradeFlg = tradeFlg;
-    }
-
-    public String getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(String updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getIsDq() {
-        return isDq;
-    }
-
-    public void setIsDq(String isDq) {
-        this.isDq = isDq;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getFollowStatus() {
-        return followStatus;
-    }
-
-    public void setFollowStatus(String followStatus) {
-        this.followStatus = followStatus;
-    }
-
-    public String getRemindTime() {
-        return remindTime;
-    }
-
-    public void setRemindTime(String remindTime) {
-        this.remindTime = remindTime;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getStockWay() {
-        return stockWay;
-    }
-
-    public void setStockWay(String stockWay) {
-        this.stockWay = stockWay;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
 
     public String getPosition() {
         return position;
@@ -542,5 +362,253 @@ public class Customer implements Serializable {
 
     public void setNorms(String norms) {
         this.norms = norms;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getCustomerTypeDesc() {
+        return customerTypeDesc;
+    }
+
+    public void setCustomerTypeDesc(String customerTypeDesc) {
+        this.customerTypeDesc = customerTypeDesc;
+    }
+
+    public String getCompanyTypeDesc() {
+        return companyTypeDesc;
+    }
+
+    public void setCompanyTypeDesc(String companyTypeDesc) {
+        this.companyTypeDesc = companyTypeDesc;
+    }
+
+    public String getCusLevelDesc() {
+        return cusLevelDesc;
+    }
+
+    public void setCusLevelDesc(String cusLevelDesc) {
+        this.cusLevelDesc = cusLevelDesc;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getLastestTradeTime() {
+        return lastestTradeTime;
+    }
+
+    public void setLastestTradeTime(String lastestTradeTime) {
+        this.lastestTradeTime = lastestTradeTime;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getSurplusDay() {
+        return surplusDay;
+    }
+
+    public void setSurplusDay(String surplusDay) {
+        this.surplusDay = surplusDay;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getCusManagerUserId() {
+        return cusManagerUserId;
+    }
+
+    public void setCusManagerUserId(String cusManagerUserId) {
+        this.cusManagerUserId = cusManagerUserId;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(String userIds) {
+        this.userIds = userIds;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue;
+    }
+
+    public String getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId;
+    }
+
+    public String getTradeFlg() {
+        return tradeFlg;
+    }
+
+    public void setTradeFlg(String tradeFlg) {
+        this.tradeFlg = tradeFlg;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getIsDq() {
+        return isDq;
+    }
+
+    public void setIsDq(String isDq) {
+        this.isDq = isDq;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getFollowStatus() {
+        return followStatus;
+    }
+
+    public void setFollowStatus(String followStatus) {
+        this.followStatus = followStatus;
+    }
+
+    public String getRemindTime() {
+        return remindTime;
+    }
+
+    public void setRemindTime(String remindTime) {
+        this.remindTime = remindTime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStockWay() {
+        return stockWay;
+    }
+
+    public void setStockWay(String stockWay) {
+        this.stockWay = stockWay;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 }
