@@ -499,6 +499,7 @@ public class CustomerLogic {
     public static void disCusSet(final Context context, final Handler handler, final String userId, final String serviceUserId, final String customerId) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.distributionCustomer;
+
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -552,7 +553,7 @@ public class CustomerLogic {
     public static void getCusFromPublic(final Context context, final Handler handler, final String userId, final String customerId) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.getCustomer;
-        Log.e("xxx_customerId", ":" + customerId);
+
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override

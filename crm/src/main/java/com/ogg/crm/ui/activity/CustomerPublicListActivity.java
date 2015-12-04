@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -358,6 +359,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                 }
             }
         }
+        Log.e("xxx_get_CustomerIds", ":" + customerIds);
         return customerIds;
     }
 

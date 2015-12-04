@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -72,10 +73,10 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private EditText mNumberEt;
     private EditText mSettlementTypeEt;
     private EditText mCustomerAccountEt;
-    private EditText mIsHasLogEt;
     private EditText mRemarkEt;
     private RelativeLayout mLastSettlementTimeRl;
     private TextView mLastSettlementTimeTv;
+    private CheckBox mIsHasLogCb;
 
     private Button mNextBtn;
     private Button mCompanyPreBtn;
@@ -97,6 +98,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private String mLevel;
     private String mType;
     private String mCompanyType;
+    private String mIsHasLog;
 
     private Customer mCustomer;
 
@@ -276,6 +278,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mRemarkEt = (EditText) findViewById(R.id.customer_add_remark_et);
         mLastSettlementTimeRl = (RelativeLayout) findViewById(R.id.customer_add_last_settlement_time_rl);
         mLastSettlementTimeTv = (TextView) findViewById(R.id.customer_add_last_settlement_time_tv);
+        mIsHasLogCb = (CheckBox) findViewById(R.id.customer_add_number_cb);
 
         mPreBuyProductEt.addTextChangedListener(this);
         mProducingAreaEt.addTextChangedListener(this);
@@ -406,6 +409,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setTel(mTelPhoneEt.getText().toString());
                 mCustomer.setQq(mQQEt.getText().toString());
                 mCustomer.setEmail(mEmailEt.getText().toString());
+                mCustomer.setCusLevel(mLevel);
+                mCustomer.setCustomerType(mType);
 
                 setView2();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
@@ -417,6 +422,15 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_company_info_add_next_btn: {
+                mCustomer.setCompanyName(mCompanyNameEt.getText().toString());
+                mCustomer.setAddress(mCompanyAddressEt.getText().toString());
+                mCustomer.setMainProduct(mMainProductEt.getText().toString());
+                mCustomer.setUrl(mCompanyNetEt.getText().toString());
+                mCustomer.setStockWay(mInboundChannelEt.getText().toString());
+                mCustomer.setCompanyType(mCompanyTypeTv.getText().toString());
+                mCustomer.setProvince(mProviceCode);
+                mCustomer.setCity(mCityCode);
+
                 setView3();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
@@ -427,6 +441,16 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_settlement_info_add_save_btn: {
+                mCustomer.setKind(mPreBuyProductEt.getText().toString());
+                mCustomer.setPlace(mCompanyAddressEt.getText().toString());
+                mCustomer.setNorms(mStandardEt.getText().toString());
+                mCustomer.setAmount(mNumberEt.getText().toString());
+                mCustomer.setAccount(mSettlementTypeEt.getText().toString());
+                mCustomer.setAccountNum(mCustomerAccountEt.getText().toString());
+                mCustomer.setRemarkContent(mRemarkEt.getText().toString());
+                mCustomer.setCreateTime(mLastSettlementTimeTv.getText().toString());
+                mCustomer.setTradeFlg(mIsHasLog);
+
                 CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(mCustomer));
                 break;
             }

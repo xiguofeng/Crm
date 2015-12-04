@@ -383,6 +383,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 }
             }
         }
+        Log.e("xxx_dis_CustomerIds",":"+customerIds);
         return customerIds;
     }
 
