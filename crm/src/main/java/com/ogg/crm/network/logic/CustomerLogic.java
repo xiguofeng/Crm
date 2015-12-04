@@ -75,6 +75,12 @@ public class CustomerLogic {
 
     public static final int FROM_PUBLIC_GET_EXCEPTION = FROM_PUBLIC_GET_FAIL + 1;
 
+    public static final int SAVE_SET_SUC = FROM_PUBLIC_GET_EXCEPTION + 1;
+
+    public static final int SAVE_SET_FAIL = SAVE_SET_SUC + 1;
+
+    public static final int SAVE_SET_EXCEPTION = SAVE_SET_FAIL + 1;
+
     public static void getConfInfo(final Context context, final Handler handler,
                                    final String category) {
 
@@ -301,7 +307,7 @@ public class CustomerLogic {
             @Override
             public void onResponse(String response) {
                 Log.e("xxx_save_customer", ":" + response);
-                parseListData(response, handler);
+                parseSaveData(response, handler);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -329,6 +335,20 @@ public class CustomerLogic {
 
         BaseApplication.getInstanceRequestQueue().add(stringRequest);
         BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseSaveData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+                handler.sendEmptyMessage(SAVE_SET_SUC);
+            } else {
+                handler.sendEmptyMessage(SAVE_SET_FAIL);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(SAVE_SET_EXCEPTION);
+        }
     }
 
     public static void publicList(final Context context, final Handler handler,
@@ -532,6 +552,7 @@ public class CustomerLogic {
     public static void getCusFromPublic(final Context context, final Handler handler, final String userId, final String customerId) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.customer.getCustomer;
+        Log.e("xxx_customerId", ":" + customerId);
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override

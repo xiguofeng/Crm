@@ -22,10 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ogg.crm.R;
+import com.ogg.crm.entity.Customer;
 import com.ogg.crm.entity.CustomerInfoCategory;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
+import com.ogg.crm.utils.JsonUtils;
+import com.ogg.crm.utils.UserInfoManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -91,7 +94,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private String mProviceCode;
     private String mCityCode;
-    private String mTypeText;
+    private String mLevel;
+    private String mType;
+    private String mCompanyType;
+
+    private Customer mCustomer;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -120,6 +127,39 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 case CustomerLogic.CONF_INFO_GET_EXCEPTION: {
                     break;
                 }
+                case CustomerLogic.NET_ERROR: {
+                    break;
+                }
+                default:
+                    break;
+            }
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
+
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case CustomerLogic.SAVE_SET_SUC: {
+
+                    break;
+                }
+                case CustomerLogic.SAVE_SET_FAIL: {
+                    Toast.makeText(mContext, "保存客户数据失败!",
+                            Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case CustomerLogic.SAVE_SET_EXCEPTION: {
+                    break;
+                }
+
                 case CustomerLogic.NET_ERROR: {
                     break;
                 }
@@ -179,7 +219,6 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mTypeRl.setOnClickListener(this);
         mLevelRl.setOnClickListener(this);
 
-
         mNextBtn = (Button) findViewById(R.id.customer_info_add_next_btn);
         mNextBtn.setOnClickListener(this);
         //mNextBtn.setClickable(false);
@@ -233,7 +272,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mNumberEt = (EditText) findViewById(R.id.customer_add_number_et);
         mSettlementTypeEt = (EditText) findViewById(R.id.customer_add_settlement_type_et);
         mCustomerAccountEt = (EditText) findViewById(R.id.customer_add_customer_account_et);
-        mIsHasLogEt = (EditText) findViewById(R.id.customer_add_is_has_log_et);
+        //mIsHasLogEt = (EditText) findViewById(R.id.customer_add_is_has_log_et);
         mRemarkEt = (EditText) findViewById(R.id.customer_add_remark_et);
         mLastSettlementTimeRl = (RelativeLayout) findViewById(R.id.customer_add_last_settlement_time_rl);
         mLastSettlementTimeTv = (TextView) findViewById(R.id.customer_add_last_settlement_time_tv);
@@ -244,13 +283,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mNumberEt.addTextChangedListener(this);
         mSettlementTypeEt.addTextChangedListener(this);
         mCustomerAccountEt.addTextChangedListener(this);
-        mIsHasLogEt.addTextChangedListener(this);
+        //mIsHasLogEt.addTextChangedListener(this);
         mRemarkEt.addTextChangedListener(this);
         mLastSettlementTimeRl.setOnClickListener(this);
 
         mSettlementPreBtn = (Button) findViewById(R.id.customer_settlement_info_add_previous_btn);
         mSettlementPreBtn.setOnClickListener(this);
-        mCompleteBtn = (Button) findViewById(R.id.customer_settlement_info_add_complete_btn);
+        mCompleteBtn = (Button) findViewById(R.id.customer_settlement_info_add_save_btn);
         mCompleteBtn.setOnClickListener(this);
         //mNextBtn.setClickable(false);
 
@@ -270,6 +309,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     ConfigInfoService.class);
             getApplicationContext().startService(intentService);
         }
+
+
+        mCustomer = new Customer();
+        mCustomer.setUserId(UserInfoManager.getUserId(mContext));
+
     }
 
     @Override
@@ -315,16 +359,16 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 }
                 case 502: {
                     mTypeTv.setText(data.getStringExtra("text"));
-                    mTypeText = data.getStringExtra("value");
-                    if ("-1".equals(mTypeText)) {
+                    mType = data.getStringExtra("value");
+                    if ("-1".equals(mType)) {
                         mTypeTv.setText("其它");
                     }
                     break;
                 }
                 case 503: {
                     mLevelTv.setText(data.getStringExtra("text"));
-                    mTypeText = data.getStringExtra("value");
-                    if ("-1".equals(mTypeText)) {
+                    mLevel = data.getStringExtra("value");
+                    if ("-1".equals(mType)) {
                         mLevelTv.setText("其它");
                     }
                     break;
@@ -332,8 +376,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
                 case 504: {
                     mCompanyTypeTv.setText(data.getStringExtra("text"));
-                    mTypeText = data.getStringExtra("value");
-                    if ("-1".equals(mTypeText)) {
+                    mCompanyType = data.getStringExtra("value");
+                    if ("-1".equals(mType)) {
                         mCompanyTypeTv.setText("其它");
                     }
                     break;
@@ -356,6 +400,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             }
 
             case R.id.customer_info_add_next_btn: {
+                mCustomer.setName(mNameEt.getText().toString());
+//        mCustomer.set(mJobPostionEt.getText().toString());
+                mCustomer.setMobile(mMobilePhoneEt.getText().toString());
+                mCustomer.setTel(mTelPhoneEt.getText().toString());
+                mCustomer.setQq(mQQEt.getText().toString());
+                mCustomer.setEmail(mEmailEt.getText().toString());
+
                 setView2();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
@@ -375,8 +426,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             }
-            case R.id.customer_settlement_info_add_complete_btn: {
-
+            case R.id.customer_settlement_info_add_save_btn: {
+                CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(mCustomer));
                 break;
             }
             case R.id.customer_add_company_area_rl: {

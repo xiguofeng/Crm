@@ -35,11 +35,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settlement_basic_info"
+        android:layout_marginLeft="15dip"
         android:layout_marginTop="10dip"
-        android:textSize="@dimen/middle_text_size"
+        android:text="@string/settlement_basic_info"
         android:textColor="@color/black_character_title"
-        android:layout_marginLeft="15dip" />
+        android:textSize="@dimen/middle_text_size"/>
 
     <LinearLayout
         android:id="@+id/customer_add_input_one_ll"
@@ -64,7 +64,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
                 android:textColor="@color/blue_text"
@@ -75,10 +75,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_pre_buy_product_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/pre_buy_product"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -104,7 +104,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -116,10 +116,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_producing_area_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/producing_area"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -145,8 +145,8 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
-                android:paddingRight="50dip"
+                android:paddingLeft="100dip"
+                android:paddingRight="20dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
                 android:textColor="@color/blue_text"
@@ -157,10 +157,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_standard_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/standard"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -185,7 +185,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -197,10 +197,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_number_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/number"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -226,7 +226,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -238,10 +238,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_settlement_type_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/settlement_type"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -266,7 +266,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -278,10 +278,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_customer_account_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/customer_account"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -297,31 +297,26 @@
             android:paddingBottom="5dip"
             android:paddingTop="5dip">
 
-            <EditText
-                android:id="@+id/customer_add_is_has_log_et"
-                android:layout_width="fill_parent"
+            <CheckBox
+                android:id="@+id/customer_add_number_cb"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dip"
                 android:background="@null"
-                android:imeActionLabel="下一步"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:maxLength="50"
-                android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
-                android:paddingRight="50dip"
-                android:paddingTop="6.0dip"
-                android:singleLine="true"
-                android:textColor="@color/blue_text"
-                android:textSize="@dimen/middle_text_size"/>
+                android:button="@drawable/switch_selector"
+                android:focusable="false"
+                android:gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/customer_add_is_has_log_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/is_has_log"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -335,32 +330,32 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="5dip"
-            android:paddingTop="5dip" >
+            android:paddingTop="5dip">
 
             <TextView
                 android:id="@+id/customer_add_last_settlement_time_tag_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dip"
                 android:paddingRight="10dip"
-                android:layout_alignParentLeft="true"
                 android:text="@string/last_settlement_time"
                 android:textColor="@color/black_character_title"
-                android:textSize="@dimen/middle_text_size" />
+                android:textSize="@dimen/middle_text_size"/>
 
             <TextView
                 android:id="@+id/customer_add_last_settlement_time_tv"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/customer_add_last_settlement_time_tag_tv"
                 android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/customer_add_last_settlement_time_tag_tv"
                 android:maxLength="16"
                 android:maxLines="1"
                 android:paddingBottom="6.0dip"
                 android:paddingTop="6.0dip"
                 android:textColor="@color/black_character_title"
-                android:textSize="@dimen/middle_text_size" >
+                android:textSize="@dimen/middle_text_size">
             </TextView>
 
             <ImageView
@@ -370,7 +365,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dip"
                 android:padding="5dip"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -395,7 +390,7 @@
                 android:imeOptions="actionNext|flagNoExtractUi"
                 android:maxLength="50"
                 android:paddingBottom="6.0dip"
-                android:paddingLeft="80dip"
+                android:paddingLeft="100dip"
                 android:paddingRight="50dip"
                 android:paddingTop="6.0dip"
                 android:singleLine="true"
@@ -407,10 +402,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_add_remark_et"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dip"
                 android:text="@string/remark"
-                android:textSize="@dimen/middle_text_size"
                 android:textColor="@color/black_character_title"
-                android:layout_marginLeft="15dip" />
+                android:textSize="@dimen/middle_text_size"/>
         </RelativeLayout>
 
     </LinearLayout>
@@ -427,8 +422,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
-            android:layout_weight="1"
             android:layout_marginTop="20dip"
+            android:layout_weight="1"
             android:background="@drawable/corners_bg_blue_all"
             android:gravity="center"
             android:paddingBottom="8dip"
@@ -437,13 +432,13 @@
             android:textColor="@color/white"
             android:textSize="@dimen/middle_text_size"/>
         <Button
-            android:id="@+id/customer_settlement_info_add_complete_btn"
+            android:id="@+id/customer_settlement_info_add_save_btn"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dip"
             android:layout_marginRight="10dip"
-            android:layout_weight="1"
             android:layout_marginTop="20dip"
+            android:layout_weight="1"
             android:background="@drawable/corners_bg_blue_all"
             android:gravity="center"
             android:paddingBottom="8dip"

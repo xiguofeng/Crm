@@ -185,9 +185,11 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 case CustomerLogic.DIS_CUS_SET_SUC: {
                     Toast.makeText(mContext, "指派成功!",
                             Toast.LENGTH_SHORT).show();
-                    mProgressDialog.show();
                     mIsHasSelect = false;
+                    mSelect.clear();
+                    mCustomerAdapter.getmIsSelected().clear();
                     mCurrentPage = 1;
+                    mProgressDialog.show();
                     CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
                     break;
                 }
@@ -257,13 +259,6 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             UserInfoManager.setUserInfo(mContext);
         }
         CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
-//
-//        Customer customer = new Customer();
-//        customer.setUserId(UserInfoManager.getUserId(mContext));
-//        customer.setName("大菠萝");
-//        customer.setStatus("2");
-//        CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(customer));
-
     }
 
     private void initFilterView() {
