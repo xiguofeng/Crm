@@ -28,6 +28,7 @@
     <string name="version_num">版本：V1.0</string>
     <string name="website">网址：http://www.gg-zone.com</string>
     <string name="ogg_company_phone">电话：40086 09901</string>
+    <string name="website_address">http://www.gg-zone.com</string>
 
     <!-- customer -->
     <string name="my_customer">我的客户</string>
