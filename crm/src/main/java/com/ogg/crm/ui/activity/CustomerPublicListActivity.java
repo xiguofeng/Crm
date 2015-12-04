@@ -160,8 +160,13 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                     break;
                 }
                 case CustomerLogic.FROM_PUBLIC_GET_FAIL: {
-                    Toast.makeText(mContext, "获取公海客户失败!",
-                            Toast.LENGTH_SHORT).show();
+                    if (null != msg.obj) {
+                        Toast.makeText(mContext, (String) msg.obj,
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(mContext, "获取公海客户失败!",
+                                Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 }
                 case CustomerLogic.FROM_PUBLIC_GET_EXCEPTION: {

@@ -30,10 +30,12 @@ import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.JsonUtils;
+import com.ogg.crm.utils.TimeUtils;
 import com.ogg.crm.utils.UserInfoManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -100,6 +102,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private String mType;
     private String mCompanyType;
     private String mIsHasLog = "0";
+    private String mLastTradeTime;
+    private Date mLastTradeDate;
 
     private Customer mCustomer;
 
@@ -151,10 +155,14 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             int what = msg.what;
             switch (what) {
                 case CustomerLogic.SAVE_SET_SUC: {
-
+                    CustomerListActivity.isRefresh = true;
                     break;
                 }
                 case CustomerLogic.SAVE_SET_FAIL: {
+                    if (null != msg.obj) {
+                        Toast.makeText(mContext, (String) msg.obj,
+                                Toast.LENGTH_SHORT).show();
+                    }
                     Toast.makeText(mContext, "保存客户数据失败!",
                             Toast.LENGTH_SHORT).show();
                     break;
@@ -391,6 +399,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 }
                 case 501: {
                     mLastSettlementTimeTv.setText(data.getStringExtra("date"));
+                    mLastTradeTime = data.getStringExtra("date_value");
+                    mLastTradeTime = mLastTradeTime + " 00:00:00";
+                    mLastTradeDate = new Date(TimeUtils.dateToLong(mLastTradeTime, TimeUtils.FORMAT_PATTERN_DATE));
+
+
                     break;
                 }
                 case 502: {
@@ -481,7 +494,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setAccount(mSettlementTypeEt.getText().toString());
                 mCustomer.setAccountNum(mCustomerAccountEt.getText().toString());
                 mCustomer.setRemarkContent(mRemarkEt.getText().toString());
-                mCustomer.setCreateTime(mLastSettlementTimeTv.getText().toString());
+                mCustomer.setLastestTradeTime(mLastTradeTime);
                 mCustomer.setTradeFlg(mIsHasLog);
 
                 mProgressDialog.show();

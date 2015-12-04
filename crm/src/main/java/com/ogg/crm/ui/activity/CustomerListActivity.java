@@ -95,6 +95,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private HashMap<String, Boolean> mSelect = new HashMap<String, Boolean>();
 
+    public static boolean isRefresh = false;
+
     private CustomProgressDialog mProgressDialog;
 
     Handler mHandler = new Handler() {
@@ -177,8 +179,10 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     break;
                 }
                 case CustomerLogic.DIS_USER_LIST_GET_FAIL: {
-                    Toast.makeText(mContext, "获取数据失败!",
-                            Toast.LENGTH_SHORT).show();
+                    if (null != msg.obj) {
+                        Toast.makeText(mContext, (String) msg.obj,
+                                Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 }
                 case CustomerLogic.DIS_USER_LIST_GET_EXCEPTION: {
@@ -235,6 +239,15 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isRefresh) {
+            isRefresh = !isRefresh;
+            initData();
+        }
+    }
+
     private void initView() {
         mBackIv = (ImageView) findViewById(R.id.customer_list_back_iv);
         mBackIv.setOnClickListener(this);
@@ -257,9 +270,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     private void initData() {
         mProgressDialog.show();
-        if (TextUtils.isEmpty(UserInfoManager.getUserId(mContext))) {
-            UserInfoManager.setUserInfo(mContext);
-        }
+        mCurrentPage = 1;
         CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
     }
 

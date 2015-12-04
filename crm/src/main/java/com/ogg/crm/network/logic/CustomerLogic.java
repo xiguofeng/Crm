@@ -346,7 +346,11 @@ public class CustomerLogic {
             if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
                 handler.sendEmptyMessage(SAVE_SET_SUC);
             } else {
-                handler.sendEmptyMessage(SAVE_SET_FAIL);
+                String msg = response.getString("msg").trim();
+                Message message = new Message();
+                message.what = SAVE_SET_FAIL;
+                message.obj = msg;
+                handler.sendMessage(message);
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(SAVE_SET_EXCEPTION);
@@ -491,7 +495,11 @@ public class CustomerLogic {
                 message.obj = users;
                 handler.sendMessage(message);
             } else {
-                handler.sendEmptyMessage(DIS_USER_LIST_GET_FAIL);
+                String msg = response.getString("msg").trim();
+                Message message = new Message();
+                message.what = DIS_USER_LIST_GET_FAIL;
+                message.obj = msg;
+                handler.sendMessage(message);
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(DIS_USER_LIST_GET_EXCEPTION);
@@ -545,7 +553,11 @@ public class CustomerLogic {
             if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
                 handler.sendEmptyMessage(DIS_CUS_SET_SUC);
             } else {
-                handler.sendEmptyMessage(DIS_CUS_SET_FAIL);
+                String msg = response.getString("msg").trim();
+                Message message = new Message();
+                message.what = DIS_CUS_SET_FAIL;
+                message.obj = msg;
+                handler.sendMessage(message);
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(DIS_CUS_SET_EXCEPTION);
@@ -598,7 +610,11 @@ public class CustomerLogic {
             if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
                 handler.sendEmptyMessage(FROM_PUBLIC_GET_SUC);
             } else {
-                handler.sendEmptyMessage(FROM_PUBLIC_GET_FAIL);
+                String msg = response.getString("msg").trim();
+                Message message = new Message();
+                message.what = FROM_PUBLIC_GET_FAIL;
+                message.obj = msg;
+                handler.sendMessage(message);
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(FROM_PUBLIC_GET_EXCEPTION);
