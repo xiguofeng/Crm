@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -30,6 +31,7 @@ import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.JsonUtils;
+import com.ogg.crm.utils.PhoneUtils;
 import com.ogg.crm.utils.TimeUtils;
 import com.ogg.crm.utils.UserInfoManager;
 
@@ -349,7 +351,24 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         String tel = mTelPhoneEt.getText().toString().trim();
         String mobile = mMobilePhoneEt.getText().toString().trim();
 
+        if(!TextUtils.isEmpty(mobile)){
+            if(!PhoneUtils.isMobile(mobile)){
+                CharSequence html= Html.fromHtml("<font color='red'>手机号格式不正确</font>");
+                mMobilePhoneEt.setError(html);
+            }
+        }
+
+        if(!TextUtils.isEmpty(tel)){
+            if(!PhoneUtils.isPhone(tel)){
+                CharSequence html= Html.fromHtml("<font color='red'>电话号码格式不正确</font>");
+                mTelPhoneEt.setError(html);
+            }
+        }
+
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(tel) && !TextUtils.isEmpty(mobile)) {
+
+
+
             mNextBtn.setClickable(true);
             mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
         } else {
