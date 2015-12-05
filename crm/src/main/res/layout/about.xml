@@ -141,20 +141,30 @@
             android:textSize="@dimen/small_text_size" />
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/gray_divide_line"
+        android:background="@color/gray_bottom_bg"
+        android:layout_gravity="bottom"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:gravity="center"
         android:orientation="horizontal">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:ellipsize="marquee"
-            android:layout_marginLeft="10dp"
             android:gravity="center"
-            android:text="@string/ogg_company_phone"
+            android:text="@string/copy_right"
             android:textColor="@color/gray_sp_character_bg"
             android:textSize="@dimen/small_text_size" />
     </RelativeLayout>
