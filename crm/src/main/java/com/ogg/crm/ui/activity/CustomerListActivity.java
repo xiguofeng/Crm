@@ -1,7 +1,10 @@
 package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -78,6 +81,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private ImageView mAddCustomerIv;
 
     private Button mDistributionBtn;
+    private Button mGiveUpBtn;
 
     private Button mClearBtn;
 
@@ -200,9 +204,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     break;
                 }
                 case CustomerLogic.DIS_CUS_SET_FAIL: {
+                    if (null != msg.obj) {
+                        Toast.makeText(mContext, (String) msg.obj,
+                                Toast.LENGTH_SHORT).show();
+                    }else{
                     Toast.makeText(mContext, "指派失败!",
                             Toast.LENGTH_SHORT).show();
                     break;
+                    }
                 }
                 case CustomerLogic.DIS_CUS_SET_EXCEPTION: {
                     break;
@@ -220,6 +229,48 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         }
 
     };
+
+    Handler mGiveUpHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case CustomerLogic.GIVE_UP_SET_SUC: {
+                    Toast.makeText(mContext, "放弃客户成功!",
+                            Toast.LENGTH_SHORT).show();
+                    mIsHasSelect = false;
+                    mSelect.clear();
+                    mCustomerAdapter.getmIsSelected().clear();
+                    mCurrentPage = 1;
+                    mProgressDialog.show();
+                    CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+                    break;
+                }
+                case CustomerLogic.GIVE_UP_SET_FAIL: {
+                    if (null != msg.obj) {
+                        Toast.makeText(mContext, (String) msg.obj,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                case CustomerLogic.GIVE_UP_SET_EXCEPTION: {
+                    break;
+                }
+                case CustomerLogic.NET_ERROR: {
+                    break;
+                }
+                default:
+                    break;
+            }
+            if (null != mProgressDialog && mProgressDialog.isShowing()) {
+                mProgressDialog.dismiss();
+            }
+
+        }
+
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -262,6 +313,9 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
         mDistributionBtn = (Button) findViewById(R.id.customer_list_distribution_btn);
         mDistributionBtn.setOnClickListener(this);
+
+        mGiveUpBtn = (Button) findViewById(R.id.customer_list_give_up_btn);
+        mGiveUpBtn.setOnClickListener(this);
 
         initFilterView();
         initListView();
@@ -397,6 +451,33 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             }
         }
         return customerIds;
+    }
+
+    private void showDialog() {
+        //先new出一个监听器，设置好监听
+        DialogInterface.OnClickListener dialogOnclicListener = new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case Dialog.BUTTON_POSITIVE: {
+                        mProgressDialog.show();
+                        CustomerLogic.giveUpCustomer(mContext,mGiveUpHandler,UserInfoManager.getUserId(mContext),getCustomerIds());
+                        break;
+                    }
+                    case Dialog.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+        //dialog参数设置
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);  //先得到构造器
+        builder.setTitle("提示"); //设置标题
+        builder.setMessage("是否放弃客户?"); //设置内容
+        //builder.setIcon(R.mipmap.ic_launcher);//设置图标，图片id即可
+        builder.setPositiveButton("确认", dialogOnclicListener);
+        builder.setNegativeButton("取消", dialogOnclicListener);
+        builder.create().show();
     }
 
     @Override
@@ -574,6 +655,14 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 //                });
 //                AlertDialog alert = builder.create();
 //                alert.show();
+            }
+            case R.id.customer_list_give_up_btn: {
+                if (mIsHasSelect) {
+                    showDialog();
+                } else {
+                    Toast.makeText(mContext, "请选择客户!",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
             default: {
                 break;

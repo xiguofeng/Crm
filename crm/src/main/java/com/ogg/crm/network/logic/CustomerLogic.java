@@ -81,6 +81,12 @@ public class CustomerLogic {
 
     public static final int SAVE_SET_EXCEPTION = SAVE_SET_FAIL + 1;
 
+    public static final int GIVE_UP_SET_SUC = SAVE_SET_EXCEPTION + 1;
+
+    public static final int GIVE_UP_SET_FAIL = GIVE_UP_SET_SUC + 1;
+
+    public static final int GIVE_UP_SET_EXCEPTION = GIVE_UP_SET_FAIL + 1;
+
     public static void getConfInfo(final Context context, final Handler handler,
                                    final String category) {
 
@@ -618,6 +624,62 @@ public class CustomerLogic {
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(FROM_PUBLIC_GET_EXCEPTION);
+        }
+    }
+
+    public static void giveUpCustomer(final Context context, final Handler handler, final String userId, final String customerId) {
+
+        String url = RequestUrl.HOST_URL + RequestUrl.customer.giveUpCustomer;
+
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("xxx_giveUpCustomer", ":" + response);
+                parseGiveUpCustomerData(response, handler);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // 在这里设置需要post的参数
+                Map<String, String> map = new HashMap<String, String>();
+                try {
+                    map.put("userId",
+                            URLEncoder.encode(userId, "UTF-8"));
+                    map.put("customerId",
+                            URLEncoder.encode(customerId, "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+                return map;
+            }
+        };
+
+        BaseApplication.getInstanceRequestQueue().add(stringRequest);
+        BaseApplication.getInstanceRequestQueue().start();
+    }
+
+    private static void parseGiveUpCustomerData(String responseStr, Handler handler) {
+        try {
+            JSONObject response = new JSONObject(responseStr);
+            String sucResult = response.getString("state").trim();
+            if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
+                handler.sendEmptyMessage(GIVE_UP_SET_SUC);
+            } else {
+                String msg = response.getString("msg").trim();
+                Message message = new Message();
+                message.what = GIVE_UP_SET_FAIL;
+                message.obj = msg;
+                handler.sendMessage(message);
+            }
+        } catch (JSONException e) {
+            handler.sendEmptyMessage(GIVE_UP_SET_EXCEPTION);
         }
     }
 }

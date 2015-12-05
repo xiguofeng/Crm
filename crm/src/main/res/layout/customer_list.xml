@@ -137,15 +137,32 @@
                     android:scrollbars="none"/>
             </LinearLayout>
 
-            <Button android:id="@+id/customer_list_distribution_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/blue_bg"
-                    android:padding="10dp"
-                    android:text="@string/distribution"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/middle_text_size"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
+                <Button android:id="@+id/customer_list_distribution_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/blue_bg"
+                        android:padding="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/distribution"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                <Button android:id="@+id/customer_list_give_up_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="1dip"
+                        android:background="@color/blue_bg"
+                        android:padding="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/give_up"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/middle_text_size"/>
+            </LinearLayout>
         </RelativeLayout>
         <LinearLayout android:layout_width="300dp"
                       android:layout_height="match_parent"

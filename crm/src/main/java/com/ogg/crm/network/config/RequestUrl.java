@@ -69,6 +69,11 @@ public class RequestUrl {
          * 从公海客户中获取客户
          */
         public String getCustomer = "/customerbMobile/getCustomer.do";
+
+        /**
+         * 放弃客户
+         */
+        public String giveUpCustomer = "/customerbMobile/giveUpCustomer.do";
     }
 
     public interface address {
