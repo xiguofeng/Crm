@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -156,34 +157,42 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
     }
 
     private void fillUpData() {
-        mNameTv.setText(!"null".equals(mCustomer.getName()) ? mCustomer.getName() : "");
-        mMobilePhoneTv.setText(!"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile() : "");
-        mTelPhoneTv.setText(!"null".equals(mCustomer.getTel()) ? mCustomer.getTel() : "");
-        mQQTv.setText(!"null".equals(mCustomer.getQq()) ? mCustomer.getQq() : "");
-        mEmailTv.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail() : "");
-        mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc() : "");
-        mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc() : "");
-        mJobPostionTv.setText(!"null".equals(mCustomer.getPosition()) ? mCustomer.getPosition() : "");
+        mNameTv.setText(!"null".equals(mCustomer.getName()) ? mCustomer.getName().trim() : "");
+        mMobilePhoneTv.setText(!"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile().trim() : "");
+        mTelPhoneTv.setText(!"null".equals(mCustomer.getTel()) ? mCustomer.getTel().trim() : "");
+        mQQTv.setText(!"null".equals(mCustomer.getQq()) ? mCustomer.getQq().trim() : "");
+        mEmailTv.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail().trim() : "");
+        mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc().trim() : "");
+        mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc().trim() : "");
+        mJobPostionTv.setText(!"null".equals(mCustomer.getPosition()) ? mCustomer.getPosition().trim() : "");
 
-        mCompanyNameTv.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName() : "");
-        mCompanyAddressTv.setText(!"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress() : "");
-        mMainProductTv.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct() : "");
-        mCompanyNetTv.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl() : "");
-        mInboundChannelTv.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay() : "");
-        String province = !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName() : "";
-        String city = !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName() : "";
+        mCompanyNameTv.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName().trim() : "");
+        mCompanyAddressTv.setText(!"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress().trim() : "");
+        mMainProductTv.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct().trim() : "");
+        mCompanyNetTv.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl().trim() : "");
+        mInboundChannelTv.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
+        String province = !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
+        String city = !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
         mProviceCityTv.setText(province + city);
-        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc() : "");
+        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
 
-        mPreBuyProductTv.setText(!"null".equals(mCustomer.getKind()) ? mCustomer.getKind() : "");
-        mProducingAreaTv.setText(!"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace() : "");
-        mStandardTv.setText(!"null".equals(mCustomer.getNorms()) ? mCustomer.getNorms() : "");
-        mNumberTv.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount() : "");
-        mSettlementTypeTv.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount() : "");
-        mCustomerAccountTv.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum() : "");
-        mIsHasLogTv.setText(!"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire() : "");
+        mPreBuyProductTv.setText(!"null".equals(mCustomer.getKind()) ? mCustomer.getKind().trim() : "");
+        mProducingAreaTv.setText(!"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace().trim() : "");
+        mStandardTv.setText(!"null".equals(mCustomer.getNorms()) ? mCustomer.getNorms().trim() : "");
+        mNumberTv.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount().trim() : "");
+        mSettlementTypeTv.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
+        mCustomerAccountTv.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        String isHasLog = !"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire().trim() : "";
+        if (!TextUtils.isEmpty(isHasLog)) {
+            if ("0".equals(mCustomer.getIsExpire())) {
+                isHasLog = "无";
+            } else {
+                isHasLog = "有";
+            }
+        }
+        mIsHasLogTv.setText(isHasLog);
         mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getLastestTradeTime()) ? mCustomer.getLastestTradeTime() : "");
-        mFollowStateTv.setText(!"null".equals(mCustomer.getFollowStatus()) ? mCustomer.getFollowStatus() : "");
+        mFollowStateTv.setText(!"null".equals(mCustomer.getFollowStatusDesc()) ? mCustomer.getFollowStatusDesc() : "");
         mFollowRecordTv.setText(!"null".equals(mCustomer.getTotalFollowStatus()) ? mCustomer.getTotalFollowStatus() : "");
     }
 

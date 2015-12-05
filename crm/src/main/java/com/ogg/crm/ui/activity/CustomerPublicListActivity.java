@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,6 +89,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private String mKeyWord;
 
     private Button mDistributionBtn;
+    private LinearLayout mBottomMenuLl;
 
     private int mCurrentPage = 1;
 
@@ -225,6 +227,9 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mDistributionBtn = (Button) findViewById(R.id.customer_list_distribution_btn);
         mDistributionBtn.setOnClickListener(this);
         mDistributionBtn.setVisibility(View.GONE);
+
+        mBottomMenuLl=(LinearLayout) findViewById(R.id.customer_list_bottom_menu_ll);
+        mBottomMenuLl.setVisibility(View.GONE);
 
         initFilterView();
         initListView();

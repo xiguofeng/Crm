@@ -36,6 +36,11 @@ public class Customer implements Serializable {
      */
     private String cusLevelDesc;
 
+    /**
+     * 跟进状态
+     */
+    private String followStatusDesc;
+
     private String reason;
 
     private String remark;
@@ -164,206 +169,6 @@ public class Customer implements Serializable {
         this.position = position;
     }
 
-    public String getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(String expireTime) {
-        this.expireTime = expireTime;
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getServiceUserId() {
-        return serviceUserId;
-    }
-
-    public void setServiceUserId(String serviceUserId) {
-        this.serviceUserId = serviceUserId;
-    }
-
-    public String getRemarkContent() {
-        return remarkContent;
-    }
-
-    public void setRemarkContent(String remarkContent) {
-        this.remarkContent = remarkContent;
-    }
-
-    public String getMainProduct() {
-        return mainProduct;
-    }
-
-    public void setMainProduct(String mainProduct) {
-        this.mainProduct = mainProduct;
-    }
-
-    public String getAccountNum() {
-        return accountNum;
-    }
-
-    public void setAccountNum(String accountNum) {
-        this.accountNum = accountNum;
-    }
-
-    public String getIsExpire() {
-        return isExpire;
-    }
-
-    public void setIsExpire(String isExpire) {
-        this.isExpire = isExpire;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getDefaultText() {
-        return defaultText;
-    }
-
-    public void setDefaultText(String defaultText) {
-        this.defaultText = defaultText;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getReleseTime() {
-        return releseTime;
-    }
-
-    public void setReleseTime(String releseTime) {
-        this.releseTime = releseTime;
-    }
-
-    public String getRoleType() {
-        return roleType;
-    }
-
-    public void setRoleType(String roleType) {
-        this.roleType = roleType;
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
-    public String getServiceUserIds() {
-        return serviceUserIds;
-    }
-
-    public void setServiceUserIds(String serviceUserIds) {
-        this.serviceUserIds = serviceUserIds;
-    }
-
-    public String getCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(String customerType) {
-        this.customerType = customerType;
-    }
-
-    public String getTotalFollowStatus() {
-        return totalFollowStatus;
-    }
-
-    public void setTotalFollowStatus(String totalFollowStatus) {
-        this.totalFollowStatus = totalFollowStatus;
-    }
-
-    public String getPrimaryValue() {
-        return primaryValue;
-    }
-
-    public void setPrimaryValue(String primaryValue) {
-        this.primaryValue = primaryValue;
-    }
-
-    public String getExpireDay() {
-        return expireDay;
-    }
-
-    public void setExpireDay(String expireDay) {
-        this.expireDay = expireDay;
-    }
-
-    public String getCusLevel() {
-        return cusLevel;
-    }
-
-    public void setCusLevel(String cusLevel) {
-        this.cusLevel = cusLevel;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCompanyType() {
-        return companyType;
-    }
-
-    public void setCompanyType(String companyType) {
-        this.companyType = companyType;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
-
-    public String getNorms() {
-        return norms;
-    }
-
-    public void setNorms(String norms) {
-        this.norms = norms;
-    }
-
     public String getProvinceName() {
         return provinceName;
     }
@@ -402,6 +207,14 @@ public class Customer implements Serializable {
 
     public void setCusLevelDesc(String cusLevelDesc) {
         this.cusLevelDesc = cusLevelDesc;
+    }
+
+    public String getFollowStatusDesc() {
+        return followStatusDesc;
+    }
+
+    public void setFollowStatusDesc(String followStatusDesc) {
+        this.followStatusDesc = followStatusDesc;
     }
 
     public String getReason() {
@@ -610,5 +423,205 @@ public class Customer implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(String expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getServiceUserId() {
+        return serviceUserId;
+    }
+
+    public void setServiceUserId(String serviceUserId) {
+        this.serviceUserId = serviceUserId;
+    }
+
+    public String getRemarkContent() {
+        return remarkContent;
+    }
+
+    public void setRemarkContent(String remarkContent) {
+        this.remarkContent = remarkContent;
+    }
+
+    public String getMainProduct() {
+        return mainProduct;
+    }
+
+    public void setMainProduct(String mainProduct) {
+        this.mainProduct = mainProduct;
+    }
+
+    public String getAccountNum() {
+        return accountNum;
+    }
+
+    public void setAccountNum(String accountNum) {
+        this.accountNum = accountNum;
+    }
+
+    public String getIsExpire() {
+        return isExpire;
+    }
+
+    public void setIsExpire(String isExpire) {
+        this.isExpire = isExpire;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getDefaultText() {
+        return defaultText;
+    }
+
+    public void setDefaultText(String defaultText) {
+        this.defaultText = defaultText;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getReleseTime() {
+        return releseTime;
+    }
+
+    public void setReleseTime(String releseTime) {
+        this.releseTime = releseTime;
+    }
+
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getServiceUserIds() {
+        return serviceUserIds;
+    }
+
+    public void setServiceUserIds(String serviceUserIds) {
+        this.serviceUserIds = serviceUserIds;
+    }
+
+    public String getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
+    }
+
+    public String getTotalFollowStatus() {
+        return totalFollowStatus;
+    }
+
+    public void setTotalFollowStatus(String totalFollowStatus) {
+        this.totalFollowStatus = totalFollowStatus;
+    }
+
+    public String getPrimaryValue() {
+        return primaryValue;
+    }
+
+    public void setPrimaryValue(String primaryValue) {
+        this.primaryValue = primaryValue;
+    }
+
+    public String getExpireDay() {
+        return expireDay;
+    }
+
+    public void setExpireDay(String expireDay) {
+        this.expireDay = expireDay;
+    }
+
+    public String getCusLevel() {
+        return cusLevel;
+    }
+
+    public void setCusLevel(String cusLevel) {
+        this.cusLevel = cusLevel;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCompanyType() {
+        return companyType;
+    }
+
+    public void setCompanyType(String companyType) {
+        this.companyType = companyType;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getNorms() {
+        return norms;
+    }
+
+    public void setNorms(String norms) {
+        this.norms = norms;
     }
 }
