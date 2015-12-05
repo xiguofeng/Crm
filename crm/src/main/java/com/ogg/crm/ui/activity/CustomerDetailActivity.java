@@ -124,6 +124,7 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mEmailTv = (TextView) findViewById(R.id.customer_detail_email_tv);
         mTypeTv = (TextView) findViewById(R.id.customer_detail_customer_type_tv);
         mLevelTv = (TextView) findViewById(R.id.customer_detail_customer_level_tv);
+        mJobPostionTv= (TextView) findViewById(R.id.customer_detail_customer_job_tv);
 
         mCompanyNameTv = (TextView) findViewById(R.id.customer_detail_company_name_tv);
         mCompanyAddressTv = (TextView) findViewById(R.id.customer_detail_company_address_tv);
@@ -160,16 +161,17 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mTelPhoneTv.setText(!"null".equals(mCustomer.getTel()) ? mCustomer.getTel() : "");
         mQQTv.setText(!"null".equals(mCustomer.getQq()) ? mCustomer.getQq() : "");
         mEmailTv.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail() : "");
-        mTypeTv.setText(!"null".equals(mCustomer.getCustomerType()) ? mCustomer.getCustomerType() : "");
-        mLevelTv.setText(!"null".equals(mCustomer.getCusLevel()) ? mCustomer.getCusLevel() : "");
+        mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc() : "");
+        mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc() : "");
+        mJobPostionTv.setText(!"null".equals(mCustomer.getPosition()) ? mCustomer.getPosition() : "");
 
         mCompanyNameTv.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName() : "");
         mCompanyAddressTv.setText(!"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress() : "");
         mMainProductTv.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct() : "");
         mCompanyNetTv.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl() : "");
         mInboundChannelTv.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay() : "");
-        mProviceCityTv.setText(mCustomer.getProvince() + mCustomer.getCity());
-        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyType()) ? mCustomer.getCompanyType() : "");
+        mProviceCityTv.setText(mCustomer.getProvinceName() + mCustomer.getCityName());
+        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc() : "");
 
         mPreBuyProductTv.setText(!"null".equals(mCustomer.getKind()) ? mCustomer.getKind() : "");
         mProducingAreaTv.setText(!"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace() : "");

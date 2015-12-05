@@ -190,6 +190,34 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:padding="5dp"
+                    android:text="@string/customer_job_position"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/middle_text_size"/>
+
+                <TextView
+                    android:id="@+id/customer_detail_customer_job_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/middle_text_size"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:layout_marginTop="10dip"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:padding="5dp"
                     android:text="@string/customer_type"
                     android:textColor="@color/black"
                     android:textSize="@dimen/middle_text_size"/>
