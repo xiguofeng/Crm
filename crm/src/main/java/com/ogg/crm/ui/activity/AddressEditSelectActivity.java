@@ -205,7 +205,7 @@ public class AddressEditSelectActivity extends Activity implements
         mViewProvince.setVisibleItems(7);
         mViewCity.setVisibleItems(7);
         updateCities();
-        //updateAreas();
+        updateAreas();
     }
 
     @Override
@@ -214,6 +214,7 @@ public class AddressEditSelectActivity extends Activity implements
         if (wheel == mViewProvince) {
             updateCities();
         } else if (wheel == mViewCity) {
+            updateAreas();
         }
     }
 
@@ -242,7 +243,7 @@ public class AddressEditSelectActivity extends Activity implements
         mViewCity.setViewAdapter(new ArrayWheelAdapter<AddressData>(this,
                 cities));
         mViewCity.setCurrentItem(0);
-        //updateAreas();
+        updateAreas();
     }
 
     @Override
