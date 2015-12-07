@@ -635,6 +635,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 mFilterTypeTv.setText("");
                 mFilterTradeTv.setText("");
                 mFilterStateTv.setText("");
+                break;
             }
             case R.id.customer_list_distribution_btn: {
                 if (mIsHasSelect) {
@@ -644,7 +645,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     Toast.makeText(mContext, "请选择客户!",
                             Toast.LENGTH_SHORT).show();
                 }
-
+                break;
 //                final CharSequence[] items = {"Red", "Green", "Blue"};
 //                AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //                builder.setTitle("Pick a color");
@@ -663,6 +664,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     Toast.makeText(mContext, "请选择客户!",
                             Toast.LENGTH_SHORT).show();
                 }
+                break;
             }
             default: {
                 break;

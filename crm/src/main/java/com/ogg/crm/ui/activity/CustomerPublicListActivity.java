@@ -525,6 +525,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                 mFilterTypeTv.setText("");
                 mFilterTradeTv.setText("");
                 mFilterStateTv.setText("");
+                break;
             }
             default: {
                 break;
