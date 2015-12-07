@@ -107,13 +107,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/small_text_size"/>
         </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:background="@drawable/h_line">
-        </LinearLayout>
 
         <TextView
             android:id="@+id/main_no_tv"

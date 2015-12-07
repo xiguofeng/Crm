@@ -3,7 +3,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/white"
+              android:background="@color/gray_bg"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -32,714 +32,792 @@
     </RelativeLayout>
 
     <ScrollView android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
             android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="20dip"
-                android:orientation="horizontal">
+                android:layout_margin="10dp"
+                android:background="@drawable/corners_bg_gray"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_name"
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginTop="10dip"
+                    android:text="@string/customer_basic_info"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:textSize="@dimen/medium_text_size"/>
 
-                <TextView
-                    android:id="@+id/customer_detail_name_tv"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginRight="25dip"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/h_line">
+                </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_telephone"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_telephone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_mphone"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_mobilephone_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/qq"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_qq_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_email"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_email_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_job_position"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_customer_job_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_type"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_customer_type_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_level"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_customer_level_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
+                android:layout_margin="10dp"
+                android:background="@drawable/corners_bg_gray"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_telephone"
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginTop="10dip"
+                    android:text="@string/company_basic_info"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:textSize="@dimen/medium_text_size"/>
 
-                <TextView
-                    android:id="@+id/customer_detail_telephone_tv"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginRight="25dip"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/h_line">
+                </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/company_name_tag"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_company_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/customer_detail_company_address_tag_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/company_address"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_company_address_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/company_type"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_company_type_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/main_product"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_main_product_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/province_city"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_province_city_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/company_net"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_company_net_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
+                android:layout_margin="10dp"
+                android:background="@drawable/corners_bg_gray"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_mphone"
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginTop="10dip"
+                    android:text="@string/settlement_basic_info"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:textSize="@dimen/medium_text_size"/>
 
-                <TextView
-                    android:id="@+id/customer_detail_mobilephone_tv"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="25dip"
+                    android:layout_marginRight="25dip"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/h_line">
+                </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/qq"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/customer_detail_qq_tv"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/inbound_channel"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_inbound_channel_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/pre_buy_product"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/customer_detail_pre_buy_product_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_email"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/customer_detail_email_tv"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/producing_area"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_producing_area_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/standard"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/customer_detail_standard_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_job_position"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/customer_detail_customer_job_tv"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/number"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/settlement_type"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/customer_detail_settlement_type_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_type"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/customer_detail_customer_type_tv"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/customer_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_customer_account_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/is_has_log"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/customer_detail_is_has_log_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/company_name_tag"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/customer_detail_company_name_tv"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/last_settlement_time"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
+
+                    <TextView
+                        android:id="@+id/customer_detail_last_settlement_time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/follow_state"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/customer_detail_follow_state_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/customer_detail_company_address_tag_tv"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/company_address"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:layout_marginTop="10dip"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
-                <TextView
-                    android:id="@+id/customer_detail_company_address_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:padding="5dp"
+                        android:text="@string/follow_record"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/middle_text_size"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/company_type"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_company_type_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/main_product"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_main_product_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_level"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_customer_level_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/province_city"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_province_city_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/company_net"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_company_net_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/inbound_channel"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_inbound_channel_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/pre_buy_product"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_pre_buy_product_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/producing_area"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_producing_area_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/standard"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_standard_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/number"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_number_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/settlement_type"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_settlement_type_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/customer_account"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_customer_account_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/is_has_log"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_is_has_log_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/last_settlement_time"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_last_settlement_time_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/follow_state"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_follow_state_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="10dip"
-                android:visibility="gone"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="5dp"
-                    android:text="@string/follow_record"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-
-                <TextView
-                    android:id="@+id/customer_detail_follow_record_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:padding="5dp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/middle_text_size"/>
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/customer_detail_follow_record_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:textColor="@color/black_character"
+                        android:textSize="@dimen/middle_text_size"/>
+                </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
