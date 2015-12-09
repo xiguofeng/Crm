@@ -373,6 +373,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         }
         if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
             mCustomer = (Customer) getIntent().getSerializableExtra(CustomerDetailActivity.CUSTOMER_KEY);
+            mTitleTv.setText(getString(R.string.update_customer_info));
             fillUpCustomerData();
         } else {
             mCustomer = new Customer();
@@ -453,6 +454,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mEmailEt.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail().trim() : "");
         mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc().trim() : "");
         mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc().trim() : "");
+
+        if (!"null".equals(mCustomer.getCusLevelDesc())) {
+            mLevel = mCustomer.getCusLevel();
+        }
+        if (!"null".equals(mCustomer.getCustomerType())) {
+            mType = mCustomer.getCustomerType();
+        }
     }
 
     private void fillUpCompanyData() {
@@ -465,6 +473,16 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         String city = !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
         mProviceCityTv.setText(province + city);
         mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
+
+        if (!"null".equals(mCustomer.getProvince())) {
+            mProviceCode = mCustomer.getProvince();
+        }
+        if (!"null".equals(mCustomer.getCity())) {
+            mCityCode = mCustomer.getCity();
+        }
+        if (!"null".equals(mCustomer.getCompanyType())) {
+            mCompanyType = mCustomer.getCompanyType();
+        }
     }
 
     private void fillUpTradeData() {
@@ -479,6 +497,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         String isHasLog = !"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire().trim() : "";
         if (!TextUtils.isEmpty(isHasLog) && "1".equals(isHasLog)) {
             mIsHasLogCb.setChecked(true);
+            mIsHasLog = "1";
+        }
+
+        if (!"null".equals(mCustomer.getLastestTradeTime())) {
+            mLastTradeTime = mCustomer.getLastestTradeTime();
         }
     }
 
@@ -589,6 +612,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setCompanyType(mCompanyTypeTv.getText().toString());
                 mCustomer.setProvince(mProviceCode);
                 mCustomer.setCity(mCityCode);
+                mCustomer.setCompanyType(mCompanyType);
 
                 setView3();
                 if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
