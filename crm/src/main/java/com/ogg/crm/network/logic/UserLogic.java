@@ -71,7 +71,7 @@ public class UserLogic {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("xxx_1234", "" + response.toString());
+                Log.e("xxx_login", "" + response.toString());
                 parseLoginData(response, handler);
             }
         }, new Response.ErrorListener() {

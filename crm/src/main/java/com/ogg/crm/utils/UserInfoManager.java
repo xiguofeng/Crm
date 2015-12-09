@@ -25,6 +25,8 @@ public class UserInfoManager {
 
     public static final String USER_ROLE_KEY = "roleType";
 
+    public static final String USER_MENU_RIGHT_KEY = "menuRight";
+
     public static final String USER_PHONE_KEY = "phone";
 
     public static final String USER_ADDRESS_KEY = "address";
@@ -64,6 +66,8 @@ public class UserInfoManager {
                 USER_NAME_KEY, ""));
         UserInfoManager.userInfo.setRoleType(userInfoPreferences.getString(
                 USER_ROLE_KEY, ""));
+        UserInfoManager.userInfo.setMenuRight(userInfoPreferences.getString(
+                USER_MENU_RIGHT_KEY, ""));
 
         UserInfoManager.userInfo.setLogonName(userInfoPreferences.getString(
                 USER_ACCOUNT_KEY, ""));
@@ -87,6 +91,8 @@ public class UserInfoManager {
             userInfoSp.putString(USER_NAME_KEY, user.getRoleName());
             userInfoSp.putString(USER_ROLE_KEY, null == user.getRoleType() ? ""
                     : user.getRoleType());
+            userInfoSp.putString(USER_MENU_RIGHT_KEY, null == user.getMenuRight() ? ""
+                    : user.getMenuRight());
 
             userInfoSp.putString(USER_ACCOUNT_KEY, user.getLogonName());
             userInfoSp.putString(USER_PWD_KEY, user.getLogonPass());
@@ -104,6 +110,7 @@ public class UserInfoManager {
         userInfoSp.putString(USER_ID_KEY, "");
         userInfoSp.putString(USER_NAME_KEY, "");
         userInfoSp.putString(USER_ROLE_KEY, "");
+        userInfoSp.putString(USER_MENU_RIGHT_KEY, "");
 
         userInfoSp.putString(USER_ACCOUNT_KEY, "");
         userInfoSp.putString(USER_PWD_KEY, "");
@@ -118,6 +125,7 @@ public class UserInfoManager {
         UserInfoManager.userInfo.setLogonPass("");
         UserInfoManager.userInfo.setRoleName("");
         UserInfoManager.userInfo.setRoleType("");
+        UserInfoManager.userInfo.setMenuRight("");
     }
 
     /**

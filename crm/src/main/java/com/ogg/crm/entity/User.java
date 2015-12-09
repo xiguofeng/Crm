@@ -2,6 +2,40 @@ package com.ogg.crm.entity;
 
 public class User {
 
+    private String userId;
+
+    /**
+     * 用户名
+     */
+    private String logonName;
+
+    /**
+     * 真实姓名
+     */
+    private String roleName;
+
+    /**
+     * 登录密码
+     */
+    private String logonPass;
+
+    /**
+     * 全称
+     */
+    private String fullName;
+
+
+    /**
+     * 角色
+     */
+    private String roleType;
+
+
+    /**
+     * 菜单权限
+     */
+    private String menuRight;
+
     public String getUserId() {
         return userId;
     }
@@ -50,33 +84,11 @@ public class User {
         this.roleType = roleType;
     }
 
-    private String userId;
+    public String getMenuRight() {
+        return menuRight;
+    }
 
-    /**
-     * 用户名
-     */
-    private String logonName;
-
-    /**
-     * 真实姓名
-     */
-    private String roleName;
-
-    /**
-     * 登录密码
-     */
-    private String logonPass;
-
-    /**
-     * 全称
-     */
-    private String fullName;
-
-
-    /**
-     * 角色
-     */
-    private String roleType;
-
-
+    public void setMenuRight(String menuRight) {
+        this.menuRight = menuRight;
+    }
 }

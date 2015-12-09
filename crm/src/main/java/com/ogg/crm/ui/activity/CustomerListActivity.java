@@ -24,6 +24,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -84,8 +85,10 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private ImageView mBackIv;
     private ImageView mAddCustomerIv;
 
+    private LinearLayout mBottomMenuLl;
     private Button mDistributionBtn;
     private Button mGiveUpBtn;
+    private Button mGiveUpBtn2;
 
     private Button mClearBtn;
 
@@ -316,11 +319,16 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
         mSearchKeyEt.addTextChangedListener(this);
 
+        mBottomMenuLl = (LinearLayout) findViewById(R.id.customer_list_bottom_menu_ll);
+
         mDistributionBtn = (Button) findViewById(R.id.customer_list_distribution_btn);
         mDistributionBtn.setOnClickListener(this);
 
         mGiveUpBtn = (Button) findViewById(R.id.customer_list_give_up_btn);
         mGiveUpBtn.setOnClickListener(this);
+
+        mGiveUpBtn2 = (Button) findViewById(R.id.customer_list_give_up_btn2);
+        mGiveUpBtn2.setOnClickListener(this);
 
         initFilterView();
         initListView();
@@ -328,6 +336,17 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     }
 
     private void initData() {
+        if (null == UserInfoManager.userInfo) {
+            UserInfoManager.setUserInfo(mContext);
+        }
+        mBottomMenuLl.setVisibility(View.GONE);
+        mGiveUpBtn2.setVisibility(View.GONE);
+        if ("true".equals(UserInfoManager.userInfo.getMenuRight())) {
+            mBottomMenuLl.setVisibility(View.VISIBLE);
+        } else {
+            mGiveUpBtn2.setVisibility(View.VISIBLE);
+        }
+
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
@@ -684,6 +703,15 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 //                alert.show();
             }
             case R.id.customer_list_give_up_btn: {
+                if (mIsHasSelect) {
+                    showDialog();
+                } else {
+                    Toast.makeText(mContext, "请选择客户!",
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+            case R.id.customer_list_give_up_btn2: {
                 if (mIsHasSelect) {
                     showDialog();
                 } else {
