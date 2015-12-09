@@ -1,5 +1,6 @@
 package com.ogg.crm.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,7 +11,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -47,7 +50,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class CustomerListActivity extends Activity implements OnClickListener,
-        ListItemCheckClickHelp, XListView.IXListViewListener {
+        ListItemCheckClickHelp, XListView.IXListViewListener,
+        TextWatcher {
 
     private Context mContext;
 
@@ -207,10 +211,10 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     if (null != msg.obj) {
                         Toast.makeText(mContext, (String) msg.obj,
                                 Toast.LENGTH_SHORT).show();
-                    }else{
-                    Toast.makeText(mContext, "指派失败!",
-                            Toast.LENGTH_SHORT).show();
-                    break;
+                    } else {
+                        Toast.makeText(mContext, "指派失败!",
+                                Toast.LENGTH_SHORT).show();
+                        break;
                     }
                 }
                 case CustomerLogic.DIS_CUS_SET_EXCEPTION: {
@@ -310,6 +314,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         mSearchTv.setOnClickListener(this);
 
         mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
+        mSearchKeyEt.addTextChangedListener(this);
 
         mDistributionBtn = (Button) findViewById(R.id.customer_list_distribution_btn);
         mDistributionBtn.setOnClickListener(this);
@@ -325,7 +330,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private void initData() {
         mProgressDialog.show();
         mCurrentPage = 1;
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void initFilterView() {
@@ -462,7 +468,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 switch (which) {
                     case Dialog.BUTTON_POSITIVE: {
                         mProgressDialog.show();
-                        CustomerLogic.giveUpCustomer(mContext,mGiveUpHandler,UserInfoManager.getUserId(mContext),getCustomerIds());
+                        CustomerLogic.giveUpCustomer(mContext, mGiveUpHandler, UserInfoManager.getUserId(mContext), getCustomerIds());
                         break;
                     }
                     case Dialog.BUTTON_NEGATIVE:
@@ -566,6 +572,26 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 //                    R.color.gray_bg));
         }
     }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,
+                                  int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        mSearchKeyEt.setClearIconVisible(s.length() > 0);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (s.length() == 0) {
+            initData();
+        }
+    }
+
 
     @Override
     public void onClick(View v) {

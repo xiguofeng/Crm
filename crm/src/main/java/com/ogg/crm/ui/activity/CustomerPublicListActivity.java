@@ -1,5 +1,6 @@
 package com.ogg.crm.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -43,7 +46,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class CustomerPublicListActivity extends Activity implements OnClickListener,
-        ListItemCheckClickHelp, XListView.IXListViewListener {
+        ListItemCheckClickHelp, XListView.IXListViewListener,
+        TextWatcher {
 
     private Context mContext;
 
@@ -220,6 +224,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mSearchTv.setOnClickListener(this);
 
         mSearchKeyEt = (AutoClearEditText) findViewById(R.id.customer_list_search_et);
+        mSearchKeyEt.addTextChangedListener(this);
 
         mTitleTv = (TextView) findViewById(R.id.customer_list_title_name_tv);
         mTitleTv.setText(getResources().getString(R.string.public_customer));
@@ -228,7 +233,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mDistributionBtn.setOnClickListener(this);
         mDistributionBtn.setVisibility(View.GONE);
 
-        mBottomMenuLl=(LinearLayout) findViewById(R.id.customer_list_bottom_menu_ll);
+        mBottomMenuLl = (LinearLayout) findViewById(R.id.customer_list_bottom_menu_ll);
         mBottomMenuLl.setVisibility(View.GONE);
 
         initFilterView();
@@ -238,6 +243,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     private void initData() {
         mProgressDialog.show();
+        mCurrentPage = 1;
         CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
                 String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
 //
@@ -425,6 +431,25 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,
+                                  int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        mSearchKeyEt.setClearIconVisible(s.length() > 0);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (s.length() == 0) {
+            initData();
+        }
     }
 
     @Override
