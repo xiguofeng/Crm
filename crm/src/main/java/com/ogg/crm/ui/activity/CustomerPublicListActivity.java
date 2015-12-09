@@ -95,6 +95,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private Button mDistributionBtn;
     private LinearLayout mBottomMenuLl;
 
+    private Button mGiveUpBtn2;
+
     private int mCurrentPage = 1;
 
     private boolean mIsHasSelect = false;
@@ -235,6 +237,9 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
         mBottomMenuLl = (LinearLayout) findViewById(R.id.customer_list_bottom_menu_ll);
         mBottomMenuLl.setVisibility(View.GONE);
+
+        mGiveUpBtn2 = (Button) findViewById(R.id.customer_list_give_up_btn2);
+        mGiveUpBtn2.setVisibility(View.GONE);
 
         initFilterView();
         initListView();

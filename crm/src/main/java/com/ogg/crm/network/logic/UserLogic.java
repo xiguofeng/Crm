@@ -86,9 +86,13 @@ public class UserLogic {
                 Map<String, String> map = new HashMap<String, String>();
                 try {
                     map.put("logonName",
-                            URLEncoder.encode("b2badmin", "UTF-8"));
+                            URLEncoder.encode(user.getLogonName(), "UTF-8"));
                     map.put("logonPass",
-                            URLEncoder.encode("cggol", "UTF-8"));
+                            URLEncoder.encode(user.getLogonPass(), "UTF-8"));
+//                    map.put("logonName",
+//                            URLEncoder.encode("b2badmin", "UTF-8"));
+//                    map.put("logonPass",
+//                            URLEncoder.encode("cggol", "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

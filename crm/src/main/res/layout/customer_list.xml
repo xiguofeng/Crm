@@ -156,7 +156,7 @@
                 <Button android:id="@+id/customer_list_give_up_btn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="1dip"
+                        android:layout_marginLeft="0.5dip"
                         android:layout_weight="1"
                         android:background="@color/blue_bg"
                         android:padding="10dp"
