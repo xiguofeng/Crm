@@ -21,8 +21,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/blue_bg"
-                    android:orientation="horizontal"
-                    android:padding="10dip">
+                    android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/customer_list_back_iv"
@@ -30,6 +29,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
+                        android:padding="10dip"
                         android:scaleType="centerCrop"
                         android:src="@drawable/back_selector"/>
 
@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:padding="5dp"
+                        android:padding="10dip"
                         android:text="@string/filter"
                         android:textColor="@color/white"
                         android:textSize="@dimen/middle_text_size"/>

@@ -65,6 +65,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
 
     private Button mChangeStateBtn;
 
+    private String mNowAction = MY_ACTION;
+
     private CustomProgressDialog mProgressDialog;
 
     private Customer mCustomer;
@@ -154,8 +156,16 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
     }
 
     private void initData() {
-        mProgressDialog = new CustomProgressDialog(mContext);
-        //mProgressDialog.show();
+        String action = getIntent().getAction();
+        if (!TextUtils.isEmpty(action)) {
+            mNowAction = action;
+        }
+        if (mNowAction.equals(PUBLIC_ACTION)) {
+            mUpdateTv.setVisibility(View.GONE);
+        } else {
+            mUpdateTv.setVisibility(View.VISIBLE);
+        }
+
         mCustomer = (Customer) getIntent().getSerializableExtra(CUSTOMER_KEY);
         if (null != mCustomer) {
             fillUpData();
