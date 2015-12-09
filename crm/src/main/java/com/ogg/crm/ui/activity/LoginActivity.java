@@ -188,6 +188,7 @@ public class LoginActivity extends Activity implements OnClickListener,
 
             mAccountEt.setText(UserInfoManager.userInfo.getLogonName());
             mPassWordEt.setText(UserInfoManager.userInfo.getLogonPass());
+            mAccountEt.requestFocus();
         }
 
     }
