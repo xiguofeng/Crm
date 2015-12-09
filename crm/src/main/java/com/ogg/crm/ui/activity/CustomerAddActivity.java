@@ -167,6 +167,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             switch (what) {
                 case CustomerLogic.SAVE_SET_SUC: {
                     CustomerListActivity.isRefresh = true;
+                    Toast.makeText(mContext, "保存客户数据成功!",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 }
                 case CustomerLogic.SAVE_SET_FAIL: {
@@ -457,9 +460,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mNumberEt.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount().trim() : "");
         mSettlementTypeEt.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
         mCustomerAccountEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
-        mRemarkEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
-        mCustomerAccountEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
-        mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        mRemarkEt.setText(!"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent().trim() : "");
+        mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getLastestTradeTime()) ? mCustomer.getLastestTradeTime().trim() : "");
         String isHasLog = !"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire().trim() : "";
         if (!TextUtils.isEmpty(isHasLog) && "1".equals(isHasLog)) {
             mIsHasLogCb.setChecked(true);
@@ -498,8 +500,6 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     mLastTradeTime = data.getStringExtra("date_value");
                     mLastTradeTime = mLastTradeTime + " 00:00:00";
                     mLastTradeDate = new Date(TimeUtils.dateToLong(mLastTradeTime, TimeUtils.FORMAT_PATTERN_DATE));
-
-
                     break;
                 }
                 case 502: {
