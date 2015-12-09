@@ -175,6 +175,7 @@
                 android:layout_marginLeft="15dip" />
 
             <TextView
+                android:id="@+id/customer_info_add_mphone_star_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_info_add_mphone_et"
@@ -226,6 +227,7 @@
                 android:layout_marginLeft="15dip" />
 
             <TextView
+                android:id="@+id/customer_info_add_phone_star_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/customer_info_add_telephone_et"

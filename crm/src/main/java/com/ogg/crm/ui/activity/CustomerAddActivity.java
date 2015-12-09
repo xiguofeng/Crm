@@ -58,6 +58,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private View mLayout1, mLayout2, mLayout3;
 
+    private TextView mPhoneStarHintTv;
+    private TextView mMobileStarHintTv;
+
     private EditText mNameEt;
     private EditText mJobPostionEt;
     private EditText mMobilePhoneEt;
@@ -228,6 +231,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mBackIv = (ImageView) findViewById(R.id.customer_info_add_back_iv);
         mBackIv.setOnClickListener(this);
+
+        mPhoneStarHintTv = (TextView) findViewById(R.id.customer_info_add_phone_star_tv);
+        mMobileStarHintTv = (TextView) findViewById(R.id.customer_info_add_mphone_star_tv);
 
         mNameEt = (EditText) findViewById(R.id.customer_info_add_name_et);
         mJobPostionEt = (EditText) findViewById(R.id.customer_info_add_job_position_et);
@@ -409,7 +415,15 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             }
         }
 
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(tel) && !TextUtils.isEmpty(mobile)) {
+        mMobileStarHintTv.setVisibility(View.VISIBLE);
+        mPhoneStarHintTv.setVisibility(View.VISIBLE);
+        if (!TextUtils.isEmpty(name) && (!TextUtils.isEmpty(tel) || !TextUtils.isEmpty(mobile))) {
+            if (!TextUtils.isEmpty(tel) && TextUtils.isEmpty(mobile)) {
+                mMobileStarHintTv.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(mobile) && TextUtils.isEmpty(tel)) {
+                mPhoneStarHintTv.setVisibility(View.GONE);
+            }
             mNextBtn.setClickable(true);
             mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
         } else {
