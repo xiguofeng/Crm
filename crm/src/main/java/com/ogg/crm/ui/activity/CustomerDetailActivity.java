@@ -167,6 +167,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mLastSettlementTimeTv = (TextView) findViewById(R.id.customer_detail_last_settlement_time_tv);
         mFollowStateTv = (TextView) findViewById(R.id.customer_detail_follow_state_tv);
         mFollowRecordTv = (TextView) findViewById(R.id.customer_detail_follow_record_tv);
+        mRemarkTv = (TextView) findViewById(R.id.customer_detail_remark_tv);
+
     }
 
     private void initData() {
@@ -224,6 +226,7 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getLastestTradeTime()) ? mCustomer.getLastestTradeTime() : "");
         mFollowStateTv.setText(!"null".equals(mCustomer.getFollowStatusDesc()) ? mCustomer.getFollowStatusDesc() : "");
         mFollowRecordTv.setText(!"null".equals(mCustomer.getTotalFollowStatus()) ? mCustomer.getTotalFollowStatus() : "");
+        mRemarkTv.setText(!"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent() : "");
     }
 
     private void update() {
