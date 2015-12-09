@@ -706,7 +706,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
             } else {
                 ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
-                overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
+                //overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
             }
             return true;
         }

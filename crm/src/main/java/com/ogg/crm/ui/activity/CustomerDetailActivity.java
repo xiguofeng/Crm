@@ -238,8 +238,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
                     Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
                     startActivity(intent);
                     ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
-                    overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
-                }else{
+                    overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
+                } else {
                     ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
                 }
                 break;
@@ -261,12 +261,12 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (mNowAction.equals(CustomerDetailActivity.UPDATE_COMPLETE_ACTION)) {
-                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
-                Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
-                startActivity(intent);
+//                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
+//                Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
+//                startActivity(intent);
                 ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
-                overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
-            }else{
+//                overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
+            } else {
                 ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
             }
 
