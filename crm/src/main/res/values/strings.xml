@@ -23,6 +23,7 @@
     <string name="hint_must_star">*</string>
     <string name="distribution">分&#160;&#160;&#160;&#160;配</string>
     <string name="give_up">放&#160;&#160;&#160;&#160;弃</string>
+    <string name="update">修改</string>
 
     <string name="about">关于我们</string>
     <string name="app_breif">CRM（Android版本）是专门为Android手机用户量身打造的移动客户管理应用!</string>
@@ -44,6 +45,7 @@
     <string name="customer_info">客户信息</string>
     <string name="customer_basic_info">客户基本信息</string>
     <string name="add_customer">添加客户</string>
+    <string name="update_customer_info">修改客户信息</string>
     <string name="customer_mphone">客户手机</string>
     <string name="customer_telephone">客户电话</string>
     <string name="customer_job_position">公司职位</string>

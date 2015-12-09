@@ -45,6 +45,13 @@ import java.util.HashMap;
  */
 public class CustomerAddActivity extends Activity implements OnClickListener,
         TextWatcher {
+
+    public static final String ORIGIN_FROM_ADD_KEY = "com.add";
+
+    public static final String ORIGIN_FROM_UPDATE_KEY = "com.update";
+
+    private TextView mTitleTv;
+
     private Context mContext;
 
     private ImageView mBackIv;
@@ -108,6 +115,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private Date mLastTradeDate;
 
     private Customer mCustomer;
+
+    private String mNowAction = ORIGIN_FROM_ADD_KEY;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -209,6 +218,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private void setView1() {
         setContentView(mLayout1);
 
+        mTitleTv = (TextView) findViewById(R.id.customer_info_add_title_tv);
+        if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
+            mTitleTv.setText(getString(R.string.update_customer_info));
+        }
+
         mBackIv = (ImageView) findViewById(R.id.customer_info_add_back_iv);
         mBackIv.setOnClickListener(this);
 
@@ -242,6 +256,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private void setView2() {
         setContentView(mLayout2);
+
+        mTitleTv = (TextView) findViewById(R.id.customer_add_company_title_tv);
+        if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
+            mTitleTv.setText(getString(R.string.update_customer_info));
+        }
 
         mBackIv = (ImageView) findViewById(R.id.customer_add_company_back_iv);
         mBackIv.setOnClickListener(this);
@@ -282,6 +301,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private void setView3() {
         setContentView(mLayout3);
 
+        mTitleTv = (TextView) findViewById(R.id.customer_add_settlement_title_tv);
+        if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
+            mTitleTv.setText(getString(R.string.update_customer_info));
+        }
+
         mBackIv = (ImageView) findViewById(R.id.customer_add_settlement_back_iv);
         mBackIv.setOnClickListener(this);
 
@@ -296,19 +320,20 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mLastSettlementTimeTv = (TextView) findViewById(R.id.customer_add_last_settlement_time_tv);
         mIsHasLogCb = (CheckBox) findViewById(R.id.customer_add_number_cb);
 
-
         mIsHasLogCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-                if (isChecked) {
-                    mIsHasLog = "1";
-                } else {
-                    mIsHasLog = "0";
-                }
-            }
-        });
+                                                   @Override
+                                                   public void onCheckedChanged(CompoundButton buttonView,
+                                                                                boolean isChecked) {
+                                                       if (isChecked) {
+                                                           mIsHasLog = "1";
+                                                       } else {
+                                                           mIsHasLog = "0";
+                                                       }
+                                                   }
+                                               }
+
+        );
         mPreBuyProductEt.addTextChangedListener(this);
         mProducingAreaEt.addTextChangedListener(this);
         mStandardEt.addTextChangedListener(this);
@@ -318,15 +343,34 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mRemarkEt.addTextChangedListener(this);
         mLastSettlementTimeRl.setOnClickListener(this);
 
-        mSettlementPreBtn = (Button) findViewById(R.id.customer_settlement_info_add_previous_btn);
+        mSettlementPreBtn = (Button)
+
+                findViewById(R.id.customer_settlement_info_add_previous_btn);
+
         mSettlementPreBtn.setOnClickListener(this);
-        mSaveBtn = (Button) findViewById(R.id.customer_settlement_info_add_save_btn);
+        mSaveBtn = (Button)
+
+                findViewById(R.id.customer_settlement_info_add_save_btn);
+
         mSaveBtn.setOnClickListener(this);
 
         isView3Load = true;
     }
 
     private void initData() {
+        String action = getIntent().getAction();
+        if (!TextUtils.isEmpty(action)) {
+            mNowAction = action;
+        }
+        if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
+            mCustomer = (Customer) getIntent().getSerializableExtra(CustomerDetailActivity.CUSTOMER_KEY);
+            fillUpCustomerData();
+        } else {
+            mCustomer = new Customer();
+            mCustomer.setUserId(UserInfoManager.getUserId(mContext));
+            mCustomer.setServiceUserId(UserInfoManager.getUserId(mContext));
+        }
+
         if (!ConfigInfoService.sCustomerCategoryInfoMap.isEmpty()) {
             sCategoryInfoMap.clear();
             sCategoryInfoMap.putAll(ConfigInfoService.sCustomerCategoryInfoMap);
@@ -335,15 +379,12 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             for (int i = 0; i < mCategorys.length; i++) {
                 CustomerLogic.getConfInfo(mContext, mCategoryHandler, mCategorys[i]);
             }
-            Intent intentService = new Intent(getApplicationContext(),
+            Intent intentService = new Intent(mContext,
                     ConfigInfoService.class);
-            getApplicationContext().startService(intentService);
+            mContext.startService(intentService);
         }
 
 
-        mCustomer = new Customer();
-        mCustomer.setUserId(UserInfoManager.getUserId(mContext));
-        mCustomer.setServiceUserId(UserInfoManager.getUserId(mContext));
     }
 
     private void checkInput() {
@@ -351,24 +392,21 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         String tel = mTelPhoneEt.getText().toString().trim();
         String mobile = mMobilePhoneEt.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(mobile)){
-            if(!PhoneUtils.isMobile(mobile)){
-                CharSequence html= Html.fromHtml("<font color='red'>手机号格式不正确</font>");
+        if (!TextUtils.isEmpty(mobile)) {
+            if (!PhoneUtils.isMobile(mobile)) {
+                CharSequence html = Html.fromHtml("<font color='red'>手机号格式不正确</font>");
                 mMobilePhoneEt.setError(html);
             }
         }
 
-        if(!TextUtils.isEmpty(tel)){
-            if(!PhoneUtils.isPhone(tel)){
-                CharSequence html= Html.fromHtml("<font color='red'>电话号码格式不正确</font>");
+        if (!TextUtils.isEmpty(tel)) {
+            if (!PhoneUtils.isPhone(tel)) {
+                CharSequence html = Html.fromHtml("<font color='red'>电话号码格式不正确</font>");
                 mTelPhoneEt.setError(html);
             }
         }
 
         if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(tel) && !TextUtils.isEmpty(mobile)) {
-
-
-
             mNextBtn.setClickable(true);
             mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
         } else {
@@ -386,6 +424,45 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCompanyNextBtn.setClickable(false);
                 mCompanyNextBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
             }
+        }
+    }
+
+    private void fillUpCustomerData() {
+        mNameEt.setText(!"null".equals(mCustomer.getName()) ? mCustomer.getName().trim() : "");
+        mJobPostionEt.setText(!"null".equals(mCustomer.getPosition()) ? mCustomer.getPosition().trim() : "");
+        mMobilePhoneEt.setText(!"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile().trim() : "");
+        mTelPhoneEt.setText(!"null".equals(mCustomer.getTel()) ? mCustomer.getTel().trim() : "");
+        mQQEt.setText(!"null".equals(mCustomer.getQq()) ? mCustomer.getQq().trim() : "");
+        mEmailEt.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail().trim() : "");
+        mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc().trim() : "");
+        mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc().trim() : "");
+    }
+
+    private void fillUpCompanyData() {
+        mCompanyNameEt.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName().trim() : "");
+        mCompanyAddressEt.setText(!"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress().trim() : "");
+        mMainProductEt.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct().trim() : "");
+        mCompanyNetEt.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl().trim() : "");
+        mInboundChannelEt.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
+        String province = !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
+        String city = !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
+        mProviceCityTv.setText(province + city);
+        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
+    }
+
+    private void fillUpTradeData() {
+        mPreBuyProductEt.setText(!"null".equals(mCustomer.getKind()) ? mCustomer.getKind().trim() : "");
+        mProducingAreaEt.setText(!"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace().trim() : "");
+        mStandardEt.setText(!"null".equals(mCustomer.getNorms()) ? mCustomer.getNorms().trim() : "");
+        mNumberEt.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount().trim() : "");
+        mSettlementTypeEt.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
+        mCustomerAccountEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        mRemarkEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        mCustomerAccountEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        String isHasLog = !"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire().trim() : "";
+        if (!TextUtils.isEmpty(isHasLog) && "1".equals(isHasLog)) {
+            mIsHasLogCb.setChecked(true);
         }
     }
 
@@ -478,6 +555,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setCustomerType(mType);
 
                 setView2();
+                if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
+                    fillUpCompanyData();
+                }
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             }
@@ -497,6 +577,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setCity(mCityCode);
 
                 setView3();
+                if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
+                    fillUpTradeData();
+                }
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 break;
             }

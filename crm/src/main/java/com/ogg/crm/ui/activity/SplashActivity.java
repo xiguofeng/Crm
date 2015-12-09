@@ -1,5 +1,6 @@
 package com.ogg.crm.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,11 +24,13 @@ public class SplashActivity extends BaseActivity {
 
     protected Handler mHandler = null;
 
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-
+        mContext = SplashActivity.this;
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -70,9 +73,9 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                Intent intentService = new Intent(getApplicationContext(),
+                Intent intentService = new Intent(mContext,
                         ConfigInfoService.class);
-                getApplicationContext().startService(intentService);
+                mContext.startService(intentService);
 
                 if (UserInfoManager.getLoginIn(SplashActivity.this)) {
                     UserInfoManager.setUserInfo(SplashActivity.this);

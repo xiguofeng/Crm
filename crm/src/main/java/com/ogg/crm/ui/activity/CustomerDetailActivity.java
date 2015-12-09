@@ -2,6 +2,7 @@ package com.ogg.crm.ui.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -28,6 +29,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
     public static final String PUBLIC_ACTION = "public_action";
 
     private Context mContext;
+
+    private TextView mUpdateTv;
 
     private ImageView mBackIv;
 
@@ -118,6 +121,9 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mBackIv = (ImageView) findViewById(R.id.customer_detail_back_iv);
         mBackIv.setOnClickListener(this);
 
+        mUpdateTv = (TextView) findViewById(R.id.customer_detail_update_tv);
+        mUpdateTv.setOnClickListener(this);
+
         mNameTv = (TextView) findViewById(R.id.customer_detail_name_tv);
         mMobilePhoneTv = (TextView) findViewById(R.id.customer_detail_mobilephone_tv);
         mTelPhoneTv = (TextView) findViewById(R.id.customer_detail_telephone_tv);
@@ -196,11 +202,30 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mFollowRecordTv.setText(!"null".equals(mCustomer.getTotalFollowStatus()) ? mCustomer.getTotalFollowStatus() : "");
     }
 
+    private void update() {
+        if (null != mCustomer) {
+            Intent intent = new Intent(CustomerDetailActivity.this,
+                    CustomerAddActivity.class);
+            intent.setAction(CustomerAddActivity.ORIGIN_FROM_UPDATE_KEY);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(CUSTOMER_KEY,
+                    mCustomer);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+    }
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.customer_detail_back_iv: {
                 finish();
+                break;
+            }
+
+            case R.id.customer_detail_update_tv: {
+                update();
                 break;
             }
 
