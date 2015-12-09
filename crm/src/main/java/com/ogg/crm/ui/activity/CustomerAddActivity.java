@@ -184,7 +184,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     intent.putExtras(bundle);
                     startActivity(intent);
 
-                    finish();
+                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerAddActivity");
+                    overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
                     break;
                 }
                 case CustomerLogic.SAVE_SET_FAIL: {

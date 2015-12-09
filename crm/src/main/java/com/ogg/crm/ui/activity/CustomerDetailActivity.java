@@ -237,8 +237,11 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
                     ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
                     Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
                     startActivity(intent);
+                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
+                    overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
+                }else{
+                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
                 }
-                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
                 break;
             }
 
@@ -261,8 +264,12 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
                 ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
                 Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
                 startActivity(intent);
+                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
+                overridePendingTransition(R.anim.push_right_in,R.anim.push_down_out);
+            }else{
+                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
             }
-            ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
+
             return true;
         }
         return super.onKeyDown(keyCode, event);
