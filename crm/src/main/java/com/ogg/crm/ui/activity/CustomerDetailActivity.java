@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,6 +28,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
     public static final String MY_ACTION = "my_action";
 
     public static final String PUBLIC_ACTION = "public_action";
+
+    public static final String UPDATE_COMPLETE_ACTION = "com.update.complete";
 
     private Context mContext;
 
@@ -230,7 +233,12 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.customer_detail_back_iv: {
-                finish();
+                if (mNowAction.equals(CustomerDetailActivity.UPDATE_COMPLETE_ACTION)) {
+                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
+                    Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
+                    startActivity(intent);
+                }
+                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
                 break;
             }
 
@@ -243,5 +251,20 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
                 break;
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (mNowAction.equals(CustomerDetailActivity.UPDATE_COMPLETE_ACTION)) {
+                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
+                Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
+                startActivity(intent);
+            }
+            ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

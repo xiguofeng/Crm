@@ -30,6 +30,7 @@ import com.ogg.crm.entity.CustomerInfoCategory;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
+import com.ogg.crm.utils.ActivitiyInfoManager;
 import com.ogg.crm.utils.JsonUtils;
 import com.ogg.crm.utils.PhoneUtils;
 import com.ogg.crm.utils.TimeUtils;
@@ -172,6 +173,17 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     CustomerListActivity.isRefresh = true;
                     Toast.makeText(mContext, "保存客户数据成功!",
                             Toast.LENGTH_SHORT).show();
+                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
+
+                    Intent intent = new Intent(CustomerAddActivity.this,
+                            CustomerDetailActivity.class);
+                    intent.setAction(CustomerDetailActivity.UPDATE_COMPLETE_ACTION);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
+                            mCustomer);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
                     finish();
                     break;
                 }
@@ -179,9 +191,10 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     if (null != msg.obj) {
                         Toast.makeText(mContext, (String) msg.obj,
                                 Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(mContext, "保存客户数据失败!",
+                                Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(mContext, "保存客户数据失败!",
-                            Toast.LENGTH_SHORT).show();
                     break;
                 }
                 case CustomerLogic.SAVE_SET_EXCEPTION: {
@@ -381,7 +394,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             mCustomer.setServiceUserId(UserInfoManager.getUserId(mContext));
         }
 
-        if (!ConfigInfoService.sCustomerCategoryInfoMap.isEmpty()) {
+        if (null != ConfigInfoService.sCustomerCategoryInfoMap && !ConfigInfoService.sCustomerCategoryInfoMap.isEmpty() && ConfigInfoService.sCustomerCategoryInfoMap.size() >= mCategorys.length) {
             sCategoryInfoMap.clear();
             sCategoryInfoMap.putAll(ConfigInfoService.sCustomerCategoryInfoMap);
         } else {

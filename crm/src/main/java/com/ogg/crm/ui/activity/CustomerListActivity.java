@@ -602,7 +602,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_list_back_iv: {
-                finish();
+                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
                 break;
             }
             case R.id.customer_list_filter_tv: {
@@ -705,7 +705,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
             } else {
-                finish();
+                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
             }
             return true;
         }
