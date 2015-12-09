@@ -72,6 +72,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
 
     private CustomProgressDialog mProgressDialog;
 
+    public static Customer sCustomer;
+
     private Customer mCustomer;
 
     Handler mHandler = new Handler() {
@@ -120,6 +122,15 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         initView();
         initData();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (null != sCustomer) {
+            mCustomer = sCustomer;
+            fillUpData();
+        }
     }
 
     private void initView() {

@@ -171,19 +171,22 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     CustomerListActivity.isRefresh = true;
                     Toast.makeText(mContext, "保存客户数据成功!",
                             Toast.LENGTH_SHORT).show();
-                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
 
-                    Intent intent = new Intent(CustomerAddActivity.this,
-                            CustomerDetailActivity.class);
-                    intent.setAction(CustomerDetailActivity.UPDATE_COMPLETE_ACTION);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
-                            mCustomer);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    CustomerDetailActivity.sCustomer = mCustomer;
+
+                    //ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
+
+//                    Intent intent = new Intent(CustomerAddActivity.this,
+//                            CustomerDetailActivity.class);
+//                    intent.setAction(CustomerDetailActivity.UPDATE_COMPLETE_ACTION);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable(CustomerDetailActivity.CUSTOMER_KEY,
+//                            mCustomer);
+//                    intent.putExtras(bundle);
+//                    startActivity(intent);
 
                     ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerAddActivity");
-                    overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
+                    //overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
                     break;
                 }
                 case CustomerLogic.SAVE_SET_FAIL: {
