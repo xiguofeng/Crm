@@ -234,11 +234,11 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         switch (v.getId()) {
             case R.id.customer_detail_back_iv: {
                 if (mNowAction.equals(CustomerDetailActivity.UPDATE_COMPLETE_ACTION)) {
-                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
-                    Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
-                    startActivity(intent);
+                    //ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
+                    //Intent intent = new Intent(CustomerDetailActivity.this, CustomerListActivity.class);
+                    //startActivity(intent);
                     ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
-                    overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
+                    //overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
                 } else {
                     ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerDetailActivity");
                 }

@@ -480,6 +480,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         if (!"null".equals(mCustomer.getCustomerType())) {
             mType = mCustomer.getCustomerType();
         }
+
+        mNameEt.requestFocus();
     }
 
     private void fillUpCompanyData() {
@@ -502,6 +504,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         if (!"null".equals(mCustomer.getCompanyType())) {
             mCompanyType = mCustomer.getCompanyType();
         }
+
+        mCompanyNameEt.requestFocus();
     }
 
     private void fillUpTradeData() {
@@ -522,6 +526,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         if (!"null".equals(mCustomer.getLastestTradeTime())) {
             mLastTradeTime = mCustomer.getLastestTradeTime();
         }
+
+        mPreBuyProductEt.requestFocus();
     }
 
     @Override
