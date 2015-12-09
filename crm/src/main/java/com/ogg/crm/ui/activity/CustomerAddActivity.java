@@ -279,6 +279,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mNextBtn = (Button) findViewById(R.id.customer_info_add_next_btn);
         mNextBtn.setOnClickListener(this);
+        mNextBtn.setClickable(false);
         if (!isView1Load) {
             mNextBtn.setClickable(false);
         }
@@ -318,6 +319,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mCompanyNextBtn = (Button) findViewById(R.id.customer_company_info_add_next_btn);
         mCompanyNextBtn.setOnClickListener(this);
+        mCompanyNextBtn.setClickable(false);
 
         if (!isView2Load) {
             mCompanyNextBtn.setClickable(false);
@@ -423,6 +425,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         String name = mNameEt.getText().toString().trim();
         String tel = mTelPhoneEt.getText().toString().trim();
         String mobile = mMobilePhoneEt.getText().toString().trim();
+        String email = mEmailEt.getText().toString().trim();
 
         if (!TextUtils.isEmpty(mobile)) {
             if (!PhoneUtils.isMobile(mobile)) {
@@ -435,6 +438,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             if (!PhoneUtils.isPhone(tel)) {
                 CharSequence html = Html.fromHtml("<font color='red'>电话号码格式不正确</font>");
                 mTelPhoneEt.setError(html);
+            }
+        }
+
+        if (!TextUtils.isEmpty(email)) {
+            if (!PhoneUtils.isEmail(email)) {
+                CharSequence html = Html.fromHtml("<font color='red'>邮箱格式不正确</font>");
+                mEmailEt.setError(html);
             }
         }
 
@@ -453,6 +463,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             mNextBtn.setClickable(false);
             mNextBtn.setBackgroundResource(R.drawable.corners_bg_gray_all);
         }
+
+
 
         if (null != mCompanyNameEt && null != mProviceCityTv) {
             String companyName = mCompanyNameEt.getText().toString().trim();
