@@ -128,8 +128,12 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     }
 
     private void send() {
-        mProgressDialog.show();
+        if (null != mCustomer) {
+            Toast.makeText(mContext, "请选择客户!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!TextUtils.isEmpty(mUserPhoneTv.getText().toString()) && !TextUtils.isEmpty(mContentEt.getText().toString())) {
+            mProgressDialog.show();
             SmsLogic.send(mContext, mHandler, mUserPhoneTv.getText().toString(), mContentEt.getText().toString());
         } else {
             Toast.makeText(mContext, "请填写发送内容!", Toast.LENGTH_SHORT).show();
