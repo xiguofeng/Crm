@@ -128,7 +128,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
     }
 
     private void send() {
-        if (null != mCustomer) {
+        if (null == mCustomer) {
             Toast.makeText(mContext, "请选择客户!", Toast.LENGTH_SHORT).show();
             return;
         }
