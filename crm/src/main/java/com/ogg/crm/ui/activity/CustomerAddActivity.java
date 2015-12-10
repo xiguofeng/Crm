@@ -548,9 +548,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mMainProductEt.setText(!TextUtils.isEmpty(mCustomer.getMainProduct()) && !"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct().trim() : "");
         mCompanyNetEt.setText(!TextUtils.isEmpty(mCustomer.getUrl()) && !"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl().trim() : "");
         mInboundChannelEt.setText(!TextUtils.isEmpty(mCustomer.getStockWay()) && !"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
-        String province = !TextUtils.isEmpty(mCustomer.getProvinceName()) && !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
-        String city = !TextUtils.isEmpty(mCustomer.getCityName()) && !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
-        mProviceCityTv.setText(province + city);
+        mProvice = !TextUtils.isEmpty(mCustomer.getProvinceName()) && !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
+        mCity = !TextUtils.isEmpty(mCustomer.getCityName()) && !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
+        mProviceCityTv.setText(mProvice + "," + mCity);
         mCompanyTypeTv.setText(!TextUtils.isEmpty(mCustomer.getCompanyTypeDesc()) && !"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
 
         if (!TextUtils.isEmpty(mCustomer.getProvince()) && !"null".equals(mCustomer.getProvince())) {
@@ -559,6 +559,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         if (!TextUtils.isEmpty(mCustomer.getCity()) && !"null".equals(mCustomer.getCity())) {
             mCityCode = mCustomer.getCity();
         }
+
         if (!TextUtils.isEmpty(mCustomer.getCompanyType()) && !"null".equals(mCustomer.getCompanyType())) {
             mCompanyType = mCustomer.getCompanyType();
         }
