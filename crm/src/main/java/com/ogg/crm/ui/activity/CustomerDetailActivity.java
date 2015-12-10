@@ -215,17 +215,18 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mNumberTv.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount().trim() : "");
         mSettlementTypeTv.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
         mCustomerAccountTv.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
-        String isHasLog = !"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire().trim() : "";
+        String isHasLog = !"null".equals(mCustomer.getTradeFlg()) ? mCustomer.getTradeFlg().trim() : "";
         if (!TextUtils.isEmpty(isHasLog)) {
-            if ("0".equals(mCustomer.getIsExpire())) {
-                isHasLog = "无";
+            if ("0".equals(isHasLog)) {
+                isHasLog = "否";
             } else {
-                isHasLog = "有";
+                isHasLog = "是";
             }
         }
         mIsHasLogTv.setText(isHasLog);
         String lastTradeTime = mCustomer.getLastestTradeTime();
-        if (!"null".equals(lastTradeTime)) {
+        if (!"null".equals(lastTradeTime) && lastTradeTime.length() >= 10) {
+            lastTradeTime = lastTradeTime.substring(0, 10);
             if (lastTradeTime.contains(".")) {
                 int index = lastTradeTime.indexOf(".");
                 lastTradeTime = lastTradeTime.substring(0, index);
