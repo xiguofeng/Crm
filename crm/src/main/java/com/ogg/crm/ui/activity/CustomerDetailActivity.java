@@ -225,7 +225,7 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         }
         mIsHasLogTv.setText(isHasLog);
         String lastTradeTime = mCustomer.getLastestTradeTime();
-        if (!"null".equals(lastTradeTime) && lastTradeTime.length() >= 10) {
+        if (null != lastTradeTime && !"null".equals(lastTradeTime) && lastTradeTime.length() >= 10) {
             lastTradeTime = lastTradeTime.substring(0, 10);
             if (lastTradeTime.contains(".")) {
                 int index = lastTradeTime.indexOf(".");

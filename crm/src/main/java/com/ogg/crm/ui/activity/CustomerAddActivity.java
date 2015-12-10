@@ -115,6 +115,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private String mCompanyType;
     private String mIsHasLog = "0";
     private String mLastTradeTime;
+    private String mProvice;
+    private String mCity;
     private Date mLastTradeDate;
 
     private Customer mCustomer;
@@ -535,7 +537,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mRemarkEt.setText(!"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent().trim() : "");
 
         String lastTradeTime = mCustomer.getLastestTradeTime();
-        if (!"null".equals(lastTradeTime) && lastTradeTime.length() >= 10) {
+        if (null != lastTradeTime && !"null".equals(lastTradeTime) && lastTradeTime.length() >= 10) {
             lastTradeTime = lastTradeTime.substring(0, 10);
             if (lastTradeTime.contains(".")) {
                 int index = lastTradeTime.indexOf(".");
@@ -582,6 +584,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     mProviceCityTv.setText(data.getStringExtra("area"));
                     mProviceCode = data.getStringExtra("proviceCode");
                     mCityCode = data.getStringExtra("cityCode");
+                    mProvice= data.getStringExtra("provice");
+                    mCity= data.getStringExtra("city");
                     break;
                 }
                 case 501: {
@@ -643,7 +647,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setQq(mQQEt.getText().toString());
                 mCustomer.setEmail(mEmailEt.getText().toString());
                 mCustomer.setCusLevel(mLevel);
+                mCustomer.setCusLevel(mLevelTv.getText().toString());
                 mCustomer.setCustomerType(mType);
+                mCustomer.setCustomerTypeDesc(mTypeTv.getText().toString());
 
                 setView2();
                 if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {
@@ -665,8 +671,11 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setStockWay(mInboundChannelEt.getText().toString());
                 mCustomer.setCompanyType(mCompanyTypeTv.getText().toString());
                 mCustomer.setProvince(mProviceCode);
+                mCustomer.setProvince(mProvice);
                 mCustomer.setCity(mCityCode);
+                mCustomer.setCityName(mCity);
                 mCustomer.setCompanyType(mCompanyType);
+                mCustomer.setCompanyTypeDesc(mCompanyTypeTv.getText().toString());
 
                 setView3();
                 if (mNowAction.equals(ORIGIN_FROM_UPDATE_KEY)) {

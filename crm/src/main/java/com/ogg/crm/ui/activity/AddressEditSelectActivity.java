@@ -150,9 +150,9 @@ public class AddressEditSelectActivity extends Activity implements
 //            parserData(addressData);
 //        }
         if (!TextUtils.isEmpty(ConfigInfoService.sAddressData)) {
-            mAddressData= ConfigInfoService.sAddressData;
+            mAddressData = ConfigInfoService.sAddressData;
             parserData(mAddressData);
-        }else{
+        } else {
             mProgressDialog.show();
             AddressLogic.getAddressData(mContext, mHandler);
         }
@@ -253,6 +253,8 @@ public class AddressEditSelectActivity extends Activity implements
                 Intent intent = new Intent();
                 intent.putExtra("area", "" + mCurrentProvice.getRegionName() + ","
                         + mCurrentCity.getRegionName());
+                intent.putExtra("provice", "" + mCurrentProvice.getRegionName());
+                intent.putExtra("city", "" + mCurrentCity.getRegionName());
                 intent.putExtra("proviceCode", mCurrentProvice.getRegionId());
                 intent.putExtra("cityCode", mCurrentCity.getRegionId());
                 setResult(RESULT_OK, intent);
