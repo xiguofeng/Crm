@@ -681,7 +681,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             }
             case R.id.customer_settlement_info_add_save_btn: {
                 mCustomer.setKind(mPreBuyProductEt.getText().toString());
-                mCustomer.setPlace(mCompanyAddressEt.getText().toString());
+                mCustomer.setPlace(mProducingAreaEt.getText().toString());
                 mCustomer.setNorms(mStandardEt.getText().toString());
                 mCustomer.setAmount(mNumberEt.getText().toString());
                 mCustomer.setAccount(mSettlementTypeEt.getText().toString());
