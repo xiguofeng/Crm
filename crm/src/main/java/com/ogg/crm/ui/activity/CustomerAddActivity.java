@@ -523,19 +523,19 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     }
 
     private void fillUpCustomerData() {
-        mNameEt.setText(!"null".equals(mCustomer.getName()) ? mCustomer.getName().trim() : "");
-        mJobPostionEt.setText(!"null".equals(mCustomer.getPosition()) ? mCustomer.getPosition().trim() : "");
-        mMobilePhoneEt.setText(!"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile().trim() : "");
-        mTelPhoneEt.setText(!"null".equals(mCustomer.getTel()) ? mCustomer.getTel().trim() : "");
-        mQQEt.setText(!"null".equals(mCustomer.getQq()) ? mCustomer.getQq().trim() : "");
-        mEmailEt.setText(!"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail().trim() : "");
-        mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc().trim() : "");
-        mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc().trim() : "");
+        mNameEt.setText(!TextUtils.isEmpty(mCustomer.getName()) && !"null".equals(mCustomer.getName()) ? mCustomer.getName().trim() : "");
+        mJobPostionEt.setText(!TextUtils.isEmpty(mCustomer.getPosition()) && !"null".equals(mCustomer.getPosition()) ? mCustomer.getPosition().trim() : "");
+        mMobilePhoneEt.setText(!TextUtils.isEmpty(mCustomer.getMobile()) && !"null".equals(mCustomer.getMobile()) ? mCustomer.getMobile().trim() : "");
+        mTelPhoneEt.setText(!TextUtils.isEmpty(mCustomer.getTel()) && !"null".equals(mCustomer.getTel()) ? mCustomer.getTel().trim() : "");
+        mQQEt.setText(!TextUtils.isEmpty(mCustomer.getQq()) && !"null".equals(mCustomer.getQq()) ? mCustomer.getQq().trim() : "");
+        mEmailEt.setText(!TextUtils.isEmpty(mCustomer.getEmail()) && !"null".equals(mCustomer.getEmail()) ? mCustomer.getEmail().trim() : "");
+        mTypeTv.setText(!TextUtils.isEmpty(mCustomer.getCustomerTypeDesc()) && !"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc().trim() : "");
+        mLevelTv.setText(!TextUtils.isEmpty(mCustomer.getCusLevelDesc()) && !"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc().trim() : "");
 
-        if (!"null".equals(mCustomer.getCusLevel())) {
+        if (!TextUtils.isEmpty(mCustomer.getCusLevel()) && !"null".equals(mCustomer.getCusLevel())) {
             mLevel = mCustomer.getCusLevel();
         }
-        if (!"null".equals(mCustomer.getCustomerType())) {
+        if (!TextUtils.isEmpty(mCustomer.getCustomerType()) && !"null".equals(mCustomer.getCustomerType())) {
             mType = mCustomer.getCustomerType();
         }
 
@@ -543,23 +543,23 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     }
 
     private void fillUpCompanyData() {
-        mCompanyNameEt.setText(!"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName().trim() : "");
-        mCompanyAddressEt.setText(!"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress().trim() : "");
-        mMainProductEt.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct().trim() : "");
-        mCompanyNetEt.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl().trim() : "");
-        mInboundChannelEt.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
-        String province = !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
-        String city = !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
+        mCompanyNameEt.setText(!TextUtils.isEmpty(mCustomer.getCompanyName()) && !"null".equals(mCustomer.getCompanyName()) ? mCustomer.getCompanyName().trim() : "");
+        mCompanyAddressEt.setText(!TextUtils.isEmpty(mCustomer.getAddress()) && !"null".equals(mCustomer.getAddress()) ? mCustomer.getAddress().trim() : "");
+        mMainProductEt.setText(!TextUtils.isEmpty(mCustomer.getMainProduct()) && !"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct().trim() : "");
+        mCompanyNetEt.setText(!TextUtils.isEmpty(mCustomer.getUrl()) && !"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl().trim() : "");
+        mInboundChannelEt.setText(!TextUtils.isEmpty(mCustomer.getStockWay()) && !"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
+        String province = !TextUtils.isEmpty(mCustomer.getProvinceName()) && !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
+        String city = !TextUtils.isEmpty(mCustomer.getCityName()) && !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
         mProviceCityTv.setText(province + city);
-        mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
+        mCompanyTypeTv.setText(!TextUtils.isEmpty(mCustomer.getCompanyTypeDesc()) && !"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
 
-        if (!"null".equals(mCustomer.getProvince())) {
+        if (!TextUtils.isEmpty(mCustomer.getProvince()) && !"null".equals(mCustomer.getProvince())) {
             mProviceCode = mCustomer.getProvince();
         }
-        if (!"null".equals(mCustomer.getCity())) {
+        if (!TextUtils.isEmpty(mCustomer.getCity()) && !"null".equals(mCustomer.getCity())) {
             mCityCode = mCustomer.getCity();
         }
-        if (!"null".equals(mCustomer.getCompanyType())) {
+        if (!TextUtils.isEmpty(mCustomer.getCompanyType()) && !"null".equals(mCustomer.getCompanyType())) {
             mCompanyType = mCustomer.getCompanyType();
         }
 
@@ -567,13 +567,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     }
 
     private void fillUpTradeData() {
-        mPreBuyProductEt.setText(!"null".equals(mCustomer.getKind()) ? mCustomer.getKind().trim() : "");
-        mProducingAreaEt.setText(!"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace().trim() : "");
-        mStandardEt.setText(!"null".equals(mCustomer.getNorms()) ? mCustomer.getNorms().trim() : "");
-        mNumberEt.setText(!"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount().trim() : "");
-        mSettlementTypeEt.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
-        mCustomerAccountEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
-        mRemarkEt.setText(!"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent().trim() : "");
+        mPreBuyProductEt.setText(!TextUtils.isEmpty(mCustomer.getKind()) && !"null".equals(mCustomer.getKind()) ? mCustomer.getKind().trim() : "");
+        mProducingAreaEt.setText(!TextUtils.isEmpty(mCustomer.getPlace()) && !"null".equals(mCustomer.getPlace()) ? mCustomer.getPlace().trim() : "");
+        mStandardEt.setText(!TextUtils.isEmpty(mCustomer.getNorms()) && !"null".equals(mCustomer.getNorms()) ? mCustomer.getNorms().trim() : "");
+        mNumberEt.setText(!TextUtils.isEmpty(mCustomer.getAmount()) && !"null".equals(mCustomer.getAmount()) ? mCustomer.getAmount().trim() : "");
+        mSettlementTypeEt.setText(!TextUtils.isEmpty(mCustomer.getAccount()) && !"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
+        mCustomerAccountEt.setText(!TextUtils.isEmpty(mCustomer.getAccountNum()) && !"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
+        mRemarkEt.setText(!TextUtils.isEmpty(mCustomer.getRemarkContent()) && !"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent().trim() : "");
 
         String lastTradeTime = mCustomer.getLastestTradeTime();
         if (null != lastTradeTime && !"null".equals(lastTradeTime) && lastTradeTime.length() >= 10) {
@@ -583,14 +583,14 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 lastTradeTime = lastTradeTime.substring(0, index);
             }
         }
-        mLastSettlementTimeTv.setText(!"null".equals(lastTradeTime) ? lastTradeTime : "");
+        mLastSettlementTimeTv.setText(!TextUtils.isEmpty(lastTradeTime) && !"null".equals(lastTradeTime) ? lastTradeTime : "");
         String isHasLog = !"null".equals(mCustomer.getTradeFlg()) ? mCustomer.getTradeFlg().trim() : "";
         if (!TextUtils.isEmpty(isHasLog) && "1".equals(isHasLog)) {
             mIsHasLogCb.setChecked(true);
             mIsHasLog = "1";
         }
 
-        if (!"null".equals(lastTradeTime)) {
+        if (!TextUtils.isEmpty(lastTradeTime) && !"null".equals(lastTradeTime)) {
             mLastTradeTime = "";
             mLastTradeTime = lastTradeTime + " 00:00:00";
         }
@@ -751,7 +751,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
                     intent.putExtra("addressData", mAddressData);
                     startActivityForResult(intent, 500);
-                }else{
+                } else {
                     AddressLogic.getAddressData(mContext, mAddressHandler);
                 }
 
