@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
 import com.ogg.crm.entity.CustomerInfoCategory;
+import com.ogg.crm.network.logic.AddressLogic;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
@@ -117,6 +118,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     private String mProvice;
     private String mCity;
     private Date mLastTradeDate;
+
+    private String mAddressData;
 
     private Customer mCustomer;
 
@@ -215,6 +218,42 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             if (null != mProgressDialog && mProgressDialog.isShowing()) {
                 mProgressDialog.dismiss();
             }
+
+        }
+
+    };
+
+    Handler mAddressHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            int what = msg.what;
+            switch (what) {
+                case AddressLogic.ANDRESS_DATA_GET_SUC: {
+                    if (null != msg.obj) {
+                        mAddressData = (String) msg.obj;
+                        Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
+                        intent.putExtra("addressData", mAddressData);
+                        startActivityForResult(intent, 500);
+
+                    }
+                    break;
+                }
+                case AddressLogic.ANDRESS_DATA_GET_FAIL: {
+                    AddressLogic.getAddressData(mContext, mAddressHandler);
+                    break;
+                }
+                case AddressLogic.ANDRESS_DATA_GET_EXCEPTION: {
+                    AddressLogic.getAddressData(mContext, mAddressHandler);
+                    break;
+                }
+                case AddressLogic.NET_ERROR: {
+                    break;
+                }
+                default:
+                    break;
+            }
+
 
         }
 
@@ -707,8 +746,15 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             }
             case R.id.customer_add_company_area_rl: {
                 //            AddressLogic.getAddressData(mContext,mCategoryHandler);
-                Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
-                startActivityForResult(intent, 500);
+                if (!TextUtils.isEmpty(ConfigInfoService.sAddressData)) {
+                    mAddressData = ConfigInfoService.sAddressData;
+                    Intent intent = new Intent(CustomerAddActivity.this, AddressEditSelectActivity.class);
+                    intent.putExtra("addressData", mAddressData);
+                    startActivityForResult(intent, 500);
+                }else{
+                    AddressLogic.getAddressData(mContext, mAddressHandler);
+                }
+
                 break;
             }
             case R.id.customer_add_last_settlement_time_rl: {

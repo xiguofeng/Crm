@@ -73,9 +73,11 @@ public class ConfigInfoService extends Service {
                     break;
                 }
                 case AddressLogic.ANDRESS_DATA_GET_FAIL: {
+                    AddressLogic.getAddressData(mContext, mAddressHandler);
                     break;
                 }
                 case AddressLogic.ANDRESS_DATA_GET_EXCEPTION: {
+                    AddressLogic.getAddressData(mContext, mAddressHandler);
                     break;
                 }
                 case AddressLogic.NET_ERROR: {

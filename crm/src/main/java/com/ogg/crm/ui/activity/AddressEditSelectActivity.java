@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.ogg.crm.R;
 import com.ogg.crm.entity.AddressData;
 import com.ogg.crm.network.logic.AddressLogic;
-import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.wheel.widget.OnWheelChangedListener;
 import com.ogg.crm.ui.view.wheel.widget.WheelView;
@@ -145,16 +144,9 @@ public class AddressEditSelectActivity extends Activity implements
     }
 
     private void initData() {
-//        String addressData = getIntent().getStringExtra("addressData");
-//        if (!TextUtils.isEmpty(addressData)) {
-//            parserData(addressData);
-//        }
-        if (!TextUtils.isEmpty(ConfigInfoService.sAddressData)) {
-            mAddressData = ConfigInfoService.sAddressData;
-            parserData(mAddressData);
-        } else {
-            mProgressDialog.show();
-            AddressLogic.getAddressData(mContext, mHandler);
+        String addressData = getIntent().getStringExtra("addressData");
+        if (!TextUtils.isEmpty(addressData)) {
+            parserData(addressData);
         }
     }
 
