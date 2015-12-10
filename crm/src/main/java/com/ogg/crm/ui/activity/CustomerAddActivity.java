@@ -686,7 +686,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setQq(mQQEt.getText().toString());
                 mCustomer.setEmail(mEmailEt.getText().toString());
                 mCustomer.setCusLevel(mLevel);
-                mCustomer.setCusLevel(mLevelTv.getText().toString());
+                mCustomer.setCusLevelDesc(mLevelTv.getText().toString());
                 mCustomer.setCustomerType(mType);
                 mCustomer.setCustomerTypeDesc(mTypeTv.getText().toString());
 
