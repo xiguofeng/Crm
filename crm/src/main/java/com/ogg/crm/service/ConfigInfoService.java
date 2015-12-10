@@ -21,7 +21,7 @@ public class ConfigInfoService extends Service {
 
     private Context mContext;
 
-    private String[] mCategorys = {"CUSTOMER_TYPE_B", "COMPANY_TYPE_B", "FOLLOW_STATUS", "CUS_LEVEL", "TRADE_FLG"};
+    public static String[] mCategorys = {"CUSTOMER_TYPE_B", "COMPANY_TYPE_B", "FOLLOW_STATUS", "CUS_LEVEL", "TRADE_FLG"};
     public static HashMap<String, ArrayList<CustomerInfoCategory>> sCustomerCategoryInfoMap = new HashMap<>();
 
     public static String sAddressData;

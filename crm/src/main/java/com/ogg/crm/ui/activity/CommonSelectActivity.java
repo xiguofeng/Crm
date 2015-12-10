@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.CustomerInfoCategory;
@@ -69,23 +70,39 @@ public class CommonSelectActivity extends Activity implements OnClickListener {
         String category = getIntent().getStringExtra("category");
         if (!TextUtils.isEmpty(category)) {
             mCustomerInfoCategories.clear();
-            if (!CustomerAddActivity.sCategoryInfoMap.isEmpty()) {
-                mCustomerInfoCategories.addAll(CustomerAddActivity.sCategoryInfoMap.get(category));
-            }else{
+            if (!ConfigInfoService.sCustomerCategoryInfoMap.isEmpty() && null != ConfigInfoService.sCustomerCategoryInfoMap.get(category)) {
                 mCustomerInfoCategories.addAll(ConfigInfoService.sCustomerCategoryInfoMap.get(category));
-            }
-            mCustomerInfoCategoryAdapter.notifyDataSetChanged();
+                mCustomerInfoCategoryAdapter.notifyDataSetChanged();
 
-            if ("CUSTOMER_TYPE_B".equals(category)) {
-                mTitleTv.setText("选择客户类型");
-            } else if ("COMPANY_TYPE_B".equals(category)) {
-                mTitleTv.setText("选择公司类型");
-            } else if ("FOLLOW_STATUS".equals(category)) {
-                mTitleTv.setText("状态");
-            } else if ("CUS_LEVEL".equals(category)) {
-                mTitleTv.setText("选择客户等级");
-            } else if ("TRADE_FLG".equals(category)) {
-                mTitleTv.setText("是否交易");
+                if ("CUSTOMER_TYPE_B".equals(category)) {
+                    mTitleTv.setText("选择客户类型");
+                } else if ("COMPANY_TYPE_B".equals(category)) {
+                    mTitleTv.setText("选择公司类型");
+                } else if ("FOLLOW_STATUS".equals(category)) {
+                    mTitleTv.setText("状态");
+                } else if ("CUS_LEVEL".equals(category)) {
+                    mTitleTv.setText("选择客户等级");
+                } else if ("TRADE_FLG".equals(category)) {
+                    mTitleTv.setText("是否交易");
+                }
+            } else if (!CustomerAddActivity.sCategoryInfoMap.isEmpty() && null != CustomerAddActivity.sCategoryInfoMap.get(category)) {
+                mCustomerInfoCategories.addAll(CustomerAddActivity.sCategoryInfoMap.get(category));
+                mCustomerInfoCategoryAdapter.notifyDataSetChanged();
+
+                if ("CUSTOMER_TYPE_B".equals(category)) {
+                    mTitleTv.setText("选择客户类型");
+                } else if ("COMPANY_TYPE_B".equals(category)) {
+                    mTitleTv.setText("选择公司类型");
+                } else if ("FOLLOW_STATUS".equals(category)) {
+                    mTitleTv.setText("状态");
+                } else if ("CUS_LEVEL".equals(category)) {
+                    mTitleTv.setText("选择客户等级");
+                } else if ("TRADE_FLG".equals(category)) {
+                    mTitleTv.setText("是否交易");
+                }
+            } else {
+                Toast.makeText(CommonSelectActivity.this, "数据加载错误!", Toast.LENGTH_SHORT).show();
+                CommonSelectActivity.this.finish();
             }
         }
 

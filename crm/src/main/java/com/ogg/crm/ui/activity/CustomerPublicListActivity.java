@@ -29,6 +29,7 @@ import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
 import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
+import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.adapter.CustomerAdapter;
 import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
@@ -247,6 +248,14 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     }
 
     private void initData() {
+        if (null != ConfigInfoService.sCustomerCategoryInfoMap && !ConfigInfoService.sCustomerCategoryInfoMap.isEmpty() && ConfigInfoService.sCustomerCategoryInfoMap.size() >= ConfigInfoService.mCategorys.length) {
+
+        } else {
+            Intent intentService = new Intent(mContext,
+                    ConfigInfoService.class);
+            mContext.startService(intentService);
+        }
+
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
