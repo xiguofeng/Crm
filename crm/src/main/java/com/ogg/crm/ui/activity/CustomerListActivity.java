@@ -40,7 +40,6 @@ import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
-import com.ogg.crm.utils.ActivitiyInfoManager;
 import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
@@ -286,13 +285,13 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         setContentView(R.layout.customer_list);
         mContext = CustomerListActivity.this;
         mProgressDialog = new CustomProgressDialog(mContext);
-        if (!ActivitiyInfoManager.activitityMap
-                .containsKey(ActivitiyInfoManager
-                        .getCurrentActivityName(mContext))) {
-            ActivitiyInfoManager.activitityMap
-                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
-                            this);
-        }
+//        if (!ActivitiyInfoManager.activitityMap
+//                .containsKey(ActivitiyInfoManager
+//                        .getCurrentActivityName(mContext))) {
+//            ActivitiyInfoManager.activitityMap
+//                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
+//                            this);
+//        }
         initView();
         initData();
 
@@ -630,7 +629,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                 break;
             }
             case R.id.customer_list_back_iv: {
-                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
+                CustomerListActivity.this.finish();
                 break;
             }
             case R.id.customer_list_filter_tv: {
@@ -742,7 +741,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
             if (mDrawerLayout.isDrawerOpen(Gravity.RIGHT)) {
                 mDrawerLayout.closeDrawer(Gravity.RIGHT);
             } else {
-                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerListActivity");
+                CustomerListActivity.this.finish();
             }
             return true;
         }

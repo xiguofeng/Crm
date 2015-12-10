@@ -225,13 +225,13 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = CustomerAddActivity.this;
-        if (!ActivitiyInfoManager.activitityMap
-                .containsKey(ActivitiyInfoManager
-                        .getCurrentActivityName(mContext))) {
-            ActivitiyInfoManager.activitityMap
-                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
-                            this);
-        }
+//        if (!ActivitiyInfoManager.activitityMap
+//                .containsKey(ActivitiyInfoManager
+//                        .getCurrentActivityName(mContext))) {
+//            ActivitiyInfoManager.activitityMap
+//                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
+//                            this);
+//        }
         mProgressDialog = new CustomProgressDialog(mContext);
         initView();
         initData();
@@ -635,7 +635,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
             case R.id.customer_info_add_back_iv:
             case R.id.customer_add_company_back_iv:
             case R.id.customer_add_settlement_back_iv: {
-                ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerAddActivity");
+                finish();
                 break;
             }
 
@@ -746,7 +746,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getAction() == KeyEvent.ACTION_DOWN) {
-            ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerAddActivity");
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);
