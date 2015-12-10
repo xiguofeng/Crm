@@ -203,8 +203,8 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         mMainProductTv.setText(!"null".equals(mCustomer.getMainProduct()) ? mCustomer.getMainProduct().trim() : "");
         mCompanyNetTv.setText(!"null".equals(mCustomer.getUrl()) ? mCustomer.getUrl().trim() : "");
         mInboundChannelTv.setText(!"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
-        String province = !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
-        String city = !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
+        String province = !"null".equals(mCustomer.getProvinceName())&&!TextUtils.isEmpty(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
+        String city = !"null".equals(mCustomer.getCityName())&&!TextUtils.isEmpty(mCustomer.getCityName())? mCustomer.getCityName().trim() : "";
         mProviceCityTv.setText(province + city);
         mCompanyTypeTv.setText(!"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
 
