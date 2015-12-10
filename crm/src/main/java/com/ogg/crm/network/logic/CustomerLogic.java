@@ -230,6 +230,7 @@ public class CustomerLogic {
                 Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.e("xxx_filterList", ":" + response);
                 parseFilterListData(response, handler);
             }
         }, new Response.ErrorListener() {
