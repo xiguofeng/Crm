@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import com.ogg.crm.network.volley.RequestQueue;
+import com.ogg.crm.network.volley.toolbox.Volley;
 
 public class BaseApplication extends Application {
 

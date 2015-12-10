@@ -130,6 +130,7 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
         if (null != sCustomer) {
             mCustomer = sCustomer;
             fillUpData();
+            sCustomer = null;
         }
     }
 

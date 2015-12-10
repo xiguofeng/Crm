@@ -1,20 +1,20 @@
 package com.ogg.crm.network.utils;
 
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
+import com.ogg.crm.network.volley.AuthFailureError;
+import com.ogg.crm.network.volley.NetworkResponse;
+import com.ogg.crm.network.volley.ParseError;
+import com.ogg.crm.network.volley.Response;
+import com.ogg.crm.network.volley.Response.ErrorListener;
+import com.ogg.crm.network.volley.Response.Listener;
+import com.ogg.crm.network.volley.toolbox.HttpHeaderParser;
+import com.ogg.crm.network.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
-import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CookieRequest extends JsonObjectRequest {
     private Map mHeaders = new HashMap(1);

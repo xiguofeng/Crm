@@ -7,10 +7,10 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.ogg.crm.network.volley.Request;
+import com.ogg.crm.network.volley.Response;
+import com.ogg.crm.network.volley.VolleyError;
+import com.ogg.crm.network.volley.toolbox.StringRequest;
 import com.ogg.crm.BaseApplication;
 import com.ogg.crm.entity.Customer;
 import com.ogg.crm.entity.CustomerInfoCategory;
