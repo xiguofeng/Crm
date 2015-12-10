@@ -585,9 +585,10 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     break;
                 }
                 case 501: {
-                    mLastSettlementTimeTv.setText(data.getStringExtra("date"));
+                    data.getStringExtra("date");
                     mLastTradeTime = "";
                     mLastTradeTime = data.getStringExtra("date_value");
+                    mLastSettlementTimeTv.setText(mLastTradeTime);
                     mLastTradeTime = mLastTradeTime + " 00:00:00";
                     mLastTradeDate = new Date(TimeUtils.dateToLong(mLastTradeTime, TimeUtils.FORMAT_PATTERN_DATE));
                     break;
