@@ -535,7 +535,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         if (!"null".equals(lastTradeTime)) {
             if (lastTradeTime.contains(".")) {
                 int index = lastTradeTime.indexOf(".");
-                lastTradeTime = lastTradeTime.substring(index);
+                lastTradeTime = lastTradeTime.substring(0,index);
             }
         }
         mLastSettlementTimeTv.setText(!"null".equals(lastTradeTime) ? lastTradeTime : "");
@@ -597,7 +597,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 case 503: {
                     mLevelTv.setText(data.getStringExtra("text"));
                     mLevel = data.getStringExtra("value");
-                    if ("-1".equals(mType)) {
+                    if ("-1".equals(mLevel)) {
                         mLevelTv.setText("其它");
                     }
                     break;
@@ -606,7 +606,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 case 504: {
                     mCompanyTypeTv.setText(data.getStringExtra("text"));
                     mCompanyType = data.getStringExtra("value");
-                    if ("-1".equals(mType)) {
+                    if ("-1".equals(mCompanyType)) {
                         mCompanyTypeTv.setText("其它");
                     }
                     break;

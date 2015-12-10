@@ -224,7 +224,14 @@ public class CustomerDetailActivity extends Activity implements OnClickListener 
             }
         }
         mIsHasLogTv.setText(isHasLog);
-        mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getLastestTradeTime()) ? mCustomer.getLastestTradeTime() : "");
+        String lastTradeTime = mCustomer.getLastestTradeTime();
+        if (!"null".equals(lastTradeTime)) {
+            if (lastTradeTime.contains(".")) {
+                int index = lastTradeTime.indexOf(".");
+                lastTradeTime = lastTradeTime.substring(0, index);
+            }
+        }
+        mLastSettlementTimeTv.setText(!"null".equals(lastTradeTime) ? lastTradeTime : "");
         mFollowStateTv.setText(!"null".equals(mCustomer.getFollowStatusDesc()) ? mCustomer.getFollowStatusDesc() : "");
         mFollowRecordTv.setText(!"null".equals(mCustomer.getTotalFollowStatus()) ? mCustomer.getTotalFollowStatus() : "");
         mRemarkTv.setText(!"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent() : "");
