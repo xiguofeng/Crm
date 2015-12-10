@@ -465,7 +465,6 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         }
 
 
-
         if (null != mCompanyNameEt && null != mProviceCityTv) {
             String companyName = mCompanyNameEt.getText().toString().trim();
             String proviceCity = mProviceCityTv.getText().toString().trim();
@@ -489,7 +488,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mTypeTv.setText(!"null".equals(mCustomer.getCustomerTypeDesc()) ? mCustomer.getCustomerTypeDesc().trim() : "");
         mLevelTv.setText(!"null".equals(mCustomer.getCusLevelDesc()) ? mCustomer.getCusLevelDesc().trim() : "");
 
-        if (!"null".equals(mCustomer.getCusLevelDesc())) {
+        if (!"null".equals(mCustomer.getCusLevel())) {
             mLevel = mCustomer.getCusLevel();
         }
         if (!"null".equals(mCustomer.getCustomerType())) {
@@ -531,15 +530,23 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mSettlementTypeEt.setText(!"null".equals(mCustomer.getAccount()) ? mCustomer.getAccount().trim() : "");
         mCustomerAccountEt.setText(!"null".equals(mCustomer.getAccountNum()) ? mCustomer.getAccountNum().trim() : "");
         mRemarkEt.setText(!"null".equals(mCustomer.getRemarkContent()) ? mCustomer.getRemarkContent().trim() : "");
-        mLastSettlementTimeTv.setText(!"null".equals(mCustomer.getLastestTradeTime()) ? mCustomer.getLastestTradeTime().trim() : "");
+
+        String lastTradeTime = mCustomer.getLastestTradeTime();
+        if (!"null".equals(lastTradeTime)) {
+            if (lastTradeTime.contains(".")) {
+                int index = lastTradeTime.indexOf(".");
+                lastTradeTime = lastTradeTime.substring(index);
+            }
+        }
+        mLastSettlementTimeTv.setText(!"null".equals(lastTradeTime) ? lastTradeTime : "");
         String isHasLog = !"null".equals(mCustomer.getIsExpire()) ? mCustomer.getIsExpire().trim() : "";
         if (!TextUtils.isEmpty(isHasLog) && "1".equals(isHasLog)) {
             mIsHasLogCb.setChecked(true);
             mIsHasLog = "1";
         }
 
-        if (!"null".equals(mCustomer.getLastestTradeTime())) {
-            mLastTradeTime = mCustomer.getLastestTradeTime();
+        if (!"null".equals(lastTradeTime)) {
+            mLastTradeTime = lastTradeTime + " 00:00:00";
         }
 
         mPreBuyProductEt.requestFocus();
@@ -676,6 +683,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setRemarkContent(mRemarkEt.getText().toString());
                 mCustomer.setLastestTradeTime(mLastTradeTime);
                 mCustomer.setTradeFlg(mIsHasLog);
+                mCustomer.setRemarkContent(mRemarkEt.getText().toString());
 
                 mProgressDialog.show();
                 CustomerLogic.save(mContext, mHandler, UserInfoManager.getUserId(mContext), JsonUtils.Object2Json(mCustomer));
