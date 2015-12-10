@@ -30,7 +30,6 @@ import com.ogg.crm.entity.CustomerInfoCategory;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
 import com.ogg.crm.ui.view.CustomProgressDialog;
-import com.ogg.crm.utils.ActivitiyInfoManager;
 import com.ogg.crm.utils.JsonUtils;
 import com.ogg.crm.utils.PhoneUtils;
 import com.ogg.crm.utils.TimeUtils;
@@ -188,8 +187,9 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 //                    intent.putExtras(bundle);
 //                    startActivity(intent);
 
-                    ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerAddActivity");
+                    //ActivitiyInfoManager.finishActivity("com.ogg.crm.ui.activity.CustomerAddActivity");
                     //overridePendingTransition(R.anim.push_right_in, R.anim.push_down_out);
+                    CustomerAddActivity.this.finish();
                     break;
                 }
                 case CustomerLogic.SAVE_SET_FAIL: {
@@ -584,8 +584,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                     mProviceCityTv.setText(data.getStringExtra("area"));
                     mProviceCode = data.getStringExtra("proviceCode");
                     mCityCode = data.getStringExtra("cityCode");
-                    mProvice= data.getStringExtra("provice");
-                    mCity= data.getStringExtra("city");
+                    mProvice = data.getStringExtra("provice");
+                    mCity = data.getStringExtra("city");
                     break;
                 }
                 case 501: {
@@ -671,7 +671,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
                 mCustomer.setStockWay(mInboundChannelEt.getText().toString());
                 mCustomer.setCompanyType(mCompanyTypeTv.getText().toString());
                 mCustomer.setProvince(mProviceCode);
-                mCustomer.setProvince(mProvice);
+                mCustomer.setProvinceName(mProvice);
                 mCustomer.setCity(mCityCode);
                 mCustomer.setCityName(mCity);
                 mCustomer.setCompanyType(mCompanyType);
