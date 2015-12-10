@@ -550,7 +550,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mInboundChannelEt.setText(!TextUtils.isEmpty(mCustomer.getStockWay()) && !"null".equals(mCustomer.getStockWay()) ? mCustomer.getStockWay().trim() : "");
         mProvice = !TextUtils.isEmpty(mCustomer.getProvinceName()) && !"null".equals(mCustomer.getProvinceName()) ? mCustomer.getProvinceName().trim() : "";
         mCity = !TextUtils.isEmpty(mCustomer.getCityName()) && !"null".equals(mCustomer.getCityName()) ? mCustomer.getCityName().trim() : "";
-        mProviceCityTv.setText(mProvice + "," + mCity);
+        mProviceCityTv.setText(mProvice + mCity);
         mCompanyTypeTv.setText(!TextUtils.isEmpty(mCustomer.getCompanyTypeDesc()) && !"null".equals(mCustomer.getCompanyTypeDesc()) ? mCustomer.getCompanyTypeDesc().trim() : "");
 
         if (!TextUtils.isEmpty(mCustomer.getProvince()) && !"null".equals(mCustomer.getProvince())) {

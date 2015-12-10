@@ -243,8 +243,7 @@ public class AddressEditSelectActivity extends Activity implements
         switch (v.getId()) {
             case R.id.address_select_confirm_tv: {
                 Intent intent = new Intent();
-                intent.putExtra("area", "" + mCurrentProvice.getRegionName() + ","
-                        + mCurrentCity.getRegionName());
+                intent.putExtra("area", "" + mCurrentProvice.getRegionName() + mCurrentCity.getRegionName());
                 intent.putExtra("provice", "" + mCurrentProvice.getRegionName());
                 intent.putExtra("city", "" + mCurrentCity.getRegionName());
                 intent.putExtra("proviceCode", mCurrentProvice.getRegionId());
