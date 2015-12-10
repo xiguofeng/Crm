@@ -59,6 +59,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private TextView mPhoneStarHintTv;
     private TextView mMobileStarHintTv;
+    private TextView mQQStarHintTv;
 
     private EditText mNameEt;
     private EditText mJobPostionEt;
@@ -256,6 +257,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mPhoneStarHintTv = (TextView) findViewById(R.id.customer_info_add_phone_star_tv);
         mMobileStarHintTv = (TextView) findViewById(R.id.customer_info_add_mphone_star_tv);
+        mQQStarHintTv = (TextView) findViewById(R.id.customer_info_add_qq_star_tv);
 
         mNameEt = (EditText) findViewById(R.id.customer_info_add_name_et);
         mJobPostionEt = (EditText) findViewById(R.id.customer_info_add_job_position_et);
@@ -374,12 +376,10 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         mRemarkEt.addTextChangedListener(this);
         mLastSettlementTimeRl.setOnClickListener(this);
 
-        mSettlementPreBtn = (Button)
-
-                findViewById(R.id.customer_settlement_info_add_previous_btn);
+        mSettlementPreBtn = (Button) findViewById(R.id.customer_settlement_info_add_previous_btn);
 
         mSettlementPreBtn.setOnClickListener(this);
-        mSaveBtn = (Button)findViewById(R.id.customer_settlement_info_add_save_btn);
+        mSaveBtn = (Button) findViewById(R.id.customer_settlement_info_add_save_btn);
 
         mSaveBtn.setOnClickListener(this);
 
@@ -422,6 +422,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         String tel = mTelPhoneEt.getText().toString().trim();
         String mobile = mMobilePhoneEt.getText().toString().trim();
         String email = mEmailEt.getText().toString().trim();
+        String qq = mQQEt.getText().toString().trim();
 
         if (!TextUtils.isEmpty(mobile)) {
             if (!PhoneUtils.isMobile(mobile)) {
@@ -446,13 +447,19 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
         mMobileStarHintTv.setVisibility(View.VISIBLE);
         mPhoneStarHintTv.setVisibility(View.VISIBLE);
-        if (!TextUtils.isEmpty(name) && (!TextUtils.isEmpty(tel) || !TextUtils.isEmpty(mobile))) {
-            if (!TextUtils.isEmpty(tel) && TextUtils.isEmpty(mobile)) {
+        mQQStarHintTv.setVisibility(View.VISIBLE);
+        if (!TextUtils.isEmpty(tel) || !TextUtils.isEmpty(mobile) || !TextUtils.isEmpty(qq)) {
+            if (TextUtils.isEmpty(mobile)) {
                 mMobileStarHintTv.setVisibility(View.GONE);
             }
-            if (!TextUtils.isEmpty(mobile) && TextUtils.isEmpty(tel)) {
+            if (TextUtils.isEmpty(tel)) {
                 mPhoneStarHintTv.setVisibility(View.GONE);
             }
+            if (TextUtils.isEmpty(qq)) {
+                mQQStarHintTv.setVisibility(View.GONE);
+            }
+        }
+        if (!TextUtils.isEmpty(name) && (!TextUtils.isEmpty(tel) || !TextUtils.isEmpty(mobile) || !TextUtils.isEmpty(qq))) {
             mNextBtn.setClickable(true);
             mNextBtn.setBackgroundResource(R.drawable.corners_bg_blue_all);
         } else {
