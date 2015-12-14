@@ -46,7 +46,6 @@ public class AppointmentListActivity extends Activity implements OnClickListener
     private String mNowSortType;
 
     private int mCurrentPage = 1;
-    private int mCurrentPageNum = 1;
 
     private TextView mNoAppointmentTv;
 
@@ -136,8 +135,8 @@ public class AppointmentListActivity extends Activity implements OnClickListener
     private void initListView() {
         mAppointmentLv = (XListView) findViewById(R.id.appointment_list_goods_xlv);
         mAppointmentLv.setPullRefreshEnable(false);
-        mAppointmentLv.setPullLoadEnable(true);
-        mAppointmentLv.setAutoLoadEnable(true);
+        mAppointmentLv.setPullLoadEnable(false);
+        mAppointmentLv.setAutoLoadEnable(false);
         mAppointmentLv.setXListViewListener(this);
         mAppointmentLv.setRefreshTime(getTime());
 

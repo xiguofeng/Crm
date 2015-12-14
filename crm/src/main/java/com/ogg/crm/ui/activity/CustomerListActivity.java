@@ -127,6 +127,10 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                         mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
+                        if(((Collection<? extends Customer>) msg.obj).size()==0){
+                            Toast.makeText(mContext, "无更多数据!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                     break;
                 }
