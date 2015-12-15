@@ -104,6 +104,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private int mCurrentPage = 1;
     private boolean mIsHasSelect = false;
 
+    private String mKeyWord;
+
     private HashMap<String, Boolean> mSelect = new HashMap<String, Boolean>();
 
     public static boolean isRefresh = false;
@@ -127,7 +129,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                         mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
-                        if(((Collection<? extends Customer>) msg.obj).size()==0){
+                        if (((Collection<? extends Customer>) msg.obj).size() == 0) {
                             Toast.makeText(mContext, "无更多数据!",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -212,7 +214,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mCurrentPage = 1;
                     mProgressDialog.show();
                     CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
                     break;
                 }
                 case CustomerLogic.DIS_CUS_SET_FAIL: {
@@ -257,7 +259,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mCurrentPage = 1;
                     mProgressDialog.show();
                     CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
                     break;
                 }
                 case CustomerLogic.GIVE_UP_SET_FAIL: {
@@ -364,7 +366,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void initFilterView() {
@@ -467,15 +469,16 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
+        mKeyWord = keyword;
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void filter() {
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private String getCustomerIds() {
@@ -527,7 +530,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     @Override
     public void onLoadMore() {
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
 

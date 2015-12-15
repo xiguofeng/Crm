@@ -149,7 +149,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                         mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
-                        if(((Collection<? extends Customer>) msg.obj).size()==0){
+                        if (((Collection<? extends Customer>) msg.obj).size() == 0) {
                             Toast.makeText(mContext, "无更多数据!",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -173,7 +173,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                     mCurrentPage = 1;
                     mProgressDialog.show();
                     CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", "", "", "", "");
+                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
                     break;
                 }
                 case CustomerLogic.FROM_PUBLIC_GET_FAIL: {
@@ -267,7 +267,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
 //
 //        Customer customer = new Customer();
 //        customer.setUserId(UserInfoManager.getUserId(mContext));
@@ -376,15 +376,16 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
+        mKeyWord = keyword;
         CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void filter() {
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private String getCustomerIds() {
@@ -409,7 +410,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     @Override
     public void onLoadMore() {
         CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override
@@ -470,6 +471,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     @Override
     public void afterTextChanged(Editable s) {
         if (s.length() == 0) {
+            mKeyWord = "";
             initData();
         }
     }
