@@ -123,10 +123,10 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                         mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
                         onLoadComplete();
-                        if(((Collection<? extends Customer>) msg.obj).size()==0){
-                            Toast.makeText(mContext, "无更多数据!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
+//                        if(((Collection<? extends Customer>) msg.obj).size()==0){
+//                            Toast.makeText(mContext, "无更多数据!",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
                     }
                     break;
                 }
