@@ -17,7 +17,7 @@ import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CustomerAdapter extends BaseAdapter {
+public class CustomerPublicAdapter extends BaseAdapter {
 
     private Context mContext;
 
@@ -30,8 +30,8 @@ public class CustomerAdapter extends BaseAdapter {
     // 用来控制CheckBox的选中状况
     private static HashMap<Integer, Boolean> mIsSelected = new HashMap<Integer, Boolean>();
 
-    public CustomerAdapter(Context context, ArrayList<Customer> datas,
-                           ListItemCheckClickHelp callback) {
+    public CustomerPublicAdapter(Context context, ArrayList<Customer> datas,
+                                 ListItemCheckClickHelp callback) {
         this.mContext = context;
         this.mDatas = datas;
         this.mCallback = callback;
@@ -96,7 +96,7 @@ public class CustomerAdapter extends BaseAdapter {
         holder.mNameTv.setText(!"null".equals(mDatas.get(position).getName()) ? mDatas.get(position).getName() : "");
         holder.mPhoneTv.setText(!"null".equals(mDatas.get(position).getMobile()) ? mDatas.get(position).getMobile() : "");
         holder.mCompanyTv.setText(!"null".equals(mDatas.get(position).getCompanyName()) ? mDatas.get(position).getCompanyName() : "");
-        holder.mBelongTv.setText(!"null".equals(mDatas.get(position).getFullName()) ? mDatas.get(position).getFullName() : "");
+        //holder.mBelongTv.setText(!"null".equals(mDatas.get(position).getFullName()) ? mDatas.get(position).getFullName() : "");
 
         final int tempPosition = position;
         final View view = convertView;
@@ -136,7 +136,7 @@ public class CustomerAdapter extends BaseAdapter {
     }
 
     public static void setmIsSelected(HashMap<Integer, Boolean> mIsSelected) {
-        CustomerAdapter.mIsSelected = mIsSelected;
+        CustomerPublicAdapter.mIsSelected = mIsSelected;
     }
 
 }

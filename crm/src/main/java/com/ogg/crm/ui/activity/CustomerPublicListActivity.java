@@ -30,7 +30,7 @@ import com.ogg.crm.entity.Customer;
 import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
 import com.ogg.crm.service.ConfigInfoService;
-import com.ogg.crm.ui.adapter.CustomerAdapter;
+import com.ogg.crm.ui.adapter.CustomerPublicAdapter;
 import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
@@ -65,7 +65,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
     private TextView mFilterStateTv;
 
     private XListView mCustomerLv;
-    private CustomerAdapter mCustomerAdapter;
+    private CustomerPublicAdapter mCustomerAdapter;
     private ArrayList<Customer> mCustomerList = new ArrayList<Customer>();
 
     private DrawerLayout mDrawerLayout;
@@ -315,7 +315,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mCustomerLv.setXListViewListener(this);
         mCustomerLv.setRefreshTime(getTime());
 
-        mCustomerAdapter = new CustomerAdapter(mContext, mCustomerList, this);
+        mCustomerAdapter = new CustomerPublicAdapter(mContext, mCustomerList, this);
         mCustomerLv.setAdapter(mCustomerAdapter);
 
         mCustomerLv.setOnScrollListener(new AbsListView.OnScrollListener() {
