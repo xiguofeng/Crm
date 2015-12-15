@@ -116,7 +116,7 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
         mAppointmentTimeTv.setText(!"null".equals(mAppointment.getReserveTime()) ? mAppointment.getReserveTime() : "");
         mCustomerNameTv.setText(!"null".equals(mAppointment.getCustomerName()) ? mAppointment.getCustomerName() : "");
         mCustomerPhoneTv.setText(!"null".equals(mAppointment.getCustomerTel()) ? mAppointment.getCustomerTel() : "");
-        if (TextUtils.isEmpty(mAppointment.getStatus()) && "1".equals(mAppointment.getStatus())) {
+        if (!TextUtils.isEmpty(mAppointment.getStatus()) && "1".equals(mAppointment.getStatus())) {
             mChangeStateBtn.setVisibility(View.GONE);
         }
     }
