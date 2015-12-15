@@ -125,6 +125,8 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     private String mNowAction = ORIGIN_FROM_ADD_KEY;
 
+    private boolean isJudgeComplete = false;
+
     private CustomProgressDialog mProgressDialog;
 
     Handler mCategoryHandler = new Handler() {
@@ -458,7 +460,7 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
 
     }
 
-    private void checkInput() {
+    private synchronized void checkInput() {
         String name = mNameEt.getText().toString().trim();
         String tel = mTelPhoneEt.getText().toString().trim();
         String mobile = mMobilePhoneEt.getText().toString().trim();
@@ -480,10 +482,19 @@ public class CustomerAddActivity extends Activity implements OnClickListener,
         }
 
         if (!TextUtils.isEmpty(email)) {
-            if (!PhoneUtils.isEmail(email)) {
-                CharSequence html = Html.fromHtml("<font color='red'>邮箱格式不正确</font>");
-                mEmailEt.setError(html);
-            }
+            CharSequence html = Html.fromHtml("<font color='red'>邮箱格式不正确</font>");
+            mEmailEt.setError(html);
+//            if (!PhoneUtils.checkEmail(email)) {
+////                int ecolor = Color.RED; // whatever color you want
+////                String estring = "格式不正确";
+////                ForegroundColorSpan fgcspan = new ForegroundColorSpan(ecolor);
+////                SpannableStringBuilder ssbuilder = new SpannableStringBuilder(estring);
+////                ssbuilder.setSpan(fgcspan, 0, estring.length(), 0);
+////                mEmailEt.setError(ssbuilder);
+//
+//                CharSequence html = Html.fromHtml("<font color='red'>邮箱格式不正确</font>");
+//                mEmailEt.setError(html);
+//            }
         }
 
         mMobileStarHintTv.setVisibility(View.VISIBLE);

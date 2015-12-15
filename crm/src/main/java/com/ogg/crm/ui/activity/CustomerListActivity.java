@@ -625,6 +625,7 @@ public class CustomerListActivity extends Activity implements OnClickListener,
     @Override
     public void afterTextChanged(Editable s) {
         if (s.length() == 0) {
+            mKeyWord = "";
             initData();
         }
     }

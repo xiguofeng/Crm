@@ -1,5 +1,6 @@
 package com.ogg.crm.ui.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +8,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -39,7 +42,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class CustomerSelectListActivity extends Activity implements OnClickListener,
-        ListItemCheckClickHelp, XListView.IXListViewListener {
+        ListItemCheckClickHelp, XListView.IXListViewListener,TextWatcher {
 
     private Context mContext;
 
@@ -82,6 +85,8 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     private String mFilterLevel;
 
     private int mCurrentPage = 1;
+
+    private String mKeyWord;
 
     private CustomProgressDialog mProgressDialog;
 
@@ -185,7 +190,7 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     private void initData() {
         mProgressDialog.show();
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
 //
 //        Customer customer = new Customer();
 //        customer.setUserId(UserInfoManager.getUserId(mContext));
@@ -295,15 +300,16 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     private void search(String keyword) {
         mProgressDialog.show();
         mCurrentPage = 1;
+        mKeyWord =keyword;
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), keyword, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     private void filter() {
         mProgressDialog.show();
         mCurrentPage = 1;
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override
@@ -314,12 +320,32 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     @Override
     public void onLoadMore() {
         CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override
     public void onClick(View item, View widget, int position, int which,boolean isCheck) {
 
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count,
+                                  int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        mSearchKeyEt.setClearIconVisible(s.length() > 0);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public void afterTextChanged(Editable s) {
+        if (s.length() == 0) {
+            mKeyWord = "";
+            initData();
+        }
     }
 
 
