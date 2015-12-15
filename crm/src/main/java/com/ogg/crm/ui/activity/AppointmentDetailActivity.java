@@ -126,6 +126,11 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
                 }
                 break;
             }
+            case R.id.appointment_detail_back_iv: {
+                finish();
+                break;
+            }
+
 
             default: {
                 break;
