@@ -62,7 +62,7 @@ public class UserAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.mNameTv.setText(mDatas.get(position).getLogonName());
+        holder.mNameTv.setText(mDatas.get(position).getFullName());
         return convertView;
     }
 
