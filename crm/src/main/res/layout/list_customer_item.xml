@@ -29,7 +29,7 @@
             android:id="@+id/left_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dip"
             android:layout_toRightOf="@+id/list_customer_select_cb"
             android:orientation="vertical" >

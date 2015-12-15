@@ -211,7 +211,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mCustomerAdapter.getmIsSelected().clear();
                     mCurrentPage = 1;
                     mProgressDialog.show();
-                    CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+                    CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
                     break;
                 }
                 case CustomerLogic.DIS_CUS_SET_FAIL: {
@@ -255,7 +256,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
                     mCustomerAdapter.getmIsSelected().clear();
                     mCurrentPage = 1;
                     mProgressDialog.show();
-                    CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+                    CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                            String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
                     break;
                 }
                 case CustomerLogic.GIVE_UP_SET_FAIL: {
@@ -524,7 +526,8 @@ public class CustomerListActivity extends Activity implements OnClickListener,
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
 

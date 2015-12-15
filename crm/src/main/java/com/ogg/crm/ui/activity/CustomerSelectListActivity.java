@@ -25,12 +25,11 @@ import com.ogg.crm.R;
 import com.ogg.crm.entity.Customer;
 import com.ogg.crm.network.config.MsgRequest;
 import com.ogg.crm.network.logic.CustomerLogic;
-import com.ogg.crm.ui.adapter.CustomerAdapter;
+import com.ogg.crm.ui.adapter.CustomerSelectAdapter;
 import com.ogg.crm.ui.utils.ListItemCheckClickHelp;
 import com.ogg.crm.ui.view.AutoClearEditText;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.ui.view.listview.XListView;
-import com.ogg.crm.utils.ActivitiyInfoManager;
 import com.ogg.crm.utils.UserInfoManager;
 
 import java.text.SimpleDateFormat;
@@ -60,7 +59,7 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     private AutoClearEditText mSearchKeyEt;
 
     private XListView mCustomerLv;
-    private CustomerAdapter mCustomerAdapter;
+    private CustomerSelectAdapter mCustomerAdapter;
     private ArrayList<Customer> mCustomerList = new ArrayList<Customer>();
 
     private DrawerLayout mDrawerLayout;
@@ -150,16 +149,16 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customer_list);
+        setContentView(R.layout.customer_select_list);
         mContext = CustomerSelectListActivity.this;
         mProgressDialog = new CustomProgressDialog(mContext);
-        if (!ActivitiyInfoManager.activitityMap
-                .containsKey(ActivitiyInfoManager
-                        .getCurrentActivityName(mContext))) {
-            ActivitiyInfoManager.activitityMap
-                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
-                            this);
-        }
+//        if (!ActivitiyInfoManager.activitityMap
+//                .containsKey(ActivitiyInfoManager
+//                        .getCurrentActivityName(mContext))) {
+//            ActivitiyInfoManager.activitityMap
+//                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
+//                            this);
+//        }
         initView();
         initData();
 
@@ -185,7 +184,8 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
 
     private void initData() {
         mProgressDialog.show();
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
 //
 //        Customer customer = new Customer();
 //        customer.setUserId(UserInfoManager.getUserId(mContext));
@@ -233,7 +233,7 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
         mCustomerLv.setXListViewListener(this);
         mCustomerLv.setRefreshTime(getTime());
 
-        mCustomerAdapter = new CustomerAdapter(mContext, mCustomerList, this);
+        mCustomerAdapter = new CustomerSelectAdapter(mContext, mCustomerList, this);
         mCustomerLv.setAdapter(mCustomerAdapter);
 
         mCustomerLv.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -313,7 +313,8 @@ public class CustomerSelectListActivity extends Activity implements OnClickListe
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.list(mContext, mHandler, UserInfoManager.getUserId(mContext), String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE));
+        CustomerLogic.filterList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), "", mFilterLevel, mFilterType, mFilterTrade, mFilterState);
     }
 
     @Override
