@@ -65,6 +65,8 @@ public class AppointmentListActivity extends Activity implements OnClickListener
 
                         if(0==mAppointmentList.size()){
                             mNoAppointmentTv.setVisibility(View.VISIBLE);
+                        }else{
+                            mNoAppointmentTv.setVisibility(View.GONE);
                         }
                     }
 
