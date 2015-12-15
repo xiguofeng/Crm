@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -115,6 +116,9 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
         mAppointmentTimeTv.setText(!"null".equals(mAppointment.getReserveTime()) ? mAppointment.getReserveTime() : "");
         mCustomerNameTv.setText(!"null".equals(mAppointment.getCustomerName()) ? mAppointment.getCustomerName() : "");
         mCustomerPhoneTv.setText(!"null".equals(mAppointment.getCustomerTel()) ? mAppointment.getCustomerTel() : "");
+        if (TextUtils.isEmpty(mAppointment.getStatus()) && "1".equals(mAppointment.getStatus())) {
+            mChangeStateBtn.setVisibility(View.GONE);
+        }
     }
 
     @Override

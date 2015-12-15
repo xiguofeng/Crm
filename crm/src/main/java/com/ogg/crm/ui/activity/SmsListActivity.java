@@ -21,7 +21,6 @@ import com.ogg.crm.network.logic.SmsLogic;
 import com.ogg.crm.ui.adapter.SmsAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
-import com.ogg.crm.utils.ActivitiyInfoManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -96,13 +95,13 @@ public class SmsListActivity extends Activity implements OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sms_list);
         mContext = SmsListActivity.this;
-        if (!ActivitiyInfoManager.activitityMap
-                .containsKey(ActivitiyInfoManager
-                        .getCurrentActivityName(mContext))) {
-            ActivitiyInfoManager.activitityMap
-                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
-                            this);
-        }
+//        if (!ActivitiyInfoManager.activitityMap
+//                .containsKey(ActivitiyInfoManager
+//                        .getCurrentActivityName(mContext))) {
+//            ActivitiyInfoManager.activitityMap
+//                    .put(ActivitiyInfoManager.getCurrentActivityName(mContext),
+//                            this);
+//        }
         initView();
         initData();
 
