@@ -51,11 +51,12 @@ public class PhoneUtils {
         return b;
     }
 
+    //
 
     public static boolean checkEmail(String email){
         boolean flag = false;
         try{
-            String check = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+            String check = "^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$";
             Pattern regex = Pattern.compile(check);
             Matcher matcher = regex.matcher(email);
             flag = matcher.matches();
