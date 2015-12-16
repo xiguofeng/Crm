@@ -180,14 +180,12 @@
     <Button
         android:id="@+id/appointment_detail_complete_btn"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dip"
         android:layout_marginLeft="50dip"
         android:layout_marginRight="50dip"
         android:layout_marginTop="30dip"
         android:background="@drawable/corners_bg_blue_all"
         android:gravity="center"
-        android:paddingBottom="5dip"
-        android:paddingTop="5dip"
         android:text="@string/appointment_already_complete"
         android:textColor="@color/white"
         android:textSize="@dimen/middle_text_size" />
