@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.ogg.crm.R;
 import com.ogg.crm.entity.Appointment;
-import com.ogg.crm.network.logic.AppointmentLogic;
+import com.ogg.crm.network.logic.NewAppointmentLogic;
 import com.ogg.crm.ui.adapter.AppointmentAdapter;
 import com.ogg.crm.ui.utils.ListItemClickHelp;
 import com.ogg.crm.ui.view.CustomProgressDialog;
@@ -66,7 +66,7 @@ public class MainActivity extends Activity implements
         public void handleMessage(Message msg) {
             int what = msg.what;
             switch (what) {
-                case AppointmentLogic.LIST_GET_SUC: {
+                case NewAppointmentLogic.LIST_GET_SUC: {
                     if (null != msg.obj) {
                         mAppointmentList.clear();
                         mAppointmentList.addAll((Collection<? extends Appointment>) msg.obj);
@@ -81,12 +81,12 @@ public class MainActivity extends Activity implements
 
                     break;
                 }
-                case AppointmentLogic.LIST_GET_FAIL: {
+                case NewAppointmentLogic.LIST_GET_FAIL: {
                     Toast.makeText(mContext, "获取数据失败!",
                             Toast.LENGTH_SHORT).show();
                     break;
                 }
-                case AppointmentLogic.LIST_GET_EXCEPTION: {
+                case NewAppointmentLogic.LIST_GET_EXCEPTION: {
                     break;
                 }
 
@@ -117,7 +117,7 @@ public class MainActivity extends Activity implements
         super.onResume();
         if (isShouldRefresh && UserInfoManager.getLoginIn(mContext)) {
             mProgressDialog.show();
-            AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
+            NewAppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
             isShouldRefresh = false;
         }
     }
@@ -162,7 +162,7 @@ public class MainActivity extends Activity implements
         mDateTv.setText(frontS + " " + afterS);
 
         mProgressDialog.show();
-        AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
+        NewAppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
     }
 
     @Override

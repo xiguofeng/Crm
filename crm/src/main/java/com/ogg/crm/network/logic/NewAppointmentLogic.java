@@ -58,9 +58,10 @@ public class NewAppointmentLogic {
                 Response response = null;
                 try {
                     response = OkHttpUtil.execute(request);
-                    if (null != response && !TextUtils.isEmpty(response.body().string())) {
-                        Log.e("xxx_NewAppointment_list", ":" + response.body().string());
-                        parseListData(response.body().string(), handler);
+                    String respStr = response.body().string();
+                    if (!TextUtils.isEmpty(respStr)) {
+                        Log.e("xxx_NewAppointment_list", ":" + respStr);
+                        parseListData(respStr, handler);
                     } else {
                         handler.sendEmptyMessage(LIST_GET_FAIL);
                     }
