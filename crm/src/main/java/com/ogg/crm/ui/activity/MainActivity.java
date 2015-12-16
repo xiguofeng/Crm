@@ -48,6 +48,8 @@ public class MainActivity extends Activity implements
 
     private CustomProgressDialog mProgressDialog;
 
+    public static boolean isShouldRefresh = false;
+
     private long exitTime = 0;
 
     Handler mHandler = new Handler() {
@@ -70,9 +72,9 @@ public class MainActivity extends Activity implements
                         mAppointmentList.addAll((Collection<? extends Appointment>) msg.obj);
                         mAppointmentAdapter.notifyDataSetChanged();
 
-                        if(0==mAppointmentList.size()){
+                        if (0 == mAppointmentList.size()) {
                             mNoAppointmentTv.setVisibility(View.VISIBLE);
-                        }else{
+                        } else {
                             mNoAppointmentTv.setVisibility(View.GONE);
                         }
                     }
@@ -113,9 +115,10 @@ public class MainActivity extends Activity implements
     @Override
     protected void onResume() {
         super.onResume();
-        if (UserInfoManager.getLoginIn(mContext)) {
+        if (isShouldRefresh && UserInfoManager.getLoginIn(mContext)) {
             mProgressDialog.show();
             AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
+            isShouldRefresh = false;
         }
     }
 
@@ -144,7 +147,7 @@ public class MainActivity extends Activity implements
         mAppointmentMoreTv.setOnClickListener(this);
 
 
-        mNoAppointmentTv= (TextView) findViewById(R.id.main_no_tv);
+        mNoAppointmentTv = (TextView) findViewById(R.id.main_no_tv);
 
         mUserIv = (ImageView) findViewById(R.id.main_user_iv);
         mUserIv.setOnClickListener(this);
@@ -157,6 +160,9 @@ public class MainActivity extends Activity implements
         String frontS = TimeUtils.TimeStamp2Date(String.valueOf(date.getTime()), "yyyy-MM-dd");
         String afterS = dateFm.format(date);
         mDateTv.setText(frontS + " " + afterS);
+
+        mProgressDialog.show();
+        AppointmentLogic.getList(mContext, mAppointmentHandler, UserInfoManager.getUserId(mContext));
     }
 
     @Override

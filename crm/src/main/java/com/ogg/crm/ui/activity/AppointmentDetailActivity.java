@@ -47,6 +47,7 @@ public class AppointmentDetailActivity extends Activity implements OnClickListen
             switch (what) {
                 case AppointmentLogic.STATE_SET_SUC: {
                     Toast.makeText(mContext, "已完成!", Toast.LENGTH_SHORT).show();
+                    MainActivity.isShouldRefresh = true;
                     finish();
                     break;
                 }
