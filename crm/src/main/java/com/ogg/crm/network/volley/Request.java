@@ -16,11 +16,6 @@
 
 package com.ogg.crm.network.volley;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.Collections;
-import java.util.Map;
-
 import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.Handler;
@@ -29,6 +24,11 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 
 import com.ogg.crm.network.volley.VolleyLog.MarkerLog;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Collections;
+import java.util.Map;
 
 /**
  * Base class for all network requests.
@@ -108,7 +108,7 @@ public abstract class Request<T> implements Comparable<Request<T>> {
      * is provided by subclasses, who have a better idea of how to deliver an
      * already-parsed response.
      *
-     * @deprecated Use {@link #Request(int, String, com.android.volley.Response.ErrorListener)}.
+     * @deprecated Use {@link #Request(int, String, com.ogg.crm.network.volley.Response.ErrorListener)}.
      */
     public Request(String url, Response.ErrorListener listener) {
         this(Method.DEPRECATED_GET_OR_POST, url, listener);
