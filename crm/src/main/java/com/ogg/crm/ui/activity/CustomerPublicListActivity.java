@@ -106,6 +106,8 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     private CustomProgressDialog mProgressDialog;
 
+    private boolean mIsLoadComplete = true;
+
     Handler mHandler = new Handler() {
 
         @Override
@@ -122,7 +124,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
                         mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
-                        onLoadComplete();
+                        //onLoadComplete();
 //                        if(((Collection<? extends Customer>) msg.obj).size()==0){
 //                            Toast.makeText(mContext, "无更多数据!",
 //                                    Toast.LENGTH_SHORT).show();
@@ -148,7 +150,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
                         mCustomerList.addAll((Collection<? extends Customer>) msg.obj);
                         mCustomerAdapter.initCheck();
                         mCustomerAdapter.notifyDataSetChanged();
-                        onLoadComplete();
+                        //onLoadComplete();
                         if (((Collection<? extends Customer>) msg.obj).size() == 0) {
                             Toast.makeText(mContext, "无更多数据!",
                                     Toast.LENGTH_SHORT).show();
@@ -366,6 +368,7 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
         mCustomerLv.stopRefresh();
         mCustomerLv.stopLoadMore();
         mCustomerLv.setRefreshTime(getTime());
+        mIsLoadComplete = true;
     }
 
     private String getTime() {
@@ -409,8 +412,11 @@ public class CustomerPublicListActivity extends Activity implements OnClickListe
 
     @Override
     public void onLoadMore() {
-        CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
-                String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+        if (mIsLoadComplete) {
+            CustomerLogic.publicList(mContext, mHandler, UserInfoManager.getUserId(mContext),
+                    String.valueOf(mCurrentPage), String.valueOf(MsgRequest.PAGE_SIZE), mKeyWord, mFilterLevel, mFilterType, mFilterTrade, mFilterState);
+            mIsLoadComplete = !mIsLoadComplete;
+        }
     }
 
     @Override
