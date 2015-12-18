@@ -129,7 +129,7 @@ public class SmsLogic {
                 Map<String, String> map = new HashMap<String, String>();
                 try {
                     map.put("mobiles",
-                            URLEncoder.encode("17712888306", "UTF-8"));
+                            URLEncoder.encode(mobiles, "UTF-8"));
                     map.put("messageContent",
                             URLEncoder.encode(messageContent, "UTF-8"));
 
