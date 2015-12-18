@@ -5,8 +5,8 @@ package com.ogg.crm.network.config;
  */
 public class RequestUrl {
 
-    public static final String HOST_URL = "http://218.2.105.13:20001/CRM1.0";
-
+    //public static final String HOST_URL = "http://218.2.105.13:20001/CRM1.0";
+    public static final String HOST_URL = "http://180.96.19.139:8000/crm";
 
     public interface account {
 

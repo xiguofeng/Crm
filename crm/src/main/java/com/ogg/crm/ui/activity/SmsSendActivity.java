@@ -55,11 +55,11 @@ public class SmsSendActivity extends Activity implements OnClickListener {
                 case SmsLogic.SEND_SUC: {
                     if (null != msg.obj) {
                     }
-
+                    finish();
                     break;
                 }
                 case SmsLogic.SEND_FAIL: {
-                    Toast.makeText(mContext, R.string.login_fail,
+                    Toast.makeText(mContext, R.string.send_fail,
                             Toast.LENGTH_SHORT).show();
                     break;
                 }

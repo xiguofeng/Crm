@@ -79,8 +79,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
@@ -95,9 +95,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_name_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -108,8 +108,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -124,9 +124,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_telephone_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -137,8 +137,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -153,9 +153,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_mobilephone_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -166,8 +166,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -182,9 +182,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_qq_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -195,8 +195,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -211,9 +211,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_email_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -224,8 +224,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -240,9 +240,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_customer_job_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -253,8 +253,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -269,9 +269,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_customer_type_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -282,8 +282,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
@@ -299,9 +299,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_customer_level_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -337,8 +337,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -353,9 +353,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_company_name_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -367,8 +367,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -384,9 +384,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_company_address_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -397,8 +397,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -413,10 +413,10 @@
 
                     <TextView
                         android:id="@+id/customer_detail_company_type_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
-                        android:gravity="right"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
                         android:textColor="@color/black_character"
@@ -426,8 +426,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -442,10 +442,10 @@
 
                     <TextView
                         android:id="@+id/customer_detail_main_product_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
-                        android:gravity="right"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
                         android:textColor="@color/black_character"
@@ -455,8 +455,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -471,9 +471,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_province_city_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -484,8 +484,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginBottom="15dp"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
@@ -501,9 +501,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_company_net_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -539,8 +539,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -555,9 +555,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_inbound_channel_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -568,8 +568,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -584,10 +584,10 @@
 
                     <TextView
                         android:id="@+id/customer_detail_pre_buy_product_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
-                        android:gravity="right"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
                         android:textColor="@color/black_character"
@@ -597,8 +597,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -613,9 +613,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_producing_area_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -626,8 +626,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -642,9 +642,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_standard_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -655,8 +655,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -671,9 +671,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_number_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -684,8 +684,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -700,10 +700,10 @@
 
                     <TextView
                         android:id="@+id/customer_detail_settlement_type_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
-                        android:gravity="right"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
                         android:textColor="@color/black_character"
@@ -713,8 +713,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -729,9 +729,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_customer_account_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -742,8 +742,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -758,9 +758,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_is_has_log_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -771,8 +771,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="15dip"
+                    android:layout_marginRight="15dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -787,9 +787,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_last_settlement_time_tv"
-                        android:layout_width="180dp"
+                        android:layout_width="160dp"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -800,8 +800,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal">
 
@@ -816,9 +816,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_follow_state_tv"
-                        android:layout_width="180dp"
-                        android:gravity="right"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -829,8 +829,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:orientation="horizontal"
                     android:visibility="gone">
@@ -846,9 +846,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_follow_record_tv"
-                        android:layout_width="180dp"
-                        android:gravity="right"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
@@ -859,8 +859,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
                     android:layout_marginTop="10dip"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
@@ -876,9 +876,9 @@
 
                     <TextView
                         android:id="@+id/customer_detail_remark_tv"
-                        android:layout_width="180dp"
-                        android:gravity="right"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:gravity="left"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:padding="5dp"
