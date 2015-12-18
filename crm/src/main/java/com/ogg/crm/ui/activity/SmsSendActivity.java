@@ -21,6 +21,7 @@ import com.ogg.crm.entity.Sms;
 import com.ogg.crm.network.logic.SmsLogic;
 import com.ogg.crm.ui.view.CustomProgressDialog;
 import com.ogg.crm.utils.ActivitiyInfoManager;
+import com.ogg.crm.utils.UserInfoManager;
 
 public class SmsSendActivity extends Activity implements OnClickListener {
 
@@ -53,14 +54,17 @@ public class SmsSendActivity extends Activity implements OnClickListener {
             int what = msg.what;
             switch (what) {
                 case SmsLogic.SEND_SUC: {
-                    if (null != msg.obj) {
-                    }
                     finish();
                     break;
                 }
                 case SmsLogic.SEND_FAIL: {
-                    Toast.makeText(mContext, R.string.send_fail,
-                            Toast.LENGTH_SHORT).show();
+                    if (null != msg.obj) {
+                        Toast.makeText(mContext, (String) msg.obj,
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(mContext, R.string.send_fail,
+                                Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 }
                 case SmsLogic.SEND_EXCEPTION: {
@@ -134,7 +138,7 @@ public class SmsSendActivity extends Activity implements OnClickListener {
         }
         if (!TextUtils.isEmpty(mUserPhoneTv.getText().toString()) && !TextUtils.isEmpty(mContentEt.getText().toString())) {
             mProgressDialog.show();
-            SmsLogic.send(mContext, mHandler, mUserPhoneTv.getText().toString(), mContentEt.getText().toString());
+            SmsLogic.send(mContext, mHandler, UserInfoManager.getUserId(mContext), mUserPhoneTv.getText().toString(), mContentEt.getText().toString());
         } else {
             Toast.makeText(mContext, "请填写发送内容!", Toast.LENGTH_SHORT).show();
         }

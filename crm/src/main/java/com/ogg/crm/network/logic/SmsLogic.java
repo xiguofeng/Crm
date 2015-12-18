@@ -5,15 +5,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.ogg.crm.BaseApplication;
+import com.ogg.crm.entity.Sms;
+import com.ogg.crm.network.config.MsgResult;
+import com.ogg.crm.network.config.RequestUrl;
 import com.ogg.crm.network.volley.Request;
 import com.ogg.crm.network.volley.Response;
 import com.ogg.crm.network.volley.VolleyError;
 import com.ogg.crm.network.volley.toolbox.StringRequest;
-import com.ogg.crm.BaseApplication;
-import com.ogg.crm.entity.Customer;
-import com.ogg.crm.entity.Sms;
-import com.ogg.crm.network.config.MsgResult;
-import com.ogg.crm.network.config.RequestUrl;
 import com.ogg.crm.utils.JsonUtils;
 
 import org.json.JSONArray;
@@ -105,7 +104,7 @@ public class SmsLogic {
     }
 
 
-    public static void send(final Context context, final Handler handler,
+    public static void send(final Context context, final Handler handler, final String userId,
                             final String mobiles, final String messageContent) {
 
         String url = RequestUrl.HOST_URL + RequestUrl.sms.send;
@@ -128,6 +127,8 @@ public class SmsLogic {
                 // 在这里设置需要post的参数
                 Map<String, String> map = new HashMap<String, String>();
                 try {
+                    map.put("userId",
+                            URLEncoder.encode(userId, "UTF-8"));
                     map.put("mobiles",
                             URLEncoder.encode(mobiles, "UTF-8"));
                     map.put("messageContent",
@@ -151,21 +152,13 @@ public class SmsLogic {
             JSONObject response = new JSONObject(responseStr);
             String sucResult = response.getString("state").trim();
             if (sucResult.equals(MsgResult.RESULT_SUCCESS)) {
-
-                JSONArray jsonArray = response.getJSONArray("rows");
-                ArrayList<Customer> customers = new ArrayList<Customer>();
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Customer customer = (Customer) JsonUtils.fromJsonToJava(jsonObject, Customer.class);
-                    customers.add(customer);
-                }
-
-                Message message = new Message();
-                message.what = SEND_SUC;
-                message.obj = customers;
-                handler.sendMessage(message);
+                handler.sendEmptyMessage(SEND_SUC);
             } else {
-                handler.sendEmptyMessage(SEND_FAIL);
+                String failReason = response.getString("msg").trim();
+                Message message = new Message();
+                message.what = SEND_FAIL;
+                message.obj = failReason;
+                handler.sendMessage(message);
             }
         } catch (JSONException e) {
             handler.sendEmptyMessage(SEND_EXCEPTION);
