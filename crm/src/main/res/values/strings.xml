@@ -117,7 +117,7 @@
     <string name="sms_see">查看短信</string>
     <string name="sms_title">短信名称</string>
     <string name="sms_use">使用模板</string>
-    <string name="send_suc">发送成本</string>
+    <string name="send_suc">发送成功！</string>
     <string name="send_fail">发送失败</string>
     <string name="customer_select">客户选择</string>
 
