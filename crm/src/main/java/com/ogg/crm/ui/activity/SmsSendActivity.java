@@ -54,6 +54,8 @@ public class SmsSendActivity extends Activity implements OnClickListener {
             int what = msg.what;
             switch (what) {
                 case SmsLogic.SEND_SUC: {
+                    Toast.makeText(mContext, R.string.send_suc,
+                            Toast.LENGTH_SHORT).show();
                     finish();
                     break;
                 }
